@@ -1,0 +1,3 @@
+[submodule "wp-content/themes/evergreen-twentyeleven"]
+	path = wp-content/themes/evergreen-twentyeleven
+	url = https://github.com/amygreene/wp_evergreen-twenty-eleven.git
