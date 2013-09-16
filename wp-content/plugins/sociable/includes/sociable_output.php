@@ -128,7 +128,20 @@ function sociable_html( $display = array(),$location = "" ){
 
 	// Start preparing the output
 
+$args = array(
+	'post_type' => 'attachment',
+	'numberposts' => null,
+	'post_status' => null,
+	'post_parent' => $post->ID
+); 
 
+$image = "";
+if ($attachments) {
+	foreach ($attachments as $attachment) {
+		//echo apply_filters('the_title', $attachment->post_title);
+		$image =  wp_get_attachment_url($attachment->ID, true);
+	}
+}
 
 	$html = '<!-- Start Sociable --><div class="sociable">';
 
@@ -256,6 +269,8 @@ function sociable_html( $display = array(),$location = "" ){
 		$url = str_replace('TITLECOUNT', $titleCOUNT, $url);
 
 		$url = str_replace('TITLE', $title, $url);
+		
+		$url = str_replace('SOURCE',$image,$url);
 
 		$url = str_replace('RSS', $rss, $url);
 
@@ -296,6 +311,9 @@ function sociable_html( $display = array(),$location = "" ){
 				$linkitem = ( ! isset( $sociable_options['use_images'] ) ) ? $description : "<img style='".$margin."' src='".SOCIABLE_HTTP_PATH."images/more.png'>";
 
 			}
+			if ($description =="vuible"){
+				$linkitem = ( ! isset( $sociable_options['use_images'] ) ) ? $description : "<img style='' src='".SOCIABLE_HTTP_PATH."images/".$sociable_options['icon_option']."/".$sociable_options['icon_size']."/vuible.png'>";
+			}
 
 		}
 
@@ -311,12 +329,14 @@ function sociable_html( $display = array(),$location = "" ){
 
         $target = isset( $sociable_options['new_window'] ) ? 'target="_blank"' : '' ;
 
-        if ($sitename == "Add to favorites" || $sitename=="More"){
-
-			if ($sitename == "More"){
-
-				$link .= '<a style="cursor:pointer" rel="nofollow" onMouseOut="fixOnMouseOut(document.getElementById(\'sociable-post'.$location.'-'.$post->ID.'\'), event, \'post'.$location.'-'.$post->ID.'\')" onMouseOver="more(this,\'post'.$location.'-' . $post->ID . '\')">' . $linkitem . '</a></li>' ;
-
+        if ($sitename == "Add to favorites" || $sitename=="More" || $sitename=="vuible"){
+			
+			if ($sitename == "More" || $sitename=="vuible"){
+				if ($sitename == "More"){
+					$link .= '<a style="cursor:pointer" rel="nofollow" onMouseOut="fixOnMouseOut(document.getElementById(\'sociable-post'.$location.'-'.$post->ID.'\'), event, \'post'.$location.'-'.$post->ID.'\')" onMouseOver="more(this,\'post'.$location.'-' . $post->ID . '\')">' . $linkitem . '</a></li>' ;
+				}else{				
+					$link .= "<a onClick=\"javascript:var ipinsite='Good%20Vibes.%20Vuible.com',ipinsiteurl='http://vuible.com/';(function(){if(window.ipinit!==undefined){ipinit();}else{document.body.appendChild(document.createElement('script')).src='http://vuible.com/wp-content/themes/ipinpro/js/ipinit.js';}})();\" style=\"cursor:pointer\" rel=\"nofollow\" title=\"Vuible.com | Share positive messages (images and videos only)\">" . $linkitem . "</a></li>";					
+				}
 			}else{
 
 				$link .= '<a class="'.$sociable_options['icon_option'].'_'.$sociable_options['icon_size'].'" style="cursor:pointer;'.$style.'" rel="nofollow" title="'.$sitename.' - doesn\'t work in Chrome"  onClick="' . $href . '">' ."" . '</a></li>' ;
@@ -370,6 +390,8 @@ function sociable_html( $display = array(),$location = "" ){
         $url = ( isset( $site['script'] ) ) ? $site['script'] :  $site['url'];
 
 		$url = str_replace('TITLECOUNT', $titleCOUNT, $url);
+		
+		$url = str_replace('SOURCE',$image,$url);
 
 		$url = str_replace('TITLE', $title, $url);
 
@@ -394,13 +416,18 @@ function sociable_html( $display = array(),$location = "" ){
 		}else{
 
 			if (isset($description) && $description!= "More"){
-
+			
 				$linkitem = ( ! isset( $sociable_options['use_images'] ) ) ? $description : _get_sociable_image( $site, $description );
 
 			}else{
-
+				
 				$linkitem = ( ! isset( $sociable_options['use_images'] ) ) ? $description : "<img style='".$margin."' src='".SOCIABLE_HTTP_PATH."images/more.png'>";
 
+			}
+			
+			if ($sitename =="vuible"){
+
+				$linkitem = ( ! isset( $sociable_options['use_images'] ) ) ? $description : "<a  title='Vuible.com | Share positive messages (images and videos only)'> <img style='' src='".SOCIABLE_HTTP_PATH."images/".$sociable_options['icon_option']."/".$sociable_options['icon_size']."/vuible.png'></a>";
 			}
 
 		}
@@ -417,12 +444,14 @@ function sociable_html( $display = array(),$location = "" ){
 
         $target = isset( $sociable_options['new_window'] ) ? 'target="_blank"' : '' ;
 
-        if ($sitename == "Add to favorites" || $sitename=="More"){
+        if ($sitename == "Add to favorites" || $sitename=="More" || $sitename=="vuible"){
 
-			if ($sitename == "More"){
-
+			if ($sitename == "More" || $sitename=="vuible"){
+				if ($sitename=="More"){
 				$link .= '<a style="cursor:poainter" rel="nofollow"   onMouseOver="more(this,\'post'.$location.'-' . $post->ID . '\')">' . $linkitem . '</a></li>' ;
-
+				}else{				
+				$link .= "<a onClick=\"javascript:var%20ipinsite='Good%20Vibes.%20Vuible.com',ipinsiteurl='http://vuible.com/';(function(){if(window.ipinit!==undefined){ipinit();}else{document.body.appendChild(document.createElement('script')).src='http://vuible.com/wp-content/themes/ipinpro/js/ipinit.js';}})();\" style=\"cursor:pointer\" rel=\"nofollow\" title=\"Vuible.com | Share positive messages (images and videos only)\">" . $linkitem . "</a></li>";					
+				}
 			}else{
 
 				$link .= '<a class="'.$sociable_options['icon_option'].'_'.$sociable_options['icon_size'].'" style="cursor:pointer;'.$style.'" rel="nofollow" title="'.$sitename.' - doesn\'t work in Chrome"  onClick="' . $href . '">' ."" . '</a></li>' ;
@@ -434,7 +463,7 @@ function sociable_html( $display = array(),$location = "" ){
 			if($sociable_options["icon_option"] == "option6" || !empty($sociable_options["custom_icons"])){
 
 				$link .= '<a  title="'.$sitename.'" style="'.$description.$sociable_options['icon_size'].'_'.str_replace("option","",$sociable_options['icon_option']).'" rel="nofollow" ' . $target . ' href="' . $href . '">' . $linkitem . '</a></li>' ;
-
+		
 			}else{
 
 				$link .= '<a title="'.$sitename.'" class="'.$sociable_options['icon_option'].'_'.$sociable_options['icon_size'].'" style="'.$style.'" rel="nofollow" ' . $target . ' href="' . $href . '">' . "" . '</a></li>' ;
@@ -522,6 +551,10 @@ function sociable_html( $display = array(),$location = "" ){
 		$url = str_replace('PERMALINKCOUNT', $permalinkCOUNT, $url);
 
         $url = str_replace('PERMALINK', $permalink, $url);	
+		if ($sitename =="vuible Counter"){
+				
+				$url = ( ! isset( $sociable_options['use_images'] ) ) ? $description : "<a  title='Vuible.com | Share positive messages (images and videos only)'><img onClick='ipinit();' style='cursor:pointer' src='".SOCIABLE_HTTP_PATH."images/vuible.png'></a>";
+			}
 
 	$link.= $url."</li>";	
 

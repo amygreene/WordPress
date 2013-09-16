@@ -1,10 +1,12 @@
 === Better RSS Widget ===
 Contributors: grandslambert
-Donate link: http://plugins.grandslambert.com/better-rss-widget-donate
+Donate link: http://grandslambert.tk/plugins/better-rss-widget.html
 Tags: rss, link, list, target, feed, syndicate, shortcode, posts, page
 Requires at least: 2.5
-Tested up to: 3.1
+Tested up to: 3.5
 Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Replacement for the built in RSS widget that adds an optional link target, shortcode, and page conditionals.
 
@@ -19,7 +21,9 @@ This plugin does not, and cannot replace the existing RSS Widget. Once you insta
 = Features =
 
 * Add title or post tags to the feed URL in the shortcode.
-* Excerpt lenght can be set in both the widget and the shortcode.
+* Excerpt length can be set in both the widget and the shortcode.
+* Limit the number of characters to display for the title of the post.
+* Add text or html before the list of posts on widgets.
 * Page conditionals select whether or not to show on Home, Front, Single Post, Archive, Search, Category, Tag, and Date pages.
 * Shortcode to allow embedding RSS feeds into posts and pages.
 * Choose whether to cache the RSS feed and set the cache duration per feed, defaults to 3600 seconds (1 hour).
@@ -45,6 +49,16 @@ This plugin includes the following translations. Translations listed with no tra
 4. Add new "Better RSS Widgets" or replace existing "RSS" widgets to use the new settings.
 
 == Changelog ==
+
+= 2.6.1 - December 28th, 2012 =
+
+* Quick fix to properly display the list of contributors.
+
+= 2.6 - December 28th, 2012 =
+
+* Updated links in preparation for new features.
+* Fixed errors in language file so all text can be translated.
+* Added the ability to include a short description before the list.
 
 = 2.5 - March 1st, 2011 =
 
@@ -174,6 +188,15 @@ This plugin includes the following translations. Translations listed with no tra
 
 == Upgrade Notice ==
 
+= 2.6.1 =
+Maintenance release.
+
+= 2.6 =
+Fixes a language issue and adds the ability to include text before links.
+
+= 2.5 =
+Fixes issues with the form and checkbox defaults.
+
 = 2.4 =
 Fixes the shortcode to use target and cache.
 
@@ -220,7 +243,7 @@ With the addition of the page conditionals, you will need to edit your widget se
 
 = Where can I get support? =
 
-http://support.grandslambert.com/forum/better-rss-widget
+http://grandslambert.tk/support/forum/better-rss-widget
 
 == Screenshots ==
 

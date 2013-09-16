@@ -2,7 +2,7 @@
 Contributors: constantin.boiangiu
 Tags: slider, slideshow, WordPress slider, media, jQuery, themes, iPad, image, gallery, featured, articles, posts, pages, custom posts, seo, search engine optimized
 Requires at least: 3.1
-Tested up to: 3.4.1
+Tested up to: 3.5
 Stable tag: trunk
 
 Put featured posts or pages into a fancy JavaScript slider that can be set to display on any category page, page or homepage.
@@ -20,9 +20,9 @@ Slideshows can be placed by one of these ways (or all at the same time):
 
 While Lite version of FeaturedArticles provides all the neccessary tools for creating very nice slideshows, PRO version of this same plugin comes in addition with:
 
-* 4 more themes developed by our developers team (7 in total, 3 video enabled by default in PRO version);
+* 6 more themes (2 of them responsive) developed by our developers team (9 in total, 5 video enabled by default in PRO version);
 * **video enabled** custom slides for **YouTube and Vimeo** that can replace the image with a video ( [See examples here](http://www.codeflavors.com/featured-articles-pro/examples/ "FeaturedArticles PRO examples") );
-* custom writen slides that can be written using the visual editor;
+* custom written slides that can be created using the visual editor;
 * slideshows can display custom post types if your WordPress blog has them;
 * for posts and custom post types, selection of posts by taxonomies;
 * mixing of posts, custom posts, pages and custom slides into the same slideshow;
@@ -96,6 +96,22 @@ We don't actively monitor the forum here on Wordpres.org so responses to questio
 8. Theme Strips (PRO)
 
 == Changelog ==
+
+= 2.5.2 =
+* Solved issue in slideshow themes that was causing second slide to show for an instant when page was loading. Modified files: all display.php files in all slideshow themes.
+
+= 2.5.1 =
+* Solved WordPress 3.5 error fatal error related to $wpdb->prepare()
+
+= 2.5 =
+* Multibyte string support.
+* Image preloaders for featured images in slides.
+* Function to retrieve slideshow settings ( FA_get_option() ) can now take arrays as well as string as argument.
+* WP Touch PRO compatibility.
+* Template function ( the_fa_author() ) and options to display author name in slideshows.
+* New option to link author name to author posts page.
+* Image resize in slideshows to exact dimensions entered by user (uses default WordPress functionality; images will be cropped if bigger).
+* New responsive theme ( Classic Responsive ) adapted from theme Classic.
 
 = 2.4.9.2 =
 * resolved podPress related bug that was displaying raw podPress player code into slides. Instead of applying all the_content filters, it applies only the default WordPress filters (wptexturize, convert_smilies, convert_chars, wpautop, shortcode_unautop).
@@ -204,7 +220,7 @@ into
 * Custom post/pages images improved usage and interface
 * Easy setting for featured posts and pages to be displayed into the slider
 * Image detection improved even more. Currently there are 2 ways to set an image for a certain post: by setting the image as a custom field and second by detecting the image from post content. For images detected in post content, the plugin tries to identify the exact attachment from the database and if found, it automatically sets the image into the custom field. The only thing it needs is for the image to have the width and height attributes set in HTML.
-* New theme available (Smoke). See screenshots for details and [WP featured articles Lite homepage](http://www.php-help.ro/mootools-12-javascript-examples/wordpress-featured-content-plugin/#additional-themes "WP Featured Articles plugin - theme Smoke settings") for instructions on how to set up this theme.
+* New theme available (Smoke).
 
 = 2.1 =
 * Date format in featured post short description displays according to blog date format option setting
@@ -228,15 +244,5 @@ Plugin is guaranteed to work on a clean Wordpress install. Since themes and othe
 3. Use the proper Wordpress version (3.1 +).
 4. See if your theme footer.php file calls wp_footer().
 
-If all options are exhausted, you can always ask for help on our forums. We'll answer whenever the time allows us to.
+If all options are exhausted, you can always ask for help on our forums at [CodeFlavors Featured Articles WP forum](http://www.codeflavors.com/codeflavors-forums/forum/featured-articles/ "Featured Articles for WordPress forum"). We'll answer whenever the time allows us to.
 
-ONLY FOR VERSIONS PRIOR TO 2.3
-
-The slider script is developed using MooTools 1.2. Since the framework isn't bundled in Wordpress (as jQuery is), the plugin adds the MooTools framework along with the other scripts it needs to run into the blog header. If other plugins running on MooTools are installed the page will issue Javascript errors. To solve this problem, in slider administration page there's an option to drop the MooTools script so that conflicts no longer occur.
-
-Another known problem is if any of the plugin installed use Prototype framework. MooTools and Prototype are conflicting and the only solution would be to remove one of the plugins (either the MooTools based or the Prototype based plugins).
-
-Usually, after you install Featured Articles Lite into your blog and you go see it in front-end and the slider doesn't work it's a clear sign that there's a framework conflict. First thing to to is to go to wp-admin and open the FA Lite settings panel. Look for option Unload MooTools framework and uncheck it. Go back to front-end and see if the slider works. If it does, this means that another plugin uses MooTools and there was a conflict because MooTools was included twice in header.
-If the slider still doesn't work, look into page source and do a search for "prototype.js". If you can see it in your page source it's time to make a decision: use FA Lite and deactivate the plugin using Prototype or drop FA Lite and continue using the other plugin.
-
-If you need help troubleshooting leave a comment on [WP featured articles Lite homepage](http://www.php-help.ro/mootools-12-javascript-examples/wordpress-featured-content-plugin/#additional-themes "WP Featured Articles plugin homepage").

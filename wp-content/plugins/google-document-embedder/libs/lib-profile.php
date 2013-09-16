@@ -33,6 +33,18 @@ function gde_profile_form( $id = 1 ) {
 		}
 ?>
 
+<!--
+
+<?php
+
+echo "id: $id\n\n";
+echo gettype($p)."\n\n";
+print_r($p); 
+
+?>
+
+-->
+
 <div id="profile-form">
 
 	<form action="" method="post">
@@ -106,12 +118,14 @@ function gde_profile_form( $id = 1 ) {
 							<select name="tb_fullscr" id="tb_fullscr">
 <?php
 	gde_profile_option( $p['tb_fullscr'], 'default', __('Google-Hosted Page (Default)', 'gde') );
-	//gde_profile_option( $p['tb_fullscr'], 'branded', __('Cusom-Branded Page', 'gde') );
+	//gde_profile_option( $p['tb_fullscr'], 'branded', __('Custom-Branded Page', 'gde') );
 	gde_profile_option( $p['tb_fullscr'], 'viewer', __('Full Screen Viewer', 'gde') );
 ?>
-							</select>
+							</select><br/>
+						
 <?php
 	gde_profile_checkbox( $p['tb_fullwin'], 'fs_win', __('Open in New Window', 'gde') );
+	gde_profile_checkbox( $p['tb_fulluser'], 'fs_user', __('Allow Logged-in Users Only', 'gde'), 'blockAnon' );
 	gde_profile_checkbox( $p['tb_print'], 'fs_print', __('Allow Printing', 'gde'), 'allowPrint' );
 ?>
 						</td>
@@ -136,7 +150,7 @@ function gde_profile_form( $id = 1 ) {
 ?>
 						</td>
 					</tr>
-					<tr valign="top" id="pbcolor">
+					<tr valign="top" id="cssfile">
 						<th scope="row"><?php _e('Custom CSS File', 'gde'); ?></th>
 						<td>
 <?php

@@ -1,10 +1,10 @@
 === Username Changer ===
-Contributors: Ghost1227
+Contributors: Ghost1227, robert_k
 Donate link: http://pledgie.com/campaigns/17372
 Tags: user, username, display name, changer
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 1.4
+Stable tag: 2.0.0
 
 A simple plugin to change registered usernames.
 
@@ -27,6 +27,10 @@ None yet
 1. The main interface
 
 == Changelog ==
+
+= Version 2.0.0 =
+* Major codebase reworking
+* Fix critical SQL injection vulnerability
 
 = Version 1.4 =
 * Include author url (nicename) in update process

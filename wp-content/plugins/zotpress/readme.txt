@@ -3,70 +3,155 @@ Contributors: kseaborn
 Plugin Name: Zotpress
 Plugin URI: http://katieseaborn.com/plugins/
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5HQ8FXAXS9MUQ
-Tags: zotero, zotpress, citation manager, citations, citation, cite, citing, bibliography, bibliographies, reference, referencing, references, reference list, reference manager, academic, academia, scholar, scholarly, cv, curriculum vitae, resume
+Tags: zotero, zotpress, citation manager, citations, citation, cite, citing, bibliography, bibliographies, reference, referencing, references, reference list, reference manager, academic, academia, scholar, scholarly, cv, curriculum vitae, resume, publish, publications
 Author URI: http://katieseaborn.com/
 Author: Katie Seaborn
 Requires at least: 3.0.4
-Tested up to: 3.2.1
-Stable tag: 4.5.4
+Tested up to: 3.6
+Stable tag: 5.0.10
+License: Apache2.0
 
-Zotpress displays your Zotero citations on Wordpress.
+Zotpress displays your Zotero citations on WordPress.
 
 == Description ==
 
-[Zotpress](http://katieseaborn.com/plugins/ "Zotpress for WordPress") brings scholarly blogging to WordPress. This plugin displays your [Zotero](http://zotero.org/ "Zotero") citations on your Wordpress blog. [Zotero](http://zotero.org/ "Zotero") is a community-based cross-platform citation manager that integrates with your browser and word processor.
+[Zotpress](http://katieseaborn.com/plugins/ "Zotpress for WordPress") brings scholarly blogging to WordPress. This plugin displays your [Zotero](http://zotero.org/ "Zotero") citations on your WordPress blog. [Zotero](http://zotero.org/ "Zotero") is a free, cross-platform reference manager that integrates with your browser and word processor.
 
 = Features =
 * Display your Zotero citations on your blog using in-text citations and bibliographies
 * Display citations, collections, or tags
 * Selective CSS styling via IDs and classes
-* Add both user and group Zotero accounts
+* Supports both user and group Zotero accounts
 * Add thumbnail images to your citations
-* Let visitors download your publications
+* Let visitors cite and download your publications
 * And more!
 
-Tested in Firefox 5, Safari 5, Chrome 12, IE7 and IE8.
+Compatible with Firefox, Safari, Chrome, IE7, IE8, and IE9. Made with jQuery, jQuery UI, and qTip 2.
+
+Special thanks to Christopher Cheung and Jason S. for their coding support and advice.
 
 = Requirements =
-jQuery included in your theme, and cUrl [preferably] or file_get_contents enabled on your server.  Optional, but recommended: OAuth enabled on your server.
+jQuery included in your theme (Zotpress will do this for you if it isn't already included), and an HTTP request method supported by WordPress enabled on your server: cURL, fopen with Streams (PHP 5), or fsockopen. Optional: OAuth enabled on your server.
 
 == Installation ==
 
 1. Upload the folder `zotpress` to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. If your theme doesn't already support jQuery, you'll need to add `<?php wp_enqueue_script("jquery"); ?>` above the `<?php wp_head(); ?>` call in your theme's header template.
 1. Place the `[zotpress]` shortcode in your blog entry or enable the Zotpress sidebar widget.
 
 = Shortcode =
-You can display your Zotero citations in a number of ways. To display a complete list of citations for an account in the default bibliography style (APA), simply use this shortcode:
-
-[zotpress userid="00000"]
-
-An example of the shortcode using parameters is:
+You can display your Zotero citations in a number of ways. To display a list of five citations from the collection with the key "ZKDTKM3X", use this shortcode:
 
 [zotpress collection="ZKDTKM3X" limit="5"]
 
-This shortcode will display a list of five citations from the collection with the key "ZKDTKM3X".
-
 You can also use in-text citations:
 
-[zotpressInText item="U9Z5JTKC" pages="36-45"]
+[zotpressInText item="{U9Z5JTKC,36-45}"]
 
-This shortcode will display the following APA-styled in-text citation for the citation with the key "U9Z5JTKC": (Seaborn, 2011, p. 36). The full citation will be shown in an auto-generated bibliography placed below the post.
+This shortcode will display the following in-text citation for the citation with the key "U9Z5JTKC": (Seaborn, 2011, p. 36). The full citation can be displayed in an auto-generated bibliography using the [zotpressInTextBib] shortcode.
 
-Check out the "Help" page on your installation of Zotpress for more information and a full listing of parameters for both shortcodes.
+Check out the "Help" page on your installation of Zotpress for more information and a full listing of parameters for all shortcodes.
 
 == Frequently Asked Questions ==
 
-The F.A.Q. can be found on the "Help" page of every Zotpress install. If you have a question that isn't answered there, freel free to post a message in the [forums](http://wordpress.org/tags/zotpress "Zotero forums on Wordpress.com").
+The F.A.Q. can be found on the "Help" page of every Zotpress installation. If you have a question that isn't answered there, feel free to post a message in the [forums](http://wordpress.org/tags/zotpress "Zotero forums on Wordpress.com").
 
 == Screenshots ==
 
-1. Display and filter your Zotero citations by account, collection or tag on the admin page. Upload images to citations. Special characters are supported.
-2. Manage both user and group Zotero accounts. Easy private key creation using OAuth (as long as your server supports it).
-3. Search for item keys, citation ids and tag names using the convenient "Zotpress Reference" meta box.
+1. Browse your Zotero citations by account, collection or tag. Add custom images to citations. Special characters are supported.
+2. Search for items and build bibliography and in-text shortcodes using the "Zotpress Reference" meta box widget.
+3. Display your Zotero items on your blog. Write scholarly posts with in-text citations and autogenerated bibliographies.
 
 == Changelog ==
+
+= 5.0.10 =
+
+* Fixed display issue for multiple in-text citations per shortcode.
+* Updated the Help/FAQ page.
+* Restructured request class and enforced Zotoro API Version 1.
+* Fixed style update errors related to undefined variables.
+* Added "citeable" as an alternate for the "cite" attribute.
+
+= 5.0.9 =
+
+* Fixed incorrect abstracts issue.
+* Fixed "years", "authors" and "nick" shortcode attributes.
+* Help information for finding Group IDs has been updated.
+* Lowercase style names enforced.
+
+= 5.0.8 =
+
+* New! Import functionality check added.
+* New! Reset Zotpress feature on Options page.
+* New! Added security measures to prevent direct access.
+* New! Import items, collections and tags separately.
+* Updated import script; sessions removed.
+* Fixed minor shortcode bugs.
+* Removed extraneous code.
+* Minor style updates.
+
+= 5.0.7 =
+
+* New! Import script now uses WordPress functionality for improved compatibility.
+* New! "Link" attribute for tag and collection lists.
+* Updated help page to include how to use in-text brackets.
+* In-text format updates, including new "etal" attribute.
+* URLs are now converted two-ways to account for prior encoding.
+* Updated styles for a more consistent look.
+
+= 5.0.6 =
+
+* Fixed incompatibility bugs with jQuery UI; some style updates, too.
+* Fixed "abstract" attribute bug.
+* Fixed in-text %num% numbering bug.
+* In-text shortcodes are now unique to posts.
+* Fixed hyperlink bug for special characters.
+* Fixed search when no default account set.
+* New! In-text citations are now hyperlinked to the generated bibliography.
+
+= 5.0.5 =
+
+* New! Can now display abstracts using the "abstract" parameter.
+* Blank author fields now filled with other author (e.g. editor) information.
+* Added support for %num% formatting option (in-text).
+* Fixed front-end style update script for large (50+) items.
+* Fixed "datatype" filtering error.
+* Fixed typos in the Help page.
+* Added default account constraint to Zotpress Reference results.
+
+= 5.0.4 =
+
+* Fixed table install, update and uninstall issues.
+* New import and sync scripts for large libraries.
+* Zotpress admin now accessible to Editors.
+* Styles updated and Help page shortcode documentation redesigned.
+
+= 5.0.3 =
+
+* Fixed import and sync for large libraries.
+* Removed autoupdate feature. Please use the sync feature for the time being.
+* Fixed metabox widget error.
+* Minor bug fixes.
+
+= 5.02 =
+
+* Fixed display of styles with numbered lists, e.g. IEEE, nature, etc.
+* Fixed critical in-text citation bug when multiple accounts are synced.
+* Long URLs in citations will now wrap.
+
+= 5.01 =
+
+* Critical patch for case-sensitive tables and import functionality.
+
+= 5.0 =
+
+* Happy new year! Zotpress is now optimized for Wordpress 3.5.
+* Near-complete rewrite of the code for greater loading speeds across the board.
+* Revamped Browse page and Reference Widget with autocomplete and a new shortcode builder.
+* Expanded Zotpress In-Text capabilities, including multiple items and formatting.
+* New shortcode parameters, including ones for filtering and providing RIS links for citing.
+* Greater shortcode flexibility, including support for multiple items and new sort options.
+* Many more additions and bug fixes. Explore and enjoy the new Zotpress!
 
 = 4.5.4 =
 * Fixed "downloadable" bug.
@@ -382,3 +467,88 @@ Styles for metabox tabs added. In-Text Bibliography fixed (I promise).
 
 = 4.5.4 =
 Fixed "downloadable" bug. Updated Help page.
+
+= 4.6 =
+* New! Context menu (aka right-click menu) insert citation function for CKEditor-enabled blogs.
+
+= 5.0 =
+* Fixed for Wordpress 3.5! Many new and improved features.
+
+= 5.01 =
+
+* Critical patch for case-sensitive tables and import functionality.
+
+= 5.02 =
+
+* Fixed display of styles with numbered lists, e.g. IEEE, nature, etc.
+* Fixed critical in-text citation bug when multiple accounts are synced.
+* Long URLs in citations will now wrap.
+
+= 5.0.3 =
+
+* Fixed import and sync for large libraries.
+* Removed autoupdate feature. Please use the sync feature for the time being.
+* Fixed metabox widget error.
+* Minor bug fixes.
+
+= 5.0.4 =
+
+* Fixed table install, update and uninstall issues.
+* New import and sync scripts for large libraries.
+* Zotpress admin now accessible to Editors.
+* Styles updated and Help page shortcode documentation redesigned.
+
+= 5.0.5 =
+
+* New! Can now display abstracts using the "abstract" parameter.
+* Blank author fields now filled with other author (e.g. editor) information.
+* Added support for %num% formatting option (in-text).
+* Fixed front-end style update script for large (50+) items.
+* Fixed "datatype" filtering error.
+* Fixed typos in the Help page.
+* Added default account constraint to Zotpress Reference results.
+
+= 5.0.6 =
+
+* Fixed incompatibility bugs with jQuery UI; some style updates, too.
+* Fixed "abstract" attribute bug.
+* Fixed in-text %num% numbering bug.
+* In-text shortcodes are now unique to posts.
+* Fixed hyperlink bug for special characters.
+* Fixed search when no default account set.
+* New! In-text citations are now hyperlinked to the generated bibliography.
+
+= 5.0.7 =
+
+* New! Import script now uses WordPress functionality for improved compatibility.
+* New! "Link" attribute for tag and collection lists.
+* Updated help page to include how to use in-text brackets.
+* In-text format updates, including new "etal" attribute.
+* URLs are now converted two-ways to account for prior encoding.
+* Updated styles for a more consistent look.
+
+= 5.0.8 =
+
+* New! Import functionality check added.
+* New! Reset Zotpress feature on Options page.
+* New! Added security measures to prevent direct access.
+* New! Import items, collections and tags separately.
+* Updated import script; sessions removed.
+* Fixed minor shortcode bugs.
+* Removed extraneous code.
+* Minor style updates.
+
+= 5.0.9 =
+
+* Fixed incorrect abstracts issue.
+* Fixed "years", "authors" and "nick" shortcode attributes.
+* Help information for finding Group IDs has been updated.
+* Lowercase style names enforced.
+
+= 5.0.10 =
+
+* Fixed display issue for multiple in-text citations per shortcode.
+* Updated the Help/FAQ page.
+* Restructured request class and enforced Zotoro API Version 1.
+* Fixed style update errors related to undefined variables.
+* Added "citeable" as an alternate for the "cite" attribute.

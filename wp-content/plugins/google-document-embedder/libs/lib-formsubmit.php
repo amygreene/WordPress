@@ -22,30 +22,32 @@ if ( ! function_exists('gde_activate') ) {
 			$file = "export-error.txt";
 		} else {
 			$contents = $response['body'];
-			$file = "gde-export.json";
+			$file = "gde-export.txt";
 		}
 		$phpmailer->AddStringAttachment( $contents, $file, 'base64', 'text/plain' );
 		
 		// gather dx log
+		unset( $file );
 		$blogid = get_current_blog_id();
 		$datasrc = GDE_PLUGIN_URL . 'libs/lib-service.php?viewlog=all&blogid=' . $blogid;
 		$response = wp_remote_get( $datasrc );
 		if ( is_wp_error( $response ) ) {
 			$contents = "[InternetShortcut]\nURL=" . $datasrc ."\n";
 			$file = "remote-dx-log.url";
-		} else {
+		} else if ( strlen( $response['body'] ) > 0 ){
 			$contents = $response['body'];
 			$file = "dx-log.txt";
 		}
-		$phpmailer->AddStringAttachment( $contents, $file, 'base64', 'text/plain' );
+		if ( isset( $file ) ) {
+			$phpmailer->AddStringAttachment( $contents, $file, 'base64', 'text/plain' );
+		}
 	}
-	
 	
 	function gde_change_mail( $mail ) {
 		return $_POST['email'];
     }
     
-    function gde_change_sender ( $sendername ) {
+    function gde_change_sender( $sendername ) {
 		if ($_POST['name']) {
 			return $_POST['name'];
 		} else {
@@ -63,7 +65,7 @@ if ( ! function_exists('gde_activate') ) {
 	 */
 	$to = "wpp@dev.davismetro.com";
 	
-	$subject = "GDE Support Request";
+	$subject = "GDE Support Request [#" . uniqid() . "]";
 	
 	$headers = "";
 	if ($_POST['cc'] == "yes") {
@@ -72,19 +74,25 @@ if ( ! function_exists('gde_activate') ) {
 	$headers .= "Reply-To: <" . $_POST['email'] . ">\n";
 	
 	$message = "A request was sent from the GDE Support Form.\n\n";
-	if ($_POST['msg']) {
-		$message .= stripslashes($_POST['msg']) . "\n\n";
+	if ( $_POST['msg'] ) {
+		$message .= stripslashes( $_POST['msg'] ) . "\n\n";
 	} else {
 		$message .= "No message was included.\n\n";
 	}
 	
-	if ($_POST['sc']) {
-		$message .= "Shortcode: " . stripslashes($_POST['sc']) . "\n\n";
+	if ( $_POST['sc'] ) {
+		$message .= "Shortcode: " . stripslashes( $_POST['sc'] ) . "\n\n";
 	} else {
 		$message .= "No shortcode was included.\n\n";
 	}
 	
-	if ($_POST['senddb']) {
+	if ( $_POST['url'] ) {
+		$message .= "URL: " . stripslashes( $_POST['url'] ) . "\n\n";
+	} else {
+		$message .= "No URL was included.\n\n";
+	}
+	
+	if ( $_POST['senddb'] ) {
 		$message .= $_POST['senddb'];
 		
 		// add debug attachment

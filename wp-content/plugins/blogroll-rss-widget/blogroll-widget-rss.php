@@ -3,7 +3,7 @@
 Plugin Name: Blogroll Widget with RSS Feeds
 Description: Displays the recent posts of your blogroll links via RSS Feeds in a customizable sidebar widget
 Plugin URI:  http://www.officetrend.de/2684/wordpress-plugin-blogroll-widget-with-rss-feeds/
-Version:     2.0
+Version:     2.2
 Author:      Tanja Preu&szlig;e
 Author URI:  http://www.officetrend.de/
 

@@ -4,18 +4,13 @@ Contributors: Crazy Girl
 Donate link: none
 Tags: blogroll, bookmarks, links, last post, recent post, thumbnails, feed, widget, sidebar widget, atom, rss, sidebar, random, nofollow
 Requires at least: 2.8
-Tested up to: 3.3
-Stable tag: 2.0
+Tested up to: 3.4
+Stable tag: 2.2
 
 Displays the recent posts of your blogroll links via RSS Feeds in a customizable sidebar widget 
 
 == Description ==
 
-= GERMAN: =
-
-* [Deutsche Plugin-Beschreibung auf officetrend.de](http://www.officetrend.de/2684/wordpress-plugin-blogroll-widget-with-rss-feeds/ "WordPress Plugin: Blogroll Widget with RSS Feeds")
-
-= ENGLISH: =
 This Wordpress Widget allows you to display the recent posts of your blogroll links via RSS Feeds as a sidebar widget.
 The Plugin works without Javascript and without AJAX. It uses the Wordpress standard links database and honors the 
 visible and target settings as defined for each link (private links are not shown, links are displayed in the same or 
@@ -166,6 +161,12 @@ gravatar address of the autohr, e.g. http://www.gravatar.com/avatar/ef5de17b2266
 
 
 == Changelog ==
+
+= 2.2 =
+* some minor changes
+
+= 2.1 =
+* some changes
 
 = 2.0 =
 * Removed donate link for author

@@ -4,7 +4,7 @@ Contributors: sociable
 Tags: sociable, social bookmarking, social bookmarks, social icons,  bookmarking, share, sharing, be sociable share, share and enjoy, digg, delicious, twitter, facebook, blinklist, stumbleupon, gmail, posterous, tumblr
 Requires at least: 2.6
 Tested up to: 3.3.1
-Stable tag: 4.3.3
+Stable tag: 4.3.4.1
 
 Congrats for joining the leader in the sharing space of WordPress plugins. "Sociable" is totally FREE, has over 1,7 million downloads and now you can enjoy Fueto and make your searches more Sociable.
 
@@ -59,7 +59,7 @@ Sociable finds its home outside of the WordPress environment on Blogplay.com-
 
 
 
-*** Sociable 4.3.2 *** 
+*** Sociable 4.3.4.1 *** 
 
 = Recent Updates = 
 
@@ -152,6 +152,19 @@ You can still use them. It's just they're not the default anymore.
 Please send us an email to  sociableblogplay [ at ] gmail.com
 
 == Changelog ==
+
+
+
+= 4.3.4.1 =
+
+* Fixed a problem with one site taking over all the links
+
+
+
+= 4.3.4 =
+
+* Bugs Fixed.
+* Vuible.com added
 
 = 4.3.3 =
 

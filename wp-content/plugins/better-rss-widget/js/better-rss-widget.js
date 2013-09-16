@@ -4,7 +4,7 @@
  * @package Better RSS Widget
  * @subpackage includes
  * @author GrandSlambert
- * @copyright 2009-2011
+ * @copyright 2009-2013
  * @access public
  * @since 2.1
  */
@@ -41,21 +41,5 @@ function better_rss_widget_reset(element) {
           } else {
                element.checked = false;
           }
-     }
-}
-
-function onClickRedirectHome(element)
-{
-     var field = document.getElementById('better_rss_widget_redirect_url');
-     var url = document.getElementById('home_page_url').value;
-
-     if (element.checked)
-     {
-          field.value = url;
-          field.readOnly = true;
-     }
-     else
-     {
-          field.readOnly = false;
      }
 }

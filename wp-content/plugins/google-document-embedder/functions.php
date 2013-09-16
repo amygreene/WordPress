@@ -26,9 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {	exit; }
 @define( 'GDE_WP_URL', 'http://wordpress.org/extend/plugins/google-document-embedder/' );
 @define( 'GDE_BETA_API', 'http://dev.davismetro.com/api/1.0/' );
 
-// add admin functions only if needed
-if ( is_admin() ) { require_once( GDE_PLUGIN_DIR . 'functions-admin.php' ); }
-
 /**
  * List supported extensions & MIME types
  *
@@ -107,6 +104,7 @@ function gde_validate_file( $file = NULL, $force ) {
 	$nofile = __('File not specified, check shortcode syntax', 'gde');
 	$badlink = __('Requested URL is invalid', 'gde');
 	$badtype = __('Unsupported File Type', 'gde') . " (%e)";
+	$unktype = __('Unable to determine file type from URL', 'gde');
 	$notfound = __('Error retrieving file - if necessary turn off error checking', 'gde') . " (%e)";
 	
 	if ( ! $file ) {
@@ -114,7 +112,7 @@ function gde_validate_file( $file = NULL, $force ) {
 	}
 	
 	$result = gde_valid_url( $file );
-	if ( $result === true ) {
+	if ( $result === false ) {
 		// validation skipped due to service failure
 		return -1;
 	} elseif ( $force == "1" || $force == "yes" ) {
@@ -128,7 +126,7 @@ function gde_validate_file( $file = NULL, $force ) {
 		// can't validate
 		return -1;
 	} else {
-		if ( isset( $result['code'] ) && $result['code'] !== 200 ) {
+		if ( isset( $result['code'] ) && $result['code'] != 200 ) {
 			if ( ! gde_valid_link( $file ) ) {
 				return $badlink;
 			} else {
@@ -142,6 +140,10 @@ function gde_validate_file( $file = NULL, $force ) {
 				$fn = basename( $file );
 				$fnp = gde_split_filename( $fn );
 				$type = $fnp[1];
+				
+				if ( $type == '' ) {
+					return $unktype;
+				}
 				$badtype = str_replace( "%e", $type, $badtype );
 				
 				return $badtype;
@@ -177,24 +179,40 @@ function gde_valid_type( $link ) {
     }
 }
 
-function gde_valid_url( $url ) {
-	$result = wp_remote_head( $url );
+function gde_valid_url( $url, $method = "head", $stop = 0 ) {
+
+	if ( $method == "head" ) {
+		$result = wp_remote_head( $url );
+	} elseif ( $stop == 0 ) {
+		$stop++;
+		$result = wp_remote_get( $url );
+	} else {
+		gde_dx_log("can't get URL to test; skipping");
+		return false;
+	}
+	
 	if ( is_array( $result ) ) {
-		// capture file size if determined
-		if ( isset( $result['headers']['content-length'] ) ) {
-			$result['response']['fsize'] = $result['headers']['content-length'];
+		$code = $result['response']['code'];
+		if ( ! empty( $code ) && ( $code == "301" || $code == "302" ) ) {
+			// HEAD requests don't redirect. Probably a file/directory with spaces in it...
+			return gde_valid_url( $url, 'get', $stop );
 		} else {
-			$result['response']['fsize'] = '';
+			// capture file size if determined
+			if ( isset( $result['headers']['content-length'] ) ) {
+				$result['response']['fsize'] = $result['headers']['content-length'];
+			} else {
+				$result['response']['fsize'] = '';
+			}
+			return $result['response'];
 		}
-		return $result['response'];
 	} elseif ( is_wp_error( $result ) ) {
 		// unable to get head
 		$error = $result->get_error_message();
 		gde_dx_log("bypassing URL check; cant validate URL $url: $error");
-		return true;
+		return false;
 	} else {
 		gde_dx_log("cant determine URL validity; skipping");
-		return true;
+		return false;
 	}
 }
 
@@ -213,7 +231,7 @@ function gde_format_bytes( $bytes, $precision = 2 ) {
 	if ( ! is_numeric( $bytes ) || $bytes < 1 ) {
 		return __('Unknown', 'gde');
 	} else {
-		$units = array( 'B', 'KB', 'MB', 'GB', 'TB' );
+		$units = array( 'B', 'KB', __('MB', 'gde'), 'GB', 'TB' );
 		
 		$bytes = max( $bytes, 0 );
 		$pow = floor( ( $bytes ? log( $bytes ) : 0 ) / log( 1024 ) );
@@ -260,15 +278,15 @@ function gde_sanitize_dims( $dim ) {
 }
 
 /**
- * 
+ * Shorten ("mask") the URL to the embedded file
  *
  * @since   2.5.0.1
  * @return  string Short url response from API call, or false on error
  */
 function gde_get_short_url( $u ) {
 	$u = urlencode( $u );
-	$service[] = "http://is.gd/create.php?format=simple&url=" . $u;
 	$service[] = "http://tinyurl.com/api-create.php?url=" . $u;
+	$service[] = "http://is.gd/create.php?format=simple&url=" . $u;
 	
 	foreach ( $service as $url ) {
 		$passed = false;
@@ -276,12 +294,17 @@ function gde_get_short_url( $u ) {
 		if ( is_wp_error( $response ) || empty ( $response['body'] ) ) {
 			continue;
 		} else {
-			$passed = true;
-			break;
+			// check for rate limit exceeded or other error response
+			if ( ! gde_valid_link( $response['body'] ) ) {
+				continue;
+			} else {
+				$passed = true;
+				break;
+			}
 		}
 	}
 	
-	if ( $passed && ! empty( $response['body'] ) ) {
+	if ( $passed ) {
 		return $response['body'];
 	} else {
 		// can't shorten - return original URL
@@ -297,7 +320,7 @@ function gde_get_short_url( $u ) {
  * @return  string Secure URL, or false on error
  */
 function gde_get_secure_url( $u ) {
-	require_once('libs/lib-secure.php');
+	require_once( GDE_PLUGIN_DIR . 'libs/lib-secure.php' );
 
 	if ( ! $url = gde_make_secure_url( $u ) ) {
 		return false;
@@ -359,13 +382,18 @@ function gde_ga_event( $file ) {
  * @return  array Array of plugin data parsed from main plugin file
  */
 function gde_get_plugin_data() {
+	$mainfile = 'gviewer.php';
+	$slug = 'google-document-embedder';
+	
 	if ( ! function_exists( 'get_plugin_data' ) ) {
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 	}
-	$plugin_data  = get_plugin_data( GDE_PLUGIN_DIR . 'gviewer.php' );
+	$plugin_data  = get_plugin_data( GDE_PLUGIN_DIR . $mainfile );
 	
-	// add custom data
-	$plugin_data['Slug'] = 'google-document-embedder';
+	// add custom data (lowercase to avoid any future conflicts)
+	$plugin_data['slug'] = $slug;
+	$plugin_data['mainfile'] = $mainfile;
+	$plugin_data['basename'] = $plugin_data['slug'] . "/" . $mainfile;
 	
 	return $plugin_data;
 }
@@ -425,31 +453,40 @@ function gde_dx_log( $text ) {
 function gde_dx_log_create() {
 	global $wpdb, $gde_db_ver;
 	
-	$db_ver_installed = get_site_option( 'gde_db_version', 0 );
-	
 	$table = $wpdb->base_prefix . 'gde_dx_log';
-	
+	$db_ver_installed = get_site_option( 'gde_db_version', 0 );
+		
 	$sql = "CREATE TABLE " . $table . " (
 			  id mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT,
 			  blogid smallint(5) UNSIGNED NOT NULL,
 			  data longtext NOT NULL,
 			  UNIQUE KEY (id)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8; ";
-			
-	// write table to database
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql );
 	
-	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table'" ) == $table ) {
+	if ( version_compare( $gde_db_ver, $db_ver_installed, ">" ) ) {
+		// upgrade table if needed
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+	} elseif ( $wpdb->get_var( "SHOW TABLES LIKE '$table'" ) == $table ) {
+		// table's OK
 		return true;
 	} else {
-		// table count not be written
-		return false;
+		// table doesn't exist, try to create
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+		
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '$table'" ) == $table ) {
+			// table's OK
+			return true;
+		} else {
+			// can't create
+			return false;
+		}
 	}
 }
 
 /**
- * GDE Capture Activation Errors
+ * Capture activation errors ("unexpected output") to dx log
  *
  * @since   2.5.0.1
  * @return  void
@@ -479,7 +516,7 @@ function gde_show_error( $status ) {
  * Check health of database tables
  *
  * @since   2.5.0.3
- * @return  bool or string
+ * @return  mixed
  * @note	Verbose text used in debug information
  */
 function gde_debug_tables( $table = array('gde_profiles', 'gde_secure'), $verbose = false ) {

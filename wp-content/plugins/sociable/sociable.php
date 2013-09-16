@@ -3,7 +3,7 @@
 Plugin Name: Sociable
 Plugin URI: http://blogplay.com/plugin
 Description: Automatically add links on your posts, pages and RSS feed to your favorite social bookmarking sites. 
-Version: 4.3.3
+Version: 4.3.4.1
 Author: Blogplay
 Author URI: http://blogplay.com/
 Copyright 2006 Peter Harkins (ph@malaprop.org)
@@ -261,6 +261,8 @@ function sociable_init(){
 
 
     wp_enqueue_script( 'sociable' , SOCIABLE_HTTP_PATH . 'js/sociable.js' );
+	
+    wp_enqueue_script( 'vuible' , SOCIABLE_HTTP_PATH . 'js/vuible.js' );
 
 
 
@@ -652,7 +654,7 @@ function sociable_reset(){
 
 
 
-
+									'vuible' =>'on',
 
 
 
@@ -696,7 +698,7 @@ function sociable_reset(){
 
 
 
-									'BlinkList' =>'on',
+									
 
 
 
@@ -744,7 +746,9 @@ function sociable_reset(){
 
 
 
-									'StumbleUpon Counter' =>'on'
+									'StumbleUpon Counter' =>'on',
+									
+									'vuible Counter' =>'on'
 
 
 
@@ -1834,7 +1838,27 @@ function sociable_reset(){
 
         ),
 
-
+		'vuible'  => array(
+            'favicon' => 'vuible.png',
+            'url' => 'http://vuible.com/pins-settings/?m=bm&imgsrc=SOURCE&source=PERMALINK&title=TITLE&video=0',
+            'spriteCoordinates' => Array( 
+                '16' => array("-112px","-16px"),
+                '32' => array("-224px","-32px"),
+                '48' => array("-336px","-48px"),
+                '64' => array("-448px","-64px")
+            )
+),
+'vuible Counter'  => array(
+			'counter' =>1,
+            'favicon' => 'vuible.png',
+            'url' => '<script src="http://www.stumbleupon.com/hostedbadge.php?s=2&r=PERMALINKCOUNT"></script>',
+            'spriteCoordinates' => Array( 
+                '16' => array("-112px","-16px"),
+                '32' => array("-224px","-32px"),
+                '48' => array("-336px","-48px"),
+                '64' => array("-448px","-64px")
+            )
+),
 
 
 

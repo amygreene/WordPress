@@ -9,7 +9,7 @@ Plugin Name: Featured articles Lite
 Plugin URI: http://www.codeflavors.com/featured-articles-pro/
 Description: Create fancy animated sliders into your blog pages by choosing from plenty of available options and different themes. Compatible with Wordpress 3.1+
 Author: CodeFlavors
-Version: 2.4.9.2
+Version: 2.5.2
 Author URI: http://www.codeflavors.com
 */
 
@@ -17,7 +17,7 @@ Author URI: http://www.codeflavors.com
  * Plugin administration capability, current version and Wordpress compatibility
  */
 define('FA_CAPABILITY', 'edit_FA_slider');
-define('FA_VERSION', '2.4.9.2');
+define('FA_VERSION', '2.5.2');
 define('FA_WP_COMPAT', '3.1');
 define('FA_DEV_PREFIX', '');
 
@@ -253,6 +253,8 @@ function FA_load_footer(){
 	
 	if(!$FA_SLIDERS_PARAMS) return;
 	
+	$FA_SLIDERS_PARAMS['loading_icon'] = FA_path('styles/loading.gif');
+	
 	wp_print_styles();
 	wp_register_script('jquery-mousewheel', FA_path('scripts/jquery.mousewheel.min.js'), 'jquery', '3.0.6');
 	wp_enqueue_script('FeaturedArticles-jQuery', FA_path('scripts/FeaturedArticles.jquery'.FA_DEV_PREFIX.'.js'), array('jquery', 'jquery-mousewheel'), '1.0');
@@ -270,6 +272,7 @@ function FA_add_scripts(){
 	if(!$sliders) return;
 	
 	$js_options = array();
+	$js_options['loading_icon'] = FA_path('styles/loading.gif');
 	foreach( $sliders as $slider_id ){
 		
 		// get the selected theme option for this slideshow
@@ -498,7 +501,7 @@ function fa_lite_save_panel(){
 	$current_theme = $theme_options['active_theme'];
 	$fields = FA_fields( (array)$themes[$current_theme]['theme_config']['Fields'] );
 	
-	$current_page = menu_page_url('featured-articles-pro', false);
+	$current_page = menu_page_url('featured-articles-lite', false);
 	include FA_dir('displays/panel_slider_save.php');
 }
 /**
@@ -788,10 +791,10 @@ function FA_activation(){
 	$existing_option = get_option('fa_plugin_details', array());
 	// current plugin details
 	$plugin_details = array(
-		'version'=>FA_VERSION,
-		'wp_version'=>get_bloginfo('version'),
-		'plugin_activation_date'=>date('d M Y H:i:s'),
-		'themes_folder'=>'plugins/featured-articles-lite/themes' // default themes folder is inside plugin directory
+		'version'				 =>FA_VERSION,
+		'wp_version'			 =>get_bloginfo('version'),
+		'plugin_activation_date' =>date('d M Y H:i:s'),
+		'themes_folder'			 =>'plugins/featured-articles-lite/themes' // default themes folder is inside plugin directory
 	);
 	// if themes folder is already in, don't change it. It can only be changed by the user in plugin Settings page
 	if( array_key_exists('themes_folder', $existing_option) ){
@@ -810,6 +813,49 @@ function FA_activation(){
 	}
 }
 register_activation_hook(__FILE__, 'FA_activation');
+
+/**
+ * If Featured Articles Lite is installed, display a message in plugins page
+ * telling users they can't have both PRO and Lite active at the same time.
+ */
+function fa_pro_plugin_meta($meta, $file, $data, $status){
+	if( 'featured-articles-pro/main.php' == $file ){
+		$meta[] = '<span style="color:red;">'.__('To activate Featured Articles PRO you must first deactivate <strong>Featured Articles Lite</strong>. All settings and slideshows created with Lite version will be available in Featured Articles PRO.' ,'fapro').'</span>';	
+	}
+	return $meta;
+}
+add_filter('plugin_row_meta', 'fa_pro_plugin_meta', 10, 4);
+
+/**
+ * If Featured Articles Lite is installed, remove activation link from plugins page
+ * since PRO and Lite can't be activated at the same time.
+ */
+function fa_pro_plugin_action_links($actions, $plugin_file, $plugin_data, $context){
+	$new_actions = array();
+	foreach( $actions as $action=>$link ){
+		if( 'activate' == $action ){
+			continue;
+		}
+		$new_actions[$action] = $link;
+	}
+	return $new_actions;
+}
+add_filter('plugin_action_links_featured-articles-pro/main.php', 'fa_pro_plugin_action_links', 10, 4);
+add_filter('network_admin_plugin_action_links_featured-articles-pro/main.php', 'fa_pro_plugin_action_links', 10, 4);
+
+/**
+ * Grant admin user with full permission to plugin
+ */
+function FA_admin_permission(){
+	// give permission to administrator to change slider settings
+	if( current_user_can('manage_options') ){
+		if( !current_user_can( FA_CAPABILITY ) ){
+			global $wp_roles;
+			$wp_roles->add_cap('administrator', FA_CAPABILITY);		
+		}
+	}	
+}
+add_action('set_current_user', 'FA_admin_permission');
 
 /**
  * Admin messages

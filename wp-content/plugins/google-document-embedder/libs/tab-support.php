@@ -24,18 +24,18 @@
 ?>
 
 <div class="gde-support-warn">
-	<p><strong><?php _e('Please review the documentation before submitting a request for support:', 'gde'); ?></strong></p>
+	<p><strong><?php _e('Most support questions have already been answered. Please review these pages before asking for support:', 'gde'); ?></strong></p>
 	<ul style="list-style-type:square; padding-left:25px;line-height:1em;">
-		<li><a href="<?php echo $pdata['PluginURI']; ?>">Google Doc Embedder</a></li>
+		<li><a href="<?php echo $pdata['PluginURI']; ?>/notes/">Google Doc Embedder <?php _e('Help', 'gde'); ?></a></li>
 		<li><a href="<?php echo GDE_WP_URL; ?>faq/"><?php _e('Plugin FAQ', 'gde'); ?></a></li>
 	</ul>
-	<p><?php _e("If you're still experiencing a problem, please complete the form below.", 'gde'); ?></p>
 </div>
 <br clear="both" />
 
 <form action="<?php echo GDE_PLUGIN_URL;?>libs/lib-formsubmit.php" id="debugForm">
 
 <h3><?php _e('Support Request', 'gde'); ?></h3>
+<p><?php _e("Requests sent from this form are handled by an actual human, so please don't send test messages or other spam.", 'gde'); ?></p>
 
 <table class="form-table">
 <tr valign="top">
@@ -52,8 +52,15 @@
 <tr valign="top">
 	<th scope="row"><label for="sc" id="sc_label"><?php _e('Shortcode', 'gde'); ?></label></th>
 	<td>
-		<input size="50" name="shortcode" id="sc" value="" type="text"><br/>
+		<input size="50" name="shortcode" id="sc" value="" type="text" placeholder="[gview file=&quot;...&quot;]"><br/>
 		<em><?php _e("If you're having a problem getting a specific document to work, paste the shortcode you're trying to use here.", 'gde'); ?></em>
+	</td>
+</tr>
+<tr valign="top">
+	<th scope="row"><label for="url" id="url_label"><?php _e('URL', 'gde'); ?></label></th>
+	<td>
+		<input size="50" name="url" id="url" value="" type="text" placeholder="http://..."><br/>
+		<em><?php _e("Paste the full web address of a page where I should be able to see the problem occurring.", 'gde'); ?></em>
 	</td>
 </tr>
 <tr valign="top">
@@ -128,9 +135,11 @@
 		echo "Yes\n";
 	} else { echo "No\n"; }
 	
-	echo "\n-- Active Theme --\n";
-	$theme = wp_get_theme();
-	echo $theme->Name . " " . $theme->Version;
+	if (version_compare($wp_version, "3.4", ">") ) {
+		echo "\n-- Active Theme --\n";
+		$theme = wp_get_theme();
+		echo $theme->Name . " " . $theme->Version;
+	}
 	
 	echo "\n\n--- Other Active Plugins ---\n";
 	$plugins = get_plugins();
@@ -146,7 +155,7 @@
 ?>
 	<br/><br/>
 	</div>
-</div>
+
 	<div id="debugwarn" style="display:none;color:red;font-weight:bold;">
 		<p><?php _e("I'm less likely to be able to help you if you do not include debug information.", 'gde'); ?></p>
 	</div>

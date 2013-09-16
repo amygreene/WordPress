@@ -7,7 +7,15 @@
 // access wp functions externally
 require_once('lib-bootstrap.php');
 
+// no access if parent plugin is disabled
+if ( ! function_exists('gde_activate') ) {
+	wp_die('<p>'.__('You do not have sufficient permissions to access this page.').'</p>');
+}
+
 if ( isset( $_REQUEST['json'] ) ) {
+	// exclude API key from export to file (can't be imported)
+	unset( $gdeoptions['api_key'] );
+	
 	switch ( $_REQUEST['json'] ) {
 		case "profiles":
 			if ( isset( $_REQUEST['id'] ) ) {
@@ -31,8 +39,6 @@ if ( isset( $_REQUEST['json'] ) ) {
 			}
 		case "settings":
 			if ( isset( $_REQUEST['save'] ) && $_REQUEST['save'] == "1" ) {
-				// exclude API key from export to file (can't be imported)
-				unset( $gdeoptions['api_key'] );
 				$file = 'gde-settings';
 				gde_output_json( json_encode( $gdeoptions ), true, $file );
 			} else {
@@ -59,16 +65,16 @@ if ( isset( $_REQUEST['json'] ) ) {
 	$blogid = get_current_blog_id();
 	
 	$table = $wpdb->base_prefix . 'gde_dx_log';
-	$data = $wpdb->get_col( "SELECT * FROM $table WHERE blogid = '$blogid'", 2 );
-	
-	header('Content-type: text/plain');
-	
-	if ( is_array( $data ) ) {
-		foreach ( $data as $v ) {
-			echo $v . "\n";
+	$check = $wpdb->query("SHOW TABLES LIKE '" . $table . "'");
+	//if ( mysql_num_rows( $check ) > 0 ) {
+	if ( $check ) {
+		$data = $wpdb->get_col( "SELECT * FROM $table WHERE blogid = '$blogid' ORDER BY id ASC", 2 );
+		header('Content-type: text/plain');
+		if ( is_array( $data ) ) {
+			foreach ( $data as $v ) {
+				echo $v . "\n";
+			}
 		}
-	} else {
-		wp_die('<p>'.__('You do not have sufficient permissions to access this page.').'</p>');
 	}
 } else {
 	wp_die('<p>'.__('You do not have sufficient permissions to access this page.').'</p>');
