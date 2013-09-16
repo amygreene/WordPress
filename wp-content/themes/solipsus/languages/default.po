@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: solipsus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-02 04:58+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\solipsus\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/404.php:3
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:79
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:44
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:42
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/404.php:5
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:81
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:44
+msgid "Sorry, but the page you requested cannot be found."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/404.php:7
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:48
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/searchform.php:3
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/sidebar.php:15
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:46
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:12
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:24
+msgid "Archive for "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:15
+msgid "Posts Tagged"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:27
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:38
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:9
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:12
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:8
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:11
+msgid "Permanent link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:42
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:16
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:15
+msgid "Tags: "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:44
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:25
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:17
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:44
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:17
+msgid "Comments (1)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:44
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:17
+msgid "Comments (%)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:44
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:17
+msgid "Comments off"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:68
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/functions.php:40
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:31
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/page.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/single.php:33
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:75
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:40
+msgid "Next entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archive.php:75
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/index.php:40
+msgid "&laquo; Previous entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archives.php:13
+msgid "Archives by Month"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/archives.php:18
+msgid "Archives by Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:25
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:25
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:27
+msgid "Jump to the comments form"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:53
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:67
+msgid "<abbr title=\"Really Simple Syndication\">RSS</abbr> feed for comments on this post"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:69
+msgid "TrackBack"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:69
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:126
+msgid "Uniform Resource Identifier"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:83
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:94
+msgid "Leave a Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:98
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:98
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:98
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:110
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:110
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:110
+msgid "Log out &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:116
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:116
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:121
+msgid "E-mail"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:121
+msgid "required"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:121
+msgid "never displayed"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/comments.php:138
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/footer.php:2
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/footer.php:3
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/footer.php:4
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/functions.php:36
+msgid "Said"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/functions.php:38
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/functions.php:39
+msgid "Permanent link to this comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/page.php:10
+msgid "<p>Read the rest of this page &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/sidebar.php:19
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/sidebar.php:23
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/sidebar.php:31
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/sidebar.php:39
+msgid "Calendar"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\solipsus/sidebar.php:49
+msgid "Meta"
+msgstr ""
+

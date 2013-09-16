@@ -1,0 +1,384 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: redo_domain\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-01 08:38+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\redoable\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/404.php:15
+msgid "Error 404 - Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/404.php:19
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:185
+msgid "Oh no! You're looking for something which just isn't here! Fear not however, errors are to be expected, and luckily there are tools on the sidebar for you to use in your search for what you need."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:28
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/page.php:11
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:75
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:113
+#, php-format
+msgid "Permanent Link to \"%s\""
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:34
+#, php-format
+msgid "Published %1$s %2$s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:35
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:37
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:108
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:52
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:54
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/page.php:53
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/page.php:55
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:152
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:154
+msgid "Pages:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/attachment.php:63
+msgid "Sorry, no attachments matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:7
+msgid "Please do not load this page directly. Thanks!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:13
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:21
+#, php-format
+msgid "%1$s %2$s to &#8220;%3$s&#8221;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:21
+msgid "Response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:21
+msgid "Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:24
+msgid "Feed for this Entry"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:25
+msgid "Copy this URI to trackback this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:25
+msgid "Trackback Address"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:81
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:93
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:52
+msgid "Permanent Link to this Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:85
+#, php-format
+msgid "%1$s on %2$s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:86
+msgid "Trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:86
+msgid "Pingback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:90
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:49
+#, php-format
+msgid "%s ago."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:95
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:54
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:96
+msgid "M jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:102
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:61
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:115
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:112
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:118
+msgid "Comments are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:128
+msgid "Edit Your Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:128
+msgid "Leave a Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:132
+#, php-format
+msgid "You must <a href=\"%s\">login</a> to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:151
+#, php-format
+msgid "Logged in as %s."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:151
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:151
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:155
+#, php-format
+msgid "Welcome back <strong>%s</strong>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:156
+msgid "Change"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:157
+msgid "Close"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:164
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:164
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:167
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:167
+msgid "Mail"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:167
+msgid "will not be published"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:170
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/comments.php:179
+msgid "Submit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/footer.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:23
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/footer.php:15
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/footer.php:15
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:69
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:190
+msgid "Uncategorized"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/functions.php:207
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/navigation-page.php:16
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/navigation-page.php:16
+msgid "Subpages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/navigation.php:20
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/navigation.php:21
+msgid "Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/navigation.php:22
+msgid "Next Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/page.php:26
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:106
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:121
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/page.php:26
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:121
+#, php-format
+msgid "<span class=\"authordata\">By %s</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchform.php:2
+msgid "search blog archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchform.php:9
+msgid "GO"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:19
+#, php-format
+msgid "Archive for the '%s' Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:22
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:23
+#, php-format
+msgid "Archive for %s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:21
+msgid "F jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:22
+msgid "F, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:24
+#, php-format
+msgid "Search Results for '%s'"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:25
+#, php-format
+msgid "Tag Archive for '%s'"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:29
+#, php-format
+msgid "Author Archive for %s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:30
+#, php-format
+msgid "Archive Page %s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:108
+msgid "d"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:108
+msgid "M"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:124
+msgid "Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:124
+msgid "Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:124
+msgid "Closed"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:134
+#, php-format
+msgid "<span class=\"entry-category\">Categories: %s</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:134
+msgid "and"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:137
+msgid "Tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:148
+msgid "Continue reading"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/searchloop.php:181
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/sidebar.php:21
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/sidebar.php:33
+msgid "Months"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/sidebar.php:41
+msgid "Blogroll"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/sidebar.php:52
+msgid "Recent Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/single_post.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/theloop.php:137
+msgid "Tags: "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\redoable/theloop.php:25
+msgid "Posts Tagged &#8216;"
+msgstr ""
+

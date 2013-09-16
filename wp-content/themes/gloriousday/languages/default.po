@@ -1,0 +1,397 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gloriousday\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-23 20:47+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\gloriousday\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/404.php:16
+msgid "404 - The Server can not find it !"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/404.php:18
+msgid "The post or the page that you are looking for, is not available at this time. It could have been moved / deleted."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/404.php:19
+msgid "Please browse through the archives / search through the site."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/404.php:22
+msgid "Posted as \"Not Found\""
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:8
+msgid "Archive for the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:8
+msgid "Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:12
+msgid "Tag Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:17
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:23
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:29
+msgid "Archive for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:18
+msgid "F jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:34
+msgid "Search Results"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:37
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:40
+msgid "Blog Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:57
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:21
+msgid "rofile Image of"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:60
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:24
+msgid "Filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:60
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:24
+msgid "edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:74
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/contact.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:9
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:35
+msgid "Continue Reading &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:82
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:43
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:43
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:32
+msgid "Tags: "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:85
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:20
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:35
+msgid "No responses yet"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:85
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:20
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:35
+msgid "One response so far"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:85
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:20
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:46
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:35
+msgid "% responses so far"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:89
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:51
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:27
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:45
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:92
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:53
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:53
+msgid "&#171; Newer Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/archive.php:92
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/index.php:53
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:53
+msgid "Older Posts &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:9
+msgid "Author Profile"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:10
+msgid "About:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:11
+msgid "Profile Image of"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:13
+msgid "Full Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:15
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:109
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/contact.php:73
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:17
+msgid "Details"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:21
+msgid "Posts by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:27
+msgid "Permanent Link:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/author.php:30
+msgid "No posts by this author."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:3
+msgid "Please do not load this page directly. Thanks!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:23
+msgid "No Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:23
+msgid "One Response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:23
+msgid "% Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:23
+msgid "to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:45
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:66
+msgid "Comments are closed at this time."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:73
+msgid "Trackback URI"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:76
+msgid "Comments RSS"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:83
+msgid "Leave a Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:86
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:86
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:86
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:98
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:98
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:98
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:103
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:103
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:106
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:106
+msgid "Mail (hidden)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:113
+msgid "You can use these tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/comments.php:118
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/contact.php:75
+msgid "AntiSpam Challenge"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/contact.php:79
+msgid "Send Message"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/footer.php:4
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/footer.php:4
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/functions.php:40
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/functions.php:40
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/functions.php:40
+msgid "edit this"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/functions.php:42
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/header.php:43
+msgid "RSS Feed of Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/header.php:43
+msgid "Subscribe"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/header.php:44
+msgid "Home"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page-archives.php:7
+msgid "Recent 20 Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page-archives.php:11
+msgid "by Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page-archives.php:15
+msgid "by Month"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:13
+msgid "This page has the following sub pages."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:29
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:47
+msgid "&#171; Prev"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/page.php:29
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/single.php:47
+msgid "Next &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:4
+msgid "Search Results for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/search.php:50
+msgid "Sorry, Your search did not find any posts on this site. Please use a different keyword."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:6
+msgid "Latest Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:10
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:13
+msgid "Go"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:25
+msgid "About"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:30
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:36
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:44
+msgid "Tags"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:50
+msgid "Monthly"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:57
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:63
+msgid "Meta"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\gloriousday/sidebar.php:68
+msgid "XHTML Friends Network"
+msgstr ""
+

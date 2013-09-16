@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: fjords\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-27 21:43+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\fjords\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/404.php:3
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:33
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/404.php:5
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:35
+msgid "Sorry, but the page you requested cannot be found."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/404.php:7
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:87
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/searchform.php:4
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:44
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:37
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:4
+msgid "Enter your password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:7
+msgid "No comments yet"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:7
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:7
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:9
+msgid "Leave a comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:36
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:54
+msgid "Your comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:58
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:58
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:58
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:73
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:73
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:73
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:78
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:78
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:81
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:81
+msgid "E-Mail"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:84
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:90
+msgid "Submit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:102
+msgid "Tags"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/comments.php:111
+msgid "Sorry, the comment form is closed at this time."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/functions.php:38
+msgid "wrote"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/functions.php:38
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:60
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:10
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:8
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:17
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:20
+msgid "Archive for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:11
+msgid "Posts tagged with"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:23
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:36
+msgid "This user hasn't shared any biographical information"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:40
+msgid "Homepage:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:41
+msgid "Yahoo Messenger:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:42
+msgid "Jabber/GTalk:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:43
+msgid "AIM:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:50
+msgid "Search Results"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:57
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:7
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:24
+msgid "Permanent link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:60
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:10
+msgid "by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:60
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:10
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:61
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:11
+msgid "Filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:12
+msgid " and "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:12
+msgid "tagged"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:63
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/page.php:10
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:13
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:69
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:18
+msgid "Read the rest of this entry &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:73
+msgid "Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:73
+msgid "Comments (1)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:73
+msgid "Comments (%)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:73
+msgid "Comments off"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:79
+msgid "&laquo; Previous entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:79
+msgid "Next entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/index.php:85
+msgid "Sorry, but no posts matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/page.php:7
+msgid "Read the rest of this page &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:8
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:11
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:18
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:34
+msgid "About"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:39
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:55
+msgid "Meta"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:59
+msgid "Syndicate this site using RSS 2.0"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:59
+msgid "Entries <abbr title=\"Really Simple Syndication\">RSS</abbr>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:60
+msgid "The latest comments to all posts in RSS"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:60
+msgid "Comments <abbr title=\"Really Simple Syndication\">RSS</abbr>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:66
+msgid "Credits"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:68
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:70
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/sidebar.php:72
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\fjords/single.php:24
+msgid "Permalink"
+msgstr ""
+

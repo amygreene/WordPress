@@ -1,0 +1,250 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: minimalist\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-08 20:23+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\bptrunk\\wp-content\\themes\\minimalist\n"
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:21
+msgid "News for the"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:21
+msgid "Category"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:25
+msgid "Posts Tagged"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:29
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:33
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:37
+msgid "News for"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:41
+msgid "Author News Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:45
+msgid "Blog Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:59
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:15
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/page.php:11
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:14
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:70
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:21
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:19
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:21
+msgid "Posted:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:71
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:20
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:22
+msgid "Categories:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:72
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:23
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:21
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:23
+msgid "Tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:73
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:24
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:24
+msgid "Comments:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:73
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:24
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:24
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:73
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:24
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:24
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/archive.php:73
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:24
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:24
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:2
+msgid "This page is password protected. Enter your password to continue!"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:30
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:44
+msgid "Write a comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:52
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:52
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:52
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:62
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:62
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:62
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:65
+msgid "Name:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:67
+msgid "E-mail:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:69
+msgid "URL:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:73
+msgid "Message:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/comments.php:76
+msgid "Submit!"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/footer.php:7
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/footer.php:8
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/functions.php:40
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/sidebar.php:4
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/functions.php:48
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/searchform.php:6
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/functions.php:58
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/sidebar.php:27
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/functions.php:81
+msgid "from"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/functions.php:89
+msgid "Thank you for your comment! It has been added to the moderation queue and will be published here if approved by the webmaster."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:16
+msgid "Read more &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:31
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:29
+msgid "Previous entries"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:32
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:30
+msgid "Next entries"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:36
+msgid "Not found!"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/index.php:37
+msgid "Could not find the requested page. Use the navigation menu to find your target, or use the search box below:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/page.php:13
+msgid "<p class=\"serif\">Read more &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/page.php:15
+msgid "Edit this page"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:34
+msgid "Search results"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/search.php:35
+msgid "No matches. Please try again, or use the navigation menus to find what you search for."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/searchform.php:1
+msgid "Site search"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/sidebar.php:11
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/sidebar.php:19
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/sidebar.php:34
+msgid "Customise"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/sidebar.php:49
+msgid "Info"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:16
+msgid "<p>Read more &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\minimalist/single.php:31
+msgid "No matching entries found."
+msgstr ""
+

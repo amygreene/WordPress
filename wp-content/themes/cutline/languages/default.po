@@ -1,0 +1,266 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cutline\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-20 07:41+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\cutline\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:6
+msgid "Easy, tiger. This is a 404 page."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:8
+msgid "ou are <em>totally</em> in the wrong place. Do not pass GO; do not collect $200. This is an error page. You might have stumbled here by accident or the post you are looking for is no longer here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:9
+msgid "Please, try one of the following:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:11
+msgid "Hit the \"back\" button on your browser."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:12
+msgid "Head on over to the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:12
+msgid "front page"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:13
+msgid "Try searching using the form in the sidebar."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:14
+msgid "Click on a link in the sidebar."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/404.php:15
+msgid "Use the navigation menu at the top of the page."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:12
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:15
+msgid "Entries Tagged as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:24
+msgid "Entries from"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:31
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:13
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:14
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:11
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/page.php:16
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:15
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/page.php:16
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:15
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:11
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/page.php:16
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:15
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:15
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:39
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:22
+msgid "Read the rest of this entry"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:39
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:17
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:22
+msgid "[Read more &rarr;]"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:41
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:20
+msgid "Tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/archive.php:51
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:34
+msgid "Welp, we couldn't find that...try again?"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:3
+msgid "Please do not load this page directly. Thanks!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:5
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:11
+msgid "One Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:11
+msgid "so far"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:22
+msgid "There are no comments yet...Kick things off by filling out the form below."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:24
+msgid "Like gas stations in rural Texas after 10 pm, comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:34
+msgid "You must"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:34
+msgid "log in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:34
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:38
+msgid "Leave a Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:38
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:43
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:43
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:43
+msgid "Logout &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:46
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:47
+msgid "Mail"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/comments.php:48
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/footer.php:2
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/footer.php:4
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:255
+msgid "Cutline Options have been updated"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:261
+msgid "Cutline Options"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:268
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:270
+msgid "Delicious User Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:277
+msgid "Archives Page"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:280
+msgid "Enable the Cutline Archives page"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/functions.php:286
+msgid "Update Options"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:31
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/index.php:33
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/navigation.php:12
+msgid "&larr; Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/navigation.php:13
+msgid "Next Entries &rarr;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/page.php:12
+msgid "<p>Read the rest of this page &rarr;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/search.php:9
+msgid "Search Results for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/sidebar.php:9
+msgid "Search It!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/sidebar.php:15
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/sidebar.php:23
+msgid "Recent Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\cutline/sidebar.php:29
+msgid "Visit the archives for more!"
+msgstr ""
+

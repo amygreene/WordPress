@@ -1,0 +1,465 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sumenep\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-02 22:52+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\sumenep\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/404.php:22
+msgid "Error 404 - Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:18
+msgid "Archive for the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:20
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:24
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:28
+msgid "Archive for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:21
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:52
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:23
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:32
+msgid "F jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:32
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:34
+msgid "Blog Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:38
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:44
+msgid "&larr; Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:41
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:47
+msgid "Next Entries &rarr;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:47
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:18
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:52
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:23
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:32
+msgid "Post"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:52
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:25
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:9
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:23
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:32
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:54
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:25
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:34
+msgid "by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:68
+msgid "<p>Click here to read more</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:77
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:46
+msgid "Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:81
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:50
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:52
+msgid "No Comments &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:52
+msgid "1 Comment &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:52
+msgid "% Comments &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:89
+msgid "&laquo; Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:92
+msgid "Next Entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archive.php:96
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:51
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archives.php:22
+msgid "Archives by Month:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/archives.php:26
+msgid "Archives by Subject:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:12
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:27
+msgid "Permanent Link:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:39
+msgid "<p class=\"serif\">Read the rest of this entry &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:19
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/page.php:22
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:41
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:20
+msgid "This entry was posted"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:25
+msgid "l, F jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:25
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/functions.php:49
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:26
+msgid "and is filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:28
+msgid "You can follow any responses to this entry through the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:29
+msgid "feed"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:32
+msgid "You can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:32
+msgid "leave a response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:32
+msgid "or"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:35
+msgid "trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:32
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:35
+msgid "from your own site"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:35
+msgid "Responses are currently closed, but you can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:38
+msgid "You can skip to the end and leave a response. Pinging is currently not allowed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:42
+msgid "Both comments and pings are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:43
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/page.php:24
+msgid "Edit this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/attachment.php:52
+msgid "Sorry, no attachments matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:19
+msgid "Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:20
+msgid "<abbr title=\"Really Simple Syndication\">RSS</abbr> feed for comments on this post."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:41
+msgid "Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:41
+msgid "Trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:41
+msgid "Pingback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:53
+msgid "No comments yet."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:56
+msgid "Leave a comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:57
+msgid "Line and paragraph breaks automatic, e-mail address never displayed, <acronym title=\"Hypertext Markup Language\">HTML</acronym> allowed:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:61
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:117
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:67
+msgid "E-mail"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:74
+msgid "Your Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:79
+msgid "Say It!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:84
+msgid "Sorry, the comment form is closed at this time."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:88
+msgid "Close this window."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:96
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments-popup.php:96
+msgid "Powered by WordPress, state-of-the-art semantic personal publishing platform"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:23
+msgid "Uniform Resource Identifier"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:37
+msgid "No Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:37
+msgid "One Response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:37
+msgid "% Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:37
+msgid "to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:62
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:79
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:89
+msgid "Leave a Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:96
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:96
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:96
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:110
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:110
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:110
+msgid "Log out &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:117
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:123
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:122
+msgid "Mail (will not be published)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:128
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/contact.php:94
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:131
+msgid "You can use these tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/comments.php:136
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/contact.php:81
+msgid "Continue Reading &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/contact.php:104
+msgid "Send Message"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/footer.php:12
+msgid "queries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/footer.php:12
+msgid "seconds"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/footer.php:15
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/footer.php:16
+msgid "Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/footer.php:16
+msgid "comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/functions.php:43
+msgid "Says:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/functions.php:45
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/functions.php:51
+msgid "edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/functions.php:90
+msgid "About"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:25
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:34
+msgid "and tagged"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:29
+msgid "Read the rest of this entry &rarr;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:38
+msgid "No Comments &rarr;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:38
+msgid "1 Comment &rarr;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:38
+msgid "% Comments &rarr;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/index.php:52
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/links.php:11
+msgid "Home"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/links.php:26
+msgid "Links:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/page.php:21
+msgid "<p class=\"serif\">Read the rest of this page &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/sidebar.php:6
+msgid "List Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/sidebar.php:14
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/sidebar.php:24
+msgid "Meta"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\sumenep/single.php:57
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+

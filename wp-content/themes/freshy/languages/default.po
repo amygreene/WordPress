@@ -1,0 +1,256 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: freshy\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-23 06:58+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\freshy\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/404.php:8
+msgid "Error 404"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/404.php:9
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:100
+msgid "Sorry, but you are looking for something that is not here"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:9
+msgid "This post is password protected. Enter the password to view comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:25
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:26
+msgid "No responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:26
+msgid "One response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:26
+msgid "% responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:26
+msgid "to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:54
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:71
+msgid "Leave a comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:74
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:74
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:74
+msgid "to post a comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:85
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:85
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:91
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:91
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:95
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:95
+msgid "Mail"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:95
+msgid "(will not be published)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:99
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:104
+msgid "You can use these tags"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/comments.php:110
+msgid "Submit comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/footer.php:6
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/footer.php:6
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/footer.php:8
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/functions.php:51
+msgid "edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/functions.php:53
+msgid "Your comment is awaiting moderation"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/functions.php:116
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:14
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:60
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:13
+msgid "Read"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:27
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:68
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:25
+msgid "Read the rest of this entry &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:37
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:41
+msgid "Actions"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:39
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:71
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:50
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:73
+msgid "Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:73
+msgid "No Comments &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:73
+msgid "1 Comment &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:73
+msgid "% Comments &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:75
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:61
+msgid "Tags : "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:77
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:62
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:92
+msgid "&laquo; Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:93
+msgid "Next Entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:99
+msgid "Not found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:115
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:139
+msgid "Last works"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:124
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/index.php:148
+msgid "Last news"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/links.php:10
+msgid "Links:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/searchform.php:3
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/sidebar.php:27
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/sidebar.php:8
+msgid "Categories:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/sidebar.php:17
+msgid "Navigation"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/sidebar.php:30
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:32
+msgid "<p><strong>Pages:</strong> "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:44
+msgid "Comments rss"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:47
+msgid "Trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:54
+msgid "Information"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:56
+msgid "Author"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:57
+msgid "Date"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:59
+msgid "Last modified"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:75
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\freshy/single.php:76
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+

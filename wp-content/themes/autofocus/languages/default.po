@@ -1,0 +1,492 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sandbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-06 01:03+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\bptrunk\\wp-content\\themes\\autofocus\n"
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/404.php:8
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/header.php:4
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/404.php:10
+msgid "Apologies, but we were unable to find what you were looking for. Perhaps browseing the archive will help."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:10
+#, php-format
+msgid "Daily Archives: <span>%s</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:14
+#, php-format
+msgid "Monthly Archives: <span>%s</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:18
+#, php-format
+msgid "Yearly Archives: <span>%s</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:22
+msgid "Blog Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:30
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:63
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:13
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:47
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:12
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:49
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/home.php:33
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:7
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:37
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:12
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:46
+msgid "<span class=\"meta-nav\">&laquo;</span> Older posts"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:31
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:64
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:14
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:48
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:13
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:50
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/home.php:34
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:8
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:38
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:13
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:47
+msgid "Newer posts <span class=\"meta-nav\">&raquo;</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:40
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:23
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/home.php:14
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:15
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:23
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:45
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:28
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:27
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/home.php:22
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:17
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:20
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:28
+msgid "Pages:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:51
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:34
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:33
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:23
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:34
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:51
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:34
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:33
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:26
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:23
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:34
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:52
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:35
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:35
+#, php-format
+msgid " Filed under: %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:53
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:36
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:36
+msgid "<span class=\"tag-links\">Tags: "
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:54
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:37
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:37
+msgid "Add a Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:54
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:37
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:37
+msgid "1"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:54
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:37
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:37
+msgid "%"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/archive.php:55
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:38
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:41
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:712
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:739
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:47
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:27
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/page.php:17
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:38
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/author.php:8
+#, php-format
+msgid "Author: <span class=\"vcard\">%s</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:7
+msgid "Category Archive:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:36
+#, php-format
+msgid "Also posted in %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:39
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:25
+msgid "<span class=\"tag-links\">Tagged "
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:40
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:26
+msgid "Comments (0)"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:40
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:26
+msgid "Comments (1)"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/category.php:40
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:26
+msgid "Comments (%)"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:11
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:32
+#, php-format
+msgid "<span>%d</span> Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:32
+msgid "<span>One</span> Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:61
+#, php-format
+msgid "<span>%d</span> Trackbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:61
+msgid "<span>One</span> Trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:77
+msgid "Post a Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:77
+#, php-format
+msgid "Post a Reply to %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:82
+#, php-format
+msgid "You must be <a href=\"%s\" title=\"Log in\">logged in</a> to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:92
+#, php-format
+msgid "<span class=\"loggedin\">Logged in as <a href=\"%1$s\" title=\"Logged in as %2$s\">%2$s</a>.</span> <span class=\"logout\"><a href=\"%3$s\" title=\"Log out of this account\">Log out?</a></span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:99
+msgid "Your email is <em>never</em> published nor shared."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:99
+msgid "Required fields are marked <span class=\"required\">*</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:102
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:102
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:107
+msgid "<span class=\"required\">*</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:107
+msgid "Email"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:112
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:119
+msgid "Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:124
+msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/comments.php:129
+msgid "Post Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:281
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:288
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:361
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:300
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:363
+msgid "Meta"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:317
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:365
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:366
+msgid "RSS Links"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:322
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/header.php:14
+msgid "Posts RSS feed"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:322
+msgid "All posts"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:323
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/header.php:15
+msgid "Comments RSS feed"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:323
+msgid "All comments"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:341
+msgid "Title:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:708
+#, php-format
+msgid "Posted %1$s at %2$s <span class=\"meta-sep\">|</span> <a href=\"%3$s\" title=\"Permalink to this comment\">#</a>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:713
+msgid "\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:720
+msgid "Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:721
+msgid "Log in to reply."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:735
+#, php-format
+msgid "By %1$s on %2$s at %3$s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/functions.php:740
+msgid "\\t\\t\\t\\t\\t<span class=\"unapproved\">Your trackback is awaiting moderation.</span>\\n"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/header.php:4
+msgid " &raquo; "
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/header.php:37
+msgid "Skip navigation to the content"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/header.php:37
+msgid "Skip to content"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/home.php:6
+msgid "<span class=\"meta-nav\">&laquo;</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/home.php:7
+msgid "<span class=\"meta-nav\">&raquo;</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:15
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:18
+msgid "Read More <span class=\"meta-nav\">&raquo;</span>"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:25
+#, php-format
+msgid "This photograph was taken by %1$s and posted on <abbr class=\"published\" title=\"%2$sT%3$s\">%4$s at %5$s</abbr>. Bookmark the <a href=\"%8$s\" title=\"Permalink to %9$s\" rel=\"bookmark\">permalink</a>. Follow any comments here with the <a href=\"%10$s\" title=\"Comments RSS to %9$s\" rel=\"alternate\" type=\"application/rss+xml\">RSS feed for this post</a>."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:32
+msgid "and tagged"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:38
+#, php-format
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:40
+#, php-format
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:42
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/image.php:44
+msgid "Both comments and trackbacks are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/index.php:24
+#, php-format
+msgid "Posted in %s"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/page.php:12
+msgid "Pages: "
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:8
+msgid "Search Results for:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:53
+msgid "Nothing Found"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:55
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/search.php:60
+msgid "Find"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/sidebar.php:6
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/sidebar.php:24
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/sidebar.php:32
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/sidebar.php:48
+msgid "Subscribe"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/single.php:25
+#, php-format
+msgid "This entry was written by %1$s, posted on <abbr class=\"published\" title=\"%2$sT%3$s\">%4$s at %5$s</abbr>, filed under %6$s%7$s. Bookmark the <a href=\"%8$s\" title=\"Permalink to %9$s\" rel=\"bookmark\">permalink</a>. Follow any comments here with the <a href=\"%10$s\" title=\"Comments RSS to %9$s\" rel=\"alternate\" type=\"application/rss+xml\">RSS feed for this post</a>."
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/tag.php:6
+msgid "Tag:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:15
+msgid "Choose your global body font:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:72
+msgid "Choose your global headline font:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:134
+msgid "Choose your <strong>background colour</strong> *this will changed the body background color"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:141
+msgid "Choose your <strong>global text</strong> color: *if background is dark, recommend text color will be white"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:148
+msgid "Choose your <strong>link</strong> colour:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:155
+msgid "Choose your <strong>link hover</strong> colour:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:163
+msgid "Choose your <strong>comment alt</strong> background color: *only apply if thread comments activated"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:171
+msgid "Enable or disable description text for featured image"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:192
+msgid " Theme Options"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:206
+msgid "Themes Settings"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:210
+msgid "How do the homepage image work:"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:211
+msgid "it will automatically find your latest or order by number post attachment gallery image (no hotlink image will be fetch)"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:264
+msgid "Save Options"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:271
+msgid "Reset Options"
+msgstr ""
+
+#: C:\xampp\htdocs\bptrunk\wp-content\themes\autofocus/includes/theme-options.php:298
+msgid " Options"
+msgstr ""
+

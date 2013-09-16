@@ -1,0 +1,320 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: connections\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-18 06:39+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\connections\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/category.php:6
+msgid "Archived Posts from this Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/category.php:16
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:47
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/index.php:11
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:11
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:24
+msgid "No Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:24
+msgid "One Response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:24
+msgid "% Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:24
+msgid "to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:51
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:68
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:77
+msgid "Leave a Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:81
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:93
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:93
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:93
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:98
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:98
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:101
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:101
+msgid "Mail (will not be published)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:104
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:108
+msgid "<strong>XHTML:</strong> You can use these tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/comments.php:112
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:15
+msgid "Daily Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:21
+msgid "Monthly Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:29
+msgid "Yearly Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:57
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:65
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:73
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:43
+msgid "Currently Browsing"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:57
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:65
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:73
+msgid "You are currently browsing the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:57
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:65
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:73
+msgid "weblog archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:59
+msgid "for the day"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/date.php:75
+msgid "for the year"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/footer.php:2
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/functions.php:37
+#, php-format
+msgid "<cite>%s</cite> Says:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/functions.php:39
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/functions.php:42
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:20
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/header.php:24
+msgid "Posted Recently"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/header.php:24
+msgid "Home"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/page.php:6
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:2
+msgid "Permanent Link:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/page.php:7
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:3
+msgid "(edit this)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/page.php:13
+msgid "<p><strong>Pages:</strong> "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:3
+msgid "Posted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:3
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:23
+msgid "Tags"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:3
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:3
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:3
+msgid "[%] Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/post.php:15
+msgid "<p>Click here to read more</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:11
+msgid "Search Results for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:13
+msgid "Did you find what you wanted ?"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:25
+msgid "&laquo; Older Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:27
+msgid "Newer Entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:33
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:43
+msgid "You have searched the archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:45
+msgid "for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/search.php:45
+msgid "If you are unable to find anything in these search results, you can try one of these links."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/sidebar.php:8
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/sidebar.php:10
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/sidebar.php:12
+msgid "Categories:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/sidebar.php:15
+msgid "Search:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/sidebar.php:21
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/sidebar.php:26
+msgid "Monthly:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:17
+msgid "Archived Entry"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:19
+msgid "<strong>Post Date :</strong>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:21
+msgid "<strong>Category :</strong>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:22
+msgid ", "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:24
+msgid "<strong>Do More :</strong>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:27
+msgid "You can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:27
+msgid "leave a response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:27
+msgid "or"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:31
+msgid "Responses are currently closed, but you can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:31
+msgid "trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:31
+msgid "from your own site."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:36
+msgid "You can skip to the end and leave a response. Pinging is currently not allowed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:40
+msgid "Both comments and pings are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\connections/single.php:42
+msgid "Edit this entry."
+msgstr ""
+

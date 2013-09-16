@@ -1,0 +1,313 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: contempt\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-18 23:35+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\contempt\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:23
+msgid "No Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:23
+msgid "One Response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:23
+msgid "% Responses"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:23
+msgid "to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:45
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:64
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:72
+msgid "Leave a Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:79
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:79
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:79
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:86
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:86
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:86
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:91
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:94
+msgid "Mail (will not be published)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:97
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/comments.php:108
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/footer.php:9
+msgid "Theme: Contempt by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/footer.php:11
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/functions.php:39
+msgid "Says"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/functions.php:41
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/functions.php:45
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:22
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/functions.php:45
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/header.php:34
+msgid "Home"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:11
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:39
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:25
+msgid "Read the rest of this entry &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:36
+msgid "No Comments &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:36
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:36
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:38
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:23
+msgid "Tagged"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:39
+msgid "Permalink"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:40
+msgid "Posted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:47
+msgid "&laquo; Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:48
+msgid "Next Entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:53
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/index.php:54
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/page.php:11
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:14
+msgid "<p class=\"serif\">Read the rest of this entry &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/page.php:13
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:16
+msgid "Pages:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/page.php:13
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:16
+msgid "<p><strong>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/page.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:42
+msgid "Edit this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:12
+msgid "You are currently browsing the archives for the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:12
+msgid " category."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:15
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:19
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:23
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:31
+msgid "You are currently browsing the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:16
+msgid "weblog archives for the day"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:16
+msgid "l, F jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:20
+msgid "weblog archives for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:20
+msgid "F, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:24
+msgid "weblog archives for the year"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:27
+msgid "You have searched the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:28
+msgid "weblog archives for "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:28
+msgid ". If you are unable to find anything in these search results, you can try one of these links."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:31
+msgid "weblog archives."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:56
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:62
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/sidebar.php:71
+msgid "Meta"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:10
+msgid "Permanent Link:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:20
+msgid "This entry was posted on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:23
+msgid "and is filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:24
+msgid "You can follow any responses to this entry through the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:24
+msgid "feed"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:28
+msgid "You can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:28
+msgid "leave a response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:28
+msgid "or"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:28
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:32
+msgid "trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:28
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:32
+msgid "from your own site"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:32
+msgid "Responses are currently closed, but you can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:36
+msgid "You can skip to the end and leave a response. Pinging is currently not allowed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:40
+msgid "Both comments and pings are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\contempt/single.php:54
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+

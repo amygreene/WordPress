@@ -1,0 +1,12 @@
+/*======================================
+Theme Name: EvergreenPlanet
+Theme URI: http://www.kreativethemes.com
+Description:  WordPress theme derived from BrightSky theme by <a href="http://www.kreativethemes.com">KreativeThemes</a>.
+Version: 1.1
+Author: KreativeThemes (modified by Amy Greene)
+Author URI: http://www.kreativethemes.com
+======================================*/
+
+ 
+@import "style/css/layout.css";
+@import "style/css/planetevergreen.css";
