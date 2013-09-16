@@ -1,12 +1,12 @@
 /*
 Theme Name: Minimalist
-Description: Fast loading, minimalist theme, 5 different colour schemes, no images, cool.
+Description: Fast loading minimalist theme, utilising mootools, with 5 different colour schemes and no images.
+Version: 1
 Author: Joey Robinson
-Tags: two-columns, white, black, blue, green, silver, fixed-width, left-sidebar, custom header, threaded-comments
+Author URI: http://www.techdesigns.co.uk
+Latest updated: 7th October 2009
+Tags: two-columns, white, black, blue, green, silver, fixed-width, left-sidebar
 */
-
-img { border: 0px none !important; }
-
 html, body{ padding:20px 0px 20px 0px; margin:0; text-align:center; font-family:verdana; font-size: 13px;} 
  
 #page{ width:900px; text-align:left; margin-left:auto; margin-right:auto;} 

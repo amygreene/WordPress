@@ -12,15 +12,10 @@
 <p class="footerpoweredby">
 	<?php
 		printf( _x('Powered by %1$s and %2$s', 'k2_footer', 'k2_domain'),
-			'<a href="http://wordpressmu.org/">' . __('WordPress MU', 'k2_domain') . '</a>',
+			'<a href="http://wordpress.org/">' . __('WordPress', 'k2_domain') . '</a>',
 			'<a href="http://getk2.com/" title="' . __('Loves you like a kitten.', 'k2_domain') . '">K2</a>'
-
 		);
 	?>
-
-<?php if(function_exists('get_current_site')) { $current_site = get_current_site(); ?>
-<br />&copy; <?php echo gmdate(__('Y')); ?>  <?php bloginfo('name'); ?>&nbsp;&nbsp;&nbsp;<?php _e('Hosted by','k2_domain'); ?> <a target="_blank" href="http://<?php echo $current_site->domain . $current_site->path ?>"><?php echo $current_site->site_name ?></a>
-<?php } ?>
 </p>
 
 <?php if ( get_k2info('style_footer') != '' ): ?>

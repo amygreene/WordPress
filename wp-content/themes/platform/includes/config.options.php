@@ -38,12 +38,11 @@ function get_option_array( $load_unavailable = false ){
 					'type' => 'text',
 					'inputlabel' => 'Your Twitter Username',
 					'title' => 'Twitter Integration',
-					'shortexp' => 'Places your Twitter feed in your site (<em>"Twitter for WordPress" plugin required</em>)',
-					'exp' => 'This places your Twitter feed on the site. Leave blank if you want to hide or not use.<br/><br/><strong>Note: "Twitter for WordPress" plugin is required for this to work.</strong>'
+					'shortexp' => 'Places your Twitter feed in your site.',
+					'exp' => 'This places your Twitter feed on the site. Leave blank if you want to hide or not use.'
 				),
 			
 				'pagelines_touchicon'	=> array(
-					'version' 	=> 'pro',
 					'default' 	=> '',
 					'type' 		=> 	'image_upload',
 					'imagepreview' 	=> 	'60',
@@ -488,7 +487,6 @@ if ( get_option( 'pagelines_email_sent') ) unset($default_options['global_option
 						'exp'		=> ''
 					),
 				'icon_social' => array(
-						'version'	=> 'pro',
 						'type'		=> 'text_multi',
 						'inputsize'	=> 'regular',
 						'selectvalues'	=> array(
@@ -595,7 +593,6 @@ if ( get_option( 'pagelines_email_sent') ) unset($default_options['global_option
 						'exp'		=> 'This option helps you control where post excerpts are displayed.<br/><br/> <strong>About:</strong> Excerpts are small summaries of articles filled out when creating a post.'
 				),
 				'pagetitles' => array(
-						'version'	=> 'pro',
 						'default'	=> '',
 						'type'		=> 'check',
 						'inputlabel'	=> 'Automatically show Page titles?',
@@ -641,6 +638,7 @@ if ( get_option( 'pagelines_email_sent') ) unset($default_options['global_option
 						'selectvalues'	=> array(
 							'share_facebook'	=> array('inputlabel'=>'Facebook Sharing Icon', 'default'=> true),
 							'share_twitter'		=> array('inputlabel'=>'Twitter Sharing Icon', 'default'=> true),
+							'share_twitter_cache'=>array('inputlabel'=>'Enable twitter short urls', 'default'=> false),
 							'share_delicious'	=> array('inputlabel'=>'Del.icio.us Sharing Icon', 'default'=> true),
 							'share_mixx'		=> array('inputlabel'=>'Mixx Sharing Icon', 'default'=> false),
 							'share_reddit'		=> array('inputlabel'=>'Reddit Sharing Icon', 'default'=> true),

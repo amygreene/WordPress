@@ -12,7 +12,7 @@ function update_preview() {
 			case 'background-image':
 ?>
 	$(document.body).getElements('<?php echo $controls[$i]['selector-mini'] ?>').each(function(item, index) {
-		item.setStyle('background-image', 'url(<?php echo $path_theme ?>/functions/image_resize.php?fn=<?php echo $controls[$i]['path'] ?>' + $('<?php echo $controls[$i]['name'] ?>').value + ')');
+		item.setStyle('background-image', 'url(<?php echo $controls[$i]['path'] ?>' + $('<?php echo $controls[$i]['name'] ?>').value + ')');
 	});
 <?php
 				break;
@@ -36,32 +36,31 @@ function update_preview() {
 }
 
 function kDefaults() {
-	if ($('paramspresetStyle').value != 'Custom') {
+	if ($('paramspresetStyle').value != 'custom') {
 		var currentStyle = null;
+		
 <?php
-	for ($i = 0; $i < count($preset_styles); $i++) {
-		$preset_style = 'var style'.$i.' = new Array(';
-		for ($j = 0; $j < count($preset_styles[$i]); $j++) {
-			if ($j == count($preset_styles[$i]) - 1) {
-				$preset_style .= "'".$preset_styles[$i][$j]."'";
-			}
-			else {
-				$preset_style .= "'".$preset_styles[$i][$j]."',";
-			}
-		}
-		$preset_style .= ');';
-		echo $preset_style."\n";
-	}
+  foreach ($controls[0]['associated'] as $option) {
+    if($option != 'custom') {
+      $this_style = 'var '.$option.' = new Array(';
+      foreach($controls as $options){
+        $this_style .= "'".$options['default']."',";
+      }
+      $this_style = rtrim($this_style,',').');';
+      echo $this_style."\n";  
+    }
+  }
+  
 ?>
 		$CurrentValue = $('paramspresetStyle').value;
 		
 		switch ($CurrentValue) {
 <?php
-	for ($i = 0; $i < count($preset_styles); $i++) {
-?>
-			case 'style<?php echo $i ?>': curentStyle = style<?php echo $i ?>; break;
-<?php
-	}
+    foreach ($controls[0]['associated'] as $option) {
+      if($option != 'custom') {
+        echo "case '".$option."': curentStyle = ".$option."; break;";
+      }
+    }
 ?>
 		}
 		
@@ -99,8 +98,12 @@ window.addEvent('domready', function() {
 	previewWindow.setStyle('cursor', 'move').makeDraggable({
 		'droppables': $$(previewParent)
 	});
-	previewWindow.addEvent('mousedown', function() {
+	previewWindow.addEvent('mousedown', function(event) {
 		this.setStyle('position', 'absolute');
+		if(this.getStyle('top') == '0px') {
+      this.setStyle('top', event.clientY-200);
+      this.setStyle('left', event.clientX-400);
+    }  
 	});
 	previewParent.addEvents({
 		'over': function(drag, obj) {
@@ -155,7 +158,7 @@ window.addEvent('domready', function() {
 ?>
 	$('<?php echo $controls[$i]['name'] ?>').addEvent('change', function() {
 		$(document.body).getElements('<?php echo $controls[$i]['selector-mini'] ?>').each(function(item, index) {
-			item.setStyle('background-image', 'url(<?php echo $path_theme ?>/functions/image_resize.php?fn=<?php echo $controls[$i]['path'] ?>' + $('<?php echo $controls[$i]['name'] ?>').value + ')');
+			item.setStyle('background-image', 'url(<?php echo $controls[$i]['path'] ?>' + $('<?php echo $controls[$i]['name'] ?>').value + ')');
 		});
 		$('paramspresetStyle').selectedIndex = $('paramspresetStyle').getChildren().length - 1;
 	});

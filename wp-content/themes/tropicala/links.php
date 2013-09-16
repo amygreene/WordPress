@@ -8,7 +8,7 @@ Template Name: Links
 
   <div id="main_content">
 
-    <h2><?php _e('Links:','tropicala'); ?></h2>
+    <h2>Links:</h2>
     <ul class="links_page">
     <?php wp_list_bookmarks(); ?>
     </ul>

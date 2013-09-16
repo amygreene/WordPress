@@ -67,7 +67,7 @@ get_header(); // Loads the header.php template. ?>
 	
 								<?php if ( current_theme_supports( 'get-the-image' ) ) {
 										
-									get_the_image( array( 'meta_key' => 'Thumbnail', 'size' => 'archive-thumbnail', 'image_class' => 'featured', 'width' => 220, 'height' => 150, 'default_image' => get_template_directory_uri() . '/images/archive_image_placeholder.png' ) );
+									get_the_image( array( 'size' => 'archive-thumbnail', 'image_class' => 'featured', 'width' => 220, 'height' => 150, 'default_image' => get_template_directory_uri() . '/images/archive_image_placeholder.png' ) );
 										
 								} ?>					
 										

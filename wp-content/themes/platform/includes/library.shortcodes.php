@@ -316,6 +316,8 @@ add_filter('widget_text', 'do_shortcode');
 	//		[chart data="41.52,37.79,20.67,0.03" bg="F7F9FA" labels="Reffering+sites|Search+Engines|Direct+traffic|Other" colors="058DC7,50B432,ED561B,EDEF00" size="488x200" title="Traffic Sources" type="pie"]
 
 		function chart_shortcode( $atts ) {
+			
+			$string = '';
 			extract(shortcode_atts(array(
 			    'data' => '',
 			    'colors' => '',

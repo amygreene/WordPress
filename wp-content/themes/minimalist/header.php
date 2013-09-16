@@ -7,10 +7,8 @@
 <meta http-equiv="content-type" content="text/html; charset=<?php bloginfo('charset'); ?>" />
 <meta name="description" content="<?php bloginfo('name'); ?> - <?php bloginfo('description'); ?>" />
 <meta name="keywords" content="<?php bloginfo('name'); ?> - <?php bloginfo('description'); ?>" />
-
-<?php remove_action( 'wp_head', 'wp_generator' ); ?>
-<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 <?php wp_head(); ?>
+
 
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="alternate" type="text/xml" title="RSS .92" href="<?php bloginfo('rss_url'); ?>" />

@@ -3,8 +3,10 @@
 /*
 Theme Name: K2
 Theme URI: http://getk2.com
-Description: The origional 'customise me' theme
+Description: <strong><a href="themes.php?page=k2-options">Configure K2</a></strong> or visit the <a href="http://groups.google.com/group/k2-support">support forums</a>, <a href="http://code.google.com/p/kaytwo/w/list">the wiki</a> or <a href="http://code.google.com/p/kaytwo/issues/list">the bug tracker</a>. K2 was developed by <a href="http://binarybonsai.com/">Michael</a>, <a href="http://chrisjdavis.org/">Chris</a>, <a href="http://zeo.unic.net.my/">Zeo</a>, <a href="http://stevelam.org/">Steve</a>, Ben and <a href="http://xentek.net/">Eric Marden</a>, and is licensed under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
+Version: 1.0.3
 Author: Various Artists
+Author URI: http://getk2.com/
 Tags: blue, custom-header, fixed-width, flexible-width, one-column, two-columns, three-columns, theme-options, threaded-comments, microformats, translation-ready, light
 
 The Real K2: http://en.wikipedia.org/wiki/K2
@@ -31,10 +33,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 
 /* Typography */
-.entry-content img {
-  max-width: 100%;
-}
-
 
 body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;

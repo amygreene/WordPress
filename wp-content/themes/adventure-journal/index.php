@@ -16,7 +16,7 @@
 get_header(); ?>
 
 		<div class="content" <?php ctx_aj_getlayout(); ?>>
-                    <div id="col-main" role="main">
+                    <div id="col-main" role="main" style="<?php echo ctx_aj_customwidth('content'); ?>">
                           <div id="main-content" <?php ctx_aj_crinkled_paper(); ?>>
 			<?php
 			/* Run the loop to output the posts.

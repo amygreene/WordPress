@@ -1,64 +1,35 @@
 <?php get_header(); ?>
-
 	
-
-	<div id="primary" class="page">
-
+	<div id="primary">
 		
-
+		<?php pp_breadcrubs(); ?>
+		
 		<?php if(have_posts()) : ?>
-
 		
-
 		<?php while(have_posts()) : the_post(); ?>
-
 		
-
-		<div class="entry" id="post-<?php the_ID(); ?>">
-
+		<div id="post-<?php the_ID(); ?>" <?php post_class('entry'); ?>>
 			
-
 			<h1 class="entry-title"><?php the_title(); ?></h1>
-
 			
-
 			<div class="entry-byline">
-
-				<?php edit_post_link(__('Edit', 'primepress'), '[', ']'); ?>
-
+				<?php edit_post_link('Edit', '[', ']'); ?>
 			</div>
-
 			
-
 			<div class="entry-content">
-
 				<?php the_content(); ?>
-
 				<?php wp_link_pages('before=<p><strong>' . __('Pages:') . '</strong>&after=</p>'); ?>
-
 			</div>
-
 			
-
 		</div><!--.entry-->
-
 		
-
+		<?php comments_template(); ?>
+		
 		<?php endwhile; ?>
-
-
-        <?php if ( comments_open() ) { ?> <?php comments_template('',true); ?><?php } ?>
-
 		<?php endif; ?>	
 
-
-
 	</div><!--#primary-->
-
 	
-
 <?php get_sidebar(); ?>
-
-
 
 <?php get_footer(); ?>

@@ -16,7 +16,7 @@
 				</div>
 			</div><!-- .post -->
 
-<?php if ( comments_open() ) { ?> <?php comments_template('',true); ?><?php } ?> 
+<?php if ( get_post_custom_values('comments') ) comments_template() // Add a key/value of "comments" to load comments on a page ?>
 
 		</div><!-- #content .hfeed -->
 	</div><!-- #container -->

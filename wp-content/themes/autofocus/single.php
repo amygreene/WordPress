@@ -46,10 +46,6 @@
 					<span class="attachment-link"><?php link_to_attachment(); ?></span>
 <?php edit_post_link(__('Edit', 'sandbox'), "\n\t\t\t\t\t<span class=\"edit-link\">", "</span>"); ?>
 
-                    <ul>
-<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar(2) ) : ?>
-<?php endif; ?>
-</ul>
 				</div>
 			</div><!-- .post -->
 
@@ -82,10 +78,6 @@
 			next_post_excerpt();
 			echo '</p></div></div>';
 			 } ?>
-
-
-
-
 
 			</div><!-- #nav-below -->
 			

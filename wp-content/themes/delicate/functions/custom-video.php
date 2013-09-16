@@ -79,6 +79,7 @@ function t_show_video($pID){
 	$video_type = get_post_meta($pID, "video_type", $single = true); 
 	if($video_type == '' || $video_type == '#NONE#') { }
 	else{
+    $output = '';
 	switch ($video_type) {
 			case "youtube": $output .= YOUTUBE_TARGET; break;
 			case "google": $output .= GOOGLE_TARGET; break;
@@ -113,29 +114,30 @@ $metabox_video = array(
 			"name"		=> "video_type",
 			"default" 	=> "",
 			"type" 		=> "text",
-			"desc"      => "Upload your image with 'Add Media' above post window, copy the url and paste it here."
+			"desc"      => __('Upload your image with "Add Media" post window, copy the url and paste it here.', 'delicate')
 		),
 		"video_id" => array (
 			"name"		=> "video_id",
 			"default" 	=> "",
 			"type" 		=> "text",
-			"desc"      => "Upload your image with 'Add Media' above post window, copy the url and paste it here."
+			"desc"      => __('Upload your image with "Add Media" post window, copy the url and paste it here.', 'delicate')
 		),
 
 	);
 	
 function video_meta_box_content() {
 	global $post, $metabox_video;
+	
 	echo '<div id="postcustomstuff"><table id="list-table">'."\n";
 	echo "\t".'<thead>';
 	echo "\t".'<tr>';
-	echo "\t".'<th class="left">Video Type</th>';
-	echo "\t".'<th>Video ID</th>';
+	echo "\t".'<th class="left">'.__('Video Type', 'delicate').'</th>';
+	echo "\t".'<th>'.__('Video ID' ,'delicate').'</th>';
 	echo "\t".'</tr>';
 	echo "\t".'</thead>';
 	echo "\t".'<tr>';
 	echo "\t\t".'<td id="newmetaleft" class="left">';
-
+	
 	foreach ($metabox_video as $custom_metabox) {
 		$metabox_value = get_post_meta($post->ID,$custom_metabox["name"],true);
 		if ($metabox_value == "" || !isset($metabox_value)) {
@@ -165,9 +167,12 @@ function video_meta_box_content() {
 				$video_entries[] = array( "veoh", "Veoh" );
 				$video_entries[] = array( "gametrailers", "Gametrailers" );
 				
-
-			
-				ih_select( 'video_'.$custom_metabox["name"], $video_entries, $metabox_value, "" ); 			
+				
+				echo '<select name="video_'.$custom_metabox["name"].'" id="video_'.$custom_metabox["name"].'">'."\n";
+          foreach($video_entries as $arr) {
+            echo "<option value=\"" . $arr[ 0 ] . "\"".selected($metabox_value, $arr[ 0 ]).">" . $arr[ 1 ] . "</option>\n";
+          }	
+        echo "</select>";
 			
 				echo "\t".'</td>';
 			}
@@ -178,15 +183,45 @@ function video_meta_box_content() {
 	
 	echo "\t".'</tr>';
 	echo '</table></div>'."\n\n";
-	echo '<p>Select Video Type and insert Video ID (e.g. http://www.youtube.com/watch?v=<strong>Y2HIK1lgb3U</strong>).</p>'."\n\n";
+	echo '<p>'.__('Select Video Type and insert Video ID', 'delicate').' (e.g. http://www.youtube.com/watch?v=<strong>Y2HIK1lgb3U</strong>).</p>'."\n\n";
+	echo '<input type="hidden" name="video_noncename" id="video_noncename" value="' . wp_create_nonce( 'video-nonce' ) . '" />';
 }
 
 function video_metabox_insert($pID) {
-
 	global $metabox_video;
+	 
+	// Make sure current user has permission to edit the post. 
+	if (!current_user_can('edit_post', $pID))
+		return $pID;	
+
+	// If there's nothing to save then don't do anything	
+	if (!isset($_POST['video_video_id'])) 
+		return $pID;
+	
+	// verify if this is an auto save routine. 
+	// Don't do anything if post has not been submitted
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+		return;
+			
+	// verify if this is the post revision routine
+	// Don't do anything if this is a revision
+	if ( is_int( wp_is_post_revision( $pID ) ) )
+		return;
+			
+	// verify the nonce to make sure the data is from the correct screen
+	// because save_post can be triggered at other times
+	if (isset($_POST['video_noncename'])){
+    if ( !wp_verify_nonce( $_POST['video_noncename'], 'video-nonce' ) )
+      return;
+  }
+	
 	foreach ($metabox_video as $custom_metabox) {
 		$var = "video_".$custom_metabox["name"];
 		if (isset($_POST[$var])) {
+      $value = sanitize_text_field($_POST[$var]);
+      $value = strip_tags($_POST[$var]);
+      $value = addslashes($_POST[$var]);
+      
 			if( get_post_meta( $pID, $custom_metabox["name"] ) == "" )
 					add_post_meta($pID, $custom_metabox["name"], $_POST[$var], true );				
 			elseif($_POST[$var] != get_post_meta($pID, $custom_metabox["name"], true))				
@@ -198,10 +233,8 @@ function video_metabox_insert($pID) {
 }
 
 function video_meta_box() {
-	if ( function_exists('add_meta_box') ) {
-		add_meta_box('video-settings',$GLOBALS['themename'].' Video Settings','video_meta_box_content','post','normal');
-		add_meta_box('video-settings',$GLOBALS['themename'].' Video Settings','video_meta_box_content','page','normal');
-	}
+	add_meta_box('video-settings',$GLOBALS['natty_themename'].' '.__('Video Settings', 'delicate'),'video_meta_box_content','post','normal');
+	add_meta_box('video-settings',$GLOBALS['natty_themename'].' '.__('Video Settings', 'delicate'),'video_meta_box_content','page','normal');
 }
 
 add_action('admin_menu', 'video_meta_box');

@@ -124,10 +124,14 @@
 		}
 
 		function updateDimensions( LayoutMode, Source ) {
-			var contentwidth = jQuery("."+LayoutMode+"  #contentwidth").width() * 2 - 24;
-			var innereastwidth = jQuery("."+LayoutMode+"  .innereast").width() * 2;
-			var innerwestwidth = jQuery("."+LayoutMode+"  .innerwest").width() * 2;
-			var gutterwidth = (jQuery("."+LayoutMode+" #innerlayout .gutter").width()+2) * 2;
+			
+			var contentwidth = jQuery("."+LayoutMode+"  #contentwidth").width() * 2 - 24
+			, 	builderwidth = jQuery(".layout-main-content").width() * 2
+			, 	contentpercent = (contentwidth / builderwidth) * 100
+			, 	innereastwidth = jQuery("."+LayoutMode+"  .innereast").width() * 2
+			, 	innerwestwidth = jQuery("."+LayoutMode+"  .innerwest").width() * 2
+			, 	gutterwidth = (jQuery("."+LayoutMode+" #innerlayout .gutter").width()+2) * 2;
+				
 			
 			// Don't trigger if content is 0px wide. This means the function was triggered in error or by a browser quirk. (e.g. dragging a tab in Firefox)
 			if( contentwidth > 0 ){
@@ -146,14 +150,60 @@
 				var primarysidebar = jQuery("."+LayoutMode+" #layout-sidebar-1 .loelement-pad .width span").html();
 				var maincontent = jQuery("."+LayoutMode+" #layout-main-content .loelement-pad .width span").html();
 				var wcontent = jQuery("."+LayoutMode+" #contentwidth .loelement-pad span").html();
+				
+				jQuery(".layout_controls #input-content-width").val(wcontent);
 
-
-
-				jQuery(".layout_controls").find("#input-content-width").val(wcontent);
+				jQuery(".layout_controls #input-responsive-width").val(contentpercent);
 
 				jQuery("."+LayoutMode+" #input-primarysidebar-width").val(primarysidebar);
 
 				jQuery("."+LayoutMode+" #input-maincolumn-width").val(maincontent);
+				
+				
+				
+				if(Source == 'margin-resize'){
+					var theLayoutModes = new Array(
+						'fullwidth', 
+						'one-sidebar-right', 
+						'one-sidebar-left', 
+						'two-sidebar-right', 
+						'two-sidebar-left', 
+						'two-sidebar-center'
+					);
+					
+					for( var i = 0; i < theLayoutModes.length; i++){
+					
+						if(theLayoutModes[i] != LayoutMode){
+				
+							if(theLayoutModes[i] == 'two-sidebar-right' || theLayoutModes[i] == 'two-sidebar-left' || theLayoutModes[i] == 'two-sidebar-center'){
+								
+								var modeContent = jQuery("."+theLayoutModes[i]+" #layout-main-content .loelement-pad .width span").html();
+								var modeSB = jQuery("."+theLayoutModes[i]+" #layout-sidebar-1 .loelement-pad .width span").html();
+								var modeSB2 = jQuery("."+theLayoutModes[i]+" #layout-sidebar-2 .loelement-pad .width span").html();
+								
+								jQuery("."+theLayoutModes[i]+" #input-maincolumn-width").val(wcontent - modeSB - modeSB2 );
+							
+							} else if(theLayoutModes[i] == 'one-sidebar-right' || theLayoutModes[i] == 'one-sidebar-left'){
+							
+								var modeContent = jQuery("."+theLayoutModes[i]+" #layout-main-content .loelement-pad .width span").html();
+								var modeSB = jQuery("."+theLayoutModes[i]+" #layout-sidebar-1 .loelement-pad .width span").html();
+								
+								jQuery("."+theLayoutModes[i]+" #input-maincolumn-width").val(wcontent - modeSB);
+								
+							
+							} else if (theLayoutModes[i] == 'fullwidth'){
+								
+								jQuery("."+theLayoutModes[i]+" #input-maincolumn-width").val(wcontent);
+								
+							}
+					
+						
+						}
+
+					}
+					
+				}
+				
 				
 			} 
 			

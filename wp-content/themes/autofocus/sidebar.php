@@ -43,7 +43,7 @@
 
 		<ul class="xoxo">
 <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar(2) ) : // begin  secondary sidebar widgets ?>
-
+			
 			<li id="rss-links" class="widget">
 				<h3><?php _e('Subscribe', 'sandbox') ?></h3>
 				<ul>
@@ -64,5 +64,5 @@
 			</li>
 <?php endif; // end secondary sidebar widgets  ?>
 		</ul>
-
+		
 	</div><!-- #secondary .sidebar -->

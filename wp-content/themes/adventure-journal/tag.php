@@ -6,21 +6,13 @@
 get_header(); ?>
 
 <div class="content" <?php ctx_aj_getlayout(); ?>>
-  <div id="col-main">
+  <div id="col-main" style="<?php echo ctx_aj_customwidth('content'); ?>">
     <div id="main-content" <?php ctx_aj_crinkled_paper(); ?>>
-      <!-- BEGIN Main Content-->
-   <h1 class="page-title"><?php
-        printf( __( 'Posts Tagged With: %s', 'adventurejournal' ), '<span>' . single_tag_title( '', false ) . '</span>' );
-    ?></h1>
+        <!-- BEGIN Main Content-->
+        <h1 class="page-title"><?php printf( __( 'Tagged With: %s', 'adventurejournal' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
-<?php
-/* Run the loop for the tag archive to output the posts
- * If you want to overload this in a child theme then include a file
- * called loop-tag.php and that will be used instead.
- */
- get_template_part( 'loop', 'tag' );
-?>
-      <!-- END Main Content-->
+        <?php get_template_part( 'loop', 'tag' ); ?>
+        <!-- END Main Content-->
     </div>
   </div>
   <?php get_sidebar(); ?>

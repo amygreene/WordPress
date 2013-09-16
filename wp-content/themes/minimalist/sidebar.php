@@ -1,14 +1,14 @@
 <div id="leftcol" >
 <div id="menu">
 
-<h2 class="menuheader"><?php _e('Pages', 'minimalist'); ?></h2>
+<h2 class="menuheader">Pages</h2>
 <div class="menucontent">
 <ul>
 <?php wp_list_pages('sort_column=menu_order&title_li='); ?>
 </ul>
 </div>
 
-<h2 class="menuheader"><?php _e('Categories', 'minimalist'); ?></h2>
+<h2 class="menuheader">Categories</h2>
 <div class="menucontent">
 <ul>
 <?php wp_list_categories('title_li=&show_count=0'); ?>
@@ -16,7 +16,7 @@
 </div>
 
 
-<h2 class="menuheader"><?php _e('Archives', 'minimalist'); ?></h2>
+<h2 class="menuheader">Archives</h2>
 <div class="menucontent">
 <ul>
 <?php wp_get_archives('type=monthly'); ?>
@@ -24,14 +24,14 @@
 </div>
 
 
-<h2 class="menuheader"><?php _e('Links', 'minimalist'); ?></h2>
+<h2 class="menuheader">Links</h2>
 <div class="menucontent">
 <ul>
 <?php wp_list_bookmarks('title_li=&categorize=0'); ?>
 </ul>
 </div>
 
-<h2 class="menuheader"><?php _e('Customise', 'minimalist'); ?></h2>
+<h2 class="menuheader">Customise</h2>
 <div class="menucontent">
 
 <ul>
@@ -46,7 +46,7 @@
 
 
 
-<h2 class="menuheader"><?php _e('Info', 'minimalist'); ?></h2>
+<h2 class="menuheader">Info</h2>
 <div class="menucontent">
 <ul>
 <?php wp_register(); ?>
@@ -59,7 +59,7 @@
 </ul>
 </div>
 
-<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar() ); ?>
+<?php if ( !function_exists('dynamic_sidebar')         || !dynamic_sidebar() ); ?>
 
 
 

@@ -8,6 +8,7 @@
 add_action('admin_menu', 'pagelines_add_admin_submenus');
 function pagelines_add_admin_submenus() {
 	global $_pagelines_options_page_hook;
+		
 		// WP themes rep. wants it under the appearance tab.
 		$_pagelines_options_page_hook = add_theme_page( 'pagelines', 'PageLines Settings', 'edit_theme_options', 'pagelines', 'pagelines_build_option_interface' );
 }
@@ -134,7 +135,7 @@ add_action('save_post', 'save_section_control_box');
 function add_section_control_box(){
 	
 	$blacklist = array( 'banners', 'feature', 'boxes', 'attachment', 'revision', 'nav_menu_item' );
-	if ( isset( $_GET['post']) && ! in_array( get_post_type( $_GET['post'] ), $blacklist) ) add_meta_box('section_control', 'PageLines Section Control', "pagelines_section_control_callback", get_post_type( $_GET['post'] ), 'side', 'low');
+	if ( isset( $_GET['post']) && ! in_array( get_post_type( $_GET['post'] ), apply_filters( 'pagelines_meta_blacklist', $blacklist ) ) ) add_meta_box('section_control', 'PageLines Section Control', "pagelines_section_control_callback", get_post_type( $_GET['post'] ), 'side', 'low');
 
 }
 
@@ -166,8 +167,9 @@ function section_control_checkbox($section, $template_slug, $template_area, $tem
 		global $pl_section_factory;
 		global $post;
 		
+		if ( ! isset( $pl_section_factory->sections[$section] ) )
+			return;
 		$s = $pl_section_factory->sections[$section];
-		
 		// Load Global Section Control Options
 		$section_control = pagelines_option('section-control');
 		$hidden_by_default = isset($section_control[$template_slug][$section]['hide']) ? $section_control[$template_slug][$section]['hide'] : null;

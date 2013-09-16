@@ -1,25 +1,25 @@
 <?php get_header();?>      
 
 <?php 
-$t_show_post = t_get_option( "t_show_post" );		
+$t_show_post = nattywp_get_option( "t_show_post" );
+$t_show_sidebar = nattywp_get_option("t_show_sidebar");	
 ?>    
 <div id="main">		
 	<div class="columns">
-     <div class="narrowcolumn">
+     <div class="narrowcolumn <?php echo $t_show_sidebar; ?>">
      <?php if (have_posts()) : ?>
-     <?php while (have_posts()) : the_post(); ?>							
+     <?php while (have_posts()) : the_post(); global $more; $more = 0; ?>							
 			<div <?php post_class();?>>
             	
                 <div class="title">
 				<h2><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-                <small><?php _e('Posted by','nattywp'); ?> <span class="author"><?php theme_get_profile() ?></span> <?php _e('in','nattywp'); ?> <?php the_category(' | ');?> - (<?php comments_popup_link(__('0 Comments', 'nattywp'), __('1 Comments', 'nattywp'), __('% Comments', 'nattywp')); ?>)</small> <?php edit_post_link(__('Edit','nattywp'), ' | ', ''); ?>
+                <small><?php the_time('F jS, Y') ?> | <?php _e('Posted by','delicate'); ?> <span class="author"><?php delicate_get_profile() ?></span> <?php _e('in','delicate'); ?> <?php the_category(' | ');?> - (<?php comments_popup_link(__('0 Comments', 'delicate'), __('1 Comments', 'delicate'), __('% Comments', 'delicate')); ?>)</small> <?php edit_post_link(__('Edit','delicate'), ' | ', ''); ?>
                 </div>              
 				<div class="entry">
           <?php 
                   if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
-                      the_post_thumbnail();} 
+                       the_post_thumbnail('thumbnail');} 
                   if ($t_show_post == 'no') {//excerpt  
-                         get_thumb('Image','130','85','small-image', '<div class="thumb">', '</div>' );                   
                          the_excerpt();  
                   } else { //fullpost 
                         t_show_video($post->ID);
@@ -35,28 +35,31 @@ $t_show_post = t_get_option( "t_show_post" );
 	<?php endwhile; ?>	
     		
 		<div id="navigation">
-		<?php natty_pagenavi(); ?>
+		<?php nattywp_pagenavi(); ?>
 		</div>    
         
     <?php else : 
 		echo '<div class="post">';
 		if ( is_category() ) { // If this is a category archive
-			printf(__('<h2 class=\'center\'>Sorry, but there aren\'t any posts in the %s category yet.</h2>','nattywp'), single_cat_title('',false));
+			printf(__('<h2 class=\'center\'>Sorry, but there aren\'t any posts in the %s category yet.</h2>','delicate'), single_cat_title('',false));
 		} else if ( is_date() ) { // If this is a date archive
-			_e('<h2>Sorry, but there aren\'t any posts with this date.</h2>','nattywp');
+			_e('<h2>Sorry, but there aren\'t any posts with this date.</h2>','delicate');
 		} else if ( is_author() ) { // If this is a category archive
 			$userdata = get_userdatabylogin(get_query_var('author_name'));
-			printf(__('<h2 class=\'center\'>Sorry, but there aren\'t any posts by %s yet.</h2>','nattywp'), $userdata->display_name);
+			printf(__('<h2 class=\'center\'>Sorry, but there aren\'t any posts by %s yet.</h2>','delicate'), $userdata->display_name);
 		} else {
-      _e('<h2 class=\'center\'>No posts found.</h2>','nattywp');
+      _e('<h2 class=\'center\'>No posts found.</h2>','delicate');
 		}
 		get_search_form();	
 		echo '</div>';		
 	endif; ?>
 	
  </div> <!-- END Narrowcolumn -->
-   <div id="sidebar" class="profile">
-     <?php get_sidebar();?>
-   </div>    
+ 
+<?php if ($t_show_sidebar == 'disable') {} else { ?>
+  <div id="sidebar" class="profile <?php echo $t_show_sidebar; ?>">
+   <?php get_sidebar();?>
+  </div> 
+<?php } ?>   
 <div class="clear"></div>    
 <?php get_footer(); ?> 

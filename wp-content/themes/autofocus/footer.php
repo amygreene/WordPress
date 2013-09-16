@@ -1,50 +1,16 @@
-
-<div id="footer-widget">
-<ul>
-<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar(1) ) : ?>
-<?php endif; ?>
-</ul>
-</div>
-
-
-
-
-<div id="footer">
-
-All content is &copy; <?php echo gmdate('Y'); ?> <?php bloginfo('name'); ?>&nbsp;&nbsp;&nbsp;All rights reserved.
-
-
-<p id="footer-credit">
-
-<span id="generator-link">
-<a href="http://wpmu.org"><?php _e('WordPress MU', 'sandbox'); ?></a>
-</span>
-
-<span class="meta-sep">|</span>
-
-<span id="theme-link">
-<a href="http://www.plaintxt.org/themes/sandbox/"><?php _e('Sandbox', 'sandbox'); ?></a>
-</span>
-
-<span class="meta-sep">|</span>
-
-<a href="http://www.allancole.com/wordpress/themes/autofocus"><?php _e('Autofocus', 'sandbox'); ?></a>
-
-
-<?php if(function_exists('get_current_site')) { $current_site = get_current_site(); ?>
-<span class="meta-sep">|</span>
-<?php _e('Hosted by', 'sandbox'); ?> <a href="http://<?php echo $current_site->domain . $current_site->path ?>"><?php echo $current_site->site_name ?></a>
-<?php } ?>
-
-
-</p>
-
-<?php wp_footer(); ?>
-
-</div><!-- #footer -->
+	<div id="footer">
+		All content is &copy; <?php print(date(Y)); ?> by <a href="<?php echo get_option('home') ?>/" title="<?php bloginfo('name') ?>" rel="home"><?php bloginfo('name'); ?></a>. All rights reserved.
+		<p id="footer-credit">
+			<span id="generator-link"><a href="http://wordpress.org/" title="<?php _e('WordPress', 'sandbox'); ?>" rel="generator"><?php _e('WordPress', 'sandbox'); ?></a></span>
+			<span class="meta-sep">|</span>
+			<span id="theme-link"><a href="http://www.plaintxt.org/themes/sandbox/" title="<?php _e('Sandbox for WordPress', 'sandbox'); ?>" rel="designer"><?php _e('Sandbox', 'sandbox'); ?></a></span>
+			<span class="meta-sep">|</span>
+			<a href="http://www.allancole.com/wordpress/themes/autofocus" title="<?php _e('Autofocus', 'sandbox'); ?>"><?php _e('Autofocus', 'sandbox'); ?></a>
+		</p>
+	</div><!-- #footer -->
 </div><!-- #wrapper .hfeed -->
 
-
+<?php wp_footer(); ?>
 
 </body>
 </html>

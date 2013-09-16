@@ -2,8 +2,8 @@
  * Theme Name: Hatch
  * Theme URI: http://alienwp.com/themes/hatch/
  * Description: A simple and minimal portfolio theme for photographers, illustrators, designers, or photobloggers. Responsive layout, optimized for mobile browsing (iPhone and iPad). Ideal for sites where images are the main type of content. The customization options include theme settings page, custom background, custom header.
- * Version: 0.2.6
- * Author: Galin Simeonov
+ * Version: 0.2.9
+ * Author: AlienWP
  * Author URI: http://alienwp.com
  * Tags: flexible-width, theme-options, threaded-comments, microformats, translation-ready, rtl-language-support, one-column, two-columns, right-sidebar, custom-background, custom-header, featured-images
  * License: GNU General Public License v2.0
@@ -635,7 +635,7 @@ input[type="submit"]:hover { cursor: pointer }
 	display: none;
 	position: absolute;
 	top: 25px;
-	left: 12px;
+	left: 23px;
 	border: 1px solid #d9d9d9;
 	background: #fff;
 	-webkit-box-shadow: 0 0 7px rgba(0,0,0,.11);
@@ -653,25 +653,13 @@ input[type="submit"]:hover { cursor: pointer }
 	margin-left: 0;
 	border-top: 1px solid #d9d9d9;
 }
-.sf-sub-indicator {
-	text-indent: -9999em;
-	width: 10px;
-	height: 6px;
-	display: inline-block;
-	margin-left: 5px;
-	background: url(images/dropdown.png) no-repeat right 0;
-	position: absolute;
-	top: 40%;
-	right: 0;
-}
-.menu li li .sf-sub-indicator {
-	width: 6px;
-	height: 10px;
-	top: 40%;
-	background: url(images/dropright.png) no-repeat right 50%;
-	margin-right: 7px;
-}
 .menu li a.sf-with-ul, #menu-secondary li a.sf-with-ul { padding-right: 16px; }
+.menu .sf-with-ul {
+	background: url(images/dropdown.png) no-repeat right 40%;
+}
+.menu li li .sf-with-ul {
+	background: url(images/dropright.png) no-repeat right 50%;
+}
 
 /* Home page 
 -------------------------------------------------------------- */
@@ -704,7 +692,7 @@ input[type="submit"]:hover { cursor: pointer }
 	margin: 0 0 20px 0;
 	position: relative;
 }
-.home .hentry, .archive .hentry {
+.home .hentry, .archive .hentry, .home .sticky {
 	float: left;
 	width: 23.40425531914894%;
 	height: 150px;
@@ -788,7 +776,7 @@ input[type="submit"]:hover { cursor: pointer }
 .singular .byline { margin-bottom: .5em; }
 .byline a { color: #aaa; }
 .entry-meta .post_tag a:hover, .byline a:hover, .byline .category a:hover { color: #000; }
-.post_tag a, .author a, .published, .byline .category a, .edit {
+.post_tag a, .author a, .bypostauthor a, .published, .byline .category a, .edit {
 	font-style: normal;
 	color: #888;
 }

@@ -174,13 +174,13 @@ function build_header(){?>
 					<?php if(!VPRO):?>
 						<div id="vpro_billboard" class="">
 							<div class="vpro_billboard_height">
-								<a class="vpro_thumb" href="<?php echo PROVERSIONOVERVIEW;?>"><img src="<?php echo PL_IMAGES;?>/pro-thumb-125x50.png" alt="<?php echo PROVERSION;?>" /></a>
+								<a class="vpro_thumb" href="<?php echo PROVERSIONOVERVIEW;?>"><img src="<?php echo PL_IMAGES;?>/pro-thumb.png" alt="<?php echo PROVERSION;?>" /></a>
 								<div class="vpro_desc">
 									<strong style="font-size: 1.2em">Get the Pro Version </strong><br/>
-									<?php echo THEMENAME;?> is the free version of <?php echo PROVERSION;?>, a premium product by <a href="http://www.pagelines.com" target="_blank">PageLines</a>.<br/> 
+									<?php echo THEMENAME;?> is a free theme based on <?php echo PROVERSION;?>, a premium product by <a href="http://www.pagelines.com" target="_blank">PageLines</a>.<br/> 
 									Buy <?php echo PROVERSION;?> for tons more options, sections and templates.<br/> 	
 								
-									<a class="vpro_link" href="#" onClick="jQuery(this).parent().parent().parent().find('.whatsmissing').slideToggle();">Pro Features &darr;</a>
+									<a class="vpro_link" href="#" onClick="jQuery(this).parent().parent().parent().find('.whatsmissing').slideToggle();">What's missing &darr;</a>
 									<a class="vpro_link" href="<?php echo PROVERSIONOVERVIEW;?>">Why Pro?</a>
 									<a class="vpro_link"  href="<?php echo PROVERSIONDEMO;?>"><?php echo PROVERSION;?> Demo</a>
 									<?php if(defined('PROBUY')):?><a class="vpro_link vpro_call"  href="<?php echo PROBUY;?>"><strong>Buy Now &rarr;</strong></a><?php endif;?>
@@ -461,10 +461,8 @@ function _get_typography_option($oid, $o, $val){
 		<option value="">&mdash;SELECT&mdash;</option>
 		<?php foreach($fonts as $fid => $f):
 		
-			$free = (isset($f['free']) && $f['free']) ? true : false;
-		
-			if(!VPRO && !$free):
-				
+			if(!VPRO && !isset( $f['free']) ):
+
 			else: 
 				$font_name = $f['name']; 
 			

@@ -3,6 +3,7 @@
  * @package WordPress
  * @subpackage Adventure_Journal
  */
+$AJOpts = get_option('ctx-adventurejournal-options');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -23,6 +24,7 @@
                     echo ' | ' . sprintf( __( 'Page %s', 'adventurejournal' ), max( $paged, $page ) );
     ?></title>
     <meta name="author" content="Designed by Contexture International | http://www.contextureintl.com" />
+	<meta name="iconpath" id="iconpath" content="<?php echo get_bloginfo( 'template_directory', 'raw' ); ?>/images/bh" />
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <?php
@@ -41,7 +43,28 @@
     ?>
 </head>
 <body <?php body_class(); ?>>
-	<div <?php echo ctx_aj_get_relationships($post->ID,'siteframe'); ?>>
+<?php if($AJOpts['browser-helper']=='true'): ?>
+<div id="browser-helper">
+    <div id="bh-bg">
+        <table id="bh-notice" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                <td id="bh-icon-td" rowspan="3">
+                    <img id="bh-icon" src="http://s.wordpress.org/images/browsers/ie.png" alt="browser icon" width="87"/>
+                </td>
+                <td id="bh-copy">
+                    <div id="bh-warning"><?php _e('You are using an insecure version of <span id="bh-browsername">your web browser</span>. Please update your browser!','adventurejournal') ?></div>
+                    <div id="bh-explain"><?php _e('Using an outdated browser makes your computer unsafe. For a safer, faster, more enjoyable user experience, please update your browser today or try a newer browser.','adventurejournal') ?></div>
+                    <div id="bh-links">
+                        <a id="bh-update" href="#"><?php _e('Update Your Browser','adventurejournal') ?></a> | <a href="http://www.google.com/chrome/"><?php _e('Try Something New','adventurejournal') ?></a> | <a href="#" id="bh-hide"><?php _e('Hide This Warning','adventurejournal') ?></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="bh-shadow"></div>
+</div>
+<?php endif; ?>
+    <div <?php echo ctx_aj_get_relationships($post->ID,'siteframe'); ?>>
         <div id="container">
           <div id="container2">
             <div class="nav-horz nav-main" id="menu">

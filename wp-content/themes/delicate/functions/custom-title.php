@@ -61,13 +61,31 @@ function seo_meta_box_content() {
 	   $output .= '</div>'."\n\n";
     }    
     echo $output;
+    echo '<input type="hidden" name="seo_noncename" id="seo_noncename" value="' . wp_create_nonce( 'seo-nonce' ) . '" />';
 }
 
 function seo_metabox_insert() {
     global $globals, $post, $metabox_seo;   
-    $pID = $post->ID;    
-    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) 
-      return $pID;
+    if(isset($post->ID)) {
+      $pID = $post->ID;
+      
+      if (!current_user_can('edit_post', $pID))
+        return $pID;
+        
+      if (!isset($_POST['natty_title']) || !isset($_POST['natty_description']) || !isset($_POST['natty_keywords'])) 
+        return $pID;
+		
+      if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+        return;
+        
+      if ( is_int( wp_is_post_revision( $pID ) ) )
+        return;
+    
+      if (isset($_POST['seo_noncename'])){
+        if ( !wp_verify_nonce( $_POST['seo_noncename'], 'seo-nonce' ) )
+          return;
+      }
+
 
     $errors = array();  
 	
@@ -84,14 +102,13 @@ function seo_metabox_insert() {
 			elseif ($new_data != '')
 				add_post_meta($pID, $seo_id['name'], $new_data, true);
 		}
+	} 	
 	
 }
 
 function seo_meta_box() {
-    if ( function_exists('add_meta_box') ) {
-        add_meta_box('seo-settings','SEO settings','seo_meta_box_content','post','normal');
-        add_meta_box('seo-settings','SEO settings','seo_meta_box_content','page','normal');
-    }
+  add_meta_box('seo-settings',__('SEO settings', 'delicate'),'seo_meta_box_content','post','normal');
+  add_meta_box('seo-settings',__('SEO settings', 'delicate'),'seo_meta_box_content','page','normal');
 }
 add_action('admin_menu', 'seo_meta_box');
 add_action('save_post', 'seo_metabox_insert');

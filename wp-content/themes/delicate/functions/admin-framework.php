@@ -1,10 +1,9 @@
 <?php 
-function framework_version(){
-	global $themename, $current, $post;
-  $natty_framework_version = "2.0";
-	$t_favico = t_get_option( "t_favico" ); 
+function nattywp_framework_version(){
+	global $natty_themename, $natty_current, $post;
+  $natty_framework_version = "2.1.5";
 	
-    echo '<meta name="template" content="'.$themename.' '. $current .'" />' ."\n";
+    echo '<meta name="template" content="'.$natty_themename.' '. $natty_current .'" />' ."\n";
     echo '<meta name="generator" content="NattyWP Framework Version '. $natty_framework_version .'" />' ."\n";
 	
 	if (is_single() || is_page()) {
@@ -16,37 +15,37 @@ function framework_version(){
 		if (strlen($custom_description))
 			echo '<meta name="description" content="' . trim(wptexturize(strip_tags(stripslashes($custom_description)))) . '" />'."\n";
 		else {
-			if (t_get_option('t_meta_desc') != '') {
-				echo '<meta name="description" content="'.t_get_option('t_meta_desc').'" />'."\n";
+			if (nattywp_get_option('t_meta_desc') != '') {
+				echo '<meta name="description" content="'.nattywp_get_option('t_meta_desc').'" />'."\n";
 			} else { 
 				echo '<meta name="description" content="'.get_bloginfo('description').' " />'."\n";
 			}	
 		}		
 	} else {
-		if (t_get_option('t_meta_desc') != '') {
-			echo '<meta name="description" content="'.t_get_option('t_meta_desc').'" />'."\n";
+		if (nattywp_get_option('t_meta_desc') != '') {
+			echo '<meta name="description" content="'.nattywp_get_option('t_meta_desc').'" />'."\n";
 		} else { 
 			echo '<meta name="description" content="'.get_bloginfo('description').' " />'."\n";
 		}
-	}	
-	
-	if( $t_favico != "" ) { 		
-		echo '<link rel="icon" href="'. get_template_directory_uri() .'/images/icons/'. $t_favico .'" />';
-    echo '<link rel="shortcut icon" href="'. get_template_directory_uri() .'/images/icons/'. $t_favico .'" />'."\n";
 	}
 	
-	//Localization
-	load_theme_textdomain('nattywp');	
+  $t_favico = nattywp_get_option( "nattywp_custom_favicon" );
+	if( $t_favico == '' || $t_favico == 'no') {
+    // NO default icon
+    //echo '<link href="'.get_template_directory_uri().'/images/icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />'."\n";
+	} else {
+    echo '<link href="'.$t_favico.'" rel="shortcut icon" type="image/x-icon" />'."\n";
+	}
 	
 	// Shortcodes
 	echo '<link rel="stylesheet" type="text/css" href="'.get_bloginfo('template_directory').'/functions/css/shortcodes.css" media="screen" />';
 	echo '<script type="text/javascript" src="'.get_bloginfo('template_directory').'/functions/js/shortcode.js"></script>';
 }
-add_action('wp_head','framework_version');
+add_action('wp_head','nattywp_framework_version');
 
 
 // offset and pagination
-function my_post_limit($limit) {
+function nattywp_post_limit($limit) {
 	global $paged, $myOffset;
 	if (empty($paged)) {
 			$paged = 1;
@@ -57,12 +56,14 @@ function my_post_limit($limit) {
 	return $limit;
 }
 
-function t_get_option($option='', $echo='') {
-  global $themename;
-  $natty_options = get_option($themename.'_settings');
-  if (isset($natty_options[$option])){
-    $framework_options = $natty_options[$option];
-  } else {$framework_options = 'no';}
+function nattywp_get_option($option='', $echo='') {
+  global $nattywp_option_name;
+  $natty_options = get_option($nattywp_option_name);
+  if (isset($natty_options['_options'][$option])){
+    $framework_options = $natty_options['_options'][$option];
+  } else {
+    $framework_options = 'no';
+  }
   if ($echo == '1') {
     echo $framework_options;    
   } else {
@@ -70,10 +71,11 @@ function t_get_option($option='', $echo='') {
   }
 }
 
-function t_get_coption($option='', $echo='') {
-  global $themename;
-  $natty_coptions = get_option($themename.'_color_settings');
-  $framework_coptions = $natty_coptions[$option];
+
+function nattywp_get_coptions($option='', $echo='') {
+  global $nattywp_option_name;
+  $natty_coptions = get_option($nattywp_option_name);
+  $framework_coptions = $natty_coptions['_colors'][$option];
   if ($echo == '1') {
     echo $framework_coptions;    
   } else {
@@ -81,11 +83,11 @@ function t_get_coption($option='', $echo='') {
   }
 }
 
-function t_get_logo ($before = '', $after = '', $t_logo ='', $link = true) {	  
+function nattywp_get_logo ($before = '', $after = '', $t_logo ='', $link = true) {	  
 	$output = '';
-	$t_custom_logo = get_option( "nattywp_custom_logo" );
-	if ($t_custom_logo == '') {
-    if ($t_logo == ''){$t_logo = t_get_option( "t_logo" );}
+	$t_custom_logo = nattywp_get_option( "nattywp_custom_logo" );
+	if ($t_custom_logo == '' || $t_custom_logo == 'no') {    
+    if ($t_logo == ''){$t_logo = nattywp_get_option( "t_logo" );}
     if ($t_logo != "") {       
         $output .= $before;
         if($link == true) {
@@ -108,10 +110,10 @@ function t_get_logo ($before = '', $after = '', $t_logo ='', $link = true) {
 }
 
 
-function t_most_commented( $no_posts = 15, $before = '<li>', $after = '</li>', $show_pass_post = false, $duration = '', $echo = true ) {
+function nattywp_most_commented( $no_posts = 15, $before = '<li>', $after = '</li>', $show_pass_post = false, $duration = '', $echo = true ) {
 	global $wpdb;
 
-	if ( !($posts = wp_cache_get('t_most_commented')) ) {
+	if ( !($posts = wp_cache_get('nattywp_most_commented')) ) {
 		$request = "SELECT ID, post_title, comment_count FROM $wpdb->posts WHERE post_status = 'publish'";
 		if ( !$show_pass_post ) $request .= " AND post_password =''";
 		if ( is_int($duration) ) $request .= " AND DATE_SUB(CURDATE(),INTERVAL ".$duration." DAY) < post_date ";
@@ -120,7 +122,7 @@ function t_most_commented( $no_posts = 15, $before = '<li>', $after = '</li>', $
 
 		$posts = $wpdb->get_results($request);
 
-		wp_cache_set('t_most_commented', $posts, '', 1800);
+		wp_cache_set('nattywp_most_commented', $posts, '', 1800);
 	}
 
 	if ( $echo ) {
@@ -132,7 +134,7 @@ function t_most_commented( $no_posts = 15, $before = '<li>', $after = '</li>', $
 				$t_most_commented .= $before . '<a href="' . $permalink . '" title="' . $post_title.'">' . $post_title . '</a> (' . $comment_count.')' . $after;
 			}
 		} else {
-			$t_most_commented .= $before . "None found" . $after;
+			$t_most_commented .= $before . __('None found', 'delicate') . $after;
 		}
 
 		echo $t_most_commented;
@@ -141,7 +143,7 @@ function t_most_commented( $no_posts = 15, $before = '<li>', $after = '</li>', $
 	}
 }
 
-function natty_pagenavi($before = '', $after = '', $prelabel = '', $nxtlabel = '', $pages_to_show = 5, $always_show = false) {
+function nattywp_pagenavi($before = '', $after = '', $prelabel = '', $nxtlabel = '', $pages_to_show = 5, $always_show = false) {
   if (function_exists('wp_pagenavi')) { wp_pagenavi(); } 
   else {
 	global $wpdb, $wp_query;
@@ -172,7 +174,7 @@ function natty_pagenavi($before = '', $after = '', $prelabel = '', $nxtlabel = '
 		if($max_page > 1 || $always_show) {
 			echo "$before <div class='nav'>";
 			if ($paged >= ($pages_to_show-1)) {
-				echo '<a href="'.get_pagenum_link().'">'. __('&laquo; First', 'nattywp').'</a>';
+				echo '<a href="'.get_pagenum_link().'">'. __('&laquo; First', 'delicate').'</a>';
 			}
 			previous_posts_link($prelabel);
 			for($i = $paged - $half_pages_to_show; $i  <= $paged + $half_pages_to_show; $i++) {
@@ -186,7 +188,7 @@ function natty_pagenavi($before = '', $after = '', $prelabel = '', $nxtlabel = '
 			}
 			next_posts_link($nxtlabel, $max_page);
 			if (($paged+$half_pages_to_show) < ($max_page)) {
-				echo '<a href="'.get_pagenum_link($max_page).'">'. __('Last &raquo;', 'nattywp').'</a>';
+				echo '<a href="'.get_pagenum_link($max_page).'">'. __('Last &raquo;', 'delicate').'</a>';
 			}
 			echo "</div> $after";
 		}
@@ -195,202 +197,9 @@ function natty_pagenavi($before = '', $after = '', $prelabel = '', $nxtlabel = '
 }
 
 
-// This function works with thumb.php 
-// Parameters: 
-// 		
-// 		$type = Predefined type eg. "featured"
-//		$width = Set width manually without using $type
-//		$height = Set height manually without using $type
-//      $title = Set image title
-// 		$class = CSS class to use on the img tag eg. "alignleft". Default is "thumbnail"
-//		$quality = Enter a quality between 80-100. Default is 95
-function get_thumb ($key = 'Image', $width = null, $height = null, $class = "thumbnail", $before = '', $after = '', $title='', $repeat = 1, $offset = 0, $link = 'src', $single = false, $force = false, $return = false, $quality = 80, $id = null) {
-	global $get_thumb_image_status, $wpdb;
-	if(empty($id))
-    {
-    global $post;
-    $id = $post->ID;
-    } 
-	
-	$output = '';
-	$custom_field = get_post_meta($id, $key, true);   
+function nattywp_excerpt_length($length) { return 20; }
 
-	$t_thumb = t_get_option("t_thumb_auto");
-	$t_resize = t_get_option("t_resize_auto");
-	
-	if ($width == 'custom' || $height == 'custom') {
-    $width = t_get_option('t_'.$class.'_width');
-    $height = t_get_option('t_'.$class.'_height');
-	}
-	
-	if(!empty($custom_field)) { // if a custom field exists	
-    
-    if ($force == true) {
-      $set_width = ' width="' . $width .'" ';
-      $set_height = ' height="' . $height .'" ';    
-      $get_width = $width;   
-      $get_height = $height; 
-    } else {		
-      $check_size = getimagesize($custom_field);
-      $original_width = $check_size[0];
-      $original_height = $check_size[1];
-      
-      if ($original_width <= $width && isset($original_width)) {
-        $set_width = ' width="' . $original_width .'" ';
-        $get_width = $original_width;
-      } else {
-         $set_width = ' width="' . $width .'" ';
-         $get_width = $width;
-      }
-      
-      if ($original_height <= $height && isset($original_height)) {
-        $set_height = ' height="' . $original_height .'" ';
-        $get_height = $original_height;
-      } else {
-         $set_height = ' height="' . $height .'" ';
-         $get_height = $height;
-      }
-    } // end force
-		$get_thumb_image_status = 'true';
-		
-		if ($t_resize == 'yes'){ // resize
-			$img_link = '<img src="'. get_template_directory_uri(). '/thumb.php?src='. $custom_field .'&amp;h='. $get_height .'&amp;w='. $get_width .'&amp;zc=1&amp;q='. $quality .'" alt="'. get_the_title($id) .'" class="'. $class .'" '. $set_height . $set_width . ' title="'. $title .'" />';
-			
-			if($link == 'img'){  // Only the image
-                $output .= $before; 
-                $output .= $img_link;
-                $output .= $after;  
-            }
-			else {  // Image with link (default)
-                 if ($single == false) {
-                    $href = get_permalink($id);
-                 } else { 
-                    $href = $custom_field; 
-                 }                 
-                 $output .= $before; 
-                 $output .= '<a title="'. get_the_title($id) .'" href="' . $href .'" rel="portfolio">' . $img_link . '</a>';
-                 $output .= $after;  
-            }
-			
-		} else { // do not resize
-			$img_link =  '<img src="'. $custom_field .'" alt="'. get_the_title($id) .'" '. $set_height . $set_width .' class="'. $class .'" title="'. $title .'" />';
-			if($link == 'img'){  // Only the image             
-                   $output .= $before;                   
-                   $output .= $img_link; 
-                   $output .= $after;  
-			} else {  // Image with link (default)
-                 if ((is_single() OR is_page()) AND $single == false) { 
-				 	$href = $custom_field;
-                 } else { 
-                    $href = get_permalink($id);
-                 }                 
-                 $output .= $before;   
-                 $output .= '<a title="'. get_the_title($id) .'" href="' . $href .'" rel="portfolio">' . $img_link . '</a>';
-                 $output .= $after;   
-            }		
-		} //end $t_thumb != 'off'
-			if($return == TRUE) {
-                return $output;
-            } else {
-                echo $output; 
-            }		
-			
-			
-	} // end if(!empty($custom_field))
-	elseif(empty($custom_field) && $t_thumb == 'first'){
-		$the_content =$wpdb->get_var("SELECT post_content FROM $wpdb->posts WHERE ID = $id");
-		$pattern = '!<img.*?src="(.*?)"!';
-		preg_match_all($pattern, $the_content, $matches, PREG_SET_ORDER);	 
-		//if($offset >= 1){$repeat = $repeat + $offset;}		
-		if (!isset($matches[0])) {
-        $get_thumb_image_status = ''; return; }
-        
-		$custom_field = $matches[0][1]; 
-		$get_thumb_image_status = 'true';
-		$counter = -1;
-		
-		foreach ( $matches as $attachment ) {
-			$counter++;          
-            if($counter >= $repeat) { continue; }
-			$custom_field = $attachment[1]; 	
-			
-			$output = '';
-	if ($force == true) {
-      $set_width = ' width="' . $width .'" ';
-      $set_height = ' height="' . $height .'" ';    
-      $get_width = $width;   
-      $get_height = $height; 		
-		} else {	
-      $check_size = getimagesize($custom_field);
-      $original_width = $check_size[0];
-      $original_height = $check_size[1];
-      
-      if ($original_width <= $width && isset($original_width)) {
-        $set_width = ' width="' . $original_width .'" ';
-        $get_width = $original_width;
-      } else {
-         $set_width = ' width="' . $width .'" ';
-         $get_width = $width;
-      }
-      
-      if ($original_height <= $height && isset($original_height)) {
-        $set_height = ' height="' . $original_height .'" ';
-        $get_height = $original_height;
-      } else {
-         $set_height = ' height="' . $height .'" ';
-         $get_height = $height;
-      }
-	} // end force		
-			
-			if ($t_resize == 'yes') { // resize
-				$img_link = '<img src="'. get_template_directory_uri(). '/thumb.php?src='. $custom_field .'&amp;h='. $get_height .'&amp;w='. $get_width .'&amp;zc=1&amp;q='. $quality .'" alt="'. get_the_title($id) .'" class="'. $class .'" '. $set_height . $set_width .' title="'. $title .'"   />';				
-				if($link == 'img' AND $single == false){  // Only the image                 
-					$output .= $before; 
-					$output .= $img_link;
-					$output .= $after;  
-            	} else {  // Image with link (default)
-					 if ($single == false) { $href = get_permalink($id); }
-           else { $href = $custom_field; }                 
-					 $output .= $before;
-					 $output .= '<a title="'. get_the_title($id) .'" href="' . $href .'" rel="portfolio">' . $img_link . '</a>';
-					 $output .= $after;   
-				}
-			} else { // do not resize
-				$img_link =  '<img src="'. $custom_field .'" alt="'. get_the_title($id) .'" '. $set_height . $set_width .' class="'. $class .'" title="'. $title .'" />';
-				 if($link == 'img'){  // Only the image         
-					$output .= $before; 
-					$output .= $img_link;
-					$output .= $after;  
-				 } else {  // Image with link (default)
-                 	if ((is_single() OR is_page()) AND $single == false) {
-                    	$href = $custom_field; 
-                 	} else { 
-                    	$href = get_permalink($id);
-                  	}                  
-					$output .= $before;   
-					$output .= '<a title="'. get_the_title($id) .'" href="' . $href .'" rel="portfolio">' . $img_link . '</a>';
-					$output .= $after; 
-            	}			
-			}
-			
-			if($return == TRUE) {
-                return $output;
-            } else {
-                echo $output;
-            }
-			
-		} // end foreach		
-	} // end elseif
-    else {
-	   $get_thumb_image_status = '';
-       return;
-    }
-}
-
-function my_excerpt_length($length) {
-return 20; }
-
-function custom_excerpt($text, $excerpt_length = 15) {
+function nattywp_custom_excerpt($text, $excerpt_length = 15) {
 	
 	$text = str_replace(']]>', ']]>', $text);
 	$text = strip_tags($text);
@@ -404,7 +213,7 @@ function custom_excerpt($text, $excerpt_length = 15) {
 	return apply_filters('the_excerpt', $text);
 }
 
-function trimes($cont){
+function nattywp_trimes($cont){
 $excerpt_length = 55;
 	$words = explode(' ', $cont, $excerpt_length + 1);	
 		if (count($words) > $excerpt_length) {
@@ -417,7 +226,7 @@ $excerpt_length = 55;
 return $text;
 }
 
-function t_show_popular($popular_num = 7, $before = '', $after = '') {
+function nattywp_show_popular($popular_num = 7, $before = '', $after = '') {
 	global $wpdb;
 
 	$now = gmdate("Y-m-d H:i:s",time());
@@ -443,7 +252,7 @@ function t_show_popular($popular_num = 7, $before = '', $after = '') {
 } 
 
 
-function t_show_comments($comments_num = 7,  $before = '', $after = '') {
+function nattywp_show_comments($comments_num = 7,  $before = '', $after = '') {
 	global $wpdb;
 		$sql = "SELECT DISTINCT ID, post_title, post_password, comment_ID,
 				comment_post_ID, comment_author, comment_date, comment_approved,
@@ -467,23 +276,23 @@ function t_show_comments($comments_num = 7,  $before = '', $after = '') {
 		echo $output;			
 } 
 
-function t_show_catwithdesc() {
+function nattywp_show_catwithdesc() {
 	$getcats = get_categories('hierarchical=0&hide_empty=1');
 				foreach($getcats as $thecat) {
-				echo '<li><a href="'.get_category_link($thecat->term_id).'" title="View Posts in &quot;'.$thecat->name.'&quot;: '.$thecat->description.'">'.$thecat->name.'</a>'.$thecat->description.'</li>';
+				echo '<li><a href="'.get_category_link($thecat->term_id).'" title="'.__('View Posts in','delicate').' &quot;'.$thecat->name.'&quot;: '.$thecat->description.'">'.$thecat->name.'</a>'.$thecat->description.'</li>';
 				}
 }
 
-function t_show_pagemenu($exclude='') {		
-	if (t_get_option('t_show_pages') == 'yes'){
-			t_show_pag();
+function nattywp_show_pagemenu($exclude='') {		
+	if (nattywp_get_option('t_show_pages') == 'yes'){
+			nattywp_show_pag();
 	} else {		
-			t_show_cat();
+			nattywp_show_cat();
 	}
 }
 
-function t_show_pag($before= '', $after= '') {
-     $exclude = t_get_option('t_exclude_pages');     
+function nattywp_show_pag($before= '', $after= '') {
+     $exclude = nattywp_get_option('t_exclude_pages');     
 			if ($exclude == 'no' || $exclude[0] == 'no' || $exclude[0] == ''){
 				$exclude = '';
 			} else {
@@ -495,8 +304,8 @@ function t_show_pag($before= '', $after= '') {
 		echo $before . $pages . $after;
 }
 
-function t_show_cat($before= '', $after= '', $desc=false) {
-   $exclude = t_get_option('t_exclude_cats');
+function nattywp_show_cat($before= '', $after= '', $desc=false) {
+   $exclude = nattywp_get_option('t_exclude_cats');
 			if ($exclude == 'no' || $exclude[0] == 'no' || $exclude[0] == ''){
 				$exclude = '';
 			} else {
@@ -509,7 +318,7 @@ function t_show_cat($before= '', $after= '', $desc=false) {
 		} else {
       $getcats = get_categories('hierarchical=0&hide_empty=1');
 			foreach($getcats as $thecat) {
-        $categories.= '<li><a href="'.get_category_link($thecat->term_id).'" title="'.sprintf( __( "View all posts under %s" ), $thecat->name ).'"><span>'.$thecat->name.'</span>';
+        $categories.= '<li><a href="'.get_category_link($thecat->term_id).'" title="'.sprintf( __( "View all posts under %s", 'delicate' ), $thecat->name ).'"><span>'.$thecat->name.'</span>';
         $categories.= !empty($thecat->description) ? '<span class="desc">'.$thecat->description.'</span>' : '';
         $categories.= '</a></li>';
 				}

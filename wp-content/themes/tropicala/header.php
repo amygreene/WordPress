@@ -13,32 +13,30 @@
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-<?php remove_action( 'wp_head', 'wp_generator' ); ?>
-<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
-<?php wp_head(); ?>
+<style type="text/css" media="screen">
 
+</style>
+
+<?php wp_head(); ?>
 </head>
 <body>
 
   <div id="wrapper">
 
     <div id="masthead">
-
-    <div id="tro-main-header">
-    <h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>
-<p><?php bloginfo('description'); ?></p>
-</div>
-
+    
+      <h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>
+    
+      <p><?php bloginfo('description'); ?></p>
+      
       <ul>
-        <li <?php if(is_front_page()) { ?>class="current_page_item"<?php } ?>><a href="<?php echo get_option('home'); ?>/"><?php _e('Home', 'tropicala'); ?></a></li>
-        <?php wp_list_pages('sort_column=menu_order&depth=1&title_li=' ); ?>
+        <li <?php if(is_front_page()) { ?>class="current_page_item"<?php } ?>><a href="<?php echo get_option('home'); ?>/">Home</a></li>
+        <?php wp_list_pages('sort_column=menu_order&title_li=' ); ?>
       </ul>
       
       <div id="masthead_image">
-
-<?php if('' != get_header_image() ) { ?>
-<a href="<?php bloginfo('url'); ?>"><img src="<?php header_image(); ?>" alt="<?php bloginfo('name'); ?>" /></a>
-<?php } ?>
+        
+        <img src="<?php bloginfo('stylesheet_directory'); ?>/images/masthead.png" alt="Flower" />
         
       </div>
       

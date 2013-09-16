@@ -13,75 +13,84 @@
 		endif;
 	endif;
 ?>
-
-
-
-
-
-<?php if ( have_comments() ) : ?>
+<?php if ( $comments ) : ?>
+<?php global $veryplaintxt_comment_alt ?>
 
 <?php
-global $veryplaintxt_comment_alt;
-$veryplaintxt_comment_alt = 0; ?>
+$ping_count = $comment_count = 0;
+foreach ( $comments as $comment )
+	get_comment_type() == "comment" ? ++$comment_count : ++$ping_count;
+?>
 
-<h3 class="comment-header" id="numcomments"><?php comments_number(__('No Responses',TEMPLATE_DOMAIN), __('One Response',TEMPLATE_DOMAIN), __('% Responses' ,TEMPLATE_DOMAIN));?> <?php _e('to',TEMPLATE_DOMAIN);?>  &#8220;<?php the_title(); ?>&#8221;</b></h3>
+<?php if ( $comment_count ) : ?>
+<?php $veryplaintxt_comment_alt = 0 ?>
 
+	<h3 class="comment-header" id="numcomments"><?php printf(__($comment_count > 1 ? '%d Comments' : 'One Comment', 'veryplaintxt'), $comment_count) ?></h3>
+	<ol id="comments" class="commentlist">
+<?php foreach ($comments as $comment) : ?>
+<?php if ( get_comment_type() == "comment" ) : ?>
+		<li id="comment-<?php comment_ID() ?>" class="<?php veryplaintxt_comment_class() ?>">
+			<div class="comment-author vcard"><?php veryplaintxt_commenter_link() ?> <?php _e('wrote:', 'veryplaintxt') ?></div>
+			<?php if ($comment->comment_approved == '0') : ?><span class="unapproved"><?php _e('Your comment is awaiting moderation.', 'veryplaintxt') ?></span><?php endif; ?>
+			<?php comment_text() ?>
+			<div class="comment-meta">
+				<?php printf(__('<span class="comment-datetime">%1$s at %2$s</span> <span class="meta-sep">|</span> <span class="comment-permalink"><a href="%3$s" title="Permalink to this comment">Permalink</a></span>', 'veryplaintxt'),
+						get_comment_date('l, F j, Y'),
+						get_comment_time(),
+						'#comment-' . get_comment_ID() );
+				?> <?php edit_comment_link(__('Edit', 'veryplaintxt'), '<span class="comment-edit"> | ', '</span>'); ?>
 
-<?php if ( ! empty($comments_by_type['comment']) ) : ?>
+			</div>
+		</li>
 
-<div id="post-navigator-single">
-<div class="alignright"><?php if(function_exists('paginate_comments_links')) {  paginate_comments_links(); } ?></div>
-</div>
+<?php endif; ?>
+<?php endforeach; ?>
 
-<ol id="comments" class="commentlist">
-<?php wp_list_comments('type=comment&callback=list_comments'); ?>
-</ol>
-
-
-<div id="post-navigator-single">
-<div class="alignright"><?php if(function_exists('paginate_comments_links')) {  paginate_comments_links(); } ?></div>
-</div>
+	</ol>
 
 <?php endif; ?>
 
+<?php if ( $ping_count ) : ?>
+<?php $veryplaintxt_comment_alt = 0 ?>
 
- <?php if ( $post->ping_status == "open" ) : ?>
- <?php if ( ! empty($comments_by_type['pings']) ) : ?>
- <div class="entry">
-	<h3><?php _e('Trackbacks/Pingbacks',TEMPLATE_DOMAIN); ?></h3>
+	<h3 class="comment-header" id="numpingbacks"><?php printf(__($ping_count > 1 ? '%d Trackbacks/Pingbacks' : 'One Trackback/Pingback', 'veryplaintxt'), $ping_count) ?></h3>
+	<ol id="pingbacks" class="commentlist">
 
-    <ol id="pingbacks" class="pinglist">
-    <?php wp_list_comments('type=pings&callback=list_pings'); ?>
+<?php foreach ( $comments as $comment ) : ?>
+<?php if ( get_comment_type() != "comment" ) : ?>
+
+		<li id="comment-<?php comment_ID() ?>" class="<?php veryplaintxt_comment_class() ?>">
+			<div class="comment-meta"> 
+				<?php printf(__('<span class="pingback-author fn">%1$s</span> <span class="pingback-datetime">on %2$s at %3$s</span>', 'veryplaintxt'),
+					get_comment_author_link(),
+					get_comment_date('l, F j, Y'),
+					get_comment_time());
+				?> <?php edit_comment_link(__('Edit', 'veryplaintxt'), '<span class="comment-edit"> | ', '</span>'); ?>
+			</div>
+			<?php if ($comment->comment_approved == '0') : ?><span class="unapproved"><?php _e('Your trackback/pingback is awaiting moderation.', 'veryplaintxt') ?></span><?php endif; ?>
+			<?php comment_text() ?>
+		</li>
+
+<?php endif ?>
+<?php endforeach; ?>
+
 	</ol>
-    </div>
-	<?php endif; ?>
-    <?php endif; ?>
 
-
-
-      <?php endif; ?>
-
-
-
+<?php endif ?>
+<?php endif ?>
 
 <?php if ( 'open' == $post->comment_status ) : ?>
 
-<div id="respond">
 	<h3 id="respond"><?php _e('Post a Comment', 'veryplaintxt') ?></h3>
-
 <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-
 	<div id="mustlogin"><?php printf(__('You must be <a href="%s" title="Log in">logged in</a> to post a comment.', 'veryplaintxt'),
 			get_option('siteurl') . '/wp-login.php?redirect_to=' . get_permalink() ) ?></div>
 
 <?php else : ?>
 
-	<div class="formcontainer">
+	<div class="formcontainer">	
 
 		<form id="commentform" action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post">
-             <div class="cancel-comment-reply">
-<?php cancel_comment_reply_link(); ?>
-</div>
 
 <?php if ( $user_ID ) : ?>
 
@@ -110,20 +119,12 @@ $veryplaintxt_comment_alt = 0; ?>
 
 			<div class="form-submit"><input id="submit" name="submit" type="submit" value="<?php _e('Submit comment', 'veryplaintxt') ?>" tabindex="7" /><input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" /></div>
 
-
-<?php if(function_exists("comment_id_fields")) { ?>
-<?php comment_id_fields(); ?>
-<?php } ?>
 <?php do_action('comment_form', $post->ID); ?>
-
 
 		</form>
 	</div>
 
-   <?php endif ?>
-
-    </div>
-
+<?php endif ?>
 <?php endif ?>
 
 </div>

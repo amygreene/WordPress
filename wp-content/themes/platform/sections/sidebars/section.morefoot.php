@@ -20,7 +20,6 @@ class PageLinesMorefoot extends PageLinesSection {
 			'description' 	=> 'Displays three widgetized sidebars that you can set up in the widgets panel.',
 			'workswith' 	=> array('content'),
 			'icon'			=> PL_ADMIN_ICONS . '/column.png',
-			'version'		=> 'pro'
 		);
 		
 

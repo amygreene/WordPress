@@ -11,24 +11,24 @@
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 
-<h2 class="contentheader"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e('Permanent Link to', 'minimalist'); ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+<h2 class="contentheader"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-<?php the_content(__('<p>Read more &raquo;</p>', 'minimalist')); ?>
+<?php the_content('<p>Read more &raquo;</p>'); ?>
 
 
 <?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
 <div id="postinfotext">
-<?php _e('Posted:', 'minimalist'); ?> <?php the_time('F jS, Y') ?><br/>
-<?php _e('Categories:', 'minimalist'); ?> <?php the_category(', ') ?><br/>
-<?php _e('Tags:', 'minimalist'); ?> <?php the_tags(''); ?><br/>
-<?php _e('Comments:', 'minimalist'); ?> <a href="<?php comments_link(); ?>"><?php comments_number(__('No Comments', 'minimalist'), __('1 Comment', 'minimalist'), __('% Comments', 'minimalist')); ?></a>.
+Posted: <?php the_time('F jS, Y') ?><br/>
+Categories: <?php the_category(', ') ?><br/>
+Tags: <?php the_tags(''); ?><br/>
+Comments: <a href="<?php comments_link(); ?>"><?php comments_number('No Comments','1 Comment','% Comments'); ?></a>.
 </div>
 
 
-<?php comments_template('',true); ?>
+<?php comments_template(); ?>
 
 <?php endwhile; else: ?>
-<p><?php _e('No matching entries found.', 'minimalist'); ?></p>
+<p>No matching entries found.</p>
 <?php endif; ?>
 
 

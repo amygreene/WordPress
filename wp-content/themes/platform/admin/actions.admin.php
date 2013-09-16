@@ -60,15 +60,7 @@ function pagelines_check_php(){
 			$upload_tracking[] = $clickedID;
 			pagelines_update_option( $clickedID , $uploaded_file['url'] );
 
-			$name = 'PageLines- ' . addslashes( $filename['name'] );
-			$old_file = $wpdb->get_row("
-				SELECT ID
-				FROM {$wpdb->posts}
-				WHERE post_title = '{$name}'
-				AND post_type = 'attachment'
-				");
-
-			if ( $old_file ) wp_delete_attachment( $old_file->ID );
+			$name = 'PageLines- ' .addslashes( $filename['name'] );
 
 			$attachment = array(
                                 'post_mime_type' => $uploaded_file_type,
@@ -167,3 +159,12 @@ function pagelines_check_php(){
 
 	
 	// Check Platform version with API
+	
+	add_action( 'admin_init', 'pagelines_check_version' );
+	function pagelines_check_version() {
+		if ( VPRO ) {
+			$pl_update = new PageLinesUpdateCheck( THEMENAME, CORE_VERSION );
+			$pl_update->pagelines_check_version();
+		}
+	}
+

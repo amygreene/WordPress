@@ -2,99 +2,81 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+<title><?php
+	/*
+	 * Print the <title> tag based on what is being viewed.
+	 */
+	global $page, $paged;
+	wp_title( '|', true, 'right' );
 
-<title>
-<?php if ( is_home()) { bloginfo('name'); ?> - <?php bloginfo('description'); } ?>
-<?php if ( is_search()) { bloginfo('name'); ?> - <?php _e('Search Results', 'nattywp'); } ?>
-<?php if ( is_author()) { bloginfo('name'); ?> - <?php _e('Author Archives', 'nattywp'); } ?>
-<?php if ( is_single()) { $custom_title = get_post_meta($post->ID, 'natty_title', true); 
-if (strlen($custom_title)) {echo strip_tags(stripslashes($custom_title));}else { wp_title(''); ?> - <?php bloginfo('name'); }} ?>
-<?php if ( is_page()) { $custom_title = get_post_meta($post->ID, 'natty_title', true); 
-if (strlen($custom_title)) {echo strip_tags(stripslashes($custom_title));}else { bloginfo('name'); ?> - <?php wp_title(''); }}?>
-<?php if ( is_category()) { bloginfo('name'); ?> - <?php _e('Archive','nattywp'); ?> - <?php single_cat_title(); } ?>
-<?php if ( is_month()) { bloginfo('name'); ?> - <?php _e('Archive','nattywp'); ?> - <?php the_time('F');  } ?>
-<?php if (function_exists('is_tag')) { if ( is_tag() ) { bloginfo('name'); ?> - <?php _e('Tag Archive','nattywp'); ?> - <?php  single_tag_title("", true); } } ?>
-</title>
+	// Add the blog name.
+	bloginfo( 'name' );
 
-<?php /* Include the jQuery framework */ 
-wp_enqueue_script("jquery"); if (is_singular() && get_option('thread_comments')) wp_enqueue_script( 'comment-reply' ); ?>
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		echo " | $site_description";
 
-<?php wp_head(); ?>
-
-
-<!-- Feed link -->
-<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
+	// Add a page number if necessary:
+	if ( $paged >= 2 || $page >= 2 )
+		echo ' | ' . sprintf( __( 'Page %s', 'delicate' ), max( $paged, $page ) );
+	?></title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-
-
-<!-- jQuery utilities -->
-<script type="text/javascript">var themePath = '<?php echo get_template_directory_uri(); ?>/'; // for js functions </script>
-<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/superfish.js?ver=2.9.2'></script>
-<?php if (t_get_option('t_cufon_replace') == 'yes') { ?>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/cufon.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/font.js"></script>
-<script type="text/javascript">Cufon.replace('.post .title h2 a', {hover:true});</script>
-<?php } ?>
-
-
-<!-- Style sheets -->
-<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" media="screen" />
-<?php include (TEMPLATEPATH . '/style.php'); ?>
-
-<!--[if IE 6]>
-		<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/menu.js"></script>
-    	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/ie6.css" />
-        <style type="text/css">
-            img.png {
-            filter: expression(
-            (runtimeStyle.filter == '') ? runtimeStyle.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='+src+', sizingMethod=scale)' : '',
-            width = width,
-            src = '<?php echo get_template_directory_uri(); ?>/images/px.gif');
-    }
-        </style>
-	<![endif]-->
-    
-    <!--[if IE 7]>
-		<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/ie7.css" />
-	<![endif]-->
-<style type="text/css">
 <?php 
-  $t_custom_background = get_option( "nattywp_custom_logos" );
-  $t_background_repeat = t_get_option( "t_background_repeat" );
-  $t_main_img = t_get_option( "t_main_img" );
-  if ($t_custom_background != '') {
-   echo 'body {background-image: url("'.$t_custom_background.'"); background-repeat: '.$t_background_repeat.'}';   
-  } ?>
-</style>
+  $t_show_slideshow = nattywp_get_option( "t_show_slideshow" );  
+  $t_scroll_pages = nattywp_get_option( "t_scroll_pages" );
+  $t_show_search = nattywp_get_option( "t_show_search" );
+?>
+<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <div class="content-pad">
-
 <div id="header">
-	<?php t_get_logo ('<div id="logo">', '</div>', 'logo.gif', true); ?>
-        
+	<?php nattywp_get_logo ('<div id="logo">', '</div>', 'logo.gif', true); ?>
+	<?php if ($t_show_search == 'yes' || $t_show_search == 'no') { ?>     
   <div id="top_search"> 
       <?php get_search_form(); ?>
   </div>
+  <?php } ?>
 </div>
 
-			<div class="top">
-            	<div id="menu">	
-                  <?php t_show_navigation ('primary', 'theme_show_pagemenu'); ?>
-              </div>                
-            </div> <!-- END top -->
+<div class="top">
+    <div id="menu">	
+       <?php delicate_show_navigation ('primary', 'delicate_show_pagemenu'); ?>
+    </div>                
+</div> <!-- END top -->
 <div class="clear"></div>
 <div class="head-img">
-  <div class="tagline"><?php bloginfo('description'); ?></div>
-  
-  <?php $t_custom_background = get_option( "nattywp_custom_header" ); 
-    if ($t_custom_background != '') { ?>
-    <img src="<?php echo $t_custom_background; ?>" alt="Header image" border="0" />  
-   <?php } elseif (!isset($t_main_img) || $t_main_img == 'no' || $t_main_img == 'header2.jpg' ) {  ?>
-    <img src="<?php echo get_template_directory_uri(); ?>/images/header/headers.jpg" alt="Header image" border="0" />  
-   <?php } else { ?>  
-    <img src="<?php echo get_template_directory_uri(); ?>/images/header/<?php echo t_get_option( "t_main_img" ); ?>" alt="Header image" border="0" />  
-  <?php } ?>
+  <?php if ($t_show_slideshow == 'hide') {}
+  elseif ($t_show_slideshow == 'pag' || !isset($t_show_slideshow) || $t_show_slideshow == 'no') { // Display Slideshow ?>  
+  <div class="slideshow-bg module">
+    <div class="slideshow">
+      <?php if ($t_scroll_pages == 'no' || $t_scroll_pages[0] == 'no' || $t_scroll_pages[0] == ''){
+        echo '<div><div class="tagline">'.__('Welcome to Delicate template', 'delicate').'</div><img src="'.get_template_directory_uri().'/images/header/headers.jpg" alt="Header" /></div>';
+        echo '<div><div class="tagline">'.__('Just another WordPress site', 'delicate').'</div><img src="'.get_template_directory_uri().'/images/header/header.jpg" alt="Header" /></div>';
+      } else {
+        foreach ($t_scroll_pages as $ad_pgs ) { 
+         query_posts('page_id='.$ad_pgs ); while (have_posts()) : the_post(); ?>
+      <div>
+        <div class="tagline"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
+        <?php if ( has_post_thumbnail() ) {the_post_thumbnail('slide-thumb');} // 970x225 ?>
+      </div>
+      <?php endwhile; wp_reset_query(); ?>	
+      <?php } //end foreach ?>  
+    <?php } ?>  
+    </div><!-- END Slideshow -->
+    <div id="slideshow-nav"></div>
+  </div> <!-- END slideshow-bg -->
+
+  <?php } else { // Display Header Image    
+    $header_image = get_header_image();
+    if ( !empty( $header_image ) ) : ?>
+      <div class="tagline"><?php bloginfo('description'); ?></div>
+      <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="Header" />
+    <?php endif;     
+  } // End if ?>
 </div>
 <!-- END Header -->

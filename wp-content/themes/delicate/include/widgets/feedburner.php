@@ -22,11 +22,11 @@ function feedburnerWidget($args)
 				
 				<form name="feedburnerform" class="search" id="searchforma" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=<?php echo $id; ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
 					<div class="field">
-					<input type="text" name="email" value="<?php _e('Enter your e-mail address','nattywp'); ?>" onfocus="if (this.value == '<?php _e('Enter your e-mail address','nattywp'); ?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php _e('Enter your e-mail address','nattywp'); ?>';}" />
+					<input type="text" name="email" value="<?php _e('Enter your e-mail address','delicate'); ?>" onfocus="if (this.value == '<?php _e('Enter your e-mail address','delicate'); ?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php _e('Enter your e-mail address','delicate'); ?>';}" />
                      </div>
 					<input type="hidden" value="<?php echo $id; ?>" name="uri"/>
 					<input type="hidden" name="loc" value="en_US"/>
-					<input type="submit" value="<?php _e('Subscribe','nattywp'); ?>" />
+					<input type="submit" value="<?php _e('Subscribe','delicate'); ?>" />
 					
 				</form>
                
@@ -52,15 +52,15 @@ function feedburnerWidgetAdmin() {
 			<label for="feedburner_title">Title:
 			<input id="feedburner_title" name="feedburner_title" type="text" class="widefat" value="'.$settings['title'].'" /></label></p>';
 	echo '<p>
-			<label for="feedburner_id">Your Feedburner ID:
+			<label for="feedburner_id">'.__('Your Feedburner ID:', 'delicate').'
 			<input id="feedburner_id" name="feedburner_id" type="text" class="widefat" value="'.$settings['id'].'" /></label></p>';			
 	echo '<input type="hidden" id="update_feedburner" name="update_feedburner" value="1" />';
 
 }
 
 function feedburnerWidget_register(){
-	wp_register_sidebar_widget('feedburner-1','NattyWP Feedburner Subscription', 'feedburnerWidget');
-	wp_register_widget_control('feedburner-1','NattyWP Feedburner Subscription', 'feedburnerWidgetAdmin', 100, 200);
+	wp_register_sidebar_widget('feedburner-1',__('NattyWP Feedburner Subscription', 'delicate'), 'feedburnerWidget');
+	wp_register_widget_control('feedburner-1',__('NattyWP Feedburner Subscription', 'delicate'), 'feedburnerWidgetAdmin', 100, 200);
 }
 
 add_action('widgets_init', 'feedburnerWidget_register');

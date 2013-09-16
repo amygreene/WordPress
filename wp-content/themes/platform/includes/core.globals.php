@@ -33,7 +33,6 @@ define('CORE_LIB', PL_INCLUDES); // Deprecated, but used in bbPress forum < 1.2.
 
 define('THEMENAME', $theme);
 define('CHILDTHEMENAME', get_option('stylesheet'));
-define('CHANGELOG_URL', 'http://www.pagelines.com/demos/platformpro/wp-content/themes/platformpro/changelog.txt');
 
 define('PARENT_DIR', TEMPLATEPATH);
 define('CHILD_DIR', STYLESHEETPATH);
@@ -96,7 +95,8 @@ define('PAGELINES_PRO_ROOT', PARENT_URL . '/pro' );
 /**
  * Define language constants
  */
-define('PAGELINES_LANGUAGE_DIR', TEMPLATEPATH.'/language');
+$lang = ( is_dir( STYLESHEETPATH . '/language' ) ) ? STYLESHEETPATH . '/language' : TEMPLATEPATH . '/language';
+define( 'PAGELINES_LANGUAGE_DIR', $lang );
 
 /**
  * Functional Singletons - Used to work around hooks/filters
@@ -108,7 +108,7 @@ $GLOBALS['global_meta_options'] = array();
 /**
  * Pro/Free Version Variables
  */
-define('PROVERSION','PlatformPro');
-define('PROVERSIONDEMO','http://www.pagelines.com/demos/platformpro');
-define('PROVERSIONOVERVIEW','http://www.pagelines.com/themes/platformpro');
-define('PROBUY', 'http://www.pagelines.com/launchpad/signup.php?price_group[]=110&price_group[]=210&product_id=46&hide_paysys=paypal_r');
+define('PROVERSION','PageLines Framework');
+define('PROVERSIONDEMO','http://demo.pagelines.me');
+define('PROVERSIONOVERVIEW','http://www.pagelines.com/tour/');
+define('PROBUY', 'http://www.pagelines.com/pricing/');

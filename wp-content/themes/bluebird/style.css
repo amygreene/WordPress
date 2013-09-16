@@ -1,116 +1,15 @@
 /*
 Theme Name: Bluebird
 Theme URI: http://randaclay.com/themes/
-Description: Happy blue and brown left aligned theme.
+Description: Bluebird is a happy blue and brown, SEO optimized, 3-column, widget-ready theme created for Wordpress
+Tags: blue, bird, nature, fixed width, widget ready, 2 columns, 3 columns, left sidebar, right sidebar, seo friendly, gravatars
+Version: 2.0
 Author: Randa Clay
-Tags: white, blue, three column, fixed width, threaded comments
-
 The CSS, XHTML and design is released under GPL: http://www.opensource.org/licenses/gpl-license.php
 
 */
 
 
-/* Captions and image alignment for wordpress */
-
-div.aligncenter {
-	display: block!important;
-	margin: 0px auto;
-}
-div.alignleft {
-	float: left!important;
-	margin-right: 10px;
-}
-div.alignright {
-	float: right!important;
-	margin-right: 0px;
-	margin-left: 10px;
-}
-.wp-caption {
-	border: 1px solid #CCCCCC;
-	text-align: center;
-	background-color: #F8F8F8;
-	padding-top: 4px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-.wp-caption img {
-	margin: 0;
-	padding: 0;
-	border: 0 none;
-}
-
-.wp-caption p.wp-caption-text {
-	font-size: 11px;
-	line-height: 16px;
-	padding: 5px 4px;
-	margin: 0;
-	font-family: Arial, Tahoma, "Lucida Sans";
-	color: #949494;
-	font-style: normal;
-}
-
-
-.commentlist ul  {
-	padding-left: 0px !important;
-      width: 90% !important;
-}
-.commentlist li div  {
-
-      width: 100% !important;
-}
-
-.commentlist li li {
-	list-style-type: none;
-
-}
-
-p img {
-	padding: 0;
-	max-width: 100%;
-	}
-
-img.centered {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	}
-
-img.alignright {
-	padding: 4px;
-	margin: 0 0 2px 7px;
-	float: right;
-	}
-
-img.alignleft {
-	padding: 4px;
-	margin: 0 7px 2px 0;
-	float: left;
-	}
-
-.alignright {
-	float: right;
-	}
-
-.alignleft {
-	float: left;
-	}
-.commentlist li {
-padding-top: 10px !important;
-}
-
-.commentlist .children, .commentlist .children li {
-padding-left: 0px;
-border: 0 none;
-}
-
-.commentlist .children img.avatar {
-  width: 25px;
-  height: 25px;
-}
-
-/* End captions and image alignment */
 
 html>body #content {
 	height: auto;
@@ -151,7 +50,6 @@ body{
         background-image: url(images/header1.jpg);	
         background-repeat: no-repeat;
         height: 343px;
-		width: 714px;
         float: left;
 }
 
@@ -260,7 +158,7 @@ h2 {
 
 h5 {
 	color: #4A8797;
-        margin: 8px 0px 0px 0px;
+        margin: 0px;
 	padding: 0px;
         font-size: 1.5em;
         font-variant: small-caps;
@@ -312,7 +210,8 @@ code {
 
 .item img {
 	border: 1px dotted #69BFDE;
-
+        padding: 5px;
+        margin: 5px;
         background: #ffffff;
 }
 
@@ -335,10 +234,6 @@ code {
 	padding-bottom: 7px;
         margin-bottom: 18px;
 }
-.item li {
-  font-size: 12px !important;
-}
-
 
 .itemhead h3{
 	display: inline;
@@ -409,8 +304,7 @@ blockquote cite {
 	margin: 0px 0px 20px 0px;
 	padding: 0px 0px 20px 3px;
         font-size: 13px;
-        list-style-type: disc;
-        list-style-position: outside;
+        list-style-type: none;
         color: #595441;
 }
 
@@ -474,8 +368,7 @@ blockquote cite {
 	padding: 0px 0px 20px 0px;
         font-size: 13px;
         color: #4A8797;
-        list-style-type: disc;
-        list-style-position: outside;
+        list-style-type: none;
         color: #595441;
 }
 
@@ -500,7 +393,6 @@ blockquote cite {
 
 #r_sidebar ul ul {
 	margin: 0px 0px 20px 0px;
-	padding: 0px 0px 20px 0px;
 	padding: 0px 0px 0px 14px;
         font-size: 13px;
         color: #4A8797;
@@ -629,7 +521,7 @@ ol#commentlist {
 .commenttext {
 	clear: both;
 	margin: 0px 0px 20px 0px;
-	padding: 0px 0px 5px 10px;
+	padding: 0px 0px 5px 0px;
 	width: 450px;
 	}
 
@@ -703,6 +595,26 @@ p.comments_link  img{
 	float: left
 }
 
+
+/************************************************
+*	Gravatar									*
+************************************************/ 
+
+img.avatar {
+	float: left; 
+	margin: 0 8px 3px 0;
+	padding: 3px;
+	border: solid 1px #ddd;
+	background-color: #f3f3f3;
+   /* optional rounded corners for browsers that support it */
+   -moz-border-radius: 3px;
+   -khtml-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+	}
+
+
+
 /************************************************
 *	Calendar									*
 ************************************************/
@@ -763,4 +675,18 @@ p.comments_link  img{
 #foot a:link, #foot a:hover, #foot a:visited{
 	color: #4A8797;
         text-decoration: underline;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
 }

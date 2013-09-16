@@ -1,63 +1,18 @@
 <div id="sidebar-2" class="sidebar">
-
 	
-
 	<ul class="xoxo sidebar-items">
-
-	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Sidebar Two") ) : ?><!--sidebar-2 widgets start-->
-
+	<?php if ( !dynamic_sidebar('Sidebar Two') ) : ?><!--sidebar-2 widgets start-->
 		
-
-		<li class="widget">
-
-			<h2 class="widgettitle"><?php _e('Calendar', 'primepress'); ?></h2>
-
-			<div id="calendar_wrap">
-
-				<?php get_calendar(); ?>
-
-			</div>
-
-		</li>
-
+		<!--Calendar Widget-->
+		<?php the_widget('WP_Widget_Calendar', 'title=Calendar','before_widget=<li class="widget widget_calendar">&after_widget=</li>'); ?>
 		
-
-		<li class="widget">
-
-			<h2 class="widgettitle"><?php _e('Pages', 'primepress'); ?></h2>
-
-			<ul>
-
-			<?php wp_list_pages('title_li='); ?>
-
-			</ul>
-
-		</li>		
-
+		<!--Pages Widget-->
+		<?php the_widget('WP_Widget_Pages', '','before_widget=<li class="widget widget_pages">&after_widget=</li>'); ?>
 		
-
-		<li class="widget">
-
-			<h2 class="widgettitle"><?php _e('Meta', 'primepress'); ?></h2>
-
-			<ul>
-
-			<?php wp_register(); ?>
-
-			<li><?php wp_loginout(); ?></li>
-
-			<?php wp_meta(); ?>
-
-			</ul>
-
-		</li>
-
+		<!--Meta Widget-->
+		<?php the_widget('WP_Widget_Meta', '','before_widget=<li class="widget widget_meta">&after_widget=</li>'); ?>
 		
-
 	<?php endif; ?><!--sidebar-2 widgets end-->
-
 	</ul>
-
-
 
 </div><!--#sidebar-2-->

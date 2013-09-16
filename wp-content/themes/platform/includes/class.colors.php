@@ -73,8 +73,7 @@ class PageLinesColor {
 		
 		$new_hsl = array( 'hugh' => $h, 'saturation' => $s, 'lightness' => $l );
 		
-		plprint($new_hsl);
-		
+	
 		return $this->hsl_to_hex( $new_hsl );
 	}
 	

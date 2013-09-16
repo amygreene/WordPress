@@ -41,22 +41,22 @@ function flickrWidgetAdmin() {
 	}
 
 	echo '<p>
-			<label for="flickr_title">Title:
+			<label for="flickr_title">'.__('Title:', 'delicate').'
 			<input id="flickr_title" name="flickr_title" type="text" class="widefat" value="'.$settings['title'].'" /></label></p>';
 			
 	echo '<p>
-			<label for="flickr_id">Flickr ID (<a href="http://www.idgettr.com">idGettr</a>):
+			<label for="flickr_id">'.__('Flickr ID', 'delicate').' (<a href="http://www.idgettr.com">idGettr</a>):
 			<input id="flickr_id" name="flickr_id" type="text" class="widefat" value="'.$settings['id'].'" /></label></p>';
 	echo '<p>
-			<label for="flickr_number">Number of photos:
+			<label for="flickr_number">'.__('Number of photos:', 'delicate').'
 			<input id="flickr_number" name="flickr_number" type="text" class="widefat" value="'.$settings['number'].'" /></label></p>';
 	echo '<input type="hidden" id="update_flickr" name="update_flickr" value="1" />';
 
 }
 
 function flickrWidget_register(){
-	wp_register_sidebar_widget('flickr-1', 'NattyWP Flickr', 'flickrWidget');
-	wp_register_widget_control('flickr-1', 'NattyWP Flickr', 'flickrWidgetAdmin', 300, 200);
+	wp_register_sidebar_widget('flickr-1', __('NattyWP Flickr', 'delicate'), 'flickrWidget');
+	wp_register_widget_control('flickr-1', __('NattyWP Flickr', 'delicate'), 'flickrWidgetAdmin', 300, 200);
 }
 
 add_action('widgets_init', 'flickrWidget_register');

@@ -2,34 +2,45 @@
 /*
 Template Name: Archives
 */
-?><?php get_header(); ?>
-	<div id="intro">
-		<h1><?php _e('Archives',TEMPLATE_DOMAIN); ?></h1>
-	</div>
-<?php if(function_exists(srg_clean_archives)) { ?>
-	<div id="primary">
-		<h3><?php _e('Monthly archives',TEMPLATE_DOMAIN); ?></h3>
 
-		<ul class="archivelist">
-		<?php srg_clean_archives(); ?>
-		</ul>
-	</div>
-<?php } else { ?>
-	<div id="primary">
-		<h3><?php _e('Monthly archives',TEMPLATE_DOMAIN); ?></h3>
+get_header(); ?>
 
-		<ul class="archivelist">
-		<?php get_archives('monthly', '', 'html', '', '', 'TRUE'); ?>
-		</ul>
-	</div>
-<?php } ?>
-	<div id="secondary">
-		<?php if(!get_option('tarski_hide_categories')) { ?>
-		<h3><?php _e('Category archives',TEMPLATE_DOMAIN); ?></h3>
-		<ul class="archivelist">
-		<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
-		</ul>
-		<?php } // end hide categories code ?>
-		<?php @include('constants.php'); echo $archivesPageInclude; ?>
-	</div>
+
+
+<?php if (have_posts()) { while (have_posts()) { the_post(); ?>
+    <div class="primary-span entry">
+        <div class="meta">
+            <h1 class="title"><?php the_title(); ?></h1>
+            <?php edit_post_link(__('edit page','tarski'), '<p class="metadata">(', ')</p>'); ?>
+        </div> <!-- /meta -->
+        
+    <?php if(get_the_content() != "") { ?>
+        <div class="content">
+            <?php the_content(); ?>
+        </div> <!-- /content -->
+    <?php } ?>
+    </div> <!-- /page header -->
+
+    <div class="primary">
+        <h3><?php _e('Monthly Archives', 'tarski'); ?></h3>
+
+        <ul class="archivelist xoxo">
+            <?php wp_get_archives(array('type' => 'monthly', 'show_post_count' => true)); ?>
+        </ul>
+        <?php th_postend(); ?>
+    </div> <!-- /primary -->
+<?php } } ?>
+
+    <div class="secondary">
+    <?php if(get_tarski_option('show_categories')) { ?>
+        <h3><?php _e('Category Archives', 'tarski'); ?></h3>
+        <ul class="archivelist xoxo">
+            <?php wp_list_categories(array('order' => 'DESC', 'title_li' => false)); ?>
+        </ul>
+    <?php } ?>
+    <?php th_sidebar(); ?>
+    </div> <!-- /secondary -->
+    
+    
+
 <?php get_footer(); ?>

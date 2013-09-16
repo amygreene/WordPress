@@ -246,7 +246,7 @@ class PageLinesSoapbox extends PageLinesSection {
 												$link_class = ( get_post_meta($post->ID, '_soapbox_link_'.$i.'_class', true) ) ?  get_post_meta($post->ID, '_soapbox_link_'.$i.'_class', true) : $soapbox_link_text[$i]; 
 											?>
 											<a class="soapbox_link <?php echo 'sblink_'.$i.' '.$link_class?>" href="<?php echo get_post_meta($post->ID, '_soapbox_link_'.$i, true);?>">
-												<span class="soapbox_link-pad"><span class="soapbox_arrow"><?php echo $link_text; ?></span></span>
+												<span class="soapbox_link-pad"><span class="soapbox_arrow"><?php echo __($link_text); ?></span></span>
 											</a>
 											<?php endif;?>
 									<?php endfor; ?>

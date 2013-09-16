@@ -8,8 +8,7 @@
 		<?php if(pagelines('rsslink')):?>
 		<a target="_blank" href="<?php echo apply_filters( 'pagelines_branding_rssurl', get_bloginfo('rss2_url') );?>" class="rsslink"></a>
 		<?php endif;?>
-		
-		<?php if(VPRO):?>
+
 			<?php pagelines_register_hook( 'pagelines_branding_icons_start', 'branding' ); // Hook ?>
 			<?php if(pagelines_option('twitterlink')):?>
 			<a target="_blank" href="<?php echo pagelines_option('twitterlink');?>" class="twitterlink"></a>
@@ -24,8 +23,6 @@
 			<a target="_blank" href="<?php echo pagelines_option('youtubelink');?>" class="youtubelink"></a>
 			<?php endif;?>
 			<?php pagelines_register_hook( 'pagelines_branding_icons_end', 'branding' ); // Hook ?>
-		<?php endif;?>
-		
 	</div>
 </div>
 <?php pagelines_register_hook( 'pagelines_after_branding_wrap', 'branding' ); // Hook ?>

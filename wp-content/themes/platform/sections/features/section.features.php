@@ -4,7 +4,7 @@
 	Section: PageLines Features
 	Author: Andrew Powers
 	Description: Creates a feature slider and custom post type
-	Version: 1.0.0
+	Version: 1.0.1
 	
 */
 
@@ -192,7 +192,7 @@ class PageLinesFeatures extends PageLinesSection {
 	}
 
 	function section_head() {   
-		
+
 		global $pagelines_ID;
 
 		// Get the features from post type
@@ -242,7 +242,7 @@ function _js_feature_loop($fposts = array()){
 	
 		foreach($fposts as $fid => $f){
 	
-			$feature_name = (pagelines_option('feature-name', $f->ID)) ? pagelines_option('feature-name', $f->ID): __('feature ', 'pagelines') . $count;
+			$feature_name = (get_post_meta( $f->ID,'feature-name', true )) ? get_post_meta( $f->ID,'feature-name', true ): $f->post_name;
 			$feature_thumb = pagelines_option('feature-thumb', $f->ID);
 		
 			if($fmode == 'names' || $fmode == 'thumbs'){
@@ -355,7 +355,7 @@ function draw_features($f, $class) {
 						// Get Feature Style
 						$feature_style = (get_post_meta($post->ID, 'feature-style', true)) ? get_post_meta($post->ID, 'feature-style', true) : 'text-left';
 						
-						$flink_text = ( get_post_meta($post->ID, 'feature-link-text', true) ) ? get_post_meta($post->ID, 'feature-link-text', true) : __('More', 'pagelines');
+						$flink_text = ( get_post_meta($post->ID, 'feature-link-text', true) ) ? __( get_post_meta($post->ID, 'feature-link-text', true) ) : __('More', 'pagelines');
 					
 						//Get the Thumbnail URL
 						$feature_background_image = get_post_meta($post->ID, 'feature-background-image', true);
@@ -383,7 +383,7 @@ function draw_features($f, $class) {
 													<?php if(get_post_meta($post->ID, 'feature-link-url', true)):?>
 														<a class="pagelines-blink black-blink flink" href="<?php echo get_post_meta($post->ID, 'feature-link-url', true);?>">
 															<span class="pagelines-blink-pad">
-																<span class="blink-arrow featurelink" ><?php echo $flink_text;?></span>
+																<span class="blink-arrow featurelink" ><?php echo __( $flink_text );?></span>
 															</span>
 														</a>
 													<?php endif;?>

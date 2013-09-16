@@ -1,20 +1,5 @@
 <?php
 
-////////////////////////////////////////////////////////////////////////////////
-// load text domain
-////////////////////////////////////////////////////////////////////////////////
-
-// Uncomment this to test your localization, make sure to enter the right language code.
-
-//function test_localization( $locale ) {
-//return "fr_FR";
-//}
-//add_filter('locale','test_localization');
-
-
-load_theme_textdomain('sandbox', TEMPLATEPATH . '/languages/');
-
-
 // Generates semantic classes for BODY element
 function sandbox_body_class( $print = true ) {
 	global $wp_query, $current_user;
@@ -465,7 +450,7 @@ function the_autofocus_excerpt($text) { // Fakes an excerpt if needed
 			$text = implode(' ', $words);
 		}
 	}
-	return stripslashes( wp_filter_post_kses($text) ) ;
+	return $text;
 }
 
 remove_filter('get_the_excerpt', 'wp_trim_excerpt');
@@ -479,7 +464,7 @@ function sandbox_globalnav() {
     echo '<li class="page_item"><a href="'. get_bloginfo_rss('rss2_url') .'">RSS</a></li></ul></div>';
 }
 
-// Post Attachment image function. Image URL for CSS Background.
+// Post Attachment image function. Image URL for CSS Background. 
 function the_post_image_url($size=large) {
 	
 	global $post;
@@ -599,7 +584,7 @@ function the_attachment_image($size=large) {
 	echo ''.$attachmentimage.'';
 }
 
-// Post Attachment image function for Attachment Pages.
+// Post Attachment image function for Attachment Pages. 
 function link_to_attachment($size=large) {
 	if ( $attachs = get_children(array(
 		'post_parent' => get_the_ID(),
@@ -755,41 +740,5 @@ function commenter_link() {
 	$avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar( $avatar_email, 50 ) );
 	echo $avatar . ' <span class="fn n">' . $commenter . '</span>';
 } // end commenter_link
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-// callback options
-////////////////////////////////////////////////////////////////////////////////
-
-function _g($str) { return __($str, 'option-page'); }
-
-
-////////////////////////////////////////////////////////////////////////////////
-// extra options
-////////////////////////////////////////////////////////////////////////////////
-
-$includes_path = TEMPLATEPATH . '/includes/';
-include ($includes_path . 'theme-options.php');
-
-
-////////////////////////////////////////////////////////////////////////////////
-// add theme cms pages
-////////////////////////////////////////////////////////////////////////////////
-
-function focus_head() { ?>
-<link href="<?php bloginfo('template_directory'); ?>/admin/custom-admin.css" rel="stylesheet" type="text/css" />
-
-
-<?php if($_GET["page"] == "functions.php") { ?>
-
-<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jscolor.js"></script>
-
-<?php } ?>
-
-<?php }
-
-add_action('admin_head', 'focus_head');
-
 
 ?>

@@ -114,8 +114,8 @@ function divider_shortcode( $atts, $content = null ) {
 }
 add_shortcode('divider', 'divider_shortcode');
 
-function t_show_shortcodes() {
- echo '<h3>Available Shortcodes</h3><p>Shortcodes are a very easy way to display lot of things on your blog posts and sidebars by inserting a very simple code. Its easy to use. Just paste a shortcode [your_shortcode] while editing a page(post). Here is the list of supported shortcodes:</p>
+function nattywp_show_shortcodes() {
+ echo __('<h3>Available Shortcodes</h3><p>Shortcodes are a very easy way to display lot of things on your blog posts and sidebars by inserting a very simple code. Its easy to use. Just paste a shortcode [your_shortcode] while editing a page(post). Here is the list of supported shortcodes:</p>
  <ul class="short-codes">
  <li><strong>Messages:</strong>
     <ul>
@@ -156,6 +156,6 @@ function t_show_shortcodes() {
       <li><pre>[divider]</pre></li>
     </ul>
  </li> 
- </ul><p><a href="http://support.nattywp.com/index.php?act=article&code=view&id=37">Using Shortcodes tutorial</a></p>';
+ </ul><p><a href="http://support.nattywp.com/index.php?act=article&code=view&id=37">Using Shortcodes tutorial</a></p>', 'delicate');
 }
 ?>

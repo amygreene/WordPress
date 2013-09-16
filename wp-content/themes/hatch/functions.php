@@ -2,15 +2,15 @@
 /**
  * @package Hatch
  * @subpackage Functions
- * @version 0.2.6
- * @author Galin Simeonov
+ * @version 0.2.9
+ * @author AlienWP
  * @link http://alienwp.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 /* Load the core theme framework. */
-require_once( trailingslashit( TEMPLATEPATH ) . 'library/hybrid.php' );
-$theme = new Hybrid();
+require_once( trailingslashit( get_template_directory() ) . 'library/hybrid.php' );
+new Hybrid();
 
 /* Do theme setup on the 'after_setup_theme' hook. */
 add_action( 'after_setup_theme', 'hatch_theme_setup' );
@@ -26,13 +26,14 @@ function hatch_theme_setup() {
 	$prefix = hybrid_get_prefix();
 
 	/* Add theme support for core framework features. */
+	add_theme_support( 'hybrid-core-styles', array( 'style' ) );
 	add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
 	add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'subsidiary', 'after-singular' ) );
 	add_theme_support( 'hybrid-core-widgets' );
 	add_theme_support( 'hybrid-core-theme-settings', array( 'about', 'footer' ) );
 	add_theme_support( 'hybrid-core-meta-box-footer' );
 	add_theme_support( 'hybrid-core-shortcodes' );
-	add_theme_support( 'hybrid-core-drop-downs' );
+	add_theme_support( 'hybrid-core-scripts', array( 'drop-downs' ) );
 	add_theme_support( 'hybrid-core-template-hierarchy' );
 
 	/* Add theme support for framework extensions. */
@@ -81,7 +82,7 @@ function hatch_theme_setup() {
 	
 	/* Add theme settings */
 	if ( is_admin() )
-	    require_once( trailingslashit( TEMPLATEPATH ) . 'admin/functions-admin.php' );
+	    require_once( trailingslashit( get_template_directory() ) . 'admin/functions-admin.php' );
 	    
 	/* Default footer settings */
 	add_filter( "{$prefix}_default_theme_settings", 'hatch_default_footer_settings' );
@@ -160,7 +161,7 @@ function hatch_scripts() {
 		wp_register_script( 'hatch_fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox-1.3.4.pack.js', array( 'jquery' ), '1.0', true );
 		wp_enqueue_script( 'hatch_fancybox' );
 		
-		wp_register_script( 'hatch_fitvids', get_template_directory_uri() . '/js/fitvids/jquery.fitvids.js', array( 'jquery' ), '1.0', true );
+		wp_register_script( 'hatch_fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), '1.0', true );
 		wp_enqueue_script( 'hatch_fitvids' );
 		
 		wp_register_script( 'hatch_footer-scripts', get_template_directory_uri() . '/js/footer-scripts.js', array( 'jquery', 'hatch_fitvids', 'hatch_fancybox' ), '1.0', true );

@@ -1,42 +1,27 @@
-<?php 
-if (function_exists('add_theme_support'))
-add_theme_support('automatic-feed-links');
-	
+<?php	
 // if we can't find theme installed lets go ahead and install all the options that run template.  This should run only one more time for all our existing users, then they will just be getting the upgrade function if it exists.
 
 if (is_admin() && isset($_GET['activated'] ) && $pagenow == "themes.php" ) {
-	add_action('admin_head','natty_option_setup');	
-	header( 'Location: '.admin_url().'themes.php?page=nattywp_home&pageaction=activated' ) ;	
+	add_action('admin_head','natty_option_setup');
+	header('Location: '.admin_url().'themes.php?page=nattywp_home');
 }
 
 function natty_option_setup() {
-  global $controls, $tcontrols, $themename, $preset_styles;
+  global $controls, $tcontrols, $natty_themename, $nattywp_option_name, $preset_styles;
   
-  if (!get_option($themename.'nfinstalled')) {
-		add_option($themename.'nfinstalled');	
-		$pop = array( 'recent_comments_num'   => 5,
-                  'popular_posts_num'  => 7);	
-
-		add_option('widget_popularwidget', $pop);
-		
-		for ($i = 0; $i < count($tcontrols); $i++) {
-			$framework_settings[$tcontrols[$i]['name']] = $tcontrols[$i]['default'];
-		}
-		add_option($themename.'_settings', $framework_settings);
-				
-		for ($i = 0; $i < count($controls); $i++) {     
-      $framework_color_settings['paramspresetStyle'] = 'style0';
-			$framework_color_settings[$controls[$i]['name']] = $preset_styles[0][$i];
-		}	
-		add_option($themename.'_color_settings', $framework_color_settings);	
-		
-		// Add options for backup
-		add_option($themename.'_settings_back');
-    add_option($themename.'_color_settings_back');	
-    
-    // Add option for custom logo
-    add_option('nattywp_custom_logo');
-  }
+  if(!get_option($nattywp_option_name)) {  
+      $framework_settings = array();
+      $framework_settings['_options'] = array();
+      foreach ($tcontrols as $option) {
+          $framework_settings['_options'][$option['name']] = $option['default'];
+      }
+      
+      foreach ($controls as $option) {
+          $framework_settings['_colors'][$option['name']] = $option['default'];
+      }
+      
+      add_option($nattywp_option_name, $framework_settings);
+  }  
 }
 
 function natty_option_backup() {}

@@ -1,27 +1,4 @@
-<?php
-define('TEMPLATE_DOMAIN','k2_domain');
-////////////////////////////////////////////////////////////////////////////////
-// load text domain
-////////////////////////////////////////////////////////////////////////////////
-function init_localization( $locale ) {
-return "en_EN";
-}
-// Uncomment add_filter below to test your localization, make sure to enter the right language code.
-// add_filter('locale','init_localization');
-
-load_theme_textdomain( TEMPLATE_DOMAIN, TEMPLATEPATH . '/languages/' );
-
-
-////////////////////////////////////////////////////////////////////////////////
-// new thumbnail code for wp 2.9+
-////////////////////////////////////////////////////////////////////////////////
-if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 120, 120, true ); // Normal post thumbnails
-	add_image_size( 'single-post-thumbnail', 400, 9999 ); // Permalink thumbnail size
-}
-
-
+<?php 
 // Current version of K2
 define('K2_CURRENT', '1.0');
 

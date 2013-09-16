@@ -9,9 +9,7 @@
 	<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('comments_rss2_url') ?>" title="<?php bloginfo('name') ?> comments RSS feed" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url') ?>" />
 
-<?php remove_action( 'wp_head', 'wp_generator' ); ?>
-<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
-<?php wp_head(); ?>
+<?php wp_head() // Do not remove; helps plugins work ?>
 
 </head>
 
@@ -27,7 +25,3 @@
 	<div class="access"><span class="content-access"><a href="#content" title="<?php _e('Skip to content', 'veryplaintxt'); ?>"><?php _e('Skip to content', 'veryplaintxt'); ?></a></span></div>
 
 <?php veryplaintxt_globalnav() // Adds list of pages just below header ?>
-
-<?php if('' != get_header_image() ) { ?>
-<div id="custom-img-header"><a href="<?php bloginfo('url'); ?>"><img src="<?php header_image(); ?>" alt="<?php bloginfo('name'); ?>" /></a></div>
-<?php } ?>

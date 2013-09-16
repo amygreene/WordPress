@@ -19,8 +19,8 @@ Template Name: Full Width
                     <div class="clear"></div>
                 </div>   
 				<p class="postmetadata">	               
-                <?php wp_link_pages(array('before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>                    	
-                <?php edit_post_link(__('Edit','nattywp'), '<p>', '</p>'); ?>	
+                <?php wp_link_pages(array('before' => '<p><strong>' . __('Pages:', 'delicate' ) . '</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>                    	
+                <?php edit_post_link(__('Edit','delicate'), '<p>', '</p>'); ?>	
 				</p>                   
 			</div>	          	
 	<?php endwhile; ?>		

@@ -31,10 +31,7 @@
 				<h3 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf(__('Permalink to %s', 'veryplaintxt'), wp_specialchars(get_the_title(), 1)) ?>" rel="bookmark"><?php the_title() ?></a></h3>
 				<div class="entry-date"><abbr class="published" title="<?php the_time('Y-m-d\TH:i:sO'); ?>"><?php unset($previousday); printf(__('%1$s', 'veryplaintxt'), the_date('l, F j, Y', false)) ?></abbr></div>
 				<div class="entry-content">
-
-
 <?php the_excerpt('<span class="more-link">'.__('Continue reading &rsaquo;', 'veryplaintxt').'</span>') ?>
-
 
 				</div>
 				<div class="entry-meta">

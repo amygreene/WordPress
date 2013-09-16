@@ -752,6 +752,9 @@ color:#0046A6;
 			padding: 3px;
 			background: #fff;
 		}
+		#vpro_billboard .vpro_thumb img {
+			display: block;
+		}
 		
 		#vpro_billboard .vpro_link{
 			background:url("../images/white-grad.png") repeat-x scroll left top #F2F2F2;

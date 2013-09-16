@@ -144,7 +144,7 @@ do_global_meta_options(); // Load the global meta settings tab
 /**
  * Support optional WordPress functionality
  */
-add_theme_support( 'post-thumbnails', array('post') );
+add_theme_support( 'post-thumbnails', apply_filters( 'pagelines_post-thumbnails', array('post') ) );
 add_theme_support( 'menus' );
 add_theme_support( 'automatic-feed-links' );
 
@@ -159,7 +159,8 @@ pagelines_current_page_content_width();
 /**
  * Setup Framework Versions
  */
-
+if(VPRO) require_once(PAGELINES_PRO . '/init_pro.php');
+if(VDEV) require_once(PAGELINES_DEV . '/init_dev.php');	
 	
 require_once( PL_INCLUDES . '/version.php' );
 
@@ -168,7 +169,11 @@ require_once( PL_INCLUDES . '/version.php' );
  * 
  * @since 1.4.0
  */
+if ( get_pagelines_option( 'enable_debug' ) ) {
 
+	require_once ( PL_ADMIN . '/class.debug.php');
+	add_filter( 'pagelines_options_array', 'pagelines_enable_debug' );
+}
 
 /**
  * Load admin actions

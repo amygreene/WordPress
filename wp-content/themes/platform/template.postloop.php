@@ -77,6 +77,7 @@ if(!pagelines_show_clip($count, $paged) || is_admin()):
 										<?php 
 										if(pagelines_is_posts_page() && !pagelines_show_content( $post->ID )): // 'Continue Reading' link
 										
+											pagelines_register_hook( 'pagelines_before_excerpt', 'theloop' ); // Hook
 											echo get_continue_reading_link($post->ID);
 									
 										endif; 

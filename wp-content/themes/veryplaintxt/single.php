@@ -38,7 +38,7 @@
 				</div>
 			</div><!-- .post -->
 
-<?php comments_template('',true); ?>
+<?php comments_template(); ?>
 
 			<div id="nav-below" class="navigation">
 				<div class="nav-previous"><?php previous_post_link(__('&lsaquo; %link', 'veryplaintxt')) ?></div>

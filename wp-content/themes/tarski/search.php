@@ -1,33 +1,43 @@
 <?php get_header(); ?>
-	<?php if (have_posts()) : ?>
-		<div id="intro">
-			<h1><?php _e('Search Results',TEMPLATE_DOMAIN);?></h1>
-		</div>
 
-		<div id="primary">
-		<?php while (have_posts()) : the_post(); ?>
-			<div class="post-brief">
-				<h3 id="post-<?php the_ID(); ?>"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e('Permanent Link to',TEMPLATE_DOMAIN);?> <?php the_title(); ?>"><?php the_title(); ?></a></h3>
-				<p class="post-metadata"><?php the_time(__('F jS, Y')) ?> <?php _e('in');?> <?php the_category(', ', '' ); ?> | <?php comments_popup_link(__('No comments',TEMPLATE_DOMAIN), __('1 comment',TEMPLATE_DOMAIN), __('% comments',TEMPLATE_DOMAIN), '', __('Comments closed',TEMPLATE_DOMAIN)); ?></p>
-				<p class="excerpt"><?php the_excerpt() ?></p>
-			</div>
-		<?php endwhile; ?>
-		</div>
 
-		<div id="secondary">
-			<?php include (TEMPLATEPATH . "/searchform.php"); ?>
-		</div>
-<?php else : ?>
-		<div id="intro">
-			<h1><?php _e('Not Found',TEMPLATE_DOMAIN);?></h1>
-		</div>
 
-		<div id="primary">
-			<p><?php _e("Sorry, there were no results returned for the terms you searched for. Please try a new search.",TEMPLATE_DOMAIN); ?></p>
-		</div>
+<div class="primary posts">
+    <?php if(have_posts()) { // Gets it all going ?>
+        
+        
+        <div class="archive">
+            <div class="meta">
+                <h1 class="title"><?php _e('Search Results','tarski'); ?></h1>
+            </div>
+            <div class="content">
+                <p><?php printf( __('Your search for %s returned the following results.','tarski'), '<strong>' . esc_html(get_search_query()) . '</strong>' ); ?></p>
+            </div>
+        </div> <!-- /archive -->
+        
+        <?php get_template_part('app/templates/loop'); ?>
+        
+        
+    <?php } else { ?>
+        
+        
+        <div class="entry">
+            <div class="meta">
+                <h1 class="title"><?php _e('No results','tarski'); ?></h1>
+            </div>
+            <div class="content">
+                <p><?php printf( __('Your search for %1$s returned no results. Try returning to the %2$s.','tarski'), '<strong>' . esc_html(get_search_query()) . '</strong>', '<a href="' . home_url() . '">' . __('front page','tarski') . '</a>' ); ?></p>
+            </div>
+        </div> <!-- /entry -->
+        
+        
+    <?php } ?>
+</div> <!-- /primary -->
 
-		<div id="secondary">
-			<?php include (TEMPLATEPATH . '/searchform.php'); ?>
-		</div>
-<?php endif; ?>
+
+
+<?php get_sidebar(); ?>
+
+
+
 <?php get_footer(); ?>

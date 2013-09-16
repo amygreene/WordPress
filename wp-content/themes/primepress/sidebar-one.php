@@ -1,45 +1,15 @@
 <div id="sidebar-1" class="sidebar">
 
-
-
 	<ul class="xoxo sidebar-items">
-
-	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Sidebar One") ) : ?><!--sidebar-1 widgets start-->
-
+	<?php if ( !dynamic_sidebar('Sidebar One') ) : ?><!--sidebar-1 widgets start-->
 		
-
-		<li class="widget">
-
-			<h2 class="widgettitle"><?php _e('Categories', 'primepress'); ?></h2>
-
-			<ul>
-
-				<?php wp_list_categories('title_li='); ?>
-
-			</ul>
-
-		</li>
-
+		<!--Categories Widget-->
+		<?php the_widget('WP_Widget_Categories', 'count=0&hierarchical=1&dropdown=0' ,'before_widget=<li class="widget widget_categories">&after_widget=</li>'); ?>
 		
-
-		<li class="widget">
-
-			<h2 class="widgettitle"><?php _e('Archives', 'primepress'); ?></h2>
-
-			<ul>
-
-				<?php wp_get_archives(); ?>
-
-			</ul>
-
-		</li>
-
+		<!--Archives Widget-->
+		<?php the_widget('WP_Widget_Archives', 'count=0&dropdown=0','before_widget=<li class="widget widget_archive">&after_widget=</li>'); ?>
 		
-
 	<?php endif; ?><!--sidebar-1 widgets end-->
-
 	</ul>
-
-
 
 </div><!--#sidebar-1-->

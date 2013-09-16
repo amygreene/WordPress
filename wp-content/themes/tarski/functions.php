@@ -1,146 +1,237 @@
 <?php
-define('TEMPLATE_DOMAIN','tarski');
-////////////////////////////////////////////////////////////////////////////////
-// load text domain
-////////////////////////////////////////////////////////////////////////////////
-function init_localization( $locale ) {
-return "en_EN";
-}
-// Uncomment add_filter below to test your localization, make sure to enter the right language code.
-// add_filter('locale','init_localization');
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
-load_theme_textdomain( TEMPLATE_DOMAIN, TEMPLATEPATH . '/languages/' );
+/**
+ * Tarski's constants.
+ *
+ * These mostly provide convenient aliases for filesystem paths. Tarski's files
+ * live in a number of directories (the main ones being /app and /library), so
+ * keeping includes simple is greatly helped by a sane set of path constants.
+ */
+if (!defined('TARSKI_DEBUG'))
+    define('TARSKI_DEBUG', false);
+define('TARSKICLASSES', get_template_directory() . '/library/classes');
+define('TARSKIHELPERS', get_template_directory() . '/library/helpers');
+define('TARSKIDISPLAY', get_template_directory() . '/app/templates');
 
-////////////////////////////////////////////////////////////////////////////////
-// new thumbnail code for wp 2.9+
-////////////////////////////////////////////////////////////////////////////////
-if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 120, 120, true ); // Normal post thumbnails
-	add_image_size( 'single-post-thumbnail', 400, 9999 ); // Permalink thumbnail size
-}
+/**
+ * Core library files.
+ *
+ * These files will be loaded whenever WordPress is. They include a few key
+ * functions, and the core classes that Tarski requires to load its options,
+ * add dependencies to document heads, and output comments.
+ *
+ * @see Options
+ * @see TarskiCommentWalker
+ */
+require(get_template_directory() . '/library/core.php');
+require(TARSKICLASSES . '/options.php');
+require(TARSKICLASSES . '/comment_walker.php');
 
-////////////////////////////////////////////////////////////////////////////////
-// wp 2.7 wp_list_comment
-////////////////////////////////////////////////////////////////////////////////
+/**
+ * Admin library files.
+ *
+ * These library files are required for Tarski's administrative functions. They
+ * are loaded only when a WordPress admin page is accessed, so as to reduce the
+ * load on the server.
+ */
+if (is_admin()) require(TARSKIHELPERS . '/admin_helper.php');
 
-function list_comments($comment, $args, $depth) {
-$GLOBALS['comment'] = $comment;
-if ($comment->comment_author_email == get_the_author_email()) { $author_com = ' author-comment'; }
-?>
+/**
+ * Templating libraries.
+ *
+ * As a theme, particularly given its complexity and multiplicity of options,
+ * Tarski needs a lot of templating functions. There is an ongoing effort to
+ * split functions up into logical groups spread across more and smaller files,
+ * so that each grouping remains comprehensible and each function easy to find.
+ */
+require(TARSKIHELPERS . '/template_helper.php');
+require(TARSKIHELPERS . '/content_helper.php');
+require(TARSKIHELPERS . '/comments_helper.php');
+require(TARSKIHELPERS . '/author_helper.php');
+require(TARSKIHELPERS . '/tag_helper.php');
+require(TARSKIHELPERS . '/widgets.php');
 
+/**
+ * API files.
+ *
+ * Tarski's API is actually spread across much of the library files required
+ * above, but certain pieces of functionality such as generic template hooks,
+ * legacy API handlers, and deprecated functions, all live in specialised API
+ * files where they can be easily found and documented.
+ */
+require(get_template_directory() . '/app/api/hooks.php');
+include(get_template_directory() . '/app/api/deprecated.php');
 
-<div <?php comment_class( $author_com ); ?> id="comment-<?php comment_ID(); ?>">
+/**
+ * Launcher.
+ *
+ * The following code makes an inital round of function calls, loading any
+ * available localisation files, defining several constants which WordPress
+ * requires, registering widget sidebars, and adding numerous actions and
+ * filters.
+ */
 
-<div class="comment-metadata">
-<p class="comment-author"><?php if (function_exists('avatar_display_comments')) { ?>
-<?php avatar_display_comments(get_comment_author_email(),'48',''); ?>
-<?php } else { ?>
-<?php if (function_exists('get_avatar')) { echo get_avatar( get_comment_author_email() , 48 ); } ?>
-<?php } ?>&nbsp;&nbsp;
-<strong><?php comment_author_link(); ?></strong>&nbsp;&nbsp;&nbsp;<a href="#comment-<?php comment_ID() ?>" title="Permalink to this comment"><?php comment_date('F jS, Y') ?> <?php _e('at'); ?> <?php comment_time() ?></a>
-<?php edit_comment_link(__('Edit',TEMPLATE_DOMAIN), '(', ')'); ?></p>
-</div>
+// Localisation
+load_theme_textdomain('tarski', get_template_directory() . '/languages');
 
-<div class="comment-content">
-<?php if ($comment->comment_approved == '0') : ?>
-<em><?php _e('Your comment is awaiting moderation.',TEMPLATE_DOMAIN); ?></em>
-<?php endif; ?>
-<?php comment_text() ?>
-<p><?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?></p>
-</div>
+// Custom header support
+add_theme_support('custom-header', array(
+    'default-image'          => '%s/headers/' . get_tarski_option('header'),
+    'random-default'         => false,
+    'width'                  => 720,
+    'height'                 => 180,
+    'flex-height'            => false,
+    'flex-width'             => false,
+    'default-text-color'     => '',
+    'header-text'            => false,
+    'uploads'                => true,
+    'wp-head-callback'       => '',
+    'admin-head-callback'    => 'tarski_admin_header_style',
+    'admin-preview-callback' => ''
+));
 
-</div>
+register_default_headers(_tarski_list_header_images());
 
-<?php
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// wp 2.7 wp_list_ping
-////////////////////////////////////////////////////////////////////////////////
-
-function list_pings($comment, $args, $depth) {
-$GLOBALS['comment'] = $comment; ?>
-<li id="comment-<?php comment_ID(); ?>"><?php comment_author_link(); ?>
-<?php }
-
-add_filter('get_comments_number', 'comment_count', 0);
-
-function comment_count( $count ) {
-global $id;
-$comments_by_split = get_comments('post_id=' . $id);
-$comments_by_type = &separate_comments($comments_by_split);
-return count($comments_by_type['comment']);
-}
-
-
-
-
-$themecolors = array(
-	'bg' => 'ffffff',
-	'text' => '545454',
-	'link' => '005a80'
-);
-
-$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
-$installedVersion = $themeData['Version'];
-if(!$installedVersion) {
-	$installedVersion = "unknown";
-}
-
-$highlightColor = "#a3c5cc";
-
-// widgets!
-if(function_exists('register_sidebar')) {
-	register_sidebar(array(
-		'name' => 'Main Sidebar',
-		'id' => 'main-sidebar',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>'
-	));
-	register_sidebar(array(
-		'name' => 'Footer Widgets',
-		'id' => 'footer-widgets',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>'
-	));
+// Content width; set this in a plugin or child theme if you want to change
+// the width of the theme via a stylesheet.
+if (!isset($content_width)) {
+    $content_width = 500;
 }
 
-// No CSS, just IMG call
+// Main sidebar widgets
+register_sidebar(array(
+    'id'            => 'sidebar-main',
+    'name'          => __('Main sidebar','tarski'),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'));
 
-define('HEADER_TEXTCOLOR', '');
-define('HEADER_IMAGE', '%s/images/greytree.jpg'); // %s is theme dir uri
-define('HEADER_IMAGE_WIDTH', 720);
-define('HEADER_IMAGE_HEIGHT', 180);
-define('NO_HEADER_TEXT', true );
+// Post and page sidebar widgets
+register_sidebar(array(
+    'id'            => 'sidebar-post-and-page',
+    'name'          => __('Post and page sidebar','tarski'),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'));
 
-function tarski_admin_header_style() {
-?>
-<style type="text/css">
-#headimg {
-	height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
-	width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+// Footer main widgets
+register_sidebar(array(
+    'id'            => 'footer-main',
+    'name'          => __('Footer main widgets','tarski'),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'));
+
+// Footer sidebar widgets
+register_sidebar( array(
+    'id'            => 'footer-sidebar',
+    'name'          => __('Footer sidebar widgets','tarski'),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'));
+
+// Tarski widgets
+register_widget('Tarski_Widget_Recent_Entries');
+
+// Widget filters
+add_filter('widget_text', 'tarski_content_massage');
+add_filter('widget_text', 'tarski_widget_text_wrapper');
+add_filter('widget_links_args', 'tarski_widget_links_args');
+
+// Automatic feed links
+add_theme_support('automatic-feed-links');
+
+// Register navbar location
+register_nav_menu('tarski_navbar', __('Tarski navbar', 'tarski'));
+
+// Custom background support
+add_theme_support('custom-background');
+
+// Post thumbnails; change these settings via a child theme or plugin
+add_theme_support('post-thumbnails');
+
+if (get_tarski_option('featured_header')) {
+    set_post_thumbnail_size(get_custom_header()->width, get_custom_header()->height, true);
+} else {
+    set_post_thumbnail_size($content_width, 300, false);
 }
 
-#headimg h1, #headimg #desc {
-	display: none;
+// Image size for large feature images, used in the header
+add_image_size('large-feature', get_custom_header()->width, get_custom_header()->height, true);
+
+// Image size for featured posts if a large-feature doesn't exist
+add_image_size('small-feature', $content_width, 300);
+
+// Post types
+add_theme_support('post-formats', array('aside'));
+
+// Editor style
+add_editor_style('library/css/editor.css');
+
+if (is_admin()) {
+    // Options handlers
+    add_action('admin_post_tarski_options', 'save_tarski_options');
+    add_action('admin_post_delete_tarski_options', 'delete_tarski_options');
+    add_action('admin_post_restore_tarski_options', 'restore_tarski_options');
+    
+    // Tarski Options page
+    add_action('admin_menu', 'tarski_addmenu');
+    
+    // Options
+    add_action('admin_head', 'tarski_upgrade_and_flush_options');
+    add_action('admin_head', 'maybe_wipe_tarski_options');
+} else {
+    // JavaScript
+    add_action('wp_enqueue_scripts', 'tarski_enqueue_scripts');
 }
 
-</style>
-<?php
-}
+// Header
+add_action('wp_head', 'tarski_meta', 9);
+add_action('wp_head', 'tarski_stylesheets', 9);
+add_filter('gallery_style', 'trim_gallery_style', 20);
+add_filter('wp_title', 'tarski_document_title', 10, 3);
 
-add_custom_image_header('', 'tarski_admin_header_style');
+add_action('th_header', 'tarski_headerimage');
+add_action('th_header', 'tarski_titleandtag');
+add_action('th_header', 'navbar_wrapper');
+add_action('th_header', 'tarski_next_prev_posts');
 
-function tarski_nopaging($query) {
-	if ( !is_home() && !is_feed() && '' === $query->get('nopaging') )
-		$query->set('nopaging', 1);
-}
+add_filter('body_class', 'tarski_body_class');
 
-add_action('parse_query', 'tarski_nopaging');
+add_action('th_navbar', 'tarski_navbar');
+add_action('th_navbar', 'tarski_feedlink');
+
+// Posts
+add_action('wp_head', 'tarski_post_metadata');
+
+add_action('th_postend', 'add_post_tags', 10);
+add_action('th_postend', 'tarski_link_pages', 11);
+
+add_action('th_posts_nav', 'tarski_posts_nav_link');
+
+// Sidebar
+add_filter('tarski_sidebar_custom', 'tarski_content_massage', 9);
+add_filter('tarski_sidebar', 'hide_sidebar_for_archives');
+
+add_action('th_sidebar', 'tarski_sidebar', 10);
+
+// Comments
+add_filter('avatar_defaults', 'tarski_default_avatar');
+add_filter('get_comment_author', 'tidy_openid_names');
+add_filter('get_avatar', 'tidy_avatars', 10, 4);
+
+// Footer
+add_action('th_fsidebar', 'tarski_footer_sidebar');
+add_action('th_fmain', 'tarski_footer_main');
+add_action('th_footer', 'tarski_feedlink');
+add_action('th_footer', 'tarski_credits');
 
 ?>

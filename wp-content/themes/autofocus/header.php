@@ -9,28 +9,15 @@
 <style type="text/css" media="all"> @import url(<?php bloginfo('template_url'); ?>/css/reset.css); @import url(<?php bloginfo('template_url'); ?>/css/generic.css); </style>
 <style type="text/css" media="print"> @import url(<?php bloginfo('template_url'); ?>/css/print.css); </style>
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
-
-
-<!-- start theme options sync - using php to fetch theme option are deprecated and replace with style sync -->
-<?php print "<style type='text/css' media='screen'>"; ?>
-<?php include (TEMPLATEPATH . '/options-var.php'); include (TEMPLATEPATH . '/settings.php'); ?>
-<?php print "</style>"; ?>
-<!-- end theme options sync -->
-
 <link rel="alternate" type="application/rss+xml" href="<?php bloginfo('rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" />
 <link rel="alternate" type="application/rss+xml" href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Comments RSS feed', 'sandbox'); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url') ?>" />
-
-<?php remove_action( 'wp_head', 'wp_generator' ); ?>
-<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 
 <?php wp_head() ?>
 
 </head>
 
 <body class="<?php sandbox_body_class() ?>">
-
-
 
 <div id="wrapper" class="hfeed">
 

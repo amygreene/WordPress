@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.2.9 =
+* Updated Hybrid Core to 1.6.
+* Various CSS and PHP improvements to reflect changes in the framework.
+
 = 0.2.6 =
 * Added changelog.txt file.
 * Updated Hybrid Core to 1.4.3.

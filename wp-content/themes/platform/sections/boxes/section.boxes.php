@@ -18,7 +18,6 @@ class PageLinesBoxes extends PageLinesSection {
 		$default_settings = array(
 			'description' 	=> 'Inline boxes on your page that support images and media.  Great for feature lists, and media.',
 			'icon'			=> PL_ADMIN_ICONS . '/boxes.png', 
-			'version'		=> 'pro',
 		);
 		
 		$settings = wp_parse_args( $registered_settings, $default_settings );
@@ -72,13 +71,11 @@ class PageLinesBoxes extends PageLinesSection {
 				*/
 					$type_meta_array = array(
 						'the_box_icon' 		=> array(
-								'version' => 'pro',
 								'type' => 'image_upload',					
 								'title' => 'Box Image',
 								'desc' => 'Upload an image for the box.<br/> Depending on your settings this image will be used as an icon, or splash image; so desired size may vary.'
 							), 
 						'the_box_icon_link'		=> array(
-								'version' => 'pro',
 								'type' => 'text',					
 								'title' => 'Box Link (Optional)',
 								'desc' => 'Make the box image and title clickable by adding a link here (optional)...'
@@ -111,7 +108,6 @@ class PageLinesBoxes extends PageLinesSection {
 		*/
 					$metatab_array = array(
 							'box_set' => array(
-								'version' 		=> 'pro',
 								'type' 			=> 'select_taxonomy',
 								'taxonomy_id'	=> "box-sets",				
 								'title'		 	=> 'Select Box Set To Show',
@@ -127,7 +123,6 @@ class PageLinesBoxes extends PageLinesSection {
 								'desc' 			=> "The number you select here will be the number of boxes listed in a row on a page. Note: This won't work on the blog page (use the global option)."
 							), 
 							'box_thumb_type' => array(
-								'version' => 'pro',
 								'type' => 'select',
 								'selectvalues'	=> array(
 										'inline_thumbs'	=> array("name" => "Image At Left"),
@@ -139,7 +134,6 @@ class PageLinesBoxes extends PageLinesSection {
 								
 							),
 							'box_thumb_size' => array(
-								'version'		=> 'pro',
 								'type' 			=> 'text',
 								'size'			=> 'small',
 								'title' 		=> 'Box Icon Size (in Pixels)',
@@ -147,7 +141,6 @@ class PageLinesBoxes extends PageLinesSection {
 								'desc' 			=> "Select the default icon size in pixels, set the images when creating new boxes.",
 							),
 							'box_items' => array(
-								'version'		=> 'pro',
 								'type' 			=> 'text',
 								'size'			=> 'small',
 								'inputlabel' 	=> 'Maximum Boxes To Show On Page',
@@ -280,7 +273,6 @@ class PageLinesBoxes extends PageLinesSection {
 				'box_settings' => array(
 						'box_col_number' => array(
 								'default' 		=> 3,
-								'version'		=> 'pro',
 								'type' 			=> 'count_select',
 								'count_number'	=> '5', 
 								'count_start'	=> '2',
@@ -293,7 +285,6 @@ class PageLinesBoxes extends PageLinesSection {
 							),
 						'box_items' => array(
 								'default' 		=> 5,
-								'version'		=> 'pro',
 								'type' 			=> 'text_small',
 								'inputlabel' 	=> 'Maximum Boxes To Show',
 								'title' 		=> 'Default Number of Boxes',
@@ -302,7 +293,6 @@ class PageLinesBoxes extends PageLinesSection {
 							), 
 						'box_thumb_size' => array(
 								'default' 		=> 64,
-								'version'		=> 'pro',
 								'type' 			=> 'text_small',
 								'inputlabel' 	=> 'Box Icon Size (in Pixels)',
 								'title' 		=> 'Default Box Icon Size',
@@ -311,7 +301,6 @@ class PageLinesBoxes extends PageLinesSection {
 							), 
 						'box_default_tax' => array(
 								'default' 		=> 'default-boxes',
-								'version'		=> 'pro',
 								'taxonomy_id'	=> 'box-sets',
 								'type' 			=> 'select_taxonomy',
 								'inputlabel' 	=> 'Select Posts/404 Box Set',

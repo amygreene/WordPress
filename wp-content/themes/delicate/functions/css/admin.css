@@ -10,7 +10,7 @@ ul.short-codes li {margin-top:3px; margin-bottom:3px;}
 .natty-options p.submit input {margin-right:10px;}
 .natty-options .header {background:#fff; border-color:-moz-use-text-color #CCCCCC #AAAAAA; border:1px solid #CCCCCC;}
 .natty-options .main-top {border-top:1px solid #fff;}
-.natty-options .main-top h1 {font-family:georgia,times,serif; font-size:24px; font-weight:normal; color:#000; margin:10px 0px;}
+.natty-options .main-top h1 {font-family:georgia,times,serif; font-size:24px; text-transform:capitalize; font-weight:normal; color:#000; margin:10px 0px;}
 .natty-options .main-top h1 span.blu{color:#227399;}
 
 .natty-options .main-top .copy {font-family:georgia,times,serif; font-size:11px; margin-top:5px;}
@@ -38,9 +38,6 @@ ul.short-codes li {margin-top:3px; margin-bottom:3px;}
 .natty-options #main.color-page .inside h4 {margin:10px 2px 5px; padding:10px 0px 0px 0px; border:0; background:none;}
 .natty-options #main h4, .natty-options #main.color-page .inside h3, .natty-options #main.color-page h3.hndle {margin:10px 0; padding:10px 15px; border-bottom:1px solid #EAEAEA; border-top:1px solid #EAEAEA; background:#EEEEEE;}
 .natty-options #main .form-item {padding-bottom:15px; clear:both;}
-.natty-options #main .form-item.array {float:left; margin-right:25px; width:310px; clear:none;}
-.natty-options #main .form-item.array input {width:150px !important;}
-.natty-options #main .form-item.array .description {width:140px;}
 .natty-options #main .form-item #image_nattywp_custom_logo {max-width:665px; max-height:auto; height:auto;}
 .natty-options #main .form-item .description {float:left; margin-left:15px; width:260px; font-size:11px;}
 .natty-options #main .form-item .description.inline {float:none; width:100%; margin-top:15px;}
@@ -48,11 +45,18 @@ ul.short-codes li {margin-top:3px; margin-bottom:3px;}
 .natty-options #main .form-item input,
 .natty-options #main .form-item select,
 .natty-options #main .form-item textarea,
-.natty-options #main input#nattywp_custom_logo_upload {float:left; margin-bottom:9px; width:380px !important; font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;}
+.natty-options #main input.upl-inp {float:left; margin-bottom:9px; width:380px !important; font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;}
 .natty-options #main .form-item .form-uploader {float:left;}
 .natty-options #main #nat-wellcome {padding-top:15px;}
 
-.natty-options #main input#nattywp_custom_logo_upload {float:none !important;}
+.natty-options #main .form-item.array {float:left; margin-right:25px; width:310px; clear:none;}
+.natty-options #main .form-item.array .description {width:140px;}
+.natty-options #main .form-item.array input,
+.natty-options #main .form-item.array select,
+.natty-options #main .form-item.array textarea {width:150px !important;}
+
+
+.natty-options #main .form-uploader input.upl-inp {float:none !important;}
 .natty-options .footer {background:#E9E9E9; border:1px solid #CCCCCC;}
 
 .natty-options .left {float:left;}
@@ -112,7 +116,7 @@ ul.themes li.theme .theme-info ul li a:active { text-decoration: underline ;}
 
 /* Upload section */
 .upload_button_div { margin-bottom: 10px;}
-.upload_button_div .button { padding:4px 14px;}
+.upload_button_div .button {padding:0px 14px;}
 .upload_button_div  .image_reset_button { margin-left:10px;}
 .upload-error { float:left;color:#666; font-size:10px; font-weight:bold; text-decoration:none; text-shadow:1px 1px 0 #FFFFFF; margin: 0 10px 0 0; padding:3px 10px; background:#FFDFEC; -moz-border-radius:4px;}
 .reset-button { background:#c77 none !important;color:white!important;text-shadow:0 1px 0 #555 !important;}

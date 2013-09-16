@@ -5,12 +5,12 @@
  * the database.  This file is only loaded if the theme adds support for the 'hybrid-core-theme-settings' 
  * feature.
  *
- * @package HybridCore
+ * @package    HybridCore
  * @subpackage Functions
- * @author Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2012, Justin Tadlock
- * @link http://themehybrid.com/hybrid-core
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @author     Justin Tadlock <justin@justintadlock.com>
+ * @copyright  Copyright (c) 2008 - 2013, Justin Tadlock
+ * @link       http://themehybrid.com/hybrid-core
+ * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /**
@@ -33,21 +33,28 @@ function hybrid_get_setting( $option = '' ) {
 	if ( !$option )
 		return false;
 
-	/* If the settings array hasn't been set, call get_option() to get an array of theme settings. */
-	if ( !isset( $hybrid->settings ) )
-		$hybrid->settings = get_option( hybrid_get_prefix() . '_theme_settings', hybrid_get_default_theme_settings() );
+	/* Get the default settings. */
+	$defaults = hybrid_get_default_theme_settings();
 
-	/* If the settings isn't an array or the specific option isn't in the array, return false. */
-	if ( !is_array( $hybrid->settings ) || empty( $hybrid->settings[$option] ) )
+	/* If the settings array hasn't been set, call get_option() to get an array of theme settings. */
+	if ( !isset( $hybrid->settings ) || !is_array( $hybrid->settings ) )
+		$hybrid->settings = get_option( hybrid_get_prefix() . '_theme_settings', $defaults );
+
+	/* If the option isn't set but the default is, set the option to the default. */
+	if ( !isset( $hybrid->settings[ $option ] ) && isset( $defaults[ $option ] ) )
+		$hybrid->settings[ $option ] = $defaults[ $option ];
+
+	/* If no option is found at this point, return false. */
+	if ( !isset( $hybrid->settings[ $option ] ) )
 		return false;
 
 	/* If the specific option is an array, return it. */
-	if ( is_array( $hybrid->settings[$option] ) )
-		return $hybrid->settings[$option];
+	if ( is_array( $hybrid->settings[ $option ] ) )
+		return $hybrid->settings[ $option ];
 
 	/* Strip slashes from the setting and return. */
 	else
-		return wp_kses_stripslashes( $hybrid->settings[$option] );
+		return wp_kses_stripslashes( $hybrid->settings[ $option ] );
 }
 
 /**

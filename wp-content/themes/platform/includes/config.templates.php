@@ -118,7 +118,6 @@ function the_template_map() {
 		'name'			=> 'Morefoot Area',
 		'hook' 			=> 'pagelines_morefoot',
 		'markup'		=> 'content', 
-		'version'		=> 'pro',
 		'sections' 		=> array('PageLinesMorefoot', 'PageLinesTwitterBar')
 	);
 	
@@ -327,7 +326,6 @@ function get_theme_intro(){
 		'<ul>'.
 		'<li class="first"><p><a href="http://buddypress.org/" target="_blank">BuddyPress</a> &amp; <a href="http://wordpress.org/extend/plugins/bp-template-pack/" target="_blank">BuddyPress Template Pack</a> - Social networking for your WordPress site.</p></li>'.
 		'<li class=""><p><a href="http://bbpress.org/" target="_blank">bbPress Forum</a> - Matching forum theme for bbPress (Developer Edition Only)</p></li>'.
-		'<li><p><a href="http://wordpress.org/extend/plugins/twitter-for-wordpress/" target="_blank">Twitter For WordPress</a> - Latest Twitter Post and Twitter Post Widgets</p></li>'.
 		'<li><p><a href="http://wordpress.org/extend/plugins/disqus-comment-system/" target="_blank">Disqus</a> or <a href="http://wordpress.org/extend/plugins/facebook-comments-for-wordpress/" target="_blank">Facebook Comments</a> - Improve your commenting system.</p></li>'.
 		'<li class="first"><p><a href="http://wordpress.org/extend/plugins/post-types-order/" target="_blank">Post Types Order</a> - Allows you to re-order custom post types like features and boxes.</p></li>'.
 		'<li><p><a href="http://www.deliciousdays.com/cforms-plugin/" target="_blank">CFormsII</a> - Advanced contact forms that can be used for creating mailing lists, etc..</p></li>'.

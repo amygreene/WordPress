@@ -19,9 +19,9 @@ function twitterWidget($args) {
 		<?php echo $before_title . $title . $after_title; ?>
 		<ul id="twitter_update_list"><li></li></ul>
 		<script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
-		<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/<?php echo $account; ?>.json?callback=twitterCallback2&amp;count=<?php echo $show; ?>"></script>
+		<script type="text/javascript" src="https://api.twitter.com/1/statuses/user_timeline/<?php echo $account; ?>.json?callback=twitterCallback2&count=<?php echo $show; ?>"></script>
         <div class="dasheddivider"></div>
-        <p align="right"><a href="http://www.twitter.com/<?php echo $account; ?>/" class="rightlink png_crop"><?php _e('Follow us on Twitter','nattywp'); ?></a></p>
+        <p><a href="http://www.twitter.com/<?php echo $account; ?>/" class="rightlink png_crop"><?php _e('Follow us on Twitter','delicate'); ?></a></p>
 		</div>
 
 
@@ -33,7 +33,7 @@ function twitterWidget($args) {
 function twitterWidgetAdmin() {
 		$settings = get_option('widget_twitterwidget');	
 		if ( !is_array($settings) )
-			$settings = array('account'=>'nattywp', 'title'=>'Twitter Updates', 'show'=>'3');
+			$settings = array('account'=>'delicate', 'title'=>__('Twitter Updates', 'delicate'), 'show'=>'3');
 
         // form posted?
 		if (isset($_POST['Twitter-submit'])) {
@@ -52,15 +52,15 @@ function twitterWidgetAdmin() {
 
 		// The form fields
 		echo '<p>
-				<label for="Twitter-account">' . __('Account:') . '
+				<label for="Twitter-account">' . __('Account:', 'delicate') . '
 				<input style="width: 200px;" id="Twitter-account" name="Twitter-account" type="text" value="'.$account.'" />
 				</label></p>';
 		echo '<p>
-				<label for="Twitter-title">' . __('Title:') . '
+				<label for="Twitter-title">' . __('Title:', 'delicate') . '
 				<input style="width: 200px;" id="Twitter-title" name="Twitter-title" type="text" value="'.$title.'" />
 				</label></p>';
 		echo '<p>
-				<label for="Twitter-show">' . __('Show:') . '
+				<label for="Twitter-show">' . __('Show:', 'delicate') . '
 				<input style="width: 200px;" id="Twitter-show" name="Twitter-show" type="text" value="'.$show.'" />
 				</label></p>';
 		echo '<input type="hidden" id="Twitter-submit" name="Twitter-submit" value="1" />';
@@ -68,8 +68,8 @@ function twitterWidgetAdmin() {
 }
 
 function twitterWidget_register(){
-	wp_register_sidebar_widget('twitter-1', 'NattyWP Twitter', 'twitterWidget');
-	wp_register_widget_control('twitter-1', 'NattyWP Twitter', 'twitterWidgetAdmin', 300, 200);
+	wp_register_sidebar_widget('twitter-1', __('NattyWP Twitter', 'delicate'), 'twitterWidget');
+	wp_register_widget_control('twitter-1', __('NattyWP Twitter', 'delicate'), 'twitterWidgetAdmin', 300, 200);
 }
 
 add_action('widgets_init', 'twitterWidget_register');

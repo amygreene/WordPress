@@ -8,12 +8,12 @@ Template Name: Archives
 
   <div id="main_content">
 
-    <h2><?php _e('Archives by Month:','tropicala'); ?></h2>
+    <h2>Archives by Month:</h2>
     <ul class="archives">
       <?php wp_get_archives('type=monthly'); ?>
     </ul>
 
-    <h2><?php _e('Archives by Subject:','tropicala'); ?></h2>
+    <h2>Archives by Subject:</h2>
     <ul class="archives">
        <?php wp_list_categories(); ?>
     </ul>

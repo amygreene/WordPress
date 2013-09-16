@@ -1,30 +1,12 @@
 /*
 THEME NAME: veryplaintxt
 THEME URI: http://www.plaintxt.org/themes/veryplaintxt/
-DESCRIPTION: A fluid two-column layout&mdash;the original &ldquo;plain text&rdquo; theme. An exceptionally clean, content-centered theme.
+DESCRIPTION: A fluid two-column layout&mdash;the original &ldquo;plain text&rdquo; theme. An exceptionally clean, content-centered theme. Think <cite><a href="http://www.mcsweeneys.net/" title="Timothy McSweeny's Internet Tendency">McSweeny's</a></cite>. For WordPress 2.6.x.
+VERSION: 4.6.1
 AUTHOR: Scott Allan Wallick
+AUTHOR URI: http://scottwallick.com/
 TAGS: variable width, fixed width, two columns, widgets, theme options, options page, white, black, blue, newspaper, microformats, hatom, hcard
 */
-.commentlist .children li {
-  list-style: none;
-  margin-bottom: 10px;
-}
-.commentlist .children img.avatar {
-  width: 32px;
-  height: 32px;
-}
-
-.commentlist .children .children img.avatar {
-  width: 25px;
-  height: 25px;
-}
-#custom-img-header {
-  width: 794px;
-  height: 180px;
-  overflow: hidden;
-}
-
-
 a,a:link{color:#000;outline:none;text-decoration:none;}
 div.entry-content a,div.entry-content a:link,body.single div.entry-meta a,div.single div.entry-meta a:link,div.comments ol.commentlist a,div.comments ol.commentlist a:link{color:#003;text-decoration:underline;}
 a:visited,div.entry-content a:visited,body.single div.entry-meta a:visited,div.comments ol.commentlist a:visited{color:#555;}
