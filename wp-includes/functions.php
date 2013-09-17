@@ -262,8 +262,15 @@ function is_serialized( $data, $strict = true ) {
 		if ( ';' !== $lastc && '}' !== $lastc )
 			return false;
 	} else {
-		// ensures ; or } exists but is not in the first X chars
-		if ( strpos( $data, ';' ) < 3 && strpos( $data, '}' ) < 4 )
+		$semicolon = strpos( $data, ';' );
+		$brace     = strpos( $data, '}' );
+		// Either ; or } must exist.
+		if ( false === $semicolon && false === $brace )
+			return false;
+		// But neither must be in the first X characters.
+		if ( false !== $semicolon && $semicolon < 3 )
+			return false;
+		if ( false !== $brace && $brace < 4 )
 			return false;
 	}
 	$token = $data[0];
@@ -2025,8 +2032,10 @@ function get_allowed_mime_types( $user = null ) {
 	$t = wp_get_mime_types();
 
 	unset( $t['swf'], $t['exe'] );
-	$unfiltered = $user ? user_can( $user, 'unfiltered_html' ) : current_user_can( 'unfiltered_html' );
-	if ( ! $unfiltered )
+	if ( function_exists( 'current_user_can' ) )
+		$unfiltered = $user ? user_can( $user, 'unfiltered_html' ) : current_user_can( 'unfiltered_html' );
+
+	if ( empty( $unfiltered ) )
 		unset( $t['htm|html'] );
 
 	return apply_filters( 'upload_mimes', $t, $user );
