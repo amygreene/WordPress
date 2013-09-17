@@ -152,7 +152,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'dailymotion' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 480,
 				'height'          => 221,
 				'backgroundcolor' => '#DEDEDE',
@@ -165,7 +165,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'veoh' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 540,
 				'height'          => 438,
 				'aspectratio'     => 1,
@@ -180,7 +180,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'bliptv' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 400,
 				'height'          => 330,
 				'aspectratio'     => 1,
