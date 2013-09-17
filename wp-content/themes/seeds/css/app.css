@@ -1,0 +1,624 @@
+/* =============================================================================
+   Seeds Theme: Version 1.0
+   app.css
+   Place all custom css in this file
+   ========================================================================== */
+
+/* =============================================================================
+   Base
+   ========================================================================== */
+
+body {
+	background-image: url('../img/seeds_back.png');
+  font-size: 14px;
+  line-height: 21px;
+}
+
+a {
+  color: #007fff;
+}
+
+a:hover {
+  color: #666666;
+}
+
+/* =============================================================================
+   Header
+   ========================================================================== */
+
+/* Fixed Topbar Navigation */
+body.top-navbar {
+  padding-top: 60px; 
+}
+
+body.admin-bar .navbar-fixed-top {
+  top: 28px;
+}
+
+.navbar .nav > li > a:hover {
+  color: #00ffff;
+}
+
+#tagline {
+  border-top: 5px solid #E3E3E3;
+  margin-top: 12px;
+  padding-top: 10px;
+  text-shadow: #E3E3E3 1px 1px 1px;
+}
+
+/* =============================================================================
+   Content
+   ========================================================================== */
+
+.entry-content.entry-content-archive {
+  margin-top: 18px;
+}
+
+/* =============================================================================
+   Images
+   ========================================================================== */
+
+img {
+  width: auto !important;
+  height: auto !important;
+}
+
+img.size-large, img.size-medium, img.size-full {
+  border: 1px solid #E3E3E3;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.attachment-large.wp-post-image {
+  border: 1px solid #E3E3E3;
+  height: auto !important;
+  margin-top: 4px;
+  padding: 1px;
+  width: auto !important;
+}
+
+.attachment-thumbnail.wp-post-image {
+  border: 1px solid #E3E3E3;
+  float: left;
+  margin: 4px 10px 0 0;
+  max-height: 80px;
+  padding: 1px;
+}
+
+.attachment-category-thumb.wp-post-image {
+  border: 1px solid #E3E3E3;
+  float: left;
+  margin: 0 18px 18px 0;
+  padding: 2px;
+}
+
+.wp-caption {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+img.wp-caption {
+  max-width: 100%;
+}
+
+.attachment-large.wp-post-image, .size-full {
+  margin-bottom: 8px;
+}
+
+/* =============================================================================
+   Primary Content
+   ========================================================================== */
+
+#content-info {  
+  background: #333;
+  border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom: 1px solid #666;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  border-top-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top: none;
+  color: #666;
+  margin-bottom: 4px;
+  margin-top: 0;
+}
+
+#content-info p small {
+  font-size: 13px;
+}
+
+#content-info h3 {
+  color: #e3e3e3;
+}
+
+#content-info a {
+  color: #666;
+}
+
+#content-info a:hover {
+  color: #e3e3e3;
+}
+
+.container {
+  background: #fff;
+  border: 1px solid #666;
+  border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+#banner .container {
+  background: none;
+  border: none;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+/* =============================================================================
+   Posts
+   ========================================================================== */
+
+.byline.author.vcard {
+  display: inline;
+}
+
+.entry-meta {
+  list-style-type: none;
+  margin: 6px 0 12px 0;
+}
+
+.entry-meta li {
+  display: inline;
+  margin-right: 6px;
+}
+.entry-meta-container {
+  margin: 10px 0;
+}
+
+.entry-meta {
+  color: #666;
+  display: inline;
+}
+
+.entry-meta a {
+  color: #666;
+}
+
+.hentry h2 a {
+  text-decoration: none;
+}
+
+.hentry time {
+  display: inline;
+}
+
+.hentry footer {
+  clear: both;
+}
+
+p.seeds-tags {
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+
+.seeds-tags a {
+  color: #e3e3e3;
+}
+
+.seeds-tags a:hover {
+  color: #00ffff;
+  text-decoration: none;
+}
+
+.seeds-tags-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.subheading {
+  color: #666;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+blockquote {
+  border-color: #00ffff;
+}
+
+blockquote p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =============================================================================
+   Post Comments
+   ========================================================================== */
+
+#comments, #respond, #submit { clear: both; display: block; }
+ol.commentlist img.avatar { 
+  border-radius: 2px; 
+  border: 1px solid #e3e3e3;
+  float: left; 
+  margin-right: 10px; 
+  margin-top: 4px;
+  padding: 2px;
+}
+
+a.comment-reply-link {
+  color: #fff;
+  font-size: 10px;
+}
+
+a.comment-reply-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.comment-author.vcard {
+  color: #666;
+}
+
+.comment-author.vcard a{
+  color: #666;
+}
+
+ol.commentlist {
+  margin: 10px 0 0 0;
+}
+
+li.comment {
+  border-radius: 6px;
+  border: 1px solid #e3e3e3;
+  list-style: none;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+ul.children li{
+  background: none;
+  border: none;
+  margin-top: 10px;
+}
+
+.children article {
+  border-left: 5px solid #e3e3e3;
+  padding-left: 10px;
+}
+
+li.comment header {
+  font-size: 12px;
+}
+
+li.comment header a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* =============================================================================
+   Footer
+   ========================================================================== */
+
+#footer {
+  border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  background: #333;
+  border-color: #666;
+  border-top-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  color: #E3E3E3;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+#footer h4 {
+  margin-bottom: 10px;
+}
+
+#content-info section:first-child  {
+  margin-left: 0;
+}
+
+p.copy {
+  margin-left: 34px;
+}
+
+/* =============================================================================
+   Pages
+   ========================================================================== */
+
+.page-header {
+  margin: 0 0 18px 0;
+}
+
+/* =============================================================================
+   Sidebar
+   ========================================================================== */
+
+
+/* Latest Posts on Front Page */
+
+.latest-single > li {
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  list-style-position: left;
+  list-style: none;
+  margin-bottom: 16px;
+  margin-left: 0;
+  max-width: 300px;
+  padding-left: 0;
+  padding: 2px;
+  position: relative;
+}
+
+ul.latest-single {
+  margin-left: 0;
+  margin-top: 18px;
+  padding-left: 0;
+}
+
+img.latest-single {
+  z-index: -1;
+}
+
+/* Latest Posts and More by Author on full post pages */
+
+.latest-overlay {
+  background: linear-gradient(to right,  rgba(0,0,0,1) 0%,rgba(1,1,1,1) 1%,rgba(51,51,51,0) 95%); /* W3C */
+  background: -moz-linear-gradient(left,  rgba(0,0,0,1) 0%, rgba(1,1,1,1) 1%, rgba(51,51,51,0) 95%); /* FF3.6+ */
+  background: -ms-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(1,1,1,1) 1%,rgba(51,51,51,0) 95%); /* IE10+ */
+  background: -o-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(1,1,1,1) 1%,rgba(51,51,51,0) 95%); /* Opera 11.10+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,1)), color-stop(1%,rgba(1,1,1,1)), color-stop(95%,rgba(51,51,51,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(1,1,1,1) 1%,rgba(51,51,51,0) 95%); /* Chrome10+,Safari5.1+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00333333',GradientType=1 ); /* IE6-9 */
+  bottom: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  left: 2px;
+  padding: 2%;
+  position: absolute;
+  width: 100%;
+}
+
+.latest-overlay span a {
+  color: #e3e3e3;
+  font-weight: 800;
+  opacity:1;
+  filter:alpha(opacity=100);
+}
+
+.latest-overlay span a:hover {
+  color: #00ffff;
+  font-weight: 800;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  text-decoration: none;
+}
+
+.seeds_latest {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.seeds_latest h3 a {
+  color: #333;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.seeds_latest li {
+  display: block;
+}
+
+.seeds_latest ul {
+  margin-top: 12px;
+}
+
+/* =============================================================================
+   WordPress Generated Classes
+   See: http://codex.wordpress.org/CSS#WordPress_Generated_Classes
+   ========================================================================== */
+
+.aligncenter {
+  display: block; margin: 0 auto;
+}
+
+.alignleft {
+  margin: 0 20px 20px 0; float: left;
+}
+
+.alignright {
+  margin: 0 0 20px 20px; float: right;
+}
+
+figure.alignnone {
+  margin-left: 0; margin-right: 0;
+}
+
+/* =============================================================================
+   Custom Front Page
+   ========================================================================== */
+
+#featured img {
+  padding-bottom: 10px;
+}
+
+.featured h2 a {
+  color: #333;
+}
+
+.content-label {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+/* =============================================================================
+   Social
+   ========================================================================== */
+
+.social-single {
+  display: inline;
+  float: right;
+  margin-right: -24px;
+  margin-top: -3px;
+  width: 260px;
+}
+
+#twitterbutton, #likebutton {
+  display: inline;
+  float: left;
+}
+
+#likebutton {
+  margin-top:0px;
+  margin-left:-24px;
+}
+
+#plusonebutton {
+  margin-left: -16px;
+  margin-top: 1px;
+  display: inline;
+}
+
+.seeds-social-icons {
+  float: left; display: inline; width: auto; height: auto; margin: 6px 0 6px 0; padding: 0;
+}
+
+.seeds-social-icons .seeds-social {
+  list-style: none; margin: 0; padding: 0;
+}
+
+.seeds-social-icons .seeds-social li {
+  float: left; margin-right: 5px; width: 32px; height: 32px;
+}
+
+.seeds-social-icons .seeds-social li.seeds-social-last {
+  margin-right: 0;
+}
+
+.seeds-social-icons .seeds-social li a {
+  display: block; outline: none; width: 32px; height: 32px; text-indent: -9999px;
+}
+
+.seeds-social-icons .seeds-social li a.seeds-facebook {
+  background: url('../img/facebook_dark.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a.seeds-twitter {
+  background: url('../img/twitter_dark.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a.seeds-google {
+  background: url('../img/google_dark.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a.seeds-rss {
+  background: url('../img/rss_dark.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a:hover.seeds-facebook {
+  background: url('../img/facebook_active.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a:hover.seeds-twitter {
+  background: url('../img/twitter_active.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a:hover.seeds-google {
+  background: url('../img/google_active.png') no-repeat scroll 0 0;
+}
+
+.seeds-social-icons .seeds-social li a:hover.seeds-rss {
+  background: url('../img/rss_active.png') no-repeat scroll 0 0;
+}
+
+/* =============================================================================
+   Archives
+   ========================================================================== */
+
+.pager a {
+  color: #333;
+}
+
+/* =============================================================================
+   Media Queries
+   ========================================================================== */
+
+@media (max-width: 979px) {
+  /* Fix top padding when using the responsive grid with the fixed topbar */
+  body.top-navbar {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+    #tagline {
+      float: right;
+      margin: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    #tagline {
+      float: right;
+      margin: 0;
+    }
+    #searchform {
+      float: right;
+      margin-top: 50px;
+    }
+}
+
+@media (max-width: 767px) {
+    #searchform {
+      display: none;
+    }
+    #tagline {
+      border: none;
+    }
+    
+}
+
+@media (max-width: 530px) {
+    .social-single {
+      display: block;
+      float: left;
+      margin: 10px 0;
+      width: 100%;
+    }
+}
+
+@media (max-width: 340px) {
+    .social-single {
+      display: none;
+    }
+}

@@ -1,0 +1,358 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pressrow\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-29 22:34+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\pressrow\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/404.php:7
+msgid "Easy, tiger. This is a 404 page."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/404.php:8
+msgid "You are <em>totally</em> in the wrong place. Do not pass GO; do not collect $200."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/404.php:9
+msgid "Instead, try one of the following:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/404.php:11
+msgid "Hit the \"back\" button on your browser."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/404.php:12
+msgid "Head on over to the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/404.php:12
+msgid "front page"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:13
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:19
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:22
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:25
+msgid "Archive for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:16
+msgid "Posts tagged with"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:28
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:41
+msgid "This user hasn't shared any biographical information"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:45
+msgid "Homepage:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:46
+msgid "Yahoo Messenger:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:47
+msgid "Jabber/GTalk:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:48
+msgid "AIM:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:55
+msgid "Search Results"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:63
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:15
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:75
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:27
+msgid "<p>Click here to read more</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:26
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:26
+msgid "0 Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:26
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:26
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:83
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:26
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:26
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:84
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:27
+msgid "Posted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:84
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:27
+msgid "Filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:91
+msgid "Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:92
+msgid "Next Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archive.php:97
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:45
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archives.php:16
+msgid "Browse by Month"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/archives.php:20
+msgid "Browse by Category"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:14
+msgid "Permanent Link:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:18
+msgid "<p class=\"serif\">Read the rest of this entry &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:20
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/page.php:17
+msgid "<p><strong>Pages:</strong> "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:24
+msgid "This entry was posted"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:29
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:29
+msgid "l, F jS, Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:29
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/functions.php:45
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:30
+msgid "and is filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:31
+msgid "You can follow any responses to this entry through the"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:31
+msgid "feed"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:35
+msgid "You can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:35
+msgid "leave a response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:35
+msgid "or"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:39
+msgid "trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:39
+msgid "from your own site"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:39
+msgid "Responses are currently closed, but you can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:43
+msgid "You can skip to the end and leave a response. Pinging is currently not allowed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:47
+msgid "Both comments and pings are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:49
+msgid "Edit this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/attachment.php:61
+msgid "Sorry, no attachments matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:49
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:67
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:75
+msgid "Leave a Reply"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:80
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:80
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:80
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:93
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:93
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:93
+msgid "Log out &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:100
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:102
+msgid "Mail (will not be published)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:104
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:108
+msgid "You can use these tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/comments.php:112
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/footer.php:2
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/functions.php:35
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/functions.php:46
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/functions.php:119
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/functions.php:137
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/functions.php:127
+msgid "Find &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/header.php:39
+msgid "Home"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/index.php:46
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/links.php:11
+msgid "Links:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/page.php:14
+msgid "<p class=\"serif\">Read the rest of this page &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/sidebar.php:10
+msgid "Search It!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/sidebar.php:16
+msgid "Feed It!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/sidebar.php:18
+msgid "Grab this site's feed!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/sidebar.php:19
+msgid "Subscribe to this site!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/sidebar.php:23
+msgid "Recent Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/sidebar.php:34
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:20
+msgid "Jump to Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\pressrow/single.php:37
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+

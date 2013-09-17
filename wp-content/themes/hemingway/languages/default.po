@@ -1,0 +1,415 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: hemingway\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-25 16:31+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\hemingway\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:6
+msgid "Page not found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:7
+msgid "It looks like there's a problem with the page you're trying to get to. If you're looking for something in particular, try using the search form below, or by browsing the archives."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:9
+msgid "Search this site:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:12
+msgid "Archives by month:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:17
+msgid "Archives by subject:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:23
+msgid "Why am I seeing this?"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/404.php:24
+msgid "You requested a page that doesn't exist on this site any more. This could be caused by a link you followed that was out of date, by a typing in the wrong address in the address bar, or simply because the post has been deleted."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:13
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:19
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:22
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:25
+msgid "Archive for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:16
+msgid "Posts tagged with"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:28
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:41
+msgid "This user hasn't shared any biographical information"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:45
+msgid "Homepage:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:46
+msgid "Yahoo Messenger:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:47
+msgid "Jabber/GTalk:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:48
+msgid "AIM:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:55
+msgid "Search Results"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:66
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:16
+msgid "posted in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:68
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:18
+msgid "tagged "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:75
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:25
+msgid "&laquo; Previous Entries"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:76
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:26
+msgid "Next Entries &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:82
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:33
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:89
+msgid "About the archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/archive.php:91
+msgid "Welcome to the archives here at <?php bloginfo('name'); ?>. Have a look around."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:18
+msgid "<p class=\"serif\">Read the rest of this entry &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:24
+msgid "This entry was posted"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:29
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:29
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:40
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:30
+msgid "and is filed under"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:31
+msgid "You can follow any responses to this entry through the <?php comments_rss_link('RSS 2.0'); ?> feed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:35
+msgid "You can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:35
+msgid "leave a response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:35
+msgid "or"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:39
+msgid "trackback"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:39
+msgid "from your own site."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:39
+msgid "Responses are currently closed, but you can"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:43
+msgid "You can skip to the end and leave a response. Pinging is currently not allowed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:47
+msgid "Both comments and pings are currently closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:49
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:12
+msgid "Edit this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/attachment.php:61
+msgid "Sorry, no attachments matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:45
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:62
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:71
+msgid "Have your say"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:72
+msgid "You can use these tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:74
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:74
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:74
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:83
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:83
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:83
+msgid "Logout &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:86
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:87
+msgid "Email"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:88
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:94
+msgid "Safari hates me"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/comments.php:95
+msgid "Add your comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/footer.php:8
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/footer.php:9
+msgid "Using"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/footer.php:9
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/footer.php:10
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/functions.php:92
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/functions.php:417
+msgid "Hemingway Options"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:16
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "Posted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "no comments;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "1 comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+#, php-format
+msgid "% comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "Filed Under:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "Tagged: "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "read on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:23
+msgid "edit"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/index.php:34
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/links.php:11
+msgid "Links:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:8
+msgid "<p class=\"serif\">Read the rest of this page &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:25
+msgid "0 Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:25
+msgid "One Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:25
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:26
+msgid "Jump to comment form"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/page.php:26
+msgid "trackback uri"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:31
+msgid "No posts found. Try a different search?"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:38
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:40
+msgid "You searched for &ldquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:40
+msgid "There were"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:42
+msgid "no results, better luck next time."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:43
+msgid "one result found. It must be your lucky day."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/search.php:44
+msgid " results found."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:13
+msgid "About this entry"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:15
+msgid "You&rsquo;re currently reading &ldquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:15
+msgid "an entry on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:17
+msgid "Published:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:21
+msgid "Category:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:26
+msgid "Tags:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:51
+msgid "Comments are closed"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:52
+msgid "Comments are currently closed on this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/single.php:59
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/static_sidebar.php:5
+msgid "About"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/static_sidebar.php:15
+msgid "Recently"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\hemingway/static_sidebar.php:28
+msgid "Categories"
+msgstr ""
+

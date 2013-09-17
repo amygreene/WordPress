@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: benevolence\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-11 03:58+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\benevolence\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:4
+msgid "Enter your password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:8
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:8
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:22
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:8
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:22
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:8
+msgid "so far"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:12
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:64
+msgid "Leave a comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:37
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:50
+msgid "<abbr title=\"Really Simple Syndication\">RSS</abbr> feed for comments on this post."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:52
+msgid "TrackBack"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:52
+msgid "Uniform Resource Identifier"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:65
+msgid "Line and paragraph breaks automatic, e-mail address never displayed, <acronym title=\\\"Hypertext Markup Language\\\">HTML</acronym> allowed:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:75
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:75
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:75
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:80
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:80
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:83
+msgid "(required)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:83
+msgid "Mail (will not be published)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:86
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:91
+msgid "Your Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/comments.php:97
+msgid "Say It!"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:7
+msgid "theme by Theron Parlin."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:9
+msgid "Syndicate entries using"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:9
+msgid "Syndicate this site using RSS"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:11
+msgid "and"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:11
+msgid "Comments (RSS)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:11
+msgid "This theme contains valid"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:11
+msgid "This page validates as XHTML 1.0 Transitional"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/footer.php:12
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/functions.php:39
+msgid "m.d.y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/functions.php:39
+msgid " Edit This "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/functions.php:79
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/functions.php:88
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/sidebar.php:10
+msgid "Search:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/functions.php:90
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/sidebar.php:12
+msgid "GO"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:12
+msgid "Permanent Link:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:13
+msgid "Edit this"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:14
+msgid "Filed under:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:14
+msgid "Tags"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:18
+msgid "(more...)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:22
+msgid "0 Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:32
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:35
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:21
+msgid "previous &raquo;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/index.php:36
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:22
+msgid "&laquo; newer "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:7
+msgid "Search Results"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:8
+msgid "Search results for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:10
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:13
+msgid "Permanent Link to"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:11
+msgid " and"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/search.php:17
+msgid "NothingNot Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/sidebar.php:17
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/sidebar.php:22
+msgid "Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\benevolence/sidebar.php:27
+msgid "Links"
+msgstr ""
+

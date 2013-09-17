@@ -1,0 +1,41 @@
+a, .posttitle a:hover, .entry p a:visited {
+	color: #2E8FC6;
+}
+
+a:hover {
+	color: #0F3461;
+}
+
+.datestamp { 
+	background: #A3CFEC;
+	border: 1px solid #0F3461;
+}
+
+.datestamp div {
+	background: #1C5B9E url(images/cal_bg.jpg) repeat-x;
+}
+
+
+
+.sidebars li {
+	list-style-image: none;
+	margin: 0 0 15px 25px; 
+
+}
+
+.widgettitle, .sidebars li h4 {
+	font-size: 1.4em;
+	font-weight: bold;
+        list-style-type: square;
+
+}
+
+#sidebar1 li {
+list-style: none;
+margin-left: 6px;
+}
+
+.blogname, .blogname a, blogname a:hover, .blogname a:visited, .blogdesc {
+color:#AD8533;
+text-decoration:none;
+}

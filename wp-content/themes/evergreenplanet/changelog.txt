@@ -1,0 +1,26 @@
+BrightSky ChangeLog
+
+v.1.1 (29.01.10)
+
+- Screenshot added
+- Calender not styled
+  - Fix : Added styling in layout.css
+- Search form not styled (when added from the widget).
+  - Fix : Search form styled by adding searchform.php
+- Uncategorized doesnt show up in the list of categories.
+  - Fix : Removed the exlude tags so all categories are included.
+- Warning: include(D:\xampp\htdocs\wordpress/wp-content/themes/brightsky/notfound.php) [function.include]: failed to open stream: No such file or directory in D:\xampp\htdocs\wordpress\wp-content\themes\brightsky\index.php on line 68 ---- notfound.php doesnt exist.
+  - Fix : Fixed by adding notfound.php and added the not found text + Search form. Also edited the php else tags to suite the theme.
+- Images on front-page not styled. Same goes for the inner page. No grey borders. Images also not centered.
+  - Fix : Images fixed by adding borders + centered images.
+- Comments sections doesnt show the submit button when logged in. 
+  - Fix : Comments fixed by adding submit button in the comments section.
+- Admin page shows text highlighted in yellow telling the the documentation is available and it is to be clicked.
+  - Fix : Yellow bar removed as no support documents are avaialable.
+- Related entries shows About page.
+  - Fix : Cannot be fixed as the php calls in posts from wp_posts which includes both pages + posts.
+
+v.1.0 (19.01.10)
+
+- BrightSky released!
+

@@ -1,0 +1,284 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: oceanmist\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-28 21:32+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Richie_KS <rkcorp@dezzain.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wpmu\\wp-content\\themes\\oceanmist\n"
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/404.php:4
+msgid "Error 404"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/404.php:4
+msgid "File not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/404.php:7
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:102
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:54
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:24
+msgid "No Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:24
+msgid "1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:24
+msgid "% Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:46
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:64
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:72
+msgid "Leave a response"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:77
+msgid "You must be"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:77
+msgid "logged in"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:77
+msgid "to post a comment."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:91
+msgid "Logged in as"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:92
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:92
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:96
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:98
+msgid "Email"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:100
+msgid "Website"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:109
+msgid "Your response:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/comments.php:112
+msgid "Submit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/footer.php:5
+msgid "Y"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/footer.php:7
+msgid "Powered by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/footer.php:8
+msgid "Hosted by"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:42
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:48
+msgid "By:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:48
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:260
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:297
+msgid "on"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:48
+msgid "at"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:48
+msgid "Edit Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:91
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/sidebar.php:10
+msgid "Browse"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:93
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/sidebar.php:14
+msgid "Monthly Archives"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:104
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/functions.php:327
+msgid "Reset"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/header.php:72
+msgid "Home"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:9
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:15
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:18
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:21
+msgid "Archive for"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:12
+msgid "Posts tagged with"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:24
+msgid "Author Archive"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:37
+msgid "This user hasn't shared any biographical information"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:41
+msgid "Homepage:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:42
+msgid "Yahoo Messenger:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:43
+msgid "Jabber/GTalk:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:44
+msgid "AIM:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:51
+msgid "Search Results"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:16
+msgid "Posted by:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:16
+msgid "| No Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:16
+msgid "| 1 Comment"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:16
+msgid "| % Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:62
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:16
+msgid "(edit)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:76
+msgid "Read More..."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:88
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:31
+msgid "under:"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:89
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:32
+msgid "Tags: "
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:96
+msgid "&#171; Newer Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:96
+msgid "Older Posts &#187;"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:100
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:51
+msgid "Not Found"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/index.php:108
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/single.php:62
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/page.php:12
+msgid "<p class=\"serif\">Read the rest of this page &raquo;</p>"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/page.php:15
+msgid "Edit this entry."
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/page.php:17
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/sidebar.php:20
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/sidebar.php:28
+msgid "Subscribe"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/sidebar.php:32
+msgid "Entries (RSS)"
+msgstr ""
+
+#: C:\xampp\htdocs\wpmu\wp-content\themes\oceanmist/sidebar.php:33
+msgid "Comments (RSS)"
+msgstr ""
+

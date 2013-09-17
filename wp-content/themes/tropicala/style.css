@@ -1,0 +1,587 @@
+/*
+
+Theme Name: Tropicala
+Description: Simple, modern, lightweight
+Version: 1.5
+Author: Goro Harumi
+Author URI: http://goroharumi.com
+Tags: orange, white, two-columns, fixed-width, right-sidebar
+
+This template is being distributed via Wordpress.org under GPLv3 license. Enjoy!
+
+To replace the banner image, just swap out masthead.png with your own image, sized 723px x 147px. 
+The dropshadows are in the background CSS, not the image.
+
+v1.1 - changed license to GPLv3
+v1.2 - added comments and removed some blank elements from stylesheet
+v1.3 - added license.txt (Apparently some people don't read this stylesheet), added link back to the theme's page at Wordpress.org
+v1.4 - Some minor tweaks to CSS for newer wp.net preview examples
+v1.5 - Updated my link
+
+*/
+
+* {
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+
+html {
+  font:62.5% Arial, Helvetica, sans-serif; /* Means 1em == 10px, 1.2em == 12px, etc. */
+}
+
+body {
+  background:#FFF url(./images/bg.jpg) repeat-x; /* Set background image here */
+  color:#6b6b6b;
+  font-size:1.2em;
+}
+
+p, h2, h3, h4, h5, h6 {
+  font-size:1em;
+}
+
+hr {
+  border:0;
+  border-bottom:1px solid #EAEAEA;
+  margin:20px 0;
+  height:1px;
+}
+
+img {
+  border:0;
+}
+
+dl {
+  color:#6b6b6b;
+  margin:10px 0;
+}
+
+dt {
+  font-weight:bold;
+}
+
+dd {
+  font-style:italic;
+  margin:5px 0 10px;
+}
+
+fieldset {
+  border:1px solid #DDD;
+  padding:10px 20px;
+}
+
+form h2 {
+  margin-bottom:10px;
+}
+
+legend {
+  font-size:1.2em;
+  color:#6b6b6b;
+  padding:0 10px;
+}
+
+label {
+  font-weight:bold;
+}
+
+textarea {
+  width:450px;
+  height:200px;
+  border:1px solid #CCC;
+  margin:10px 0;
+}
+
+div#wrapper {
+  width:768px;
+  padding-top:8px;
+  margin:25px auto 0;
+  background:url(./images/top.png) no-repeat;
+}
+
+div#masthead {
+  width:768px;
+  background:url(./images/main_bg.png) repeat-y;
+  position:relative;
+}
+
+/* Blog Title */
+h1 {
+  font:3.2em 'Trebuchet MS', Arial, Helvetica;
+  color:#ff7e00;
+}
+
+h1 a {
+  position:absolute;
+  width:300px;
+  height:30px;
+  left:40px;
+  top:15px;
+  font-weight:bold;
+  text-decoration:none;
+  color:#ff7e00;
+}
+
+/* Tagline */
+#masthead p {
+  position:relative;
+  margin:0;
+  top:62px;
+  left:50px;
+  color:#888;
+}
+
+/* Pages Navigation */
+div#masthead ul {
+  float:right;
+  margin-right:22px;
+  position:relative;
+  z-index:2;
+  bottom:-2px;
+}
+
+div#masthead ul li {
+  float:left;
+}
+
+div#masthead ul li a {
+  color:#686868;
+  text-decoration:none;
+  display:block;
+  font-size:1.2em;
+  padding:40px 20px 18px;
+}
+
+div#masthead ul li a:hover,
+div#masthead ul li.current_page_item {
+  background:url(./images/nav_bg.png) bottom repeat-x;
+}
+
+/* Banner image dropshadow */
+div#masthead_image {
+  background:url(./images/image_bg.png) center no-repeat;
+  width:724px;
+  height:148px;
+  clear:both;
+  padding:8px 22px;
+  position:relative;
+  z-index:1;
+}
+
+a {
+  outline:0;
+}
+
+/* Page dropshadow */
+div#content {
+  width:768px;
+  background:url(./images/main_bg.png) repeat-y;
+}
+
+/*-----------------------------------------------------------------------------
+
+  Main Content
+
+-----------------------------------------------------------------------------*/
+
+div#main {
+  padding:0 20px 20px;
+  width:500px;
+  float:left;
+}
+
+/* Hey, don't use h1 in the articles-- it's already in the header.
+   This is just here because it looks totally funky in the preview at wordpress.net... */
+   
+div.entry h1 {
+  font-size:2.4em;
+  font-weight:bold;
+}
+
+div.entry h2,
+div.entry h3,
+div.entry h4,
+div.entry h5,
+div.entry h6 {
+  color:#ff7e00;
+  margin:20px 0 10px;
+}
+
+div.entry h2 {
+  font-size:1.8em;
+}
+
+div.entry h3 {
+  font-size:1.4em;
+}
+
+div.entry table {
+  border-collapse:collapse;
+  margin:10px 0;
+}
+
+div.entry table th,
+div.entry table td {
+  padding:10px;
+  border:1px solid #EAEAEA;
+  text-align:center;
+}
+
+/* Main header on single pages */
+h2.header {
+  color:#ff7e00;
+  font-size:24px;
+  padding:10px 0 0;
+  line-height:1;
+  margin:0 0 5px;
+  border-bottom:1px solid #e7e7e7;
+  position:relative;
+}
+
+div#main h2.header a {
+  color:#ff7e00;
+  text-decoration:none;
+}
+
+h2.header span {
+  position:relative;
+  background:#FFF;
+  padding-right:10px;
+  bottom:-5px;
+}
+
+/* Secondary headline above comments and comment form */
+div#main h3 {
+  margin:15px 0 5px;
+  color:#ff7e00;
+}
+
+div#main p {
+  color:#6b6b6b;
+  line-height:2;
+  margin:10px 0;
+}
+
+div#main a {
+  color:#507FA3;
+}
+
+.article {
+  margin-bottom:20px;
+}
+
+.article blockquote {
+  margin:0 15px;
+  padding:1px 15px;
+  border-left:5px solid #B8D1E4;
+  background:#F0F0F0;
+}
+
+div.article code {
+  font-size:1.2em;
+}
+
+div.article pre {
+  width:500px;
+  line-height:1.5;
+  font-size:1.2em;
+  margin:20px 0;
+  overflow:hidden;
+}
+
+.article ul, .article ol {
+  color:#6b6b6b;
+  margin-left:15px;
+}
+
+.article ul li {
+  margin:5px 0;
+  padding-left:15px;
+  background:url(./images/square.png) 0 center no-repeat;
+}
+
+.article ol {
+  margin-left:30px;
+}
+
+.article ol li {
+  list-style:decimal;
+  margin:10px 0;
+}
+
+.article ol li ol {
+  font-size:1em;
+  margin-left:15px;
+}
+
+#main p.byline {
+  color:#999;
+}
+
+ul.article_footer {
+  text-align:right;
+  margin:10px 0;
+  background:#F1F1F1;
+  padding:5px 10px;
+  border:1px solid #DADADA;
+  border-width:1px 0;
+  line-height:1.5;
+}
+
+ul.article_footer li {
+  font-size:0.9em;
+  display:inline;
+  background:none;
+  border-left:1px solid #DADADA;
+  margin-left:5px;
+  padding-left:10px;
+}
+
+ul.article_footer li.first {
+  border-left:0;
+}
+
+/*-----------------------------------------------------------------------------
+
+  Secondary Content
+
+-----------------------------------------------------------------------------*/
+
+div#secondary {
+  padding:15px 20px 20px 0;
+  width:200px;
+  float:left;
+}
+
+div#secondary ul#sidebar {
+  margin:15px 0 20px;
+  color:#507fa3;
+  padding-bottom:10px;
+  border-bottom:1px solid #e7e7e7;
+}
+
+div#secondary ul#sidebar li {
+  margin:5px 0;
+  font-size:1em;
+  line-height:1.5em;
+}
+
+/* Sidebar headers */
+div#secondary h2 {
+  text-transform:uppercase;
+  color:#507fa3;
+  margin:20px 0 8px;
+  font-size:1.1em;
+  line-height:1;
+}
+
+div#secondary a {
+  color:#666;
+  text-decoration:none;
+}
+
+div#secondary a:hover {
+  text-decoration:underline;
+}
+
+div#secondary ul.children {
+  margin-left:5px;
+  padding-left:10px;
+  border-left:5px solid #EAEAEA;
+}
+
+div#secondary ul#sidebar li li {
+  font-size:1em;
+}
+
+/* Optional bio area header (commented out by default) */
+div#author h2 {
+  font-size:1.2em;
+}
+
+div#secondary p {
+  line-height:1.5;
+  margin:5px 0;
+  color:#666;
+}
+
+/* Search input */
+form#searchform {
+  position:relative;
+  height:28px;
+  margin-bottom:20px;
+}
+
+form#searchform input#s {
+  position:absolute;
+  top:0;
+  height:18px;
+  width:156px;
+  padding:5px;
+  background:url(./images/text_bg.png) repeat-x;
+  border:1px solid #bcbcbc;
+}
+
+input#search_submit {
+  position:absolute;
+  right:0;
+}
+
+/*-----------------------------------------------------------------------------
+
+  Footer
+
+-----------------------------------------------------------------------------*/
+
+ul#footer {
+  height:8px;
+  width:768px;
+  margin:0 auto;
+  background:url(./images/bottom.png) no-repeat;
+  text-align:center;
+  font-size:1em;
+  color:#686868;
+  padding:15px 0;
+}
+
+ul#footer li {
+  display:inline;
+  margin-left:10px;
+}
+
+ul#footer li span {
+  position:absolute;
+  text-indent:-9999em;
+}
+
+ul#footer li a {
+  color:#686868;
+  text-decoration:none;
+}
+
+/*-----------------------------------------------------------------------------
+
+  Wordpress Specific Stuff - Elements that weren't in my original stylesheet
+
+-----------------------------------------------------------------------------*/
+
+ol.commentlist {
+  margin-top:15px;
+  color:#555;
+}
+
+/* Background color for visitor comments */
+ol.commentlist li {
+  background:#F1F1F1;
+  padding:10px;
+  margin:10px 0;
+}
+
+/* Background color for Admin comments */
+ol.commentlist li.alt {
+  background:#EBF9FC;
+}
+
+textarea#comment {
+  width:500px;
+}
+
+#main p.comment_meta {
+  margin:0;
+  float:right;
+}
+
+/* Optional popup window (NOTE: popups make for bad UI IMHO) */
+body#commentspopup {
+  background:#FFF;
+  padding:20px;
+}
+
+body#commentspopup a {
+  color:#666;
+}
+
+body#commentspopup h1 a {
+  position:relative;
+  top:0;
+  left:0;
+}
+
+body#commentspopup h3 {
+  color:#555;
+}
+
+body#commentspopup p {
+  margin:10px 0;
+  color:#555;
+}
+
+body#commentspopup textarea {
+  width:340px;
+}
+
+/* Image stuff for 2.6.1 */
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+.wp-caption {
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: #f3f3f3;
+  padding-top: 4px;
+  margin: 10px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.wp-caption img {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+
+.wp-caption-dd {
+  font-size: 11px;
+  line-height: 17px;
+  padding: 0 4px 5px;
+  margin: 0;
+}
+
+p.entry_info {
+  clear:both;
+}
+
+div.navigation {
+  margin:10px 0;
+}
+
+/*-----------------------------------------------------------------------------
+
+  CSS Magic
+
+-----------------------------------------------------------------------------*/
+
+.clearfix:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+  .clearfix {display:block;}
+/* End hide from IE Mac */
+

@@ -1,0 +1,140 @@
+/*
+Theme Name: Conestogastreet
+Theme URI: http://www.conestogastreet.com
+Description: Everything happens on Conestoga Street
+Version: 1.0
+Author: Theron Parlin
+Author URI: http://www.thoughtmechanics.com/ 
+
+Copyright 2004 Sonny Parlin, http://www.conestogastreet.com/
+
+*/
+
+body {
+	background: #fff;
+	font:x-small Verdana,Georgia,Serif;
+	text-align:left;
+	color:#666;
+	font-size: 11px;
+	line-height: 16px;
+	margin: 0;
+}
+
+.meta {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #666;
+	padding-bottom: 0px;
+	text-align: left;
+}
+
+h2 {
+	color: #666;
+	font-size: 14px;
+	text-align: left;
+}
+
+.metaBottom {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #666;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+h3 {
+	font-family: Georgia, Verdana, Arial;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0 0 0px 0;
+	padding-top: 10px;
+	text-align: left;
+	color: #14558E;
+}
+
+h1 {
+	font-family: Georgia, Verdana, Arial;
+	font-size: 32px;
+	font-weight: normal;
+	margin: 0 0 0px 0;
+	padding-top: 14px;
+	padding-bottom: 14px;
+  	border-bottom: 1px solid #999999;
+	color: #000;
+	text-align: left;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+}
+
+hr.hr1 {
+    color: #999;
+    background-color: #999;
+    height: 1px;
+}
+
+hr.padtop{
+    margin-top:15px;
+}
+
+.archives {	
+	margin-top: 30px;
+	padding-bottom: 0px;
+	padding-left: 28px;
+	margin-bottom: 0px;
+	text-align: left;
+	width: 150px;
+	color: #000;
+}
+
+form {
+	margin-bottom: 0px;
+}
+
+input, textarea {
+	size: 15;
+}
+
+ul {
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	padding-left: 0px;
+}
+
+li {
+	list-style-type: none;
+	margin-left: 0px;
+}
+
+.column {
+	width:700px;
+	text-align:justify;
+} 
+
+blockquote, blockquote p {
+	text-indent: 0px;
+	margin-bottom: 7px;
+	color: #14558E;
+}
+
+a {
+	color: #14558E;
+}
+
+a:visited {
+	color: #5E6F7E;
+}
+
+a:hover {
+	color: #394651;
+}
+
+.lineSep {
+	border-top: 1px solid #999999;
+	width: 100%
+}

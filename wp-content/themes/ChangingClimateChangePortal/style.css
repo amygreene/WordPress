@@ -1,0 +1,22 @@
+/*
+Theme Name: Changing Climate Change (3CP)
+Description: Custom theme for the Changing Climate Change Portal (3CP)
+Theme URI: http://blogs.evergreen.edu/changingclimatechange/
+Author: Brylie Oxley
+Author URI: http://brylie.gnumedia.org
+Version: 1.1
+Template: twentytwelve
+Tags: custom fields, twentytwelve
+License: GNU General Public License v3+
+License URI: https://www.gnu.org/licenses/gpl.html
+*/
+
+@import url("../twentytwelve/style.css");
+
+#accordion h3 {
+  padding: 0 0 0 2em;
+  margin: 0;
+}
+#accordion div {
+  padding: 1em 2em;
+}

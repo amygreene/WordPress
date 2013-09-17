@@ -1,0 +1,96 @@
+/* PlanetEvergreen styles modify BrightSky default theme */
+/*by Amy Greene - The Evergreen State College*/
+
+#wrapper a {
+color:#58879C;
+}
+#nav li.current_page_item a {
+color:#964233;
+}
+#nav  {
+border-bottom:5px solid #909680;
+}
+#header  {
+background: #B5B9AA;
+}
+.cheader  {
+height:145px;
+background: url('/wp-content/themes/evergreenplanet/style/images/trees.png') no-repeat scroll 660px 62px;
+}
+
+h1#blogtitle  {
+top:100px;
+margin-left: 5px;
+}
+
+.blogdesc {
+top:125px;
+margin-left: 5px;
+}
+
+h2.mainhead {
+text-transform:none;
+}
+.entry table th, td {
+border: 1px solid #ccc;
+}
+
+#prev {
+margin:0 0 50px;
+}
+
+#navcat {
+display: none;
+}
+
+.site-login {
+background-color:#4E4E4E;
+}
+
+#ksearchform {
+float:right;
+margin:100px 0 0;
+}
+
+/*AHP Recent post styling*/
+/*avatar styling:  */
+img.avatar
+{ float: left; padding: 0px; border: none; margin-right: 4px; clear: left; }
+
+/*LI styling:*/
+li.ahp_recent-posts { 
+list-style-type: none ;
+border-bottom:1px dashed #ccc;
+padding: 15px 0 10px 0;
+}
+
+/*excerpt styling: */
+.ahp-excerpt { margin-top: 2px } 
+
+.ahp-postinfo {
+color: #666;
+font-style: italic;
+}
+.ahp-blogname{
+font-weight: bolder
+}
+/*.ahp_recent-posts img{
+padding: 0px 10px 0px 0px;
+}
+*/
+
+
+#footer {
+background:none repeat scroll 0 0 #000;
+}
+#footer a {
+text-decoration:none;
+color:#BCCFD7;
+}
+#evergreenlogo {
+background:url("http://www.evergreen.edu/inc/images/miniwordmark.gif") no-repeat scroll left center transparent;
+display:block;
+text-indent:-9999px;
+width:156px;
+height:32px;
+}
