@@ -8,7 +8,7 @@
 }
 
 
-#window.ie7 a.button-settings{
+#window.ie7 a#un-button-settings{
 	display: inline;
 }
 #window.ie7 #un-feedback-submit{

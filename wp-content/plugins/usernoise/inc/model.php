@@ -1,5 +1,4 @@
 <?php
-
 class UN_Model{
 	
 	public function __construct(){
@@ -8,9 +7,14 @@ class UN_Model{
 		add_filter('un_feedback_post_type_params', array($this, 'filter_un_feedback_post_type_params'));
 	}
 	
+
 	public function action_init(){
 		global $wp;
 		$wp->add_query_var('feedback_type_id');
+		$this->register_schema();
+	}
+	
+	function register_schema(){
 		register_taxonomy(FEEDBACK_TYPE, FEEDBACK, 
 			apply_filters('un_feedback_type_taxonomy_params', array(
 				'public' => false,
@@ -55,13 +59,18 @@ class UN_Model{
 		}
 		if (!trim($params['description']))
 			$errors []= __('Please enter the feedback.', 'usernoise');
-		if (un_get_option(UN_FEEDBACK_FORM_SHOW_EMAIL) && empty($params['email']) && !is_user_logged_in() || 
-				(isset($params['email']) && $params['email'] && !is_email($params['email'])))
+		$email = trim(isset($params['email']) ? $params['email'] : '');
+		$name = trim(isset($params['name']) ? $params['name'] : '');
+		if (un_get_option(UN_FEEDBACK_FORM_SHOW_EMAIL) && empty($email) && !is_user_logged_in() || 
+				$email && !is_email($email))
 			$errors []= __('Please enter a valid email address.', 'usernoise');
+		if (un_get_option(UN_FEEDBACK_FORM_SHOW_NAME) && empty($name) && !is_user_logged_in())
+			$errors []= __('Please enter your name.', 'usernoise');
 		return apply_filters('un_validate_feedback', $errors, $params);
 	}
 	
 	public function create_feedback($params){
+		global $un_settings;
 		if (isset($params['title']) && $params['title'])
 			$title = $params['title'];
 		$content = $params['description'];
@@ -69,9 +78,9 @@ class UN_Model{
 			$title = substr($content, 0, 150) . (strlen($content) < 150 ? '' : "…");
 		$id = wp_insert_post(array(
 			'post_type' => FEEDBACK,
-			'post_title' => apply_filters('un_feedback_title', $title, $params),
-			'post_content' => apply_filters('un_feedback_content', $content, $params),
-			'post_status' => 'pending',
+			'post_title' => wp_kses(apply_filters('un_feedback_title', $title, $params), wp_kses_allowed_html()),
+			'post_content' => wp_kses(apply_filters('un_feedback_content', $content, $params), wp_kses_allowed_html()),
+			'post_status' => un_get_option(UN_PUBLISH_DIRECTLY) ? 'publish' : 'pending',
 			'post_author' => 0
 		));
 		$email = isset($params['email']) ? trim($params['email']) : '';
@@ -80,6 +89,8 @@ class UN_Model{
 		if (is_user_logged_in()){
 			add_post_meta($id, '_author', get_current_user_id());
 		}
+		if (isset($params['name']) && trim($params['name']))
+			add_post_meta($id, '_name', wp_kses(trim($params['name']), wp_kses_allowed_html()));
 		wp_set_post_terms($id, $params['type'], FEEDBACK_TYPE);
 		do_action('un_feedback_created', $id, $params);
 		$this->send_admin_message($id, $params);
@@ -89,7 +100,7 @@ class UN_Model{
 		if (!un_get_option(UN_ADMIN_NOTIFY_ON_FEEDBACK))
 			return;
 		$type = $params['type'] ? $params['type'] : __('feedback');
-		$message = sprintf(__('A new %s has been submitted. View it: <a href="%s">%s</a>.'), 
+		$message = sprintf(__('A new %s has been submitted. View it: <a href="%s">%s</a>.', 'usernoise'), 
 			$type,
 			admin_url('post.php?action=edit&post=' . $id),
 			admin_url('post.php?action=edit&post=' . $id)
@@ -149,14 +160,10 @@ class UN_Model{
 	}
 	
 	public function get_plural_feedback_type_label($type){
-		$types = array(
-			'idea' => __('ideas', 'usernoise'),
-			'question' => __('questions', 'usernoise'),
-			'problem' => __('problems', 'usernoise'),
-			'praise' => __('praises', 'usernoise')
-		);
-		return $types[$type];
+		$term = get_term_by('slug', $type, FEEDBACK_TYPE);
+		return un_get_term_meta($term->term_id, 'plural');
 	}
 }
 
-$un_model = new UN_Model;
+$GLOBALS['un_model'] = new UN_Model;
+$GLOBALS['un_model']->register_schema();

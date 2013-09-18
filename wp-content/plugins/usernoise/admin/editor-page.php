@@ -62,6 +62,7 @@ class UN_Admin_Editor_Page{
 		global $post_type;
 		if ($post_type == FEEDBACK) {
 				wp_enqueue_style('un-admin', usernoise_url('/css/admin.css'));
+				wp_enqueue_style('un-admin-font-awesome', usernoise_url('/vendor/font-awesome/css/font-awesome.min.css' . "?version=" . UN_VERSION));
 		}
 	}
 	

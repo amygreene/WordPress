@@ -5,7 +5,9 @@ class UN_Shortcodes{
 	}
 	
 	function _usernoise_form($attrs){
+		ob_start();
 		do_action('un_feedback_form', '?un_action=feedback_submit');
+		return ob_get_clean();
 	}
 }
 

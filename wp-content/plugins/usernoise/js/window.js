@@ -2,7 +2,7 @@ jQuery(function($){
 	usernoise.window = new usernoise.Window();
 	usernoise.feedbackForm = new usernoise.FeedbackForm($('.un-feedback-form'));
 	usernoise.thankYouScreen  = new usernoise.ThankYouScreen();
-	$('#window').resize(function(){
+	$('#window #un-feedback-wrapper').resize(function(){
 		$('#window').css({
 			'margin-top': '-' + $('#window').height() / 2 + "px",
 			'margin-left': '-'  + $('#window').width() / 2 + "px"});

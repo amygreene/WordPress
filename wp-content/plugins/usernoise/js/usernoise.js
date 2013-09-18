@@ -1,13 +1,20 @@
 usernoise = {};
 jQuery(function($){
-	if ($.browser.msie && ($.browser.version == '6.0' || $.browser.version == '7.0'))
+	var browser = {};
+	if (navigator && navigator.appVersion){
+		browser.msie6 = navigator.appVersion.indexOf('MSIE 6.0') != -1;
+		browser.msie7 = navigator.appVersion.indexOf('MSIE 7.0') != -1;
+		browser.msie8 = navigator.appVersion.indexOf('MSIE 8.0') != -1;
+	}
+	if (browser.msie6 || browser.msie7)
 		return;
+	
   function UsernoiseButton(){
 		var self = this;
 		self.show = function(){
 			var $button = $('<a href="#" id="un-button" />').appendTo($('body'));
 			var property;
-			$button.text(usernoiseButton.text);
+			$button.html(usernoiseButton.text);
 			$button.addClass(usernoiseButton['class']);
 			$button.attr('style', usernoiseButton.style);
 			$button.click(function(event){
@@ -15,11 +22,11 @@ jQuery(function($){
 				event.preventDefault();
 				return false;
 			});
-			if ($.browser.msie && $.browser.version == '7.0'){
+			if (browser.msie7){
 				if ($button.is('.un-left') || $button.is('.un-right'))
 					$button.css('margin-top', '-' + $button.width() / 2  + "px");
 				$button.addClass('ie7');
-			} else if ($.browser.msie && $.browser.version == '8.0'){
+			} else if (browser.msie8){
 				if ($button.is('.un-right')){
 					$button.css('right', "-" + $button.outerWidth() + "px");
 				}
@@ -90,13 +97,14 @@ jQuery(function($){
 		self.form = $form;
 		$form.find('.text').unAutoPlaceholder();
 		$form.find('.un-types-wrapper a').click(selectTypeHandler);
+		$form.find('.un-types-wrapper a:first-child').click();
 		$form.submit(submitHandler);
 		
 		function selectTypeHandler(){
 			var $selector = $(this).parent();
 			$selector.find('a').removeClass('selected');
 			$(this).addClass('selected');
-			var type = $(this).attr('class').replace(/\s*selected\s*/, '').replace('un-type-', '');
+			var type = $(this).attr('data-type');
 			$selector.find('input[type=hidden]').val(type);
 			$(document).trigger('typeselected#feedbackform#window.un', type);
 			return false;
@@ -104,7 +112,8 @@ jQuery(function($){
 		
 		function submitHandler(){
 			var data  = $form.unSerializeObject();
-			data.referer = window.parent.document.location.href;
+			if (window.parent.document)
+				data.referer = window.parent.document.location.href;
 			$(document).trigger('submitting#feedbackform#window.un', data);
 			self.lock();
 			$form.find('.loader').show();
@@ -114,6 +123,8 @@ jQuery(function($){
 				self.unlock();
 				response = usernoise.helpers.parseJSON(response);
 				if (response.success){
+					$('#un-thankyou').height($('#un-feedback-wrapper').height() + "px")
+					$form.find('textarea').val('').trigger('blur');
 				  $(document).trigger('sent#feedbackform#window.un');
 				} else {
 					self.errors.show(response.errors);
@@ -183,7 +194,6 @@ jQuery(function($){
 	function UsernoiseWindow(windowSelector){
 		var self = this;
 		var $window = $('#window');
-		
 		
 		function detectBrowser(){
 			if (!$('#wrapper').hasClass('un')) return;

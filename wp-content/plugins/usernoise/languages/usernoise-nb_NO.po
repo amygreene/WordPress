@@ -3,13 +3,14 @@ msgstr ""
 "Project-Id-Version: Usernoise v0.5.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2011-11-15 09:36+0000\n"
+"PO-Revision-Date: 2013-04-25 08:21:19+0000\n"
 "Last-Translator: admin <arnfinn.anda@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
 "X-Poedit-Language: Norwegian (Bokmål)\n"
 "X-Poedit-Country: NORWAY\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -554,7 +555,7 @@ msgstr "Tilbakemeldin"
 #@ usernoise
 #@ default
 msgid "Idea"
-msgstr ""
+msgstr "Idé"
 
 #: html/form-feedback.php:18
 #: usernoise.php:79

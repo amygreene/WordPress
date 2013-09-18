@@ -8,6 +8,7 @@ class UN_Dashboard{
 	public function action_enqueue_scripts(){
 		if (!current_user_can('edit_others_un_feedback_items')) return;
 		wp_enqueue_style('un-admin', usernoise_url('/css/admin.css'));
+		wp_enqueue_style('un-admin', usernoise_url('/vendor/font-awesome/css/font-awesome.min.css'));
 	}
 	
 	public function action_wp_dashboard_setup(){
@@ -25,7 +26,7 @@ class UN_Dashboard{
 				echo("<li>");
 				echo un_get_feedback_type_span(get_the_ID(), false);
 				echo(" ");
-				edit_post_link(get_the_title(), '', '', get_the_ID());
+				edit_post_link(esc_html(get_the_title()), '', '', get_the_ID());
 				echo("");
 				if (un_feedback_has_author(get_the_ID())){
 					echo(' ');

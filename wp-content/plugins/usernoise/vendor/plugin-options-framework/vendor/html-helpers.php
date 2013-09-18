@@ -3,7 +3,7 @@
 Plugin Name: HTML Helpers
 Plugin URI: http://wordpress.org/extend/plugins/html-helpers/
 Description: Simple HTML rendering API for WordPress
-Version: 0.4-beta
+Version: 0.5-beta
 Author: Nikolay Karev
 Author URI: http://karevn.com
 */
@@ -114,7 +114,7 @@ if (!class_exists('HTML_Helpers_0_4')){
 				if (isset($arr[1]))
 					$value = $arr[1];
 				else unset($value);
-				$attrs = array();
+				$attrs = isset($arr[2]) ? $arr[2] : array();
 				if ((!$multi && ((isset($value) && $value == $selected) || (!isset($value) && $selected == null) || $text === $selected)) ||
 					($multi && ($value && in_array($value, $selected) || in_array($text, $selected)))) 
 					$attrs['selected'] = 'selected';
@@ -247,13 +247,31 @@ if (!class_exists('HTML_Helpers_0_4')){
 			return $result;
 		}
 
-		function collection2options($collection, $key_field, $value_field, $empty = null){
+		function collection2options($collection, $key_field, $value_field, $empty = null, $mapped_fields = null){
 			$result = array();
 			if ($empty){
 				$result []= array($empty, '');
 			}
 			foreach($collection as $obj){
-				$result []= array($obj->$value_field, $obj->$key_field);
+				if (is_array($obj)){
+					if ($mapped_fields){
+						$mapped_values = array();
+						foreach($mapped_fields as $mapped_field)
+							$mapped_values[$mapped_field] = $obj[$mapped_field];
+						$result []= array($obj[$value_field], $obj[$key_field], $mapped_values);
+					}
+					else
+						$result []= array($obj[$value_field], $obj[$key_field]);
+				} else {
+					if ($mapped_fields){
+						$mapped_values = array();
+						foreach($mapped_fields as $mapped_field)
+							$mapped_values[$mapped_field] = $obj->$mapped_field;
+						$result []= array($obj->$value_field, $obj->$key_field, $mapped_values);
+					}
+					else
+						$result []= array($obj->$value_field, $obj->$key_field);
+				}
 			}
 			return $result;
 		}

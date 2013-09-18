@@ -14,20 +14,25 @@
 	top: 2px;
 	margin-right: 5px;
 }
-.un-feedback-type-praise{
-	background: url(../images/icon-praise.png);
+.column-un-type{
+	width: 120px !important;
 }
-.un-feedback-type-question{
-	background-image: url(../images/icon-question.png);
+.column-un-type .type{
+	background: #555;
+	color: white;
+	display: inline-block;
+	padding: 3px 6px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	white-space: nowrap;
 }
-.un-feedback-type-problem{
-	background: url(../images/icon-problem.png);
+.column-un-type i{
+	font-size: 15px;
+	margin-right: 6px;
 }
-.un-feedback-type-idea{
-	background-image: url(../images/icon-idea.png);
-	background-position: 3px -32px;
-}
-
 #dashboard_usernoise ul li p{
 	margin-top: 0;
 }
@@ -40,7 +45,7 @@
 	display: block;
 }
 .wp-list-table .column-un-type{
-	width: 50px;
+	width: 120px;
 }
 #adminmenu .awaiting-mod,
 #adminmenu span.update-plugins,
@@ -134,4 +139,8 @@ a.un-upgrade-button {
 	text-shadow:
 		0px -1px 0px rgba(000,000,000,0.4),
 		0px 1px 0px rgba(255,255,255,0.3);
+}
+
+select#usernoise__feedback_button_icon{
+	min-width: 250px;
 }

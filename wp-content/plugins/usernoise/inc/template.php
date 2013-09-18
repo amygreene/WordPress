@@ -7,7 +7,7 @@ function usernoise_url($path){
 }
 
 function usernoise_path($path){
-	return WP_PLUGIN_DIR . '/' . USERNOISE_DIR . $path;
+	return dirname(USERNOISE_MAIN) . $path;
 }
 
 function un_ajax_url($action = null){
@@ -53,6 +53,10 @@ function un_feedback_has_author($id){
 	return $user || $email;
 }
 
+function un_feedback_has_name($id){
+	return get_post_meta($id, '_name', true);
+}
+
 function un_feedback_author_email($id){
 	$email = get_post_meta($id, '_email', true);
 	$user = get_post_meta($id, '_author', true);
@@ -87,6 +91,10 @@ function un_feedback_author_link($id){
 function un_feedback_author_name($id){
 	$email = get_post_meta($id, '_email', true);
 	$user = get_post_meta($id, '_author', true);
+	$name = get_post_meta($id, '_name', true);
+	if ($name){
+		return $name;
+	}
 	if ($user){
 		return get_userdata($user)->display_name;
 	}
@@ -96,9 +104,7 @@ function un_feedback_author_name($id){
 function un_get_feedback_type_span($id, $show_text = true){
 	global $un_h;
 	if($type = wp_get_post_terms($id, FEEDBACK_TYPE)){
-		$img = $un_h->_tag('span',
-			array('class' => array('un-feedback-type', 'un-feedback-type-' . $type[0]->slug))
-			);
+		$img = $un_h->_tag('i', array('class' => un_get_term_meta($type[0]->term_id, 'icon')));
 		return $img . ($show_text ?  "&nbsp;" . __(esc_html($type[0]->name), 'usernoise') : '');
 	}
 	return null;
@@ -167,3 +173,12 @@ function un_button_class(){
 	return apply_filters('un_button_class', $classes);
 }
 
+function un_get_icons(){
+	$file = fopen(usernoise_path('/inc/icons.txt'), 'r');
+	$objects = array();
+	while (($icon = fgets($file)) !== false){
+		$icon = trim($icon);
+		$objects []= array('icon' => $icon, 'label' => $icon, 'data-icon' => $icon);
+	}
+	return $objects;
+}

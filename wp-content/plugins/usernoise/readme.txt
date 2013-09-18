@@ -1,19 +1,19 @@
 === Usernoise modal feedback / contact form ===
 Contributors: karevn
-Tags: feedback, contact, form, contact form, email, ajax, custom, admin, button, russian, dashboard, lightbox, ipad, plugin, jquery, comments
+Tags: feedback, contact, form, contact form, email, ajax, custom, admin, button, russian, dashboard, lightbox, ipad, plugin, jquery, comments, responsive
 Requires at least: 3.2
-Tested up to: 3.4.2
-Stable tag: 3.0.8
+Tested up to: 3.5.2
+Stable tag: 3.7.9
 
 Modal contact / feedback form designed "the Apple way".
 
 == Description ==
 
-Usernoise is a "just works" modal contact / feedback form. 
+Usernoise is a "just works" modal contact / feedback form. It became responsive starting from 3.5 release.
 You will not need to change even a line of code in your site.
 
 = Demo =
-Usernoise demo is available at [karevn.com](http://karevn.com) - a "Feedback" button at the left.
+Usernoise demo is available at [karevn.com](http://usernoise.karevn.com) - a "Feedback" button at the left.
 
 = Go Pro =
 __[Usernoise Pro](http://codecanyon.net/item/usernoise-pro-advanced-modal-feedback-debug/1420436?ref=karevn)__ adds even more features, like:
@@ -28,6 +28,7 @@ __[Usernoise Pro](http://codecanyon.net/item/usernoise-pro-advanced-modal-feedba
 
 = Features =
 * Adds a customizable "Feedback" button and modal form to your site.
+* Responsive!
 * Bullet-proof visual design will work with any site template.
 * Spam-proof. Usernoise is designed in such a way that most of spam bots can't see its form.
 * Admin notifications, feedback archive available at admin area.
@@ -49,6 +50,7 @@ If you need Usernoise in your language which is not supported currently - you ca
 translating it. Don't worry, translating is extremely easy - just [download a localization template](http://plugins.svn.wordpress.org/usernoise/languages/usernoise.pot), edit it with your favorite text editor and send to email karev.n (at) gmail dot com. Your help will be really appreciated.
 
 __Available translations__
+
 * Arabic - by Ahmad Mohammad
 * Deutsch - by Alexander from [http://motday.tk/]
 * Brazilian - by Ricardo Silva
@@ -57,7 +59,7 @@ __Available translations__
 * Dutch - by Reggie Biemans
 * Finnish - by Teijo Kulmala
 * French - by Brad Coudray
-* Greek - by (Artemis Kasamoulis)[http://www.kasomoulis.com/]
+* Greek - by (Artemis Kasomoulis)[http://www.kasomoulis.com/]
 * Italian - by Omar D. Molteni aka CyberAngel
 * Lithuanian - by Vincent G from [host1free.com]
 * Hungarian - by Bálint
@@ -69,6 +71,7 @@ __Available translations__
 * Spanish - by Dario Doidos
 * Swedish - by  Mattias Thurfjell
 * Tamil - by Bagerathan Sivarajah
+* Turkish - by Can Türk
 * Ukrainian - by Vladyslav Cherednichenko
 
 
@@ -100,8 +103,67 @@ Having problems or need support? Feel free to email me - karev.n (at) gmail dot 
 
 == Changelog ==
 
+= 3.7.9 = 
+* XSS vulnerabilities fixed.
+* Added "Name" field to the form.
+
+= 3.7.8 =
+* Bug fixed: feedback editor page did not open without Pro installed.
+
+= 3.7.7 =
+* Mobile detection bugfix
+* Improved compatibility for feedback editor.
+
+= 3.7.6 = 
+* Bug fixed that disabled embedded Usernoise if "disable on mobiles" was enabled.
+* Removed the padding left at feedback tabs when icons are disabled
+
+= 3.7.5 =
+* RTL-related CSS fixes
+* Mobile detection using Mobile Detect library by Serban Ghita
+* An option to allow direct publishing.
+
+= 3.7.4 =
+* Warning fixed.
+* CSS fixes.
+* de_DE translation fix.
+
+= 3.7.3 =
+* Added an option to disable Feedback button and form icons for sake of Bootstrap compatibility.
+* Minor CSS fixes.
+
+= 3.7.2 =
+* On-page form bugfixes.
+
+= 3.7.1 =
+* Minor housekeeping...
+
+= 3.7 =
+* Editable field placeholders.
+* Updated .po files.
+* Turkish language.
+* Just use &lt;a href="#usernoise"&gt;link&lt;a&gt; to open Usernoise from anywhere.
+* Deutsch translation fixed.
+* Russian localization fixed.
+* Improved on-page mode.
+
+= 3.6.1 =
+* Icon on a feedback button added
+* More reliable database upgrade mechanism.
+
+= 3.6 =
+* Font Awesome instead of images for icons.
+* jQuery 1.9 compatibility fixed.
+
+= 3.5 =
+* jQuery 1.9 compatible
+* Responsive!
+
+= 3.0.10 =
+* Minor CSS and validation fixes.
+
 = 3.0.8 = 
-* Greek translation added, thanks to (Artemis Kasamoulis)[http://www.kasomoulis.com/]
+* Greek translation added, thanks to (Artemis Kasomoulis)[http://www.kasomoulis.com/]
 
 = 3.0.7 = 
 * Swedish translation updated.

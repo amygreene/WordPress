@@ -15,7 +15,8 @@ class UN_Feedback_List {
 	}
 	
 	public function action_admin_print_styles(){
-		wp_enqueue_style('un-admin', usernoise_url('/css/admin.css'));
+		wp_enqueue_style('un-admin', usernoise_url('/css/admin.css' . "?version=" . UN_VERSION));
+		wp_enqueue_style('un-admin-font-awesome', usernoise_url('/vendor/font-awesome/css/font-awesome.min.css' . "?version=" . UN_VERSION));
 	}
 	
 	public function action_admin_enqueue_scripts($type){
@@ -39,9 +40,10 @@ class UN_Feedback_List {
 		if ($column_name == 'un-type'){
 			$terms = wp_get_post_terms($post_id, FEEDBACK_TYPE);
 			if (!empty($terms)){
-				$un_h->tag('span',
-					array('class' => array('un-feedback-type', 'un-feedback-type-' . $terms[0]->slug))
-					);
+				echo "<span class='type'>";
+				$un_h->tag('i', array('class' => un_get_term_meta($terms[0]->term_id, 'icon')));
+				echo $terms[0]->name;
+				echo "</span>";
 			}
 		}
 	}

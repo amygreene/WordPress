@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Usernoise v3.6.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2013-04-26 11:40:40+0000\n"
 "Last-Translator: Nikolay Karev <karev.n@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3; plural=n%100/10==1 ? 2 : n%10==1 ? 0 : (n+9)%10>3 ? 2 : 1;\n"
+"X-Generator: CSL v1.x\n"
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -19,198 +20,165 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: inc/model.php:25
+#: inc/model.php:29
 #@ usernoise
 msgid "Add new"
 msgstr "Добавить"
 
-#: inc/model.php:26
+#: inc/model.php:30
 #@ usernoise
 msgid "Add new feedback"
 msgstr "Добавить отзыв"
 
-#: admin/feedback-list.php:56
+#: admin/feedback-list.php:58
 #@ usernoise
 msgid "All feedback types"
 msgstr "Все типы отзывов"
 
-#: admin/settings.php:72
-#: admin/settings.php:73
+#: admin/settings.php:91
+#: admin/settings.php:92
 #@ usernoise
 msgid "Ask for a summary"
 msgstr "Спрашивать заголовок отзыва"
 
-#: admin/settings.php:76
-#: admin/settings.php:77
+#: admin/settings.php:96
+#: admin/settings.php:97
 #@ usernoise
 msgid "Ask for an email"
 msgstr "Спрашивать email"
 
-#: admin/editor-page.php:76
+#: admin/editor-page.php:77
 #@ default
 msgid "Author"
 msgstr "Автор"
 
-#: admin/settings.php:50
+#: admin/settings.php:65
 #@ usernoise
 msgid "Background color"
 msgstr "Цвет фона кнопки"
 
-#: admin/settings.php:39
-#: admin/upgrade.php:42
+#: admin/settings.php:50
 #@ usernoise
 msgid "Button"
 msgstr "Кнопка"
 
-#: html/publish-meta-box.php:57
+#: html/publish-meta-box.php:46
 #@ default
 msgid "Delete Permanently"
 msgstr "Окончательно удалить"
 
-#: html/publish-meta-box.php:25
-#@ default
-msgid "Draft"
-msgstr "Черновик"
-
-#: inc/model.php:35
+#: inc/model.php:39
 #@ usernoise
 msgid "Feedback left by users using a form in a lightbox"
 msgstr "Отзывы через Usernoise"
 
-#: inc/model.php:31
+#: inc/model.php:35
 #@ usernoise
 msgid "Feedback not found"
 msgstr "Отзыв не найден"
 
-#: inc/model.php:32
+#: inc/model.php:36
 #@ usernoise
 msgid "Feedback not found in Trash"
 msgstr "Отзыв не найден в корзине"
 
-#: admin/settings.php:60
+#: admin/settings.php:78
 #@ usernoise
 msgid "Form title"
 msgstr "Заголовок формы"
 
-#: admin/settings.php:26
-#: vendor/plugin-options-framework/plugin-options-framework.php:393
+#: admin/settings.php:37
 #@ usernoise
-#@ default
 msgid "General"
 msgstr "Общие"
 
-#: html/window.php:31
-#: usernoise.php:81
+#: inc/db-upgrade.php:27
 #@ usernoise
-#@ default
 msgid "Idea"
 msgstr "Идея"
 
-#: admin/settings.php:63
+#: admin/settings.php:81
 #@ usernoise
 msgid "Introductional text"
 msgstr "Текст на форме"
 
-#: html/publish-meta-box.php:36
+#: html/publish-meta-box.php:25
 #@ default
 msgid "M j, Y @ G:i"
 msgstr "j M Y @ G:i"
 
-#: html/publish-meta-box.php:59
+#: html/publish-meta-box.php:48
 #@ default
 msgid "Move to Trash"
 msgstr "Удалить"
 
-#: admin/dashboard.php:15
-#: inc/model.php:28
+#: admin/dashboard.php:16
+#: inc/model.php:32
 #@ usernoise
 msgid "New feedback"
 msgstr "Новый отзыв"
 
-#: html/publish-meta-box.php:21
-#@ usernoise
-msgid "Pending Review"
-msgstr "Ждёт одобрения"
-
-#: inc/model.php:54
+#: inc/model.php:58
 #@ usernoise
 msgid "Please enter a summary."
 msgstr "Пожалуйста введите заголовок."
 
-#: inc/model.php:60
+#: inc/model.php:65
 #@ usernoise
 msgid "Please enter a valid email address."
 msgstr "Введите ваш email."
 
-#: inc/model.php:57
+#: inc/model.php:61
 #@ usernoise
 msgid "Please enter the feedback."
 msgstr "Пожалуйста введите отзыв."
 
-#: admin/settings.php:64
-#: inc/template.php:124
+#: admin/settings.php:82
+#: inc/template.php:126
 #@ usernoise
 msgid "Please tell us what do you think, any kind of feedback is highly appreciated."
 msgstr "Здесь вы можете высказать ваше мнение. Мы рады любым отзывам."
 
-#: html/window.php:34
-#: usernoise.php:82
+#: inc/db-upgrade.php:28
 #@ usernoise
 msgid "Praise"
 msgstr "Спасибо"
 
-#: html/publish-meta-box.php:12
-#@ default
-msgid "Privately Published"
-msgstr "Приватное"
-
-#: html/window.php:32
-#: usernoise.php:81
+#: inc/db-upgrade.php:27
 #@ usernoise
 msgid "Problem"
 msgstr "Проблема"
 
 #: admin/editor-page.php:29
-#: html/publish-meta-box.php:68
+#: html/publish-meta-box.php:56
+#: html/publish-meta-box.php:57
 #@ default
+#@ usernoise
 msgid "Publish"
 msgstr "Опубликовать"
 
-#: html/window.php:33
-#: usernoise.php:81
+#: inc/db-upgrade.php:27
 #@ usernoise
 msgid "Question"
 msgstr "Вопрос"
 
-#: html/publish-meta-box.php:15
-#: html/publish-meta-box.php:69
-#@ usernoise
-msgid "Reviewed"
-msgstr "Одобрить"
-
-#: html/publish-meta-box.php:18
-#@ default
-msgid "Scheduled"
-msgstr "Запланировано"
-
-#: inc/model.php:30
+#: inc/model.php:34
 #@ usernoise
 msgid "Search feedback"
 msgstr "Искать в отзывах"
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:296
+#: vendor/plugin-options-framework/plugin-options-framework.php:302
 #@ default
 msgid "Select a Color"
 msgstr "Выбор цвета"
 
-#: html/publish-meta-box.php:37
+#: html/publish-meta-box.php:26
 #, php-format
 #@ default
 msgid "Sent on: <b>%1$s</b>"
 msgstr "Отправлено: <b>%1$s</b>"
 
-#: html/window.php:40
-#: inc/controller.php:26
+#: admin/settings.php:94
 #@ usernoise
 msgid "Short summary"
 msgstr "Заголовок"
@@ -220,113 +188,112 @@ msgstr "Заголовок"
 msgid "Status:"
 msgstr "Статус:"
 
-#: admin/settings.php:80
+#: admin/settings.php:101
 #@ usernoise
 msgid "Submit button text"
 msgstr "Текст кнопки отправки"
 
-#: admin/settings.php:81
-#: inc/template.php:119
+#: admin/settings.php:102
+#: inc/template.php:121
 #@ usernoise
 msgid "Submit feedback"
 msgstr "Отправить отзыв"
 
-#: admin/settings.php:44
+#: admin/settings.php:55
 #@ usernoise
 msgid "Text"
 msgstr "Текст"
 
-#: admin/settings.php:47
+#: admin/settings.php:62
 #@ usernoise
 msgid "Text color"
 msgstr "Цвет текста"
 
-#: admin/settings.php:85
-#: html/window.php:55
+#: admin/settings.php:106
+#: html/thankyou.php:2
 #@ usernoise
 msgid "Thank you"
 msgstr "Спасибо за отзыв"
 
-#: admin/settings.php:82
+#: admin/settings.php:103
 #@ usernoise
 msgid "Thank you screen"
 msgstr "После отправки"
 
-#: admin/settings.php:84
+#: admin/settings.php:105
 #@ usernoise
 msgid "Thank you screen title"
 msgstr "Заголовок"
 
-#: admin/settings.php:87
+#: admin/settings.php:108
 #@ usernoise
 msgid "Thank you text"
 msgstr "Текст"
 
-#: admin/feedback-list.php:33
+#: admin/feedback-list.php:34
 #@ usernoise
 msgid "Type"
 msgstr "Тип отзыва"
 
-#: html/publish-meta-box.php:71
+#: html/publish-meta-box.php:59
+#: html/publish-meta-box.php:60
 #@ default
 msgid "Update"
 msgstr "Сохранить"
 
 #: admin/menu.php:14
-#: inc/model.php:33
+#: inc/model.php:37
 #@ usernoise
 msgid "Usernoise"
 msgstr "Usernoise"
 
-#: admin/settings.php:13
+#: admin/settings.php:14
 #@ usernoise
 msgid "Usernoise settings"
 msgstr "Настройки Usernoise"
 
-#: inc/model.php:27
-#: inc/model.php:29
+#: inc/model.php:31
+#: inc/model.php:33
 #@ usernoise
 msgid "View feedback"
 msgstr "Просмотр отзыва"
 
-#: html/window.php:43
-#: inc/controller.php:30
+#: admin/settings.php:99
 #@ usernoise
 msgid "Your email (will not be published)"
 msgstr "Ваш email (не будет опубликован)"
 
-#: html/window.php:38
-#: inc/controller.php:28
+#: admin/settings.php:85
 #@ usernoise
 msgid "Your feedback"
 msgstr "Текст отзыва"
 
-#: admin/settings.php:88
-#: html/window.php:57
+#: admin/settings.php:109
+#: html/thankyou.php:4
 #@ usernoise
 msgid "Your feedback has been received."
 msgstr "Ваш отзыв был получен и отправлен администратору."
 
-#: inc/model.php:21
-#: inc/model.php:23
-#: inc/model.php:24
+#: inc/model.php:25
+#: inc/model.php:27
+#: inc/model.php:28
 #@ usernoise
 msgctxt "admin"
 msgid "Feedback"
 msgstr "Отзывы"
 
-#: admin/settings.php:45
+#: admin/settings.php:56
 #@ usernoise
 msgctxt "button"
 msgid "Feedback"
 msgstr "Отзывы"
 
-#: inc/model.php:90
+#: inc/model.php:96
 #@ default
 msgid "feedback"
 msgstr "отзыв"
 
-#: admin/settings.php:61
+#: admin/settings.php:79
 #@ usernoise
 msgctxt "form"
 msgid "Feedback"
@@ -338,17 +305,17 @@ msgstr "Обратная связь"
 msgid "Usernoise %s"
 msgstr ""
 
-#: admin/dashboard.php:32
+#: admin/dashboard.php:33
 #@ default
 msgid "by"
 msgstr ""
 
-#: admin/dashboard.php:42
+#: admin/dashboard.php:43
 #@ usernoise
 msgid "View all feedback"
 msgstr "Все отзывы"
 
-#: admin/dashboard.php:45
+#: admin/dashboard.php:46
 #@ usernoise
 msgid "No new feedback now."
 msgstr "Новых отзывов нет"
@@ -360,49 +327,49 @@ msgstr "Отзыв одобрен"
 
 #: admin/admin-bar.php:30
 #: admin/menu.php:16
-#: html/window.php:23
+#: html/window.php:26
 #: vendor/plugin-options-framework/plugin-options-framework.php:95
 #@ usernoise
 #@ default
 msgid "Settings"
 msgstr "Настройки"
 
-#: admin/settings.php:31
+#: admin/settings.php:42
 #@ usernoise
 msgid "Show Powered by"
 msgstr "Показывать Powered by"
 
-#: admin/settings.php:23
+#: admin/settings.php:34
 #@ default
 msgid "Left"
 msgstr ""
 
-#: admin/settings.php:23
+#: admin/settings.php:34
 #@ default
 msgid "Right"
 msgstr ""
 
-#: admin/settings.php:23
+#: admin/settings.php:34
 #@ default
 msgid "Top"
 msgstr ""
 
-#: admin/settings.php:24
+#: admin/settings.php:35
 #@ default
 msgid "Bottom"
 msgstr ""
 
-#: admin/settings.php:53
+#: admin/settings.php:68
 #@ usernoise
 msgid "Show border"
 msgstr "Показывать белую обводку"
 
-#: admin/settings.php:41
+#: admin/settings.php:52
 #@ usernoise
 msgid "Position"
 msgstr "Расположение"
 
-#: admin/settings.php:102
+#: admin/settings.php:123
 #@ default
 msgid "General Options"
 msgstr ""
@@ -412,21 +379,16 @@ msgstr ""
 msgid "Powered by"
 msgstr ""
 
-#: html/publish-meta-box.php:72
-#@ default
-msgid "OK"
-msgstr ""
-
 #: html/reply-meta-box.php:4
 #@ usernoise
 msgid "Subject"
 msgstr "Тема"
 
 #: admin/admin-bar.php:23
+#: admin/settings.php:159
 #: html/reply-meta-box.php:5
-#: html/window.php:20
-#: inc/integration.php:21
-#: inc/template.php:115
+#: html/window.php:23
+#: inc/template.php:117
 #@ usernoise
 msgid "Feedback"
 msgstr "Отзывы"
@@ -436,7 +398,7 @@ msgstr "Отзывы"
 msgid "Send"
 msgstr "Отправить"
 
-#: inc/template.php:71
+#: inc/template.php:75
 #@ usernoise
 msgid "or"
 msgstr "или"
@@ -447,82 +409,62 @@ msgstr "или"
 msgid "Usernoise is disabled now. You can enable and configure it at the <a href=\"%s\">settings page</a>."
 msgstr "Плагин <strong>Usernoise</strong> выключен. Вы можете включить его на <a href=\"%s\">странице настроек</a>"
 
-#: admin/settings.php:28
+#: admin/settings.php:39
 #@ usernoise
 msgid "Enable Usernoise"
 msgstr "Включить Usernoise"
 
-#: admin/settings.php:98
+#: admin/settings.php:119
 #, php-format
 #@ usernoise
 msgid "Notification emails will be sent to: <a href=\"mailto:%s\">%s</a>"
 msgstr "Оповещения будут отправляться на адрес: <a href=\"mailto:%s\">%s</a>"
 
-#: admin/settings.php:101
+#: admin/settings.php:122
 #, php-format
 #@ usernoise
 msgid "(you can change it at <a href=\"%s\">%s</a> page)."
 msgstr "(вы можете изменить его на странице <a href=\"%s\">%s</a>)."
 
-#: inc/model.php:91
+#: inc/model.php:97
 #, php-format
-#@ default
+#@ usernoise
 msgid "A new %s has been submitted. View it: <a href=\"%s\">%s</a>."
-msgstr ""
+msgstr "Был получен новый отзыв типа %s. Вы можете Просмотреть его здесь: <a href=\\\"%s\\\">%s</a>."
 
-#: inc/model.php:99
+#: inc/model.php:105
 #, php-format
 #@ default
 msgid "New %s submitted at %s"
 msgstr ""
 
-#: inc/model.php:152
-#@ usernoise
-msgid "ideas"
-msgstr "идеи"
-
-#: inc/model.php:153
-#@ usernoise
-msgid "questions"
-msgstr "вопросы"
-
-#: inc/model.php:154
-#@ usernoise
-msgid "problems"
-msgstr "проблемы"
-
-#: inc/model.php:155
-#@ usernoise
-msgid "praises"
-msgstr "благодарности"
-
-#: admin/settings.php:65
-#: admin/settings.php:89
+#: admin/settings.php:83
+#: admin/settings.php:110
 #@ default
 msgid "This text will be wrapped into &lt;p&gt; tag. You can still use HTML code."
 msgstr ""
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:151
+#: vendor/plugin-options-framework/plugin-options-framework.php:159
 #@ default
 msgid "Please provide some settings fields when creating an options framework instance"
 msgstr ""
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:218
+#: vendor/plugin-options-framework/plugin-options-framework.php:224
 #@ default
 msgid "Save Options"
 msgstr ""
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:219
+#: vendor/plugin-options-framework/plugin-options-framework.php:225
 #@ default
 msgid "Restore Defaults"
 msgstr ""
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:219
+#: vendor/plugin-options-framework/plugin-options-framework.php:225
 #@ default
 msgid "Click OK to reset. All the settings will be reset to defaults!"
 msgstr ""
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:330
+#: vendor/plugin-options-framework/plugin-options-framework.php:336
 #@ default
 msgid "Upgrade to WordPress 3.3 or later to enable WYSIWYG editor"
 msgstr ""
@@ -542,147 +484,131 @@ msgstr ""
 msgid "WordPress Debug Info"
 msgstr "Отладочная информация WordPress"
 
-#: admin/settings.php:32
+#: admin/settings.php:43
 #@ usernoise
 msgid "Show <strong>\"Powered by Usernoise\"</strong> link at the modal window. Check this, please!"
 msgstr "Показывать в модальном окне Powered by Usernoise. Включите, пожалуйста."
 
-#: admin/settings.php:34
+#: admin/settings.php:45
 #@ default
 msgid "The link will only be visible at the modal window."
 msgstr ""
 
-#: admin/settings.php:36
-#: admin/settings.php:37
+#: admin/settings.php:47
+#: admin/settings.php:48
 #@ usernoise
 msgid "Disable on mobile devices"
 msgstr "Отключать на мобильных телефонах"
 
-#: admin/settings.php:57
-#: admin/settings.php:58
+#: admin/settings.php:72
+#: admin/settings.php:73
 #@ usernoise
 msgid "Form"
 msgstr "Форма"
 
-#: admin/settings.php:68
-#: admin/settings.php:69
+#: admin/settings.php:87
+#: admin/settings.php:88
 #@ usernoise
 msgid "Ask for feedback type"
 msgstr "Показывать тип отзыва"
 
-#: admin/settings.php:92
+#: admin/settings.php:113
 #@ usernoise
 msgid "Notifications"
 msgstr "Оповещения"
 
-#: admin/settings.php:94
+#: admin/settings.php:115
 #@ usernoise
 msgid "New feedback received admin notification"
 msgstr "Оповещение админа об отзыве"
 
-#: admin/settings.php:95
+#: admin/settings.php:116
 #@ usernoise
 msgid "Enable"
 msgstr "Включить"
 
-#: admin/settings.php:115
+#: admin/settings.php:136
 #@ usernoise
 msgid "Notifications do not work right?"
 msgstr "Оповещения не доходят?"
 
-#: admin/upgrade.php:18
-#@ usernoise
-msgid "Pro Settings"
-msgstr "Настройки Pro"
-
-#: admin/upgrade.php:19
-#: admin/upgrade.php:20
-#@ usernoise
-msgid "Upgrade to Pro"
-msgstr "Купить Pro"
-
-#: admin/upgrade.php:21
-#, php-format
-#@ usernoise
-msgid "Please <a href=\"%s\" class=\"un-upgrade\" target='_new'>Upgrade to Pro</a> to enable the settings below."
-msgstr "Пожалуйста <a href=\"%s\" class=\"un-upgrade\" target='_new'>купите Pro</a> чтобы включить эти настройки."
-
-#: admin/upgrade.php:26
-#: admin/upgrade.php:27
-#@ usernoise
-msgid "Enable feedback list &amp; discussions."
-msgstr "Включить комментарии для отзывов."
-
-#: admin/upgrade.php:30
-#: admin/upgrade.php:36
-#@ usernoise
-msgid "Screenshots"
-msgstr "Скриншоты"
-
-#: admin/upgrade.php:34
-#: admin/upgrade.php:35
-#@ usernoise
-msgid "Gather advanced debug info"
-msgstr "Собирать расширенную отладочную информацию"
-
-#: admin/upgrade.php:44
-#: admin/upgrade.php:45
-#@ usernoise
-msgid "Hide Feedback button"
-msgstr "Спрятать кнопку отзывов"
-
-#: admin/upgrade.php:46
-#@ usernoise
-msgid "You can hide Feedback button to show it programmatically."
-msgstr "Вы можете спрятать кнопку отзывов чтобы показывать окошко Usernoise с помощью Javascript по своему усмотрению."
-
-#: admin/upgrade.php:49
-#@ usernoise
-msgid "Alternate \"Feedback\" button ID"
-msgstr "ID вашей собственной кнопки отзывов"
-
-#: admin/upgrade.php:51
-#@ usernoise
-msgid "Usernoise window will be shown upon click of element with that ID. For example, if you have the next link: <code>&lt;a href=\"#\" id=\"my-link\"&gt;some link&lt;/a&gt;</code>, put \"my-link\" here."
-msgstr "Вы можете поместить в это поле ID вашей собственной кнопки. К примеру, если у вас есть ссылка: <code>&lt;a href=\"#\" id=\"my-link\"&gt;some link&lt;/a&gt;</code>, поместите сюда \"my-link\"."
-
-#: admin/upgrade.php:54
-#@ usernoise-pro
-msgid "Custom CSS properties"
-msgstr ""
-
-#: admin/upgrade.php:55
-#@ usernoise-pro
-msgid "Usernoise button custom CSS properties. Remove /* and */ to enable. Don't put here HTML tags."
-msgstr ""
-
-#: admin/upgrade.php:59
-#@ usernoise-pro
-msgid "Form design"
-msgstr ""
-
-#: admin/upgrade.php:61
-#@ usernoise-pro
-msgid "Custom CSS for Usernoise window"
-msgstr ""
-
-#: admin/upgrade.php:63
-#@ usernoise-pro
-msgid "You can override the form's style by applying your own CSS. Don't forget to remove comment symbols and do not put HTML tags here."
-msgstr ""
-
-#: html/window.php:14
+#: html/window.php:17
 #@ usernoise
 msgid "Close"
 msgstr "Закрыть"
 
-#: vendor/plugin-options-framework/plugin-options-framework.php:171
+#: vendor/plugin-options-framework/plugin-options-framework.php:179
 #@ default
 msgid "This page requires JavaScript to be enabled in your browser. Please enable JavaScript."
 msgstr ""
 
-#: admin/settings.php:116
+#: admin/settings.php:137
 #@ usernoise
 msgid "Check out <a href='http://codecanyon.net/item/all-in-one-email-for-wordpress/1290390?ref=karevn'>All in One Email plugin</a>. It adds email options missing in WordPress natively."
 msgstr "Попробуйте плагин <a href='http://codecanyon.net/item/all-in-one-email-for-wordpress/1290390?ref=karevn'>All in One Email</a>. Он добавляет в WordPress настройки отправки почты, которых там так не хватает."
+
+#: admin/settings.php:58
+#@ usernoise
+msgid "No icon"
+msgstr "Без иконки"
+
+#: admin/settings.php:74
+#@ usernoise
+msgid "Font"
+msgstr "Шрифт"
+
+#: admin/settings.php:85
+#@ usernoise
+msgid "Textarea placeholder"
+msgstr "Текст в поле отзыва"
+
+#: admin/settings.php:94
+#@ usernoise
+msgid "Summary field placeholder"
+msgstr "Текст в поле заголовка."
+
+#: admin/settings.php:99
+#@ usernoise
+msgid "Email field placeholder"
+msgstr "Текст в поле Email"
+
+#: admin/upgrade.php:18
+#@ default
+msgid "Go Pro"
+msgstr ""
+
+#: html/publish-meta-box.php:12
+#@ default
+msgid "Published"
+msgstr ""
+
+#: html/publish-meta-box.php:15
+#@ default
+msgid "Hidden"
+msgstr ""
+
+#: inc/db-upgrade.php:10
+#@ usernoise
+msgid "Ideas"
+msgstr "Идеи"
+
+#: inc/db-upgrade.php:10
+#@ usernoise
+msgid "Questions"
+msgstr "Вопросы"
+
+#: inc/db-upgrade.php:10
+#@ usernoise
+msgid "Problems"
+msgstr "Проблемы"
+
+#: inc/db-upgrade.php:10
+#@ usernoise
+msgid "Praises"
+msgstr "Благодарности"
+
+#: admin/settings.php:57
+#@ usernoise
+msgid "Button Icon"
+msgstr "Иконка на кнопке"
 

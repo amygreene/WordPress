@@ -15,6 +15,7 @@ class UN_Admin_Menu {
 			get_post_type_object(FEEDBACK)->cap->edit_posts, $feedback_slug);
 		add_submenu_page($feedback_slug, __('Settings', 'usernoise'), __('Settings', 'usernoise'), 
 			'manage_options', 'options-general.php?page=usernoise');
+		do_action('un_add_submenu', $feedback_slug);
 	}
 }
 
