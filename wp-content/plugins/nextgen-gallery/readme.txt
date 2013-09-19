@@ -119,6 +119,10 @@ For more information, feel free to visit the official website for the NextGEN Ga
 == Frequently Asked Questions ==
 
 
+= Why are my galleries not opening up in a lightbox after I move my site? =
+
+This is often due to the URL paths to the CSS and JavaScript files used by the Lightbox Effects not being changed to relevant addresses based on the new site. This article will help sort out this issue if that is the case: <a href="http://www.nextgen-gallery.com/galleries-opening-lightbox/" target="_blank">Why are my galleries not opening up in a lightbox?</a>. 
+
 = Do you have documentation or tutorials? =
 
 Yes. See <a href="http://www.nextgen-gallery.com/help/" target="_blank">NextGEN Gallery Documentation</a>.
@@ -194,6 +198,12 @@ For more information, feel free to visit the official website for the NextGEN Ga
 
 
 == Changelog ==
+
+= V2.0.27 - 09.18.2013 =
+* Fixed:   Reduce performance impact of purging displayed gallery transients
+
+= V2.0.25 - 09.18.2013 =
+* Reverting to the 2.0.21 codebase, due to major performance issues in 2.0.23 and 2.0.24
 
 = V2.0.23 - 09.16.2013 =
 * NEW:     WP-Cron job to periodically clean-up displayed gallery transients

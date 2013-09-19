@@ -1,7 +1,17 @@
 NextGEN Gallery
 by Photocrati Media
 
+= V2.0.27 - 09.18.2013 =
+* Fixed:   Reduce performance impact of purging displayed gallery transients
+
+= V2.0.25 - 09.18.2013 =
+* Changed: Reverting to the 2.0.21 codebase, due to major performance issues in 2.0.23 and 2.0.24
+
+= V2.0.24 - 09.18.2013 =
+* WARNING: Broken release. Uses wp_clear_scheduled_hooks() to purge cron records
+
 = V2.0.23 - 09.12.2013 =
+* WARNING: Broken release. Major bug creates redundant cron jobs
 * NEW:     WP-Cron job to periodically clean-up displayed gallery transients
 * NEW:     Added "excluded_container_ids" as parameter for ngg_images shortcode
 * Fixed:   Lightbox effect is honoured by all display types
