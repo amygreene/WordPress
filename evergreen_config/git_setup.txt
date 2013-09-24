@@ -1,0 +1,47 @@
+###Initial setup for local dev build:###
+
+#clone repo to local dev
+git clone https://github.com/amygreene/WordPress.git
+
+#checkout new branch based on closest wp development branch
+git checkout -b 3.6.1_ev_stable origin/3.6-branch
+
+#add .gitignore
+
+#run install (or copy over existing wp-config.php and .htaccess)
+#Upgrade to latest stable version: run wp update from dashboard to get to latest stable release
+#commit changes from update to local stable branch
+
+#add plugins and symlinked premium plugins to wp-content/plugins, add mu-plugins
+#make sure wpcas-conf.php is in .gitignore and is not committed
+
+#copy over themes and symlinked premium themes
+
+#add subrepos for custom themes
+git submodule add https://github.com/amygreene/wp_evergreen-twentyeleven-planet.git
+git submodule add https://github.com/amygreene/wp_evergreen-twenty-eleven.git 
+
+# after commits push new branch to origin
+git push -u origin 3.6.1_ev_stable
+
+
+### Deploy on Test/Prod ###
+git clone https://github.com/amygreene/WordPress.git wordpress
+#Checkout remote stable branch
+git checkout -b 3.6.1_ev_stable origin/3.6.1_ev_stable
+
+#initialize and update submodule (for custom themes)
+git submodule init
+git submodule update
+
+#copy over wp-config.php, .htacess, wpcas-conf.php and modify with new path(s)
+#create symlink in wp-content to blogs.dir
+ln -s /var/data_files/blogstest/files/blogs.dir/ blogs.dir
+
+#copy wp_plugins_private and wp_themes_private to html root
+
+#run access script - Note: if after running access script git status tells there are modified files in repo and/or subrepo try
+git config core.filemode false  //to remove tracking of security bit
+
+#change pointer in blogs.conf
+#restart apache

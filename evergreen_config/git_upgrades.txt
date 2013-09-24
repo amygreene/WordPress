@@ -1,0 +1,38 @@
+### Upgrade wordpress version ###
+
+##on local dev##
+#create new custom branch based on previous branch (current checked-out out branch)
+git checkout -b 3.6.2_ev_stable
+
+#run update via dashboard and test
+
+#push to origin
+git push -u origin 3.6.2_ev_stable
+
+
+##on prod/test##
+#backup db
+#turn-off network enabled plugins (note google analytics code)
+#pull down updated version
+git pull origin
+
+#switch to new code branch
+git checkout -b 3.6.2_ev_stable origin/3.6.2_ev_stable
+
+#check to make sure key files weren’t affected (should be in .gitignore)
+#upgrade database
+#upgrade network
+#test
+
+
+
+### Upgrading plugins via wordpress update ###
+#Note: premium plugins must be manually updated (automatic updater breaks install of plugin because of location outside of root of wordpress)
+
+#update/test on local dev using built-in plugin updater
+git add .
+git commit -m “notes go here”
+git push origin
+
+#on prod/test pull down changes
+git pull origin
