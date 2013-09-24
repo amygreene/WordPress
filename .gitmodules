@@ -4,3 +4,6 @@
 [submodule "wp-content/themes/evergreen-twentyeleven-planet"]
 	path = wp-content/themes/evergreen-twentyeleven-planet
 	url = https://github.com/amygreene/wp_evergreen-twentyeleven-planet.git
+[submodule "wp-content/themes/evergreen-twentyeleven-wide"]
+	path = wp-content/themes/evergreen-twentyeleven-wide
+	url = https://github.com/amygreene/wp_evergreen-twentyeleven-wide.git
