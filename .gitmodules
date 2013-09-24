@@ -7,3 +7,6 @@
 [submodule "wp-content/themes/evergreen-twentyeleven-wide"]
 	path = wp-content/themes/evergreen-twentyeleven-wide
 	url = https://github.com/amygreene/wp_evergreen-twentyeleven-wide.git
+[submodule "wp-content/themes/evergreen-twentyeleven-alphasort"]
+	path = wp-content/themes/evergreen-twentyeleven-alphasort
+	url = https://github.com/amygreene/wp_evergreen-twentyeleven-alphasort.git
