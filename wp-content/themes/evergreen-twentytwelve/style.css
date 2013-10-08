@@ -21,17 +21,13 @@ body .site {
     background-color: #64933A;
     width:100%;
 	text-align:left;
+	border-bottom:1px solid #999999;
 }
 #top-evergreen img {
 	padding: 5px 10px 5px 10px;
 	padding: 0.357142857rem 0.714285714rem;
 	width: 221px;	
 }
-
-
-
-
-
 
 
 @media screen and (max-width: 600px) {
