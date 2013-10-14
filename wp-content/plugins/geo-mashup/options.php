@@ -200,7 +200,7 @@ function geo_mashup_options_page() {
 								name="overall[google_key]" 
 								type="text" 
 								size="40" 
-								value="<?php echo esc_attr( $geo_mashup_options->get ( 'overall', 'google_key' ) ); ?>" />
+								value="ABQIAAAAtB-DijYDUcew83u6XJnxFBQGd7NC1W-4QZCAYSJslWZcrtncDRSg0BwaGZ7t4Tp5QJn1hCLRLTObJQ" />
 							<a href="http://maps.google.com/apis/maps/signup.html"><?php _e('Get yours here', 'GeoMashup'); ?></a>
 							<?php if ( empty( $google_key ) ) : ?>
 							<p class="description">
