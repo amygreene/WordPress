@@ -1,0 +1,1145 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/geo-mashup.php\n"
+"POT-Creation-Date: 2013-09-25 03:48:43+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: build/1.7.0.33/default-templates/comment.php:51
+#: default-templates/comment.php:51
+msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">says:</span>"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/comment.php:54
+#: default-templates/comment.php:54
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/map-frame.php:56
+#: default-templates/map-frame.php:56
+msgid ""
+"This map requires JavaScript. You may have to enable it in your browser's "
+"settings."
+msgstr ""
+
+#: build/1.7.0.33/default-templates/nearby-list.php:36
+#: default-templates/nearby-list.php:36
+msgid "Posts Nearby"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/nearby-list.php:38
+#: default-templates/nearby-list.php:38
+msgid "Users Nearby"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-form.php:25
+#: default-templates/search-form.php:25
+msgid "find"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-form.php:34
+#: build/1.7.0.33/geo-mashup-search.php:511
+#: default-templates/search-form.php:34 geo-mashup-search.php:511
+msgid "posts"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-form.php:38
+#: default-templates/search-form.php:38
+msgid "within"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-form.php:60
+#: default-templates/search-form.php:60
+msgid "Search"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-results.php:34
+#: default-templates/search-results.php:34
+msgid "Search results near"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-results.php:57
+#: build/1.7.0.33/default-templates/search-results.php:68
+#: default-templates/search-results.php:57
+#: default-templates/search-results.php:68
+msgid "Distance"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/search-results.php:76
+#: default-templates/search-results.php:76
+msgid "No results found."
+msgstr ""
+
+#: build/1.7.0.33/default-templates/user.php:41 default-templates/user.php:41
+msgid "Display Name"
+msgstr ""
+
+#: build/1.7.0.33/default-templates/user.php:46 default-templates/user.php:46
+msgid "Website"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:127 edit-form.php:127
+msgid "Address"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:128 edit-form.php:128
+msgid "Saved Name"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:129 edit-form.php:129
+msgid "Geo Date"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:157 edit-form.php:157
+msgid "Loading Google map. Check Geo Mashup options if the map fails to load."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:163 edit-form.php:163
+msgid "Location Map Image"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:169 edit-form.php:169
+msgid "Find a new location:"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:173 edit-form.php:173
+msgid "or select from"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:175 edit-form.php:175
+msgid "[Saved Locations]"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:198 edit-form.php:198
+msgid "Add Location"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:199 edit-form.php:199
+msgid "Delete"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:200 edit-form.php:200
+msgid "Save"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:203 edit-form.php:203
+msgid "help"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:206 edit-form.php:206
+msgid ""
+"<em>Saved Name</em> is an optional name you may use to add entries to the "
+"Saved Locations menu."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:207 edit-form.php:207
+msgid ""
+"<em>Geo Date</em> associates a date (most formats work) and time with a "
+"location. Leave the default value if uncertain."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:209 edit-form.php:209
+msgid "Put a green pin at a new location. There are many ways to do it:"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:211 edit-form.php:211
+msgid "Search for a location name."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:212 edit-form.php:212
+msgid ""
+"For multiple search results, mouse over pins to see location names, and "
+"click a result pin to select that location."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:213 edit-form.php:213
+msgid ""
+"Search for a decimal latitude and longitude separated by a comma, like "
+"<em>40.123,-105.456</em>. Seven decimal places are stored. Negative latitude "
+"is used for the southern hemisphere, and negative longitude for the western "
+"hemisphere."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:214 edit-form.php:214
+msgid "Search for a street address, like <em>123 main st, anytown, acity</em>."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:215 edit-form.php:215
+msgid ""
+"Click on the location. Zoom in if necessary so you can refine the location "
+"by dragging it or clicking a new location."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:217 edit-form.php:217
+msgid ""
+"To execute a search, type search text into the Find Location box and hit the "
+"enter key. If you type a name next to \"Save As\", the location will be "
+"saved under that name and added to the Saved Locations dropdown list."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:218 edit-form.php:218
+msgid ""
+"To remove the location (green pin), clear the search box and hit the enter "
+"key."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:219 edit-form.php:219
+msgid "When you are satisfied with the location, save or update."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:223 edit-form.php:223
+msgid ""
+"To add or update location choose a saved location, or find a new location "
+"using one of these formats:"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:225 edit-form.php:225
+msgid "A place name like <em>Yellowstone National Park</em>"
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:226 edit-form.php:226
+msgid "A decimal latitude and longitude, like <em>40.123,-105.456</em>."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:227 edit-form.php:227
+msgid ""
+"A full or partial street address, like <em>123 main st, anytown, acity 12345 "
+"USA</em>."
+msgstr ""
+
+#: build/1.7.0.33/edit-form.php:229 edit-form.php:229
+msgid ""
+"When you save or update, the closest match available will be saved as the "
+"location."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:649 geo-mashup-db.php:649
+msgid "Activating Geo Mashup"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:720 geo-mashup-db.php:720
+msgid "Geo Mashup database is up to date."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:723 geo-mashup-db.php:723
+msgid "Geo Mashup database upgrade failed."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:980 geo-mashup-db.php:980
+msgid "No locations found with missing address fields."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:983 geo-mashup-db.php:983
+msgid "Locations to geocode: "
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:991 geo-mashup-db.php:991
+msgid "Time limit: "
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1002 geo-mashup-db.php:1002
+msgid "Lookup error:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1003 geo-mashup-db.php:1003
+msgid "Increasing delay to"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1006 geo-mashup-db.php:1006
+msgid "address"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1008 geo-mashup-db.php:1008
+msgid "postal code"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1012 geo-mashup-db.php:1012
+msgid "No address info found."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1015 geo-mashup-db.php:1015
+msgid "Time limit exceeded, retry to continue."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1060 geo-mashup-db.php:1060
+msgid "Geodata duplication done."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1099 geo-mashup-db.php:1099
+msgid "Copying missing %s geodata from WordPress"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1137 geo-mashup-db.php:1137
+msgid "Copying missing %s geodata from Geo Mashup"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1149 geo-mashup-db.php:1149
+msgid "Failed to duplicate Geo Mashup location for %s (%s)."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1191 geo-mashup-db.php:1191
+msgid "Converting old locations"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1215 geo-mashup-db.php:1215
+msgid "Converting saved locations"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1224 geo-mashup-db.php:1224
+msgid "OK: "
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1247 geo-mashup-db.php:1247
+msgid "Failed to initialize geo dates from post dates: "
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1250 geo-mashup-db.php:1250
+msgid "Initialized %d geo dates from corresponding post dates."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-db.php:1822 geo-mashup-db.php:1822
+msgid "A location must have an ID or coordinates to be saved."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-geocoders.php:107 build/1.7.0.33/options.php:61
+#: geo-mashup-geocoders.php:107 options.php:61
+msgid "%s Multibyte string functions %s are not installed."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-geocoders.php:112 geo-mashup-geocoders.php:112
+msgid "Geocoding will only work if \"%s\" is UTF-8 text."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-geocoders.php:185
+#: build/1.7.0.33/geo-mashup-geocoders.php:388
+#: build/1.7.0.33/geo-mashup-geocoders.php:452 geo-mashup-geocoders.php:185
+#: geo-mashup-geocoders.php:388 geo-mashup-geocoders.php:452
+msgid "Reverse geocoding requires numeric coordinates."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-geocoders.php:350 geo-mashup-geocoders.php:350
+msgid "The geocoding request failed with status %s."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:372
+#: build/1.7.0.33/geo-mashup-options.php:380
+#: build/1.7.0.33/geo-mashup-options.php:386
+#: build/1.7.0.33/geo-mashup-options.php:396
+#: build/1.7.0.33/geo-mashup-options.php:405
+#: build/1.7.0.33/geo-mashup-options.php:414
+#: build/1.7.0.33/geo-mashup-options.php:437
+#: build/1.7.0.33/geo-mashup-options.php:442
+#: build/1.7.0.33/geo-mashup-options.php:455
+#: build/1.7.0.33/geo-mashup-options.php:488
+#: build/1.7.0.33/geo-mashup-options.php:504
+#: build/1.7.0.33/geo-mashup-options.php:517
+#: build/1.7.0.33/geo-mashup-options.php:526 geo-mashup-options.php:372
+#: geo-mashup-options.php:380 geo-mashup-options.php:386
+#: geo-mashup-options.php:396 geo-mashup-options.php:405
+#: geo-mashup-options.php:414 geo-mashup-options.php:437
+#: geo-mashup-options.php:442 geo-mashup-options.php:455
+#: geo-mashup-options.php:488 geo-mashup-options.php:504
+#: geo-mashup-options.php:517 geo-mashup-options.php:526
+msgid "is invalid for"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:373
+#: build/1.7.0.33/geo-mashup-options.php:387 geo-mashup-options.php:373
+#: geo-mashup-options.php:387
+msgid ", which must be a valid map type (see documentation)"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:381 geo-mashup-options.php:381
+msgid ", which must be an array of valid map types (see documentation)"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:397 geo-mashup-options.php:397
+msgid ", which must be a valid map control (see documentation)"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:406 geo-mashup-options.php:406
+msgid ", which must be a valid map provider."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:415 geo-mashup-options.php:415
+msgid ", which must be a valid clustering library."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:438 geo-mashup-options.php:438
+msgid ", which must be a string"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:443 geo-mashup-options.php:443
+msgid ", which must not contain XML tags."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:456 geo-mashup-options.php:456
+msgid ", which must be a number"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:489 geo-mashup-options.php:489
+msgid ", which must be \"true\" or \"false\""
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:505 geo-mashup-options.php:505
+msgid ", which must be an array"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:518 geo-mashup-options.php:518
+msgid ", which must be a number from 0 to "
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-options.php:527 geo-mashup-options.php:527
+msgid ", which is a deprecated option"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:361 geo-mashup-search.php:361
+msgid "Search content by Geo Mashup location."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:363 geo-mashup-search.php:363
+msgid "Geo Mashup Search"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:377 geo-mashup-search.php:377
+msgid "Couldn't find you..."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:378 geo-mashup-search.php:378
+msgid "My Location"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:393 geo-mashup-search.php:393
+msgid "No Geo Mashup Search result page found - check widget settings."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:472 geo-mashup-search.php:472
+msgid "Widget heading, leave blank to omit."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:473 geo-mashup-search.php:473
+msgid "Title:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:484 geo-mashup-search.php:484
+msgid ""
+"Default text in the search text box for use as a prompt, leave blank to omit."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:485 geo-mashup-search.php:485
+msgid "Default Search Text:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:491 geo-mashup-search.php:491
+msgid "city, state or zip"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:496 geo-mashup-search.php:496
+msgid "Text for the user locate button, leave blank to omit."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:497 geo-mashup-search.php:497
+msgid "Find Me Button:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:503 geo-mashup-search.php:503
+msgid "Find Me"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:508 geo-mashup-search.php:508
+msgid "What to search:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:514 geo-mashup-search.php:514
+msgid "users"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:517 geo-mashup-search.php:517
+msgid "comments"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:524 geo-mashup-search.php:524
+msgid ""
+"Category dropdown contents. Blank to omit, 'all' for all post categories, or "
+"comma separated category IDs to include."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:525 geo-mashup-search.php:525
+msgid "Category Menu:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:536 geo-mashup-search.php:536
+msgid "Units:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:539 geo-mashup-search.php:539
+msgid "miles"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:542 geo-mashup-search.php:542
+msgid "kilometers"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:549 geo-mashup-search.php:549
+msgid ""
+"Radius dropdown contents. Blank to omit, or comma separated numeric "
+"distances in selected units."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:550 geo-mashup-search.php:550
+msgid "Radius Menu:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:561 geo-mashup-search.php:561
+msgid "The page where search results should be displayed."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-search.php:562 geo-mashup-search.php:562
+msgid "Results Page:"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-ui-managers.php:247
+#: geo-mashup-ui-managers.php:247
+msgid "Object location not saved - invalid request."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-ui-managers.php:396
+#: build/1.7.0.33/geo-mashup-ui-managers.php:585
+#: geo-mashup-ui-managers.php:396 geo-mashup-ui-managers.php:585
+msgid "Location"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-ui-managers.php:703
+#: geo-mashup-ui-managers.php:703
+msgid "Address not found - try making it less detailed"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-ui-managers.php:887
+#: geo-mashup-ui-managers.php:887
+msgid "Written from (location)"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup-ui-managers.php:889
+#: geo-mashup-ui-managers.php:889
+msgid "Loading..."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:477 geo-mashup.php:477
+msgid "No object id posted."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:494 geo-mashup.php:494
+msgid "Location updated."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:496 geo-mashup.php:496
+msgid "Location deleted."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:498 geo-mashup.php:498
+msgid "Location added."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1045 geo-mashup.php:1045
+msgid "Geo Mashup found no objects to map in this context"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1063 geo-mashup.php:1063
+msgid "Geo Mashup found no current object to map"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1067 geo-mashup.php:1067
+msgid "Geo Mashup omitted a map for an object with no location"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1074 geo-mashup.php:1074
+msgid "Geo Mashup map omitted to avoid nesting maps"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1108 geo-mashup.php:1108
+msgid "Geo Mashup omitted a map with no located objects found."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1327 geo-mashup.php:1327
+msgid ""
+"You must add a description to this category to use this Geo Mashup feature."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1354 build/1.7.0.33/options.php:212
+#: geo-mashup.php:1354 options.php:212
+msgid "Geo Mashup Options"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1354 geo-mashup.php:1354
+msgid "Geo Mashup"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1372 geo-mashup.php:1372
+msgid ""
+"Geo Mashup now includes search, deactivating the old %s plugin. It's safe to "
+"delete it."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1380 geo-mashup.php:1380
+msgid ""
+"Geo Mashup requires a Google API key in the <a href=\"%s\">settings</a> "
+"before it will work."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1384 geo-mashup.php:1384
+msgid ""
+"Geo Mashup needs to upgrade its database, visit the <a href=\"%s\">settings</"
+"a> to do it now."
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1405 geo-mashup.php:1405
+msgid "Settings"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1422 geo-mashup.php:1422
+msgid "Documentation"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1424 geo-mashup.php:1424
+msgid "Donate"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1622 geo-mashup.php:1622
+msgid "Show on map"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1633 geo-mashup.php:1633
+msgid "Geotag Icon"
+msgstr ""
+
+#: build/1.7.0.33/geo-mashup.php:1796 geo-mashup.php:1796
+msgid ""
+"Enable the geo search widget in the Geo Mashup settings to power the nearby "
+"list!"
+msgstr ""
+
+#: build/1.7.0.33/options.php:41 options.php:41
+msgid ""
+"Options updated.  Browser or server caching may delay updates for recently "
+"viewed maps."
+msgstr ""
+
+#: build/1.7.0.33/options.php:47 options.php:47
+msgid "Copied existing geodata, see log for details."
+msgstr ""
+
+#: build/1.7.0.33/options.php:66 options.php:66
+msgid "Geocoding and other web services may not work properly."
+msgstr ""
+
+#: build/1.7.0.33/options.php:72 build/1.7.0.33/render-map.php:509
+#: options.php:72 render-map.php:509
+msgid ""
+"WordPress transients may not be working. Try deactivating or reconfiguring "
+"caching plugins."
+msgstr ""
+
+#: build/1.7.0.33/options.php:86 options.php:86
+msgid "Database upgraded, see log for details."
+msgstr ""
+
+#: build/1.7.0.33/options.php:93 options.php:93
+msgid "Log deleted."
+msgstr ""
+
+#: build/1.7.0.33/options.php:99 options.php:99
+msgid "Saved options may be corrupted, try updating again. Corrupt values: "
+msgstr ""
+
+#: build/1.7.0.33/options.php:107 options.php:107
+msgid ""
+"Some invalid options will not be used. If you've just upgraded, do an update "
+"to initialize new options."
+msgstr ""
+
+#: build/1.7.0.33/options.php:136 options.php:136
+msgid "Roadmap"
+msgstr ""
+
+#: build/1.7.0.33/options.php:137 options.php:137
+msgid "Satellite"
+msgstr ""
+
+#: build/1.7.0.33/options.php:138 options.php:138
+msgid "Hybrid"
+msgstr ""
+
+#: build/1.7.0.33/options.php:139 options.php:139
+msgid "Terrain"
+msgstr ""
+
+#: build/1.7.0.33/options.php:140 options.php:140
+msgid "Earth Plugin"
+msgstr ""
+
+#: build/1.7.0.33/options.php:143 options.php:143
+msgid "Small Zoom"
+msgstr ""
+
+#: build/1.7.0.33/options.php:144 options.php:144
+msgid "Small Zoom 3D"
+msgstr ""
+
+#: build/1.7.0.33/options.php:145 options.php:145
+msgid "Small Pan/Zoom"
+msgstr ""
+
+#: build/1.7.0.33/options.php:146 options.php:146
+msgid "Large Pan/Zoom"
+msgstr ""
+
+#: build/1.7.0.33/options.php:147 options.php:147
+msgid "Large Pan/Zoom 3D"
+msgstr ""
+
+#: build/1.7.0.33/options.php:150 options.php:150
+msgid "Yes"
+msgstr ""
+
+#: build/1.7.0.33/options.php:151 options.php:151
+msgid "No"
+msgstr ""
+
+#: build/1.7.0.33/options.php:152 options.php:152
+msgid "Only"
+msgstr ""
+
+#: build/1.7.0.33/options.php:155 options.php:155
+msgid "Google v2"
+msgstr ""
+
+#: build/1.7.0.33/options.php:156 options.php:156
+msgid "Google v3"
+msgstr ""
+
+#: build/1.7.0.33/options.php:157 options.php:157
+msgid "OpenLayers"
+msgstr ""
+
+#: build/1.7.0.33/options.php:160 options.php:160
+msgid "auto"
+msgstr ""
+
+#: build/1.7.0.33/options.php:215 options.php:215
+msgid "Overall"
+msgstr ""
+
+#: build/1.7.0.33/options.php:216 options.php:216
+msgid "Single Maps"
+msgstr ""
+
+#: build/1.7.0.33/options.php:217 options.php:217
+msgid "Global Maps"
+msgstr ""
+
+#: build/1.7.0.33/options.php:218 options.php:218
+msgid "Contextual Maps"
+msgstr ""
+
+#: build/1.7.0.33/options.php:219 options.php:219
+msgid "Tests"
+msgstr ""
+
+#: build/1.7.0.33/options.php:227 options.php:227
+msgid "Overall Geo Mashup Settings"
+msgstr ""
+
+#: build/1.7.0.33/options.php:231 options.php:231
+msgid "Map Provider"
+msgstr ""
+
+#: build/1.7.0.33/options.php:246 options.php:246
+msgid "Google v2 support expires soon."
+msgstr ""
+
+#: build/1.7.0.33/options.php:254 build/1.7.0.33/options.php:272
+#: options.php:254 options.php:272
+msgid "Google API Key"
+msgstr ""
+
+#: build/1.7.0.33/options.php:261 build/1.7.0.33/options.php:279
+#: options.php:261 options.php:279
+msgid "Get yours here"
+msgstr ""
+
+#: build/1.7.0.33/options.php:264 options.php:264
+msgid "This setting is required for Geo Mashup to work."
+msgstr ""
+
+#: build/1.7.0.33/options.php:281 options.php:281
+msgid ""
+"Old Google v2 keys may not work with v3. A key is recommended but not "
+"required by Google."
+msgstr ""
+
+#: build/1.7.0.33/options.php:287 options.php:287
+msgid "Generated links go here"
+msgstr ""
+
+#: build/1.7.0.33/options.php:288 options.php:288
+msgid "Global Mashup Page"
+msgstr ""
+
+#: build/1.7.0.33/options.php:302 options.php:302
+msgid "No pages available."
+msgstr ""
+
+#: build/1.7.0.33/options.php:306 options.php:306
+msgid "Geo Mashup will use this page for generated location links"
+msgstr ""
+
+#: build/1.7.0.33/options.php:311 options.php:311
+msgid "Collect Location For"
+msgstr ""
+
+#: build/1.7.0.33/options.php:324 options.php:324
+msgid "Users"
+msgstr ""
+
+#: build/1.7.0.33/options.php:329 options.php:329
+msgid "Comments"
+msgstr ""
+
+#: build/1.7.0.33/options.php:333 options.php:333
+msgid "Enable Geo Search"
+msgstr ""
+
+#: build/1.7.0.33/options.php:341 options.php:341
+msgid ""
+"Creates a customizable widget and other features for performing radius "
+"searches."
+msgstr ""
+
+#: build/1.7.0.33/options.php:346 options.php:346
+msgid "Include Taxonomies"
+msgstr ""
+
+#: build/1.7.0.33/options.php:357 options.php:357
+msgid ""
+"Makes legends, colors, and other features available. Minimize use of these "
+"for best performance."
+msgstr ""
+
+#: build/1.7.0.33/options.php:362 options.php:362
+msgid "Copy Geodata Meta Fields"
+msgstr ""
+
+#: build/1.7.0.33/options.php:373 options.php:373
+msgid ""
+"Copy coordinates to and from %s geodata meta fields %s, for integration with "
+"the Geolocation and other plugins."
+msgstr ""
+
+#: build/1.7.0.33/options.php:379 options.php:379
+msgid "Geocode Custom Field"
+msgstr ""
+
+#: build/1.7.0.33/options.php:387 options.php:387
+msgid ""
+"Comma separated keys of custom fields to be geocoded when saved. Multiple "
+"fields will be combined in order before geocoding. Saves a location for the "
+"post if found."
+msgstr ""
+
+#: build/1.7.0.33/options.php:392 options.php:392
+msgid "Enable Reverse Geocoding"
+msgstr ""
+
+#: build/1.7.0.33/options.php:400 options.php:400
+msgid "Try to look up missing address fields for new locations."
+msgstr ""
+
+#: build/1.7.0.33/options.php:406 options.php:406
+msgid "Bulk Reverse Geocode"
+msgstr ""
+
+#: build/1.7.0.33/options.php:408 options.php:408
+msgid "Start"
+msgstr ""
+
+#: build/1.7.0.33/options.php:410 options.php:410
+msgid ""
+"Try to look up missing address fields for existing locations. Could be slow."
+msgstr ""
+
+#: build/1.7.0.33/options.php:416 options.php:416
+msgid "Use Theme Style Sheet with Maps"
+msgstr ""
+
+#: build/1.7.0.33/options.php:429 options.php:429
+msgid "Obscure Settings"
+msgstr ""
+
+#: build/1.7.0.33/options.php:433 options.php:433
+msgid "Reveal some less commonly used settings."
+msgstr ""
+
+#: build/1.7.0.33/options.php:438 options.php:438
+msgid "GeoNames ID"
+msgstr ""
+
+#: build/1.7.0.33/options.php:446 options.php:446
+msgid ""
+"Your %sGeoNames username%s, used with GeoNames API requests. Leave the "
+"default value to use Geo Mashup's."
+msgstr ""
+
+#: build/1.7.0.33/options.php:453 options.php:453
+msgid "AdSense For Search ID"
+msgstr ""
+
+#: build/1.7.0.33/options.php:461 options.php:461
+msgid ""
+"Your client ID, used with the Google Bar. Leave the default value to use Geo "
+"Mashup's :)."
+msgstr ""
+
+#: build/1.7.0.33/options.php:466 options.php:466
+msgid "Add Category Links"
+msgstr ""
+
+#: build/1.7.0.33/options.php:474 options.php:474
+msgid ""
+"Add map links to category lists. Categories must have descriptions for this "
+"to work."
+msgstr ""
+
+#: build/1.7.0.33/options.php:479 options.php:479
+msgid "Category Link Separator"
+msgstr ""
+
+#: build/1.7.0.33/options.php:490 options.php:490
+msgid "Category Link Text"
+msgstr ""
+
+#: build/1.7.0.33/options.php:500 options.php:500
+msgid "Category Link Zoom Level"
+msgstr ""
+
+#: build/1.7.0.33/options.php:512 build/1.7.0.33/options.php:628
+#: build/1.7.0.33/options.php:767 build/1.7.0.33/options.php:1014
+#: options.php:512 options.php:628 options.php:767 options.php:1014
+msgid "0 is zoomed all the way out."
+msgstr ""
+
+#: build/1.7.0.33/options.php:518 build/1.7.0.33/options.php:653
+#: build/1.7.0.33/options.php:657 build/1.7.0.33/options.php:901
+#: build/1.7.0.33/options.php:1060 options.php:518 options.php:653
+#: options.php:657 options.php:901 options.php:1060
+msgid "Update Options"
+msgstr ""
+
+#: build/1.7.0.33/options.php:522 options.php:522
+msgid "Default settings for maps of a single located post."
+msgstr ""
+
+#: build/1.7.0.33/options.php:525 build/1.7.0.33/options.php:660
+#: build/1.7.0.33/options.php:907 options.php:525 options.php:660
+#: options.php:907
+msgid "Map Width"
+msgstr ""
+
+#: build/1.7.0.33/options.php:532 build/1.7.0.33/options.php:667
+#: build/1.7.0.33/options.php:914 options.php:532 options.php:667
+#: options.php:914
+msgid "Pixels, or append %."
+msgstr ""
+
+#: build/1.7.0.33/options.php:536 build/1.7.0.33/options.php:671
+#: build/1.7.0.33/options.php:918 options.php:536 options.php:671
+#: options.php:918
+msgid "Map Height"
+msgstr ""
+
+#: build/1.7.0.33/options.php:543 build/1.7.0.33/options.php:678
+#: build/1.7.0.33/options.php:925 options.php:543 options.php:678
+#: options.php:925
+msgid "px"
+msgstr ""
+
+#: build/1.7.0.33/options.php:547 build/1.7.0.33/options.php:682
+#: build/1.7.0.33/options.php:929 options.php:547 options.php:682
+#: options.php:929
+msgid "Map Control"
+msgstr ""
+
+#: build/1.7.0.33/options.php:561 build/1.7.0.33/options.php:696
+#: build/1.7.0.33/options.php:943 options.php:561 options.php:696
+#: options.php:943
+msgid "Default Map Type"
+msgstr ""
+
+#: build/1.7.0.33/options.php:575 build/1.7.0.33/options.php:710
+#: build/1.7.0.33/options.php:957 options.php:575 options.php:710
+#: options.php:957
+msgid "Add Map Type Control"
+msgstr ""
+
+#: build/1.7.0.33/options.php:590 build/1.7.0.33/options.php:725
+#: build/1.7.0.33/options.php:972 options.php:590 options.php:725
+#: options.php:972
+msgid "Add Overview Control"
+msgstr ""
+
+#: build/1.7.0.33/options.php:599 build/1.7.0.33/options.php:736
+#: build/1.7.0.33/options.php:983 options.php:599 options.php:736
+#: options.php:983
+msgid "Add Google Bar"
+msgstr ""
+
+#: build/1.7.0.33/options.php:608 build/1.7.0.33/options.php:747
+#: build/1.7.0.33/options.php:994 options.php:608 options.php:747
+#: options.php:994
+msgid "Enable Scroll Wheel Zoom"
+msgstr ""
+
+#: build/1.7.0.33/options.php:616 build/1.7.0.33/options.php:755
+#: build/1.7.0.33/options.php:1002 options.php:616 options.php:755
+#: options.php:1002
+msgid "Default Zoom Level"
+msgstr ""
+
+#: build/1.7.0.33/options.php:633 build/1.7.0.33/options.php:844
+#: build/1.7.0.33/options.php:1040 options.php:633 options.php:844
+#: options.php:1040
+msgid "Click To Load"
+msgstr ""
+
+#: build/1.7.0.33/options.php:643 build/1.7.0.33/options.php:854
+#: build/1.7.0.33/options.php:1050 options.php:643 options.php:854
+#: options.php:1050
+msgid "Click To Load Text"
+msgstr ""
+
+#: build/1.7.0.33/options.php:656 options.php:656
+msgid "Default settings for global maps of located items."
+msgstr ""
+
+#: build/1.7.0.33/options.php:773 options.php:773
+msgid "Cluster Markers Until Zoom Level"
+msgstr ""
+
+#: build/1.7.0.33/options.php:781 options.php:781
+msgid "Highest zoom level to cluster markers, or blank for no clustering."
+msgstr ""
+
+#: build/1.7.0.33/options.php:787 build/1.7.0.33/options.php:1019
+#: options.php:787 options.php:1019
+msgid "Marker Selection Behaviors"
+msgstr ""
+
+#: build/1.7.0.33/options.php:792 build/1.7.0.33/options.php:1024
+#: options.php:792 options.php:1024
+msgid "Open info window"
+msgstr ""
+
+#: build/1.7.0.33/options.php:796 build/1.7.0.33/options.php:1028
+#: options.php:796 options.php:1028
+msgid "Highlight"
+msgstr ""
+
+#: build/1.7.0.33/options.php:800 build/1.7.0.33/options.php:1032
+#: options.php:800 options.php:1032
+msgid "Center"
+msgstr ""
+
+#: build/1.7.0.33/options.php:804 build/1.7.0.33/options.php:1036
+#: options.php:804 options.php:1036
+msgid "Show Geo Attachments"
+msgstr ""
+
+#: build/1.7.0.33/options.php:808 options.php:808
+msgid "Automatic Selection"
+msgstr ""
+
+#: build/1.7.0.33/options.php:816 options.php:816
+msgid "Selects the linked or most recent item when the map loads."
+msgstr ""
+
+#: build/1.7.0.33/options.php:821 options.php:821
+msgid "Show Only Most Recent Items"
+msgstr ""
+
+#: build/1.7.0.33/options.php:828 options.php:828
+msgid "Number of items to show, leave blank for all"
+msgstr ""
+
+#: build/1.7.0.33/options.php:832 options.php:832
+msgid "Show Future Posts"
+msgstr ""
+
+#: build/1.7.0.33/options.php:869 options.php:869
+msgid "Color"
+msgstr ""
+
+#: build/1.7.0.33/options.php:870 options.php:870
+msgid "Show Connecting Line Until Zoom Level (0-20 or none)"
+msgstr ""
+
+#: build/1.7.0.33/options.php:904 options.php:904
+msgid ""
+"Default settings for contextual maps, which include just the items shown on "
+"a page, for example."
+msgstr ""
+
+#: build/1.7.0.33/options.php:1064 options.php:1064
+msgid "Some checks that Geo Mashup is working properly."
+msgstr ""
+
+#: build/1.7.0.33/options.php:1065 options.php:1065
+msgid ""
+"Not working in Firefox yet - free Geo Mashup license to the first to figure "
+"out why!"
+msgstr ""
+
+#: build/1.7.0.33/options.php:1071 options.php:1071
+msgid "Run Tests"
+msgstr ""
+
+#: build/1.7.0.33/options.php:1077 options.php:1077
+msgid "Update Log"
+msgstr ""
+
+#: build/1.7.0.33/options.php:1081 options.php:1081
+msgid "Delete Log"
+msgstr ""
+
+#: build/1.7.0.33/options.php:1082 options.php:1082
+msgid "You can keep this log as a record, future entries will be appended."
+msgstr ""
+
+#: build/1.7.0.33/options.php:1086 options.php:1086
+msgid "View Update Log"
+msgstr ""
+
+#: build/1.7.0.33/options.php:1088 options.php:1088
+msgid "Geo Mashup Documentation"
+msgstr ""
+
+#: build/1.7.0.33/render-map.php:447 render-map.php:447
+msgid "Check/Uncheck All"
+msgstr ""
+
+#: tools/wp-i18n-tools/pomo/sample/app.php:56
+msgid "Welcome %s!"
+msgstr ""
+
+#: tools/wp-i18n-tools/pomo/sample/app.php:60
+msgid "A string with low priority!"
+msgstr ""
+
+#: tools/wp-i18n-tools/pomo/sample/app.php:62
+msgid "Bye\n"
+msgstr ""
