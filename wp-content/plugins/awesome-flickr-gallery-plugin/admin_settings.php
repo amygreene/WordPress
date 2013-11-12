@@ -239,8 +239,8 @@ function afg_admin_html_page() {
                         <table class='form-table'>
                            <tr valign='top'>
                               <th scope='row'>Flickr API Key</th>
-                              <td style='width:28%'><input type='text' name='afg_api_key' size='30' value="<?php echo get_option('afg_api_key'); ?>" ><font style='color:red; font-weight:bold'>*</font></input> </td>
-                              <td><font size='2'>Don't have a Flickr API Key?  Get it from <a href="http://www.flickr.com/services/api/keys/" target='blank'>here.</a> Go through the <a href='http://www.flickr.com/services/api/tos/'>Flickr API Terms of Service.</a></font></td>
+                              <td style='width:28%'><input type='text' name='afg_api_key' size='30' value="1d48e56b6a5a832dbf10180e1fb3f214"><font style='color:red; font-weight:bold'>*</font></input> </td>
+                              <td><font size='2'>The API Key is prepopulated using Evergreen's API key. If you want to use your own API key, get it from <a href="http://www.flickr.com/services/api/keys/" target='blank'>here.</a> Go through the <a href='http://www.flickr.com/services/api/tos/'>Flickr API Terms of Service.</a></font></td>
                            </tr>
                                 <th scope='row'>Flickr API Secret</th>
                            <td style="vertical-align:top"><input type='text' name='afg_api_secret' id='afg_api_secret' value="<?php echo get_option('afg_api_secret'); ?>"/>
