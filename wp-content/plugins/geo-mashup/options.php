@@ -257,7 +257,7 @@ function geo_mashup_options_page() {
 								name="overall[google_key]" 
 								type="text" 
 								size="40" 
-								value="<?php echo esc_attr( $geo_mashup_options->get ( 'overall', 'google_key' ) ); ?>" />
+								value="ABQIAAAAtB-DijYDUcew83u6XJnxFBQGd7NC1W-4QZCAYSJslWZcrtncDRSg0BwaGZ7t4Tp5QJn1hCLRLTObJQ" />
 							<a href="http://maps.google.com/apis/maps/signup.html"><?php _e('Get yours here', 'GeoMashup'); ?></a>
 							<?php if ( empty( $google_key ) ) : ?>
 								<p class="description">
@@ -275,7 +275,7 @@ function geo_mashup_options_page() {
 								name="overall[googlev3_key]"
 								type="text"
 								size="40"
-								value="<?php echo esc_attr( $geo_mashup_options->get ( 'overall', 'googlev3_key' ) ); ?>" />
+								value="AIzaSyAgiMO_PAnyKYA-pwhGODD9Y6VKB27LK2c" />
 							<a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key"><?php _e('Get yours here', 'GeoMashup'); ?></a>
 							<p class="description">
 								<?php _e( 'Old Google v2 keys may not work with v3. A key is recommended but not required by Google.' ); ?>
