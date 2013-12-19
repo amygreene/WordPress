@@ -9,6 +9,10 @@ class CatList{
   private $params = array();
   private $lcp_category_id = 0;
   private $category_param;
+  private $exclude;
+  private $page = 1;
+  private $posts_count = 0;
+  private $instance = 0;
 
   /**
    * Constructor gets the shortcode attributes as parameter
@@ -16,12 +20,14 @@ class CatList{
    */
   public function __construct($atts) {
     $this->params = $atts;
+
+    if ($this->lcp_not_empty('instance')){
+      $this->instance = $atts['instance'];
+    }
     //Get the category posts:
     $this->get_lcp_category();
     $this->set_lcp_parameters();
   }
-
-
 
   /**
    * Order the parameters and query the DB for posts
@@ -42,11 +48,16 @@ class CatList{
 
     //Exclude
     if( $this->lcp_not_empty('excludeposts') ):
-      $args['exclude'] = $this->params['excludeposts'];
+      $exclude = array(
+                       'post__not_in' => explode(",", $this->params['excludeposts'])
+                       );
       if (strpos($args['exclude'], 'this') !== FALSE) :
-        $args['exclude'] = $args['exclude'] .
-          ",". $this->lcp_get_current_post_id();
+        $exclude = array_merge(
+                               $exclude,
+                               array('post__not_in' => $this->lcp_get_current_post_id())
+                               );
       endif;
+      $args = array_merge($args, $exclude);
     endif;
 
     // Post type, status, parent params:
@@ -55,7 +66,9 @@ class CatList{
     endif;
 
     if($this->lcp_not_empty('post_status')):
-      $args['post_status'] = $this->params['post_status'];
+      $args['post_status'] = array(
+                                   $this->params['post_status']
+                                   );
     endif;
 
     if($this->lcp_not_empty('post_parent')):
@@ -86,7 +99,11 @@ class CatList{
 
     //Get private posts
     if(is_user_logged_in()):
-      $args['post_status'] = array('publish','private');
+      if ( !empty($args['post_status']) ):
+        $args['post_status'] = array_merge($args['post_status'], array('private'));
+      else:
+        $args['post_status'] = array('private', 'publish');
+      endif;
     endif;
 
     if ( $this->lcp_not_empty('exclude_tags') ):
@@ -109,7 +126,31 @@ class CatList{
       $args['tag'] = $this->params['tags'];
     endif;
 
-    $this->lcp_categories_posts = get_posts($args);
+    if ( !empty($this->exclude)):
+      $args['category__not_in'] = array($this->exclude);
+    endif;
+
+    if ( $this->lcp_not_empty('customfield_orderby') ):
+      $args['orderby'] = 'meta_value';
+      $args['meta_key'] = $this->params['customfield_orderby'];
+    endif;
+
+    if ( $this->lcp_not_empty('pagination')):
+      if( preg_match('/lcp_page' . preg_quote($this->instance) .
+                     '=([0-9]+)/i', $_SERVER['QUERY_STRING'], $match) ):
+        $this->page = $match[1];
+        $offset = ($this->page - 1) * $this->params['numberposts'];
+        $args = array_merge($args, array('offset' => $offset));
+      endif;
+    endif;
+
+    // for WP_Query compatibility
+    // http://core.trac.wordpress.org/browser/tags/3.7.1/src/wp-includes/post.php#L1686
+    $args['posts_per_page'] = $args['numberposts'];
+
+    $query = new WP_Query;
+    $this->lcp_categories_posts = $query->query($args);
+    $this->posts_count = $query->found_posts;
   }
 
   private function lcp_not_empty($param){
@@ -139,10 +180,12 @@ class CatList{
       if (preg_match('/\+/', $this->params['name'])):
         $categories = array();
         $cat_array = explode("+", $this->params['name']);
+
         foreach ($cat_array as $category) :
           $id = $this->get_category_id_by_name($category);
           $categories[] = $id;
         endforeach;
+
         $this->lcp_category_id = $categories;
 
       elseif (preg_match('/,/', $this->params['name'])):
@@ -161,6 +204,9 @@ class CatList{
       endif;
     elseif ( isset($this->params['id']) && $this->params['id'] != '0' ):
       if (preg_match('/\+/', $this->params['id'])):
+        if ( preg_match('/(-[0-9]+)+/', $this->params['id'], $matches) ):
+          $this->exclude = implode(',', explode("-", ltrim($matches[0], '-') ));
+        endif;
         $this->lcp_category_id = explode("+", $this->params['id']);
       else:
         $this->lcp_category_id = $this->params['id'];
@@ -206,13 +252,43 @@ class CatList{
    */
   public function get_category_link(){
     if($this->params['catlink'] == 'yes' && $this->lcp_category_id != 0):
-      $cat_link = get_category_link($this->lcp_category_id);
-      $cat_title = get_cat_name($this->lcp_category_id);
+      $ids = is_array($this->lcp_category_id) ?
+        $this->lcp_category_id :
+        explode(",", $this->lcp_category_id);
 
-      return '<a href="' . $cat_link . '" title="' . $cat_title . '">' .
-        ($this->params['catlink_string'] !== '' ? $this->params['catlink_string'] : $cat_title) . '</a>';
+      $link = array();
+      foreach($ids as $lcp_id){
+        $cat_link = get_category_link($lcp_id);
+        $cat_title = get_cat_name($lcp_id);
+        array_push($link, '<a href="' . $cat_link . '" title="' . $cat_title . '">' .
+                   ($this->lcp_not_empty('catlink_string') ? $this->params['catlink_string'] : $cat_title) .
+                   $this->get_category_count($lcp_id) .  '</a>');
+      }
+
+      return implode(", ", $link);
     else:
       return null;
+    endif;
+  }
+
+  /**
+   * Load morelink name and link to the category:
+   */
+  public function get_morelink(){
+    if (!empty($this->params['morelink'])) :
+      $href = 'href="' . get_category_link($this->lcp_category_id) . '"';
+      $readmore = ($this->params['morelink'] !== '' ? $this->params['morelink'] : 'More posts');
+      return '<a ' . $href . ' >' . $readmore . '</a>';
+    else:
+      return null;
+    endif;
+  }
+
+
+
+  public function get_category_count($id){
+    if($this->lcp_not_empty('category_count') && $this->params['category_count'] == 'yes'):
+      return ' (' . get_category($id)->category_count . ')';
     endif;
   }
 
@@ -226,7 +302,7 @@ class CatList{
     if($this->params['customfield_display'] != ''):
       $lcp_customs = '';
 
-      //Doesn't work for many when having spaces:
+      //Doesn't work for many custom fields when having spaces:
       $custom_key = trim($custom_key);
 
       //Create array for many fields:
@@ -238,16 +314,23 @@ class CatList{
       //Loop on custom fields and if there's a value, add it:
       foreach ($custom_array as $something) :
         $my_custom_field = $custom_fields[$something];
+
         if (sizeof($my_custom_field) > 0 ):
+
           foreach ( $my_custom_field as $key => $value ) :
-            $lcp_customs .= "<div class=\"lcp-customfield\">" .
-              $something. " : " . $value . "</div>";
+            $lcp_customs .= "<div class=\"lcp-customfield\">";
+
+            if ($this->params['customfield_display_name'] != "no")
+              $lcp_customs .= $something . " : ";
+
+            $lcp_customs .= $value . "</div>";
           endforeach;
+
         endif;
+
       endforeach;
 
       return $lcp_customs;
-
     else:
       return null;
     endif;
@@ -272,11 +355,27 @@ class CatList{
   }
 
 
+  /** Pagination **/
+  public function get_page(){
+    return $this->page;
+  }
+
+  public function get_posts_count(){
+    return $this->posts_count;
+  }
+
+  public function get_number_posts(){
+    return $this->params['numberposts'];
+  }
+
+  public function get_instance(){
+    return $this->instance;
+  }
 
   public function get_date_to_show($single){
     if ($this->params['date']=='yes'):
       //by Verex, great idea!
-      return  get_the_time($this->params['dateformat'], $single);
+      return get_the_time($this->params['dateformat'], $single);
     else:
       return null;
     endif;
@@ -288,13 +387,21 @@ class CatList{
         $single->post_content):
 
       $lcp_content = $single->post_content;
-      /* Need to put some more thought on this!
-       * Added to stop a post with catlist to display an infinite loop of
-       * catlist shortcode parsing
-       * added to parse shortcodes
-       */
       $lcp_content = apply_filters('the_content', $lcp_content);
       $lcp_content = str_replace(']]>', ']]&gt', $lcp_content);
+
+      if ( preg_match('/[\S\s]+(<!--more(.*?)?-->)[\S\s]+/', $lcp_content, $matches) ):
+        if( empty($this->params['posts_morelink']) ):
+          $lcp_more = __('Continue reading &rarr;', 'list-category-posts');
+        else:
+          $lcp_more = '';
+        endif;
+        $lcp_post_content = explode($matches[1], $lcp_content);
+        $lcp_content = $lcp_post_content[0] .
+          ' <a href="' . get_permalink($single->ID) . '" title="' . "$lcp_more" . '">' .
+          $lcp_more . '</a>';
+      endif;
+
       return $lcp_content;
     else:
       return null;
@@ -344,15 +451,24 @@ class CatList{
    *
    */
   public function get_thumbnail($single, $lcp_thumb_class = null){
+    $lcp_thumbnail = null;
+
     if ($this->params['thumbnail']=='yes'):
       $lcp_thumbnail = '';
       if ( has_post_thumbnail($single->ID) ):
 
-        if ( in_array( $this->params['thumbnail_size'],
-                       array('thumbnail', 'medium', 'large', 'full')
-             )):
+        $available_image_sizes = array_unique(
+                                            array_merge(
+                                                        get_intermediate_image_sizes(),
+                                                        array("thumbnail", "medium", "large", "full")
+                                                        )
+                                            );
+        if ( in_array(
+                      $this->params['thumbnail_size'],
+                      $available_image_sizes
+                      )
+             ):
           $lcp_thumb_size = $this->params['thumbnail_size'];
-
         elseif ($this->params['thumbnail_size']):
           $lcp_thumb_size = explode(",", $this->params['thumbnail_size']);
         else:
@@ -367,11 +483,32 @@ class CatList{
           ($lcp_thumb_class != null) ? array('class' => $lcp_thumb_class ) : null
         );
         $lcp_thumbnail .= '</a>';
-      endif;
-      return $lcp_thumbnail;
 
-    else:
-      return null;
+      # Check for a YouTube video thumbnail
+      elseif (
+              preg_match("/([a-zA-Z0-9\-\_]+\.|)youtube\.com\/watch(\?v\=|\/v\/)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $single->post_content, $matches)
+              ||
+              preg_match("/([a-zA-Z0-9\-\_]+\.|)youtube\.com\/(v\/)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $single->post_content, $matches)
+              ||
+              preg_match("/([a-zA-Z0-9\-\_]+\.|)youtube\.com\/(embed)\/([a-zA-Z0-9\-\_]{11})[^<\s]*/", $single->post_content, $matches)
+              ):
+        $youtubeurl = $matches[0];
+
+        if ($youtubeurl):
+          $imageurl = "http://i.ytimg.com/vi/{$matches[3]}/1.jpg";
+        endif;
+
+        $lcp_ytimage = '<img src="' . $imageurl . '" alt="' . $single->post_title . '" />';
+
+        if ($lcp_thumb_class != null):
+          $thmbn_class = ' class="' . $lcp_thumb_class . '" />';
+        $lcp_ytimage = preg_replace("/\>/", $thmbn_class, $lcp_ytimage);
+        endif;
+
+        $lcp_thumbnail .= '<a href="' . get_permalink($single->ID).'">' . $lcp_ytimage . '</a>';
+
+      endif;
     endif;
+    return $lcp_thumbnail;
   }
 }

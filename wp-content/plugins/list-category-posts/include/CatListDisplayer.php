@@ -56,15 +56,35 @@ class CatListDisplayer {
   }
 
   private function build_output($tag){
-    $this->lcp_output .= $this->get_category_link('strong');
+    // More link
+    if (!empty($this->params['catlink_tag'])):
+      if (!empty($this->params['catlink_class'])):
+        $this->lcp_output .= $this->get_category_link(
+                                   $this->params['catlink_tag'],
+                                   $this->params['catlink_class']);
+      else:
+        $this->lcp_output .= $this->get_category_link($this->params['catlink_tag']);
+      endif;
+    else:
+      $this->lcp_output .= $this->get_category_link("strong");
+    endif;
+
     $this->lcp_output .= '<' . $tag;
 
     //Give a class to wrapper tag
     if (isset($this->params['class'])):
       $this->lcp_output .= ' class="' . $this->params['class'] . '"';
     endif;
+
+    //Give id to wrapper tag
+    if (isset($this->params['instance'])){
+      $this->lcp_output .= ' id=lcp_instance_' . $this->params['instance'];
+    }
+
     $this->lcp_output .= '>';
     $inner_tag = ($tag == 'ul') ? 'li' : 'p';
+
+
 
     //Posts loop
     foreach ($this->catlist->get_categories_posts() as $single) :
@@ -76,15 +96,72 @@ class CatListDisplayer {
     //Close wrapper tag
     $this->lcp_output .= '</' . $tag . '>';
 
-    if (!empty($this->params['morelink'])) :
-      $href = 'href="' . get_category_link($this->catlist->get_category_id()) . '"';
-      $class = "";
-      if (!empty($this->params['morelink_class'])) :
-        $class = 'class="' . $this->params['morelink_class'] . '" ';
+    // More link
+    if (!empty($this->params['morelink_tag'])):
+      if (!empty($this->params['morelink_class'])):
+        $this->lcp_output .= $this->get_morelink(
+                                   $this->params['morelink_tag'],
+                                   $this->params['morelink_class']);
+      else:
+        $this->lcp_output .= $this->get_morelink($this->params['morelink_tag']);
       endif;
-      $readmore = $this->params['morelink'];
-      $this->lcp_output .= '<a ' . $href . ' ' . $class . ' >' . $readmore . '</a>';
+    else:
+      $this->lcp_output .= $this->get_morelink();
     endif;
+
+    $this->lcp_output .= $this->get_pagination();
+  }
+
+  public function get_pagination(){
+    $pag_output = '';
+    if (!empty($this->params['pagination']) && $this->params['pagination'] == "yes"):
+      $lcp_paginator = '';
+      $pages_count = ceil (
+                           $this->catlist->get_posts_count() / $this->catlist->get_number_posts()
+                           );
+      for($i = 1; $i <= $pages_count; $i++){
+        $lcp_paginator .=  $this->lcp_page_link($i, true);
+      }
+
+      $pag_output .= "<ul class='lcp_paginator'>";
+
+      // Add "Previous" link
+      if ($this->catlist->get_page() > 1){
+        $pag_output .= $this->lcp_page_link( intval($this->catlist->get_page()) - 1, "<<" );
+      }
+
+      $pag_output .= $lcp_paginator;
+
+      // Add "Next" link
+      if ($this->catlist->get_page() < $pages_count){
+        $pag_output .= $this->lcp_page_link( intval($this->catlist->get_page()) + 1, ">>");
+      }
+      $pag_output .= "</ul>";
+    endif;
+    return $pag_output;
+  }
+
+  private function lcp_page_link($page, $char = nil){
+    $current_page = $this->catlist->get_page();
+    $link = '';
+
+    if ($page == $current_page){
+      $link = "<li>$current_page</li>";
+    } else {
+      $amp = ( strpos($_SERVER["REQUEST_URI"], "?") ) ? "&" : "";
+      $pattern = "/[&|?]?lcp_page" . preg_quote($this->catlist->get_instance()) . "=([0-9]+)/";
+      $query = preg_replace($pattern, '', $_SERVER['QUERY_STRING']);
+
+      $url = strtok($_SERVER["REQUEST_URI"],'?');
+
+      $page_link = "http://$_SERVER[HTTP_HOST]$url?$query" .
+        $amp . "lcp_page" . $this->catlist->get_instance() . "=". $page .
+        "#lcp_instance_" . $this->catlist->get_instance();
+      $link .=  "<li><a href='$page_link' title='$page'>";
+      ($char != nil) ? ($link .= $char) : ($link .= $page);
+      $link .= "</a></li>";
+    }
+    return $link;
   }
 
   /**
@@ -95,25 +172,17 @@ class CatListDisplayer {
    */
   private function lcp_build_post($single, $tag){
     global $post;
+
     $class ='';
     if ( $post->ID == $single->ID ):
       $class = " class = current ";
     endif;
+
     $lcp_display_output = '<'. $tag . $class . '>';
 
-    if (!empty($this->params['title_tag'])):
-      if (!empty($this->params['title_class'])):
-        $lcp_display_output .= $this->get_post_title($single,
-                                         $this->params['title_tag'],
-                                         $this->params['title_class']);
-      else:
-        $lcp_display_output .= $this->get_post_title($single, $this->params['title_tag']);
-      endif;
-    else:
-      $lcp_display_output .= $this->get_post_title($single) . ' ';
-    endif;
+    $lcp_display_output .= $this->get_post_title($single);
 
-    // Coments count
+    // Comments count
     if (!empty($this->params['comments_tag'])):
       if (!empty($this->params['comments_class'])):
         $lcp_display_output .= $this->get_comments($single,
@@ -127,14 +196,10 @@ class CatListDisplayer {
     endif;
 
     // Date
-    if (!empty($this->params['date_tag'])):
-      if (!empty($this->params['date_class'])):
-        $lcp_display_output .= $this->get_date($single,
-                                   $this->params['date_tag'],
-                                   $this->params['date_class']);
-      else:
-        $lcp_display_output .= $this->get_date($single, $this->params['date_tag']);
-      endif;
+    if (!empty($this->params['date_tag']) || !empty($this->params['date_class'])):
+      $lcp_display_output .= $this->get_date($single,
+                                             $this->params['date_tag'],
+                                             $this->params['date_class']);
     else:
       $lcp_display_output .= $this->get_date($single);
     endif;
@@ -223,7 +288,7 @@ class CatListDisplayer {
   }
 
   private function get_date($single, $tag = null, $css_class = null){
-    $info = $this->catlist->get_date_to_show($single);
+    $info = " " . $this->catlist->get_date_to_show($single);
     return $this->assign_style($info, $tag, $css_class);
   }
 
@@ -244,16 +309,51 @@ class CatListDisplayer {
     return $this->assign_style($info, $tag);
   }
 
-  private function get_post_title($single, $tag = null, $css_class = null){
+  private function get_post_title($single){
     $info = '<a href="' . get_permalink($single->ID) .
-      '" title="'. $single->post_title . '">' .
-      apply_filters('the_title', $single->post_title, $single->ID) . '</a>';
-    return $this->assign_style($info, $tag, $css_class);
+      '" title="' . wptexturize($single->post_title) . '"';
+
+    if (!empty($this->params['link_target'])):
+      $info .= ' target="' . $this->params['link_target'] . '" ';
+    endif;
+
+    if ( !empty($this->params['title_class'] ) &&
+         empty($this->params['title_tag']) ):
+      $info .= ' class=' . $this->params['title_class'];
+    endif;
+
+
+    $info .= '>' . apply_filters('the_title', $single->post_title, $single->ID) . '</a>';
+
+    if( !empty($this->params['post_suffix']) ):
+      $info .= " " . $this->params['post_suffix'];
+    endif;
+
+    if (!empty($this->params['title_tag'])){
+      $pre = "<" . $this->params['title_tag'];
+      if (!empty($this->params['title_class'])){
+        $pre .= " class=" . $this->params['title_class'];
+      }
+      $pre .= ">";
+      $post = "</" . $this->params['title_tag'] . ">";
+      $info = $pre . $info . $post;
+    }
+
+    return $info;
   }
 
   private function get_category_link($tag = null, $css_class = null){
     $info = $this->catlist->get_category_link();
     return $this->assign_style($info, $tag, $css_class);
+  }
+
+  private function get_morelink($tag = null, $css_class = null){
+    $info = $this->catlist->get_morelink();
+    return $this->assign_style($info, $tag, $css_class);
+  }
+
+  private function get_category_count(){
+    return $this->catlist->get_category_count();
   }
 
   /**
@@ -266,8 +366,10 @@ class CatListDisplayer {
    * @return string
    */
   private function assign_style($info, $tag = null, $css_class = null){
-    if (!empty($info)):
-      if (empty($tag)):
+     if (!empty($info)):
+      if (empty($tag) && !empty($css_class)):
+        $tag = "span";
+      elseif (empty($tag)):
         return $info;
       elseif (!empty($tag) && empty($css_class)) :
         return '<' . $tag . '>' . $info . '</' . $tag . '>';
