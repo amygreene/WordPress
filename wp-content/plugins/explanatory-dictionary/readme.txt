@@ -1,10 +1,9 @@
 === Explanatory Dictionary ===
-Contributors: s_ruben
-Donate link: http://rubensargsyan.com/donate/
+Contributors: exed internet, s_ruben
 Tags: explanatory dictionary, dictionary, vocabulary, glossary, lexicon, explain, explanation, tooltips, descriptions
-Requires at least: 2.6
-Tested up to: 3.4.1
-Stable tag: 3.0.2
+Requires at least: 3.5.0
+Tested up to: 3.8.0
+Stable tag: 4.0.0
 
 This plugin is used when there are words, words expressions or sentences to be explained via tooltips in the posts or pages of your wordpress blog.
 
@@ -12,30 +11,39 @@ This plugin is used when there are words, words expressions or sentences to be e
 
 This plugin is used when there are some words, words expressions or sentences to be explained in the posts or pages of your wordpress blog. It will help the visitors to read the explanations of the words (words expressions, sentences) you need via tooltips. It can also be used as a glossary.
 
-[Plugin Homepage](http://rubensargsyan.com/wordpress-plugin-explanatory-dictionary)
+= Contact =
+In case of suggestions or improvements please contact EXED at service@exed.nl, or through the GitHub repository (see below).
+
+= More information =
+Read the following items for more information:
+
+* Follow EXED internet on [Facebook](https://www.facebook.com/EXEDInternet), [Twitter](https://twitter.com/exedinternet) and our [blog](http://blog.exed.nl) *(Dutch only)*
+* Other WordPress Plugins by EXED internet. - http://profiles.wordpress.org/exed-internet/
+* EXED internet official website - [http://www.exed.nl](http://www.exed.nl?utm_source=wordpress&utm_medium=social%2Bmedia)
 
 == Installation ==
 
 1. Upload the explanatory-dictionary directory (including all files within) to the /wp-content/plugins/ directory
 2. Activate the plugin through the Plugins menu in WordPress
-3. If you want to show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, so add [explanatory dictionary] in it.
+3. If you want to show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, add [explanatory dictionary] in it.
 
 = Also =
 
 * To show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, add [explanatory dictionary] in it.
 * To exclude the words (words expressions, sentences) from being explained by getting those words (words expressions, sentences) into [no explanation][/no explanation] tags.
 
-== Frequently Asked Questions ==
-
-For questions contact with the plugin author - [Ruben Sargsyan](http://rubensargsyan.com/contact).
-
 == Screenshots ==
 
 1. The Explanation Tooltips
 2. Manage Explanatory Dictionary
 3. Explanatory Dictionary Options
+3. Explanatory Dictionary Overview on page
 
 == Changelog ==
+
+= 4.0.0 =
+
+* Complete rewrite to add new features in the future.
 
 = 3.0.2 =
 
@@ -88,3 +96,7 @@ For questions contact with the plugin author - [Ruben Sargsyan](http://rubensarg
 
 = 1.0 =
 * First release.
+
+== Upgrade Notice ==
+= 4.0.0 =
+A complete rewrite of the code, removed a lot of buggy code for a more stable plugin.
