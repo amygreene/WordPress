@@ -4,12 +4,12 @@ add_action( 'register' , 'register_replacement' );
 function register_replacement( $link ){
 	if ( ! is_user_logged_in() ) {
 		if ( get_option('users_can_register') )
-			$link = $before . '<a href="' . network_home_url('register', 'login') . '">' . __('Register') . '</a>' . $after;
+			$link = '<a href="' . network_home_url('register', 'login') . '">' . __('Register') . '</a>';
 		else
 			$link = '';
 	} else 
 	{
-		$link = $before . '<a href="' . admin_url() . '">' . __('Site Admin') . '</a>' . $after;
+		$link = '<a href="' . admin_url() . '">' . __('Site Admin') . '</a>';
 	}
 	return $link;
 }
