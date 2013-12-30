@@ -3,17 +3,17 @@
  * Explanatory Dictionary.
  *
  * @package   Explanatory_Dictionary
- * @author    Robert-John van Doesburg <info@rjvandoesburg.com>
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2013 Robert-John van Doesburg
+ * @link      http://www.exed.nl/
+ * @copyright 2013  EXED internet  (email : service@exed.nl)
  */
 
 /**
  * Plugin class.
  *
- * @package Explanatory_Dictionary
- * @author Robert-John van Doesburg <info@rjvandoesburg.com>
+ * @package   Explanatory_Dictionary
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  */
 class Explanatory_Dictionary {
 	
@@ -22,8 +22,6 @@ class Explanatory_Dictionary {
 	 * references.
 	 *
 	 * @since 4.0.0
-	 *       
-	 * @var string
 	 */
 	protected $version = '4.0.0';
 	
@@ -35,8 +33,6 @@ class Explanatory_Dictionary {
 	 * match the Text Domain file header in the main plugin file.
 	 *
 	 * @since 4.0.0
-	 *       
-	 * @var string
 	 */
 	protected $plugin_slug = 'explanatory-dictionary';
 	protected $plugin_slug_safe = 'explanatory_dictionary';
@@ -45,8 +41,6 @@ class Explanatory_Dictionary {
 	 * Instance of this class.
 	 *
 	 * @since 4.0.0
-	 *       
-	 * @var object
 	 */
 	protected static $instance = null;
 	
@@ -54,8 +48,6 @@ class Explanatory_Dictionary {
 	 * Slug of the plugin screen.
 	 *
 	 * @since 4.0.0
-	 *       
-	 * @var string
 	 */
 	protected $plugin_screen_hook_suffix = null;
 	
@@ -63,12 +55,24 @@ class Explanatory_Dictionary {
 	 * Slug of the plugin options screen.
 	 *
 	 * @since 4.0.0
-	 *       
-	 * @var string
 	 */
 	protected $plugin_options_screen_hook_suffix = null;
 	
 	protected $exclude_array = array();
+	
+	/**
+	 * hold the html of the definitioner to add at the end of the page.
+	 * 
+	 * @since 4.0.1 
+	 */
+	protected $definitioner;
+	
+	/**
+	 * Exclude single words on the page specified by shortcode
+	 * 
+	 * @since 4.0.1
+	 */
+	protected $excluded_words = array();
 	
 	
 	/**
@@ -116,12 +120,34 @@ class Explanatory_Dictionary {
 				$this, 'explanatory_dictionary_shortcode' 
 		) );
 		
+		add_shortcode( 'no-explanation' , array( 
+				$this, 'no_explanation_shortcode' 
+		) );
+		
+		/**
+		 * deprecated
+		 */
+		add_shortcode( 'explanatory dictionary' , array( 
+				$this, 'explanatory_dictionary_shortcode' 
+		) );
+		
+		/**
+		 * deprecated
+		 */
+		add_shortcode( 'no explanation' , array( 
+				$this, 'no_explanation_shortcode' 
+		) );
+		
 		add_filter( 'the_content', array( 
 				$this, 'add_explanatory_dictionary_words' 
-		), 11 );
+		), 15 );
 		
 		add_action( 'admin_init', array( 
 				$this, 'check_plugin_version' 
+		) );
+		
+		add_action( 'wp_footer', array(
+				$this, 'add_definitioner'
 		) );
 	}
 	
@@ -259,7 +285,7 @@ class Explanatory_Dictionary {
 		$screen = get_current_screen();
 		if ( $screen->id == $this->plugin_screen_hook_suffix || $screen->id == $this->plugin_options_screen_hook_suffix ) {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin.js', __FILE__ ), array( 
-				'jquery' 
+				'jquery'
 			), $this->version );
 		}
 		if ( $screen->id == $this->plugin_options_screen_hook_suffix ) {
@@ -318,7 +344,7 @@ class Explanatory_Dictionary {
 	color: {$settings_list['_word_color']};
 }
 
-.explanatory-dictionary-tooltip {
+#explanatory-dictionary-tooltip {
 	width: {$settings_list['_width']};
 	background-color: {$settings_list['_background']};
 	text-align: {$settings_list['_text_align']};
@@ -334,16 +360,16 @@ class Explanatory_Dictionary {
 	bottom: {$tooltip_bottom};
 }
 
-.explanatory-dictionary-tooltip .explanatory-dictionary-tooltip-content {
+#explanatory-dictionary-tooltip #explanatory-dictionary-tooltip-content {
 	padding: {$settings_list['_padding']};
 }
 
-.explanatory-dictionary-tooltip-bottom-safe-zone {
+#explanatory-dictionary-tooltip-bottom-safe-zone {
 	height: {$safe_zone_height};
 	bottom: -{$safe_zone_bottom};
 }
 
-.explanatory-dictionary-tooltip .explanatory-dictionary-tooltip-bottom {
+#explanatory-dictionary-tooltip #explanatory-dictionary-tooltip-bottom {
 	border-right-color: transparent;
 	border-right-width: {$border_first_width};
 	border-right-style: solid;
@@ -354,7 +380,7 @@ class Explanatory_Dictionary {
 	left: {$border_first_left};
 }
 
-.explanatory-dictionary-tooltip .explanatory-dictionary-tooltip-bottom-border {
+#explanatory-dictionary-tooltip #explanatory-dictionary-tooltip-bottom-border {
 	border-right-color: transparent;
 	border-right-width: {$border_size_border};
 	border-right-style: solid;
@@ -365,7 +391,7 @@ class Explanatory_Dictionary {
 	
 }
 
-.explanatory-dictionary-tooltip dt {
+#explanatory-dictionary-tooltip dt {
 	font-size: {$settings_list['_title_font_size']};
 	color: {$settings_list['_title_color']};
 	font-weight: {$settings_list['_title_font_weight']};
@@ -373,7 +399,7 @@ class Explanatory_Dictionary {
 	text-decoration: {$settings_list['_title_text_decoration']};
 }
 
-.explanatory-dictionary-tooltip dd {
+#explanatory-dictionary-tooltip dd {
 	font-size: {$settings_list['_font_size']};
 	color: {$settings_list['_color']};
 	font-weight: normal;
@@ -392,7 +418,7 @@ class Explanatory_Dictionary {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'js/public.js', __FILE__ ), array( 
-			'jquery' 
+			'jquery'
 		), $this->version );
 	}
 	
@@ -729,7 +755,28 @@ class Explanatory_Dictionary {
 			'letter' => 'A',
 		), $atts ) );
 		
+		remove_filter( 'the_content', array(
+				$this, 'add_explanatory_dictionary_words'
+		), 15 );
+		
+		ob_start();
 		$this->template->display_explanatory_dictionary( $atts );
+		$output_string = ob_get_contents();
+		ob_end_clean();
+		
+		return $output_string;
+		
+	}
+	
+	/**
+	 * Removes the explanation tag from the word/sentence
+	 * 
+	 * @since 4.0.1
+	 * @param array $atts (Wordress default parameter) 
+	 */
+	public function no_explanation_shortcode( $atts, $content ) {
+		$this->excluded_words[] = $content;
+		return $content;
 	}
 	
 	/**
@@ -809,7 +856,7 @@ class Explanatory_Dictionary {
 	 */
 	public function add_explanatory_dictionary_words( $content ) {
 		$dictionary = $this->get_dictionary();
-	
+		
 		if( empty( $dictionary ) )
 			return $content;
 	
@@ -830,56 +877,38 @@ class Explanatory_Dictionary {
 		$definitions = array(); // list of definitions that exist in the document
 		
 		$counter = 0;
+		
 		// Loop through the words and build search/replace arrays to use in a preg_replace, plus definitions to define at the end of the document
 		foreach( $dictionary as $key => $word ) {
-		
-			if( preg_match( '/\b' . $word->word . '\b/i', $content ) ) {
-				$searches[$counter] = '/\b' . $word->word . '\b/i';
-				$replacements[$counter] = '
-					<span class="explanatory-dictionary-highlight" data-definition="explanatory-dictionary-definition-' . $counter . '">
-						$0
-						<span class="explanatory-dictionary-tooltip" style="display: none">
-							<span class="explanatory-dictionary-tooltip-top"></span>
-							<span class="explanatory-dictionary-tooltip-content"></span>
-							<span class="explanatory-dictionary-tooltip-bottom-safe-zone">
-								<span class="explanatory-dictionary-tooltip-bottom"></span>
-								<span class="explanatory-dictionary-tooltip-bottom-border"></span>
-							</span>
-						</span>
-					</span>
-				';
-				$definitions[] = array( 'id' => $counter, 'word' => $word->word, 'explanation' => $word->explanation );
-			}
-			
-			if( !empty( $word->synonyms_and_forms ) ) {
-				$word->synonyms_and_forms = maybe_unserialize( $word->synonyms_and_forms );
+			if( ! in_array( $word->word, $this->excluded_words ) ) {
+				$new_word = preg_quote($word->word, '/');
+				if( preg_match( '/\b' . $new_word . '\b/i', $content ) ) {
+					$searches[$counter] = '/\b' . $new_word . '\b/i';
+					$replacements[$counter] = '<span class="explanatory-dictionary-highlight" data-definition="explanatory-dictionary-definition-' . $counter . '">$0</span>';
+					$definitions[] = array( 'id' => $counter, 'word' => $word->word, 'explanation' => $word->explanation );
+				}
+				
 				if( !empty( $word->synonyms_and_forms ) ) {
-					
-					$extra_key = 1000; // need to use a differnet key - synonym should be a separate defintion so we get the title right
-					foreach( $word->synonyms_and_forms as $synonym_or_form ) {
-						if( preg_match( '/\b' . $synonym_or_form . '\b/i', $content ) ) {
-							$thekey = $extra_key + $counter;
-							$searches[$thekey] = '/\b' . $synonym_or_form . '\b/i';
-							$replacements[$thekey] = '
-								<span class="explanatory-dictionary-highlight" data-definition="explanatory-dictionary-definition-' . $thekey . '">
-									$0
-									<span class="explanatory-dictionary-tooltip" style="display: none">
-										<span class="explanatory-dictionary-tooltip-top"></span>
-										<span class="explanatory-dictionary-tooltip-content"></span>
-										<span class="explanatory-dictionary-tooltip-bottom-safe-zone">
-											<span class="explanatory-dictionary-tooltip-bottom"></span>
-											<span class="explanatory-dictionary-tooltip-bottom-border"></span>
-										</span>
-									</span>
-								</span>
-							';	
-							$definitions[] = array( 'id' => $thekey, 'word' => $synonym_or_form, 'explanation' => $word->explanation );
-							$extra_key++;
+					$word->synonyms_and_forms = maybe_unserialize( $word->synonyms_and_forms );
+					if( !empty( $word->synonyms_and_forms ) ) {
+						
+						$extra_key = 1000; // need to use a differnet key - synonym should be a separate defintion so we get the title right
+						foreach( $word->synonyms_and_forms as $synonym_or_form ) {
+							if( ! in_array( $synonym_or_form, $this->excluded_words ) ) {
+								$new_synonym_or_form = preg_quote($synonym_or_form, '/');
+								if( preg_match( '/\b' . $new_synonym_or_form . '\b/i', $content ) ) {
+									$thekey = $extra_key + $counter;
+									$searches[$thekey] = '/\b' . $new_synonym_or_form . '\b/i';
+									$replacements[$thekey] = '<span class="explanatory-dictionary-highlight" data-definition="explanatory-dictionary-definition-' . $thekey . '">$0</span>';	
+									$definitions[] = array( 'id' => $thekey, 'word' => $synonym_or_form, 'explanation' => $word->explanation );
+									$extra_key++;
+								}
+							}
 						}
 					}
 				}
+				$counter++;
 			}
-			$counter++;
 		}
 		
 		// Run the preg_replace on the content
@@ -901,27 +930,48 @@ class Explanatory_Dictionary {
 			$content = preg_replace( '/\~' . $key . '\~/', $html, $content); // passes again for any matches inside matches!
 		}
 		
-		// Add the matched definitions
-		$defs = '
-			<aside id="explanatory-dictionary-page_definitions">
-				<h2> ' . __( 'Definitioner', 'peytz-explainatory-dictionary' ) . ' </h2>
-				<dl>
-		';
-			
-		foreach( $definitions as $definition ) {
-			$defs .= '
-				<dt class="explanatory-dictionary-definition-' . $definition['id'] . '">' . $definition['word'] . '</dt>
-				<dd class="explanatory-dictionary-definition-' . $definition['id'] . '">' . $definition['explanation'] . '</dd>
+		if(count($definitions) > 0 ) {
+			// Add the matched definitions
+			$defs = '
+				<aside id="explanatory-dictionary-page-definitions">
+					<h2> ' . __( 'Definitioner', $this->plugin_slug ) . ' </h2>
+					<dl>
 			';
+				
+			foreach( $definitions as $definition ) {
+				$defs .= '
+					<dt class="explanatory-dictionary-definition-' . $definition['id'] . '">' . $definition['word'] . '</dt>
+					<dd class="explanatory-dictionary-definition-' . $definition['id'] . '">' . $definition['explanation'] . '</dd>
+				';
+			}
+				
+			// Add the definitions to the end of the_content
+			$defs .= '
+					</dl>
+				</aside>
+				<div id="explanatory-dictionary-tooltip" style="display: none">
+					<span class="explanatory-dictionary-tooltip-top"></span>
+					<span class="explanatory-dictionary-tooltip-content"></span>
+					<span class="explanatory-dictionary-tooltip-bottom-safe-zone">
+						<span class="explanatory-dictionary-tooltip-bottom"></span>
+						<span class="explanatory-dictionary-tooltip-bottom-border"></span>
+					</span>
+				</div>
+			';
+			$this->definitioner = $defs;
+			//$content = $content;
 		}
-			
-		// Add the definitions to the end of the_content
-		$content = $content . $defs . '
-				</dl>
-			</aside>
-		';
-		
 		return $content;
+	}
+	
+	/**
+	 * Add the definitioner to the end of the page to prevent multiple instances
+	 * 
+	 * @since 4.0.1
+	 */
+	public function add_definitioner()
+	{
+		echo $this->definitioner;
 	}
 	
 	/**
@@ -990,43 +1040,3 @@ class Explanatory_Dictionary {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

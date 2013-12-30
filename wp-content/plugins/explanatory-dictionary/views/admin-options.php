@@ -6,10 +6,10 @@
  * The User Interface to the end user.
  *
  * @package   Explanatory_Dictionary
- * @author    Robert-John van Doesburg <info@rjvandoesburg.com>
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2013 Robert-John van Doesburg
+ * @link      http://www.exed.nl/
+ * @copyright 2013  EXED internet  (email : service@exed.nl)
  */
 //require_once('../wp-content/plugins/wp-explanatory-dictionary/class-explanatory-dictionary.php'); 
 $current_page = admin_url( 'admin.php?page=explanatory-dictionary-options' );
@@ -115,12 +115,13 @@ $options = $this->settings->get_settings_list();
 			<h3><?php _e( 'Tooltip Options', $this->plugin_slug );?></h3>
 			<table class="form-table">
 				<tr>
-                                    <th scope="row"><label for="_alphabet"><?php _e( 'Shortcode', $this->plugin_slug ); ?></label></th>
-                                    </th>
-                                    <td>
-                                            <input type="text" style="background-color:#EDEDED; padding-left:5px; padding-right:5px; width:137px;"  value="[explanatory-dictionary]" >
-                                            <p class="description"><?php echo _e( 'Use this shortcode to display the plugin on your page', $this->plugin_slug ); ?></p>
-                                    </td>
+					<th scope="row">
+						<label><?php _e( 'Shortcode', $this->plugin_slug ); ?></label>
+					</th>
+					<td>
+						<input type="text"  class="regular-text" readonly="readonly" value="[explanatory-dictionary]" >
+						<p class="description"><?php echo _e( 'Use this shortcode to display the plugin on your page', $this->plugin_slug ); ?></p>
+					</td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="_external_css_file"><?php _e( 'External CSS file', $this->plugin_slug ); ?></label></th>
@@ -288,7 +289,5 @@ $options = $this->settings->get_settings_list();
 				<input type="submit" value="<?php _e( 'Save', $this->plugin_slug );?>" class="button button-primary" id="submit" name="submit" />
 			</p>
 		</form>
-
 	</div>
-
 </div>

@@ -5,11 +5,11 @@
  * This typically includes any information, if any, that is rendered to the
  * frontend of the theme when the plugin is activated.
  *
- * @package   Plugin_Name
- * @author    Your Name <email@example.com>
+ * @package   Explanatory_Dictionary
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2013 Your Name or Company Name
+ * @link      http://www.exed.nl/
+ * @copyright 2013  EXED internet  (email : service@exed.nl)
  */
 
 $settings = $this->settings->get_settings_list();

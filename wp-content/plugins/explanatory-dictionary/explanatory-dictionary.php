@@ -6,7 +6,7 @@
  * WordPress coding standards and PHP best practices.
  *
  * @package   Explanatory_Dictionary
- * @author    Robert-John van Doesburg <info@rjvandoesburg.com>
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  * @license   GPL-2.0+
  * @link      http://www.exed.nl/
  * @copyright 2013  EXED internet  (email : service@exed.nl)
@@ -15,7 +15,7 @@
  * Plugin Name: Explanatory Dictionary
  * Plugin URI:  
  * Description: Add a dictionary to your wordpress site
- * Version:     4.0.0
+ * Version:     4.0.1
  * Author:      EXED internet (RJvD, BHdH)
  * Author URI:  http://www.exed.nl/
  * Text Domain: explanatory-dictionary-locale

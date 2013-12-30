@@ -3,7 +3,7 @@ Contributors: exed internet, s_ruben
 Tags: explanatory dictionary, dictionary, vocabulary, glossary, lexicon, explain, explanation, tooltips, descriptions
 Requires at least: 3.5.0
 Tested up to: 3.8.0
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 
 This plugin is used when there are words, words expressions or sentences to be explained via tooltips in the posts or pages of your wordpress blog.
 
@@ -25,12 +25,12 @@ Read the following items for more information:
 
 1. Upload the explanatory-dictionary directory (including all files within) to the /wp-content/plugins/ directory
 2. Activate the plugin through the Plugins menu in WordPress
-3. If you want to show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, add [explanatory dictionary] in it.
+3. If you want to show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, add [explanatory-dictionary] in it.
 
 = Also =
 
-* To show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, add [explanatory dictionary] in it.
-* To exclude the words (words expressions, sentences) from being explained by getting those words (words expressions, sentences) into [no explanation][/no explanation] tags.
+* To show all words (words expressions, sentences) with their explanations like a glossary in a post or a page, add [explanatory-dictionary] in it.
+* To exclude the words (words expressions, sentences) from being explained by getting those words (words expressions, sentences) into [no-explanation][/no-explanation] tags.
 
 == Screenshots ==
 
@@ -40,6 +40,17 @@ Read the following items for more information:
 3. Explanatory Dictionary Overview on page
 
 == Changelog ==
+
+= 4.0.1 =
+
+* You can still use [explanatory dictionary] (without the dash, but note that this will be deprecated in the near future)
+* Words between [no-explanation] will be ignored (use with the dash, without the dash will be deprecated in the near future)
+* Moved the definitioner to the end of the page and made sure it's only build once
+* Cleaned up the code for the tooltips so the code only exists once on a page 
+* Bugfix: Definitioner showing in excerpts
+* Bugfix: White spaces before and after the word that has a definition
+* Bugfix: You can add content above your dictionary on the glossary page
+* Bugfix: Preg match warning on dictionary page 
 
 = 4.0.0 =
 
@@ -98,5 +109,18 @@ Read the following items for more information:
 * First release.
 
 == Upgrade Notice ==
+
+= 4.0.1 =
+Few bug fixes and a couple of improvements
+* You can still use [explanatory dictionary] (without the dash, but note that this will be deprecated in the near future)
+* Words between [no-explanation] will be ignored (use with the dash, without the dash will be deprecated in the near future)
+* Moved the definitioner to the end of the page and made sure it's only build once
+* Cleaned up the code for the tooltips so the code only exists once on a page 
+* Bugfix: Definitioner showing in excerpts
+* Bugfix: White spaces before and after the word that has a definition
+* Bugfix: You can now add content above your dictionary on the glossary page
+* Bugfix: Preg match warning on dictionary page 
+
 = 4.0.0 =
 A complete rewrite of the code, removed a lot of buggy code for a more stable plugin.
+The shortcode itself has changed and how contains a hyphen and should be used as followed: [explanatory-dictionary]

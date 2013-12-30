@@ -6,10 +6,10 @@
  * The User Interface to the end user.
  *
  * @package   Explanatory_Dictionary
- * @author    Robert-John van Doesburg <info@rjvandoesburg.com>
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2013 Robert-John van Doesburg
+ * @link      http://www.exed.nl/
+ * @copyright 2013  EXED internet  (email : service@exed.nl)
  */
 
 $current_page = admin_url( 'admin.php?page=explanatory-dictionary' );
@@ -176,11 +176,8 @@ ksort( $list_entries );
 				<div class='tablenav-pages one-page'>
 					<!-- <span class="displaying-num"><?php printf( _n( '%s item', '%s items', count( 1 ), $this->plugin_slug ), count( 1 ) ); ?></span> -->
 				</div>
-
 				<br class="clear" />
 			</div><!-- .tablenav -->
-
 		</form><!-- #entries -->
-
 	</div><!-- #poststuff -->
 </div>

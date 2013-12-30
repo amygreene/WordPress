@@ -6,10 +6,10 @@
  * The User Interface to the end user.
  *
  * @package   Explanatory_Dictionary
- * @author    Robert-John van Doesburg <info@rjvandoesburg.com>
+ * @author    EXED internet (RJvD, BHdH) <service@exed.nl>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2013 Robert-John van Doesburg
+ * @link      http://www.exed.nl/
+ * @copyright 2013  EXED internet  (email : service@exed.nl)
  */
 
 if ( isset( $_POST['admin_edit_item'] ) && wp_verify_nonce( $_POST['admin_edit_item'], $this->get_nonce( 'edit-item' ) ) ) {
