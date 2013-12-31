@@ -1,0 +1,10 @@
+=== upgrade from 3.6.1 to 3.8.0 ===
+12-31-2013
+* no issues found with core upgrade
+
+== plugin notes ==
+* did not upgrade to latest NextGen Gallery due to forum posts about significant increases in resources, will revisit
+* did not upgrade Haiku Audio, current version still does not work 100%, sticking with vs. 0.4.6
+* Google Analytics - tried to upgrade to 2.1.1 but not functional (white screen on plugin settings) downgraded to 1.2.1
+* Remove Email Verification - has been rewritten, updated customizations in classes/public.removeverification.php to replace references to auto-generated password with "Use your Evergreen domain password"
+* upgraded wpmu-plugin-stats from 1.4 to 2.0
