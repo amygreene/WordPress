@@ -1,10 +1,16 @@
-=== upgrade from 3.6.1 to 3.8.0 ===
+== upgrade from 3.6.1 to 3.8.0 ==
 12-31-2013
 * no issues found with core upgrade
 
-== plugin notes ==
+=== plugin notes ===
 * did not upgrade to latest NextGen Gallery due to forum posts about significant increases in resources, will revisit
 * did not upgrade Haiku Audio, current version still does not work 100%, sticking with vs. 0.4.6
 * Google Analytics - tried to upgrade to 2.1.1 but not functional (white screen on plugin settings) downgraded to 1.2.1
 * Remove Email Verification - has been rewritten, updated customizations in classes/public.removeverification.php to replace references to auto-generated password with "Use your Evergreen domain password"
 * upgraded wpmu-plugin-stats from 1.4 to 2.0
+* The latest upgrade to multisite-privacy vs 1.1.8.3 conflicts with BBPress plugin 2.5.2. Non super-admin users lose access to all bbpress administration within their own sites with error "You do not have sufficient permissions to access this page."
+If reverted back to 1.1.8.1 of the multisite privacy plugin error goes away is working with BBPress.
+This conflict also happens with site-categories plugin vs 1.0.8.7, problem dissappears if reverted back to site-categories 1.0.8.3
+php error log gives this error only when newer version of wpmudev plugins are activated:
+bbp_setup_current_user was called <strong>incorrectly</strong>. The current user is being initialized without using $wp->init().
+--contacted wpmudev plugin developers 1/7/2014
