@@ -13,6 +13,3 @@
 [submodule "wp-content/themes/evergreen-twentytwelve"]
 	path = wp-content/themes/evergreen-twentytwelve
 	url = https://github.com/amygreene/wp_evergreen-twentytwelve.git
-[submodule "wp-content/themes/evergreen-facvac"]
-	path = wp-content/themes/evergreen-facvac
-	url = https://github.com/amygreene/wp_evergreen-facvac.git
