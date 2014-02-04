@@ -1,7 +1,7 @@
 <?php
 
 // Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -12,7 +12,7 @@ if( !defined( 'ABSPATH' ) ) {
  * @file           functions.php
  * @package        Responsive
  * @author         Emil Uzelac
- * @copyright      2003 - 2013 ThemeID
+ * @copyright      2003 - 2014 CyberChimps
  * @license        license.txt
  * @version        Release: 1.2.1
  * @filesource     wp-content/themes/responsive/includes/functions.php
@@ -100,17 +100,15 @@ function responsive_get_option_defaults() {
  * @return string complete uri
  */
 function responsive_child_uri( $dir ) {
-	if( is_child_theme() ) {
+	if ( is_child_theme() ) {
 		$directory = get_stylesheet_directory() . $dir;
 		$test      = is_file( $directory );
-		if( is_file( $directory ) ) {
+		if ( is_file( $directory ) ) {
 			$file = get_stylesheet_directory_uri() . $dir;
-		}
-		else {
+		} else {
 			$file = get_template_directory_uri() . $dir;
 		}
-	}
-	else {
+	} else {
 		$file = get_template_directory_uri() . $dir;
 	}
 
@@ -122,7 +120,7 @@ function responsive_child_uri( $dir ) {
  */
 add_action( 'after_setup_theme', 'responsive_setup' );
 
-if( !function_exists( 'responsive_setup' ) ):
+if ( !function_exists( 'responsive_setup' ) ):
 
 	function responsive_setup() {
 
@@ -133,7 +131,7 @@ if( !function_exists( 'responsive_setup' ) ):
 		/**
 		 * Global content width.
 		 */
-		if( !isset( $content_width ) ) {
+		if ( !isset( $content_width ) ) {
 			$content_width = 550;
 		}
 
@@ -187,103 +185,50 @@ if( !function_exists( 'responsive_setup' ) ):
 							)
 		);
 
-		if( function_exists( 'get_custom_header' ) ) {
+		add_theme_support( 'custom-background' );
 
-			add_theme_support( 'custom-background' );
+		add_theme_support( 'custom-header', array(
+			// Header image default
+			'default-image'       => get_template_directory_uri() . '/core/images/default-logo.png',
+			// Header text display default
+			'header-text'         => false,
+			// Header image flex width
+			'flex-width'          => true,
+			// Header image width (in pixels)
+			'width'               => 300,
+			// Header image flex height
+			'flex-height'         => true,
+			// Header image height (in pixels)
+			'height'              => 100,
+			// Admin header style callback
+			'admin-head-callback' => 'responsive_admin_header_style'
+		) );
 
-		}
-		else {
-
-			// < 3.4 Backward Compatibility
-
-			/**
-			 * This feature allows users to use custom background for a theme.
-			 * @see http://codex.wordpress.org/Function_Reference/add_custom_background
-			 */
-
-			add_custom_background();
-
-		}
-
-		// WordPress 3.4 >
-		if( function_exists( 'get_custom_header' ) ) {
-
-			add_theme_support( 'custom-header', array(
-				// Header image default
-				'default-image'       => get_template_directory_uri() . '/core/images/default-logo.png',
-				// Header text display default
-				'header-text'         => false,
-				// Header image flex width
-				'flex-width'          => true,
-				// Header image width (in pixels)
-				'width'               => 300,
-				// Header image flex height
-				'flex-height'         => true,
-				// Header image height (in pixels)
-				'height'              => 100,
-				// Admin header style callback
-				'admin-head-callback' => 'responsive_admin_header_style'
-			) );
-
-			// gets included in the admin header
-			function responsive_admin_header_style() {
-				?>
-				<style type="text/css">
-					.appearance_page_custom-header #headimg {
-						background-repeat: no-repeat;
-						border: none;
-					}
-				</style><?php
-			}
-
-		}
-		else {
-
-			// Backward Compatibility
-
-			/**
-			 * This feature adds a callbacks for image header display.
-			 * In our case we are using this to display logo.
-			 * @see http://codex.wordpress.org/Function_Reference/add_custom_image_header
-			 */
-			define( 'HEADER_TEXTCOLOR', '' );
-			define( 'HEADER_IMAGE', '%s/core/images/default-logo.png' ); // %s is the template dir uri
-			define( 'HEADER_IMAGE_WIDTH', 300 ); // use width and height appropriate for your theme
-			define( 'HEADER_IMAGE_HEIGHT', 100 );
-			define( 'NO_HEADER_TEXT', true );
-
-			// gets included in the admin header
-			function responsive_admin_header_style() {
-				?>
-				<style type="text/css">
-				#headimg {
+		// gets included in the admin header
+		function responsive_admin_header_style() {
+			?>
+			<style type="text/css">
+				.appearance_page_custom-header #headimg {
 					background-repeat: no-repeat;
-					border: none !important;
-					width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
-					height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+					border: none;
 				}
-				</style><?php
-			}
-
-			add_custom_image_header( '', 'responsive_admin_header_style' );
-
+			</style><?php
 		}
 
 		// While upgrading set theme option front page toggle not to affect old setup.
 		$responsive_options = get_option( 'responsive_theme_options' );
-		if( $responsive_options && isset( $_GET['activated'] ) ) {
+		if ( $responsive_options && isset( $_GET['activated'] ) ) {
 
 			// If front_page is not in theme option previously then set it.
-			if( !isset( $responsive_options['front_page'] ) ) {
+			if ( !isset( $responsive_options['front_page'] ) ) {
 
 				// Get template of page which is set as static front page
 				$template = get_post_meta( get_option( 'page_on_front' ), '_wp_page_template', true );
 
 				// If static front page template is set to default then set front page toggle of theme option to 1
-				if( 'page' == get_option( 'show_on_front' ) && $template == 'default' ) {
+				if ( 'page' == get_option( 'show_on_front' ) && $template == 'default' ) {
 					$responsive_options['front_page'] = 1;
-				}
-				else {
+				} else {
 					$responsive_options['front_page'] = 0;
 				}
 				update_option( 'responsive_theme_options', $responsive_options );
@@ -330,7 +275,7 @@ class responsive_widget_menu_class {
 	}
 
 	public function menu_different_class( $settings, $widget ) {
-		if( $widget instanceof WP_Nav_Menu_Widget ) {
+		if ( $widget instanceof WP_Nav_Menu_Widget ) {
 			add_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ) );
 		}
 
@@ -340,15 +285,15 @@ class responsive_widget_menu_class {
 	public function wp_nav_menu_args( $args ) {
 		remove_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ) );
 
-		if( 'menu' == $args['menu_class'] ) {
-			$args['menu_class'] = 'menu-widget';
+		if ( 'menu' == $args['menu_class'] ) {
+			$args['menu_class'] = apply_filters( 'responsive_menu_widget_class', 'menu_widget' );
 		}
 
 		return $args;
 	}
 }
 
-new responsive_widget_menu_class();
+$GLOBALS['nav_menu_widget_classname'] = new responsive_widget_menu_class();
 
 /**
  * Removes div from wp_page_menu() and replace with ul.
@@ -372,12 +317,12 @@ add_filter( 'wp_page_menu', 'responsive_wp_page_menu' );
  * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/wp_title
  *
  */
-if( !function_exists( 'responsive_wp_title' ) && !defined( 'AIOSEOP_VERSION' ) ) :
+if ( !function_exists( 'responsive_wp_title' ) && !defined( 'AIOSEOP_VERSION' ) ) :
 
 	function responsive_wp_title( $title, $sep ) {
 		global $page, $paged;
 
-		if( is_feed() ) {
+		if ( is_feed() ) {
 			return $title;
 		}
 
@@ -386,12 +331,12 @@ if( !function_exists( 'responsive_wp_title' ) && !defined( 'AIOSEOP_VERSION' ) )
 
 		// Add the site description for the home/front page.
 		$site_description = get_bloginfo( 'description', 'display' );
-		if( $site_description && ( is_home() || is_front_page() ) ) {
+		if ( $site_description && ( is_home() || is_front_page() ) ) {
 			$title .= " $sep $site_description";
 		}
 
 		// Add a page number if necessary.
-		if( $paged >= 2 || $page >= 2 ) {
+		if ( $paged >= 2 || $page >= 2 ) {
 			$title .= " $sep " . sprintf( __( 'Page %s', 'responsive' ), max( $paged, $page ) );
 		}
 
@@ -412,14 +357,13 @@ endif;
  * Chip Bennett Contribution
  */
 function responsive_comment_count( $count ) {
-	if( !is_admin() ) {
+	if ( !is_admin() ) {
 		global $id;
 		$comments         = get_comments( 'status=approve&post_id=' . $id );
 		$comments_by_type = separate_comments( $comments );
 
 		return count( $comments_by_type['comment'] );
-	}
-	else {
+	} else {
 		return $count;
 	}
 }
@@ -469,7 +413,7 @@ add_filter( 'excerpt_more', 'responsive_auto_excerpt_more' );
  * Adds a pretty "Read more" link to custom post excerpts.
  */
 function responsive_custom_excerpt_more( $output ) {
-	if( has_excerpt() && !is_attachment() ) {
+	if ( has_excerpt() && !is_attachment() ) {
 		$output .= responsive_read_more();
 	}
 
@@ -492,7 +436,7 @@ add_filter( 'gallery_style', 'responsive_remove_gallery_css' );
  */
 function responsive_remove_recent_comments_style() {
 	global $wp_widget_factory;
-	if( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
+	if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
 		remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
 	}
 }
@@ -505,7 +449,7 @@ add_action( 'widgets_init', 'responsive_remove_recent_comments_style' );
  * Ulrich Pogson Contribution
  *
  */
-if( !function_exists( 'responsive_post_meta_data' ) ) :
+if ( !function_exists( 'responsive_post_meta_data' ) ) :
 
 	function responsive_post_meta_data() {
 		printf( __( '<span class="%1$s">Posted on </span>%2$s<span class="%3$s"> by </span>%4$s', 'responsive' ),
@@ -541,12 +485,32 @@ add_filter( 'the_category', 'responsive_category_rel_removal' );
 
 /**
  * Breadcrumb Lists
+ * Load the plugin from the plugin that is installed.
+ *
+ */
+function get_responsive_breadcrumb_lists() {
+	$responsive_options = get_option( 'responsive_theme_options' );
+	if ( 1 == $responsive_options['breadcrumb'] ) {
+		return;
+	} elseif ( function_exists( 'bcn_display' ) ) {
+		bcn_display();
+	} elseif ( function_exists( 'breadcrumb_trail' ) ) {
+		breadcrumb_trail();
+	} elseif ( function_exists( 'yoast_breadcrumb' ) ) {
+		yoast_breadcrumb( '<p id="breadcrumbs">', '</p>' );
+	} elseif ( ! is_search() ) {
+		responsive_breadcrumb_lists();
+	}
+}
+
+/**
+ * Breadcrumb Lists
  * Allows visitors to quickly navigate back to a previous section or the root page.
  *
  * Adopted from Dimox
  *
  */
-if( !function_exists( 'responsive_breadcrumb_lists' ) ) :
+if ( !function_exists( 'responsive_breadcrumb_lists' ) ) {
 
 	function responsive_breadcrumb_lists() {
 
@@ -558,192 +522,181 @@ if( !function_exists( 'responsive_breadcrumb_lists' ) ) :
 		$text['author']   = __( 'View all posts by %s', 'responsive' ); // text for an author page
 		$text['404']      = __( 'Error 404', 'responsive' ); // text for the 404 page
 
-		$showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
-		$showOnHome  = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
-		$delimiter   = ' <span class="chevron">&#8250;</span> '; // delimiter between crumbs
-		$before      = '<span class="breadcrumb-current">'; // tag before the current crumb
-		$after       = '</span>'; // tag after the current crumb
+		$show['current'] = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
+		$show['home']    = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
+
+		$delimiter = ' <span class="chevron">&#8250;</span> '; // delimiter between crumbs
+		$before    = '<span class="breadcrumb-current">'; // tag before the current crumb
+		$after     = '</span>'; // tag after the current crumb
 		/* === END OF OPTIONS === */
 
-		global $post, $paged, $page;
-		$homeLink   = home_url( '/' );
-		$linkBefore = '<span class="breadcrumb" typeof="v:Breadcrumb">';
-		$linkAfter  = '</span>';
-		$linkAttr   = ' rel="v:url" property="v:title"';
-		$link       = $linkBefore . '<a' . $linkAttr . ' href="%1$s">%2$s</a>' . $linkAfter;
+		$home_link   = home_url( '/' );
+		$before_link = '<span class="breadcrumb" typeof="v:Breadcrumb">';
+		$after_link  = '</span>';
+		$link_att    = ' rel="v:url" property="v:title"';
+		$link        = $before_link . '<a' . $link_att . ' href="%1$s">%2$s</a>' . $after_link;
 
-		if( is_front_page() ) {
+		$post      = get_queried_object();
+		$parent_id = isset( $post->post_parent ) ? $post->post_parent : '';
 
-			if( $showOnHome == 1 ) {
-				echo '<div class="breadcrumb-list"><a href="' . $homeLink . '">' . $text['home'] . '</a></div>';
+		$html_output = '';
+
+		if ( is_front_page() ) {
+			if ( 1 == $show['home'] ) {
+				$html_output .= '<div class="breadcrumb-list"><a href="' . $home_link . '">' . $text['home'] . '</a></div>';
 			}
 
-		}
-		else {
+		} else {
+			$html_output .= '<div class="breadcrumb-list" xmlns:v="http://rdf.data-vocabulary.org/#">' . sprintf( $link, $home_link, $text['home'] ) . $delimiter;
 
-			echo '<div class="breadcrumb-list" xmlns:v="http://rdf.data-vocabulary.org/#">' . sprintf( $link, $homeLink, $text['home'] ) . $delimiter;
-
-			if( is_home() ) {
-				if( $showCurrent == 1 ) {
-					echo $before . get_the_title( get_option( 'page_for_posts', true ) ) . $after;
+			if ( is_home() ) {
+				if ( 1 == $show['current'] ) {
+					$html_output .= $before . get_the_title( get_option( 'page_for_posts', true ) ) . $after;
 				}
 
-			}
-			elseif( is_category() ) {
-				$thisCat = get_category( get_query_var( 'cat' ), false );
-				if( $thisCat->parent != 0 ) {
-					$cats = get_category_parents( $thisCat->parent, true, $delimiter );
-					$cats = str_replace( '<a', $linkBefore . '<a' . $linkAttr, $cats );
-					$cats = str_replace( '</a>', '</a>' . $linkAfter, $cats );
-					echo $cats;
+			} elseif ( is_category() ) {
+				$this_cat = get_category( get_query_var( 'cat' ), false );
+				if ( 0 != $this_cat->parent ) {
+					$cats = get_category_parents( $this_cat->parent, true, $delimiter );
+					$cats = str_replace( '<a', $before_link . '<a' . $link_att, $cats );
+					$cats = str_replace( '</a>', '</a>' . $after_link, $cats );
+					$html_output .= $cats;
 				}
-				echo $before . sprintf( $text['category'], single_cat_title( '', false ) ) . $after;
+				$html_output .= $before . sprintf( $text['category'], single_cat_title( '', false ) ) . $after;
 
-			}
-			elseif( is_search() ) {
-				echo $before . sprintf( $text['search'], get_search_query() ) . $after;
+			} elseif ( is_search() ) {
+				$html_output .= $before . sprintf( $text['search'], get_search_query() ) . $after;
 
-			}
-			elseif( is_day() ) {
-				echo sprintf( $link, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ) ) . $delimiter;
-				echo sprintf( $link, get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ), get_the_time( 'F' ) ) . $delimiter;
-				echo $before . get_the_time( 'd' ) . $after;
+			} elseif ( is_day() ) {
+				$html_output .= sprintf( $link, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ) ) . $delimiter;
+				$html_output .= sprintf( $link, get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ), get_the_time( 'F' ) ) . $delimiter;
+				$html_output .= $before . get_the_time( 'd' ) . $after;
 
-			}
-			elseif( is_month() ) {
-				echo sprintf( $link, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ) ) . $delimiter;
-				echo $before . get_the_time( 'F' ) . $after;
+			} elseif ( is_month() ) {
+				$html_output .= sprintf( $link, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ) ) . $delimiter;
+				$html_output .= $before . get_the_time( 'F' ) . $after;
 
-			}
-			elseif( is_year() ) {
-				echo $before . get_the_time( 'Y' ) . $after;
+			} elseif ( is_year() ) {
+				$html_output .= $before . get_the_time( 'Y' ) . $after;
 
-			}
-			elseif( is_single() && !is_attachment() ) {
-				if( get_post_type() != 'post' ) {
-					$post_type = get_post_type_object( get_post_type() );
-					$slug      = $post_type->rewrite;
-					printf( $link, $homeLink . '/' . $slug['slug'] . '/', $post_type->labels->singular_name );
-					if( $showCurrent == 1 ) {
-						echo $delimiter . $before . get_the_title() . $after;
+			} elseif ( is_single() && !is_attachment() ) {
+				if ( 'post' != get_post_type() ) {
+					$post_type    = get_post_type_object( get_post_type() );
+					$archive_link = get_post_type_archive_link( $post_type->name );
+					$html_output .= sprintf( $link, $archive_link, $post_type->labels->singular_name );
+					if ( 1 == $show['current'] ) {
+						$html_output .= $delimiter . $before . get_the_title() . $after;
 					}
-				}
-				else {
+				} else {
 					$cat  = get_the_category();
 					$cat  = $cat[0];
 					$cats = get_category_parents( $cat, true, $delimiter );
-					if( $showCurrent == 0 ) {
+					if ( 0 == $show['current'] ) {
 						$cats = preg_replace( "#^(.+)$delimiter$#", "$1", $cats );
 					}
-					$cats = str_replace( '<a', $linkBefore . '<a' . $linkAttr, $cats );
-					$cats = str_replace( '</a>', '</a>' . $linkAfter, $cats );
-					echo $cats;
-					if( $showCurrent == 1 ) {
-						echo $before . get_the_title() . $after;
+					$cats = str_replace( '<a', $before_link . '<a' . $link_att, $cats );
+					$cats = str_replace( '</a>', '</a>' . $after_link, $cats );
+					$html_output .= $cats;
+					if ( 1 == $show['current'] ) {
+						$html_output .= $before . get_the_title() . $after;
 					}
 				}
 
-			}
-			elseif( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
+			} elseif ( !is_single() && !is_page() && !is_404() && 'post' != get_post_type() ) {
 				$post_type = get_post_type_object( get_post_type() );
-				echo $before . $post_type->labels->singular_name . $after;
+				$html_output .= $before . $post_type->labels->singular_name . $after;
 
-			}
-			elseif( is_attachment() ) {
-				$parent = get_post( $post->post_parent );
+			} elseif ( is_attachment() ) {
+				$parent = get_post( $parent_id );
 				$cat    = get_the_category( $parent->ID );
 
-				if( isset( $cat[0] ) ) {
+				if ( isset( $cat[0] ) ) {
 					$cat = $cat[0];
 				}
 
-				if( $cat ) {
+				if ( $cat ) {
 					$cats = get_category_parents( $cat, true, $delimiter );
-					$cats = str_replace( '<a', $linkBefore . '<a' . $linkAttr, $cats );
-					$cats = str_replace( '</a>', '</a>' . $linkAfter, $cats );
-					echo $cats;
+					$cats = str_replace( '<a', $before_link . '<a' . $link_att, $cats );
+					$cats = str_replace( '</a>', '</a>' . $after_link, $cats );
+					$html_output .= $cats;
 				}
 
-				printf( $link, get_permalink( $parent ), $parent->post_title );
-				if( $showCurrent == 1 ) {
-					echo $delimiter . $before . get_the_title() . $after;
+				$html_output .= sprintf( $link, get_permalink( $parent ), $parent->post_title );
+				if ( 1 == $show['current'] ) {
+					$html_output .= $delimiter . $before . get_the_title() . $after;
 				}
 
-			}
-			elseif( is_page() && !$post->post_parent ) {
-				if( $showCurrent == 1 ) {
-					echo $before . get_the_title() . $after;
+			} elseif ( is_page() && !$parent_id ) {
+				if ( 1 == $show['current'] ) {
+					$html_output .= $before . get_the_title() . $after;
 				}
 
-			}
-			elseif( is_page() && $post->post_parent ) {
-				$parent_id   = $post->post_parent;
+			} elseif ( is_page() && $parent_id ) {
 				$breadcrumbs = array();
-				while( $parent_id ) {
+				while ( $parent_id ) {
 					$page_child    = get_page( $parent_id );
 					$breadcrumbs[] = sprintf( $link, get_permalink( $page_child->ID ), get_the_title( $page_child->ID ) );
 					$parent_id     = $page_child->post_parent;
 				}
 				$breadcrumbs = array_reverse( $breadcrumbs );
-				for( $i = 0; $i < count( $breadcrumbs ); $i++ ) {
-					echo $breadcrumbs[$i];
-					if( $i != count( $breadcrumbs ) - 1 ) {
-						echo $delimiter;
+				for ( $i = 0; $i < count( $breadcrumbs ); $i++ ) {
+					$html_output .= $breadcrumbs[$i];
+					if ( $i != count( $breadcrumbs ) - 1 ) {
+						$html_output .= $delimiter;
 					}
 				}
-				if( $showCurrent == 1 ) {
-					echo $delimiter . $before . get_the_title() . $after;
+				if ( 1 == $show['current'] ) {
+					$html_output .= $delimiter . $before . get_the_title() . $after;
 				}
 
-			}
-			elseif( is_tag() ) {
-				echo $before . sprintf( $text['tag'], single_tag_title( '', false ) ) . $after;
+			} elseif ( is_tag() ) {
+				$html_output .= $before . sprintf( $text['tag'], single_tag_title( '', false ) ) . $after;
+
+			} elseif ( is_author() ) {
+				$user_id  = get_query_var( 'author' );
+				$userdata = get_the_author_meta( 'display_name', $user_id );
+				$html_output .= $before . sprintf( $text['author'], $userdata ) . $after;
+
+			} elseif ( is_404() ) {
+				$html_output .= $before . $text['404'] . $after;
 
 			}
-			elseif( is_author() ) {
-				global $author;
-				$userdata = get_userdata( $author );
-				echo $before . sprintf( $text['author'], $userdata->display_name ) . $after;
+
+			if ( get_query_var( 'paged' ) || get_query_var( 'page' ) ) {
+				$page_num = get_query_var( 'page' ) ? get_query_var( 'page' ) : get_query_var( 'paged' );
+				$html_output .= $delimiter . sprintf( __( 'Page %s', 'responsive' ), $page_num );
 
 			}
-			elseif( is_404() ) {
-				echo $before . $text['404'] . $after;
 
-			}
-			if( get_query_var( 'paged' ) ) {
-				if( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) {
-					echo ' (';
-				}
-				echo $delimiter . sprintf( __( 'Page %s', 'responsive' ), max( $paged, $page ) );
-				if( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) {
-					echo ')';
-				}
-			}
-
-			echo '</div>';
+			$html_output .= '</div>';
 
 		}
+
+		echo $html_output;
+
 	} // end responsive_breadcrumb_lists
 
-endif;
+}
 
 /**
  * A safe way of adding stylesheets to a WordPress generated page.
  */
-if( !is_admin() ) {
+if ( !is_admin() ) {
 	add_action( 'wp_enqueue_scripts', 'responsive_css' );
 }
 
-if( !function_exists( 'responsive_css' ) ) {
+if ( !function_exists( 'responsive_css' ) ) {
 
 	function responsive_css() {
-		wp_enqueue_style( 'responsive-style', get_template_directory_uri() . '/style.css', false, '1.9.3.4' );
-		wp_enqueue_style( 'responsive-media-queries', get_template_directory_uri() . '/core/css/style.css', false, '1.9.3.4' );
-		if( is_rtl() ) {
-			wp_enqueue_style( 'responsive-rtl-style', get_template_directory_uri() . '/rtl.css', false, '1.9.3.4' );
+		$theme      = wp_get_theme();
+		$responsive = wp_get_theme( 'responsive' );
+		wp_enqueue_style( 'responsive-style', get_template_directory_uri() . '/style.css', false, $responsive['Version'] );
+		wp_enqueue_style( 'responsive-media-queries', get_template_directory_uri() . '/core/css/style.css', false, $responsive['Version'] );
+		if ( is_rtl() ) {
+			wp_enqueue_style( 'responsive-rtl-style', get_template_directory_uri() . '/rtl.css', false, $responsive['Version'] );
 		}
-		if( is_child_theme() ) {
-			wp_enqueue_style( 'responsive-child-style', get_stylesheet_uri(), false, '1.9.3.4' );
+		if ( is_child_theme() ) {
+			wp_enqueue_style( 'responsive-child-style', get_stylesheet_uri(), false, $theme['Version'] );
 		}
 	}
 
@@ -752,21 +705,23 @@ if( !function_exists( 'responsive_css' ) ) {
 /**
  * A safe way of adding JavaScripts to a WordPress generated page.
  */
-if( !is_admin() ) {
+if ( !is_admin() ) {
 	add_action( 'wp_enqueue_scripts', 'responsive_js' );
 }
 
-if( !function_exists( 'responsive_js' ) ) {
+if ( !function_exists( 'responsive_js' ) ) {
 
 	function responsive_js() {
+		$suffix                 = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+		$directory              = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'js-dev' : 'js';
 		$template_directory_uri = get_template_directory_uri();
 
 		// JS at the bottom for fast page loading.
 		// except for Modernizr which enables HTML5 elements & feature detects.
-		wp_enqueue_script( 'modernizr', $template_directory_uri . '/core/js/responsive-modernizr.min.js', array( 'jquery' ), '2.6.1', false );
-		wp_enqueue_script( 'responsive-scripts', $template_directory_uri . '/core/js/responsive-scripts.min.js', array( 'jquery' ), '1.2.5', true );
-		if ( ! wp_script_is( 'tribe-placeholder' ) ) {
-			wp_enqueue_script( 'jquery-placeholder', $template_directory_uri . '/core/js/jquery.placeholder.min.js', array( 'jquery' ), '2.0.7', true );
+		wp_enqueue_script( 'modernizr', $template_directory_uri . '/core/' . $directory . '/responsive-modernizr' . $suffix . '.js', array( 'jquery' ), '2.6.1', false );
+		wp_enqueue_script( 'responsive-scripts', $template_directory_uri . '/core/' . $directory . '/responsive-scripts' . $suffix . '.js', array( 'jquery' ), '1.2.5', true );
+		if ( !wp_script_is( 'tribe-placeholder' ) ) {
+			wp_enqueue_script( 'jquery-placeholder', $template_directory_uri . '/core/' . $directory . '/jquery.placeholder' . $suffix . '.js', array( 'jquery' ), '2.0.7', true );
 		}
 	}
 
@@ -776,7 +731,7 @@ if( !function_exists( 'responsive_js' ) ) {
  * A comment reply.
  */
 function responsive_enqueue_comment_reply() {
-	if( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
@@ -839,8 +794,7 @@ function responsive_theme_support() {
 			<a class="button button-primary" href="<?php echo esc_url( 'http://cyberchimps.com/forum/free/responsive/' ); ?>" title="<?php esc_attr_e( 'Help', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'Help', 'responsive' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( 'https://webtranslateit.com/en/projects/3598-Responsive-Theme' ); ?>" title="<?php esc_attr_e( 'Translate',
-																																					   'responsive' ); ?>" target="_blank">
+			<a class="button" href="<?php echo esc_url( 'https://webtranslateit.com/en/projects/3598-Responsive-Theme' ); ?>" title="<?php esc_attr_e( 'Translate', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'Translate', 'responsive' ); ?></a>
 
 			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/showcase/' ); ?>" title="<?php esc_attr_e( 'Showcase', 'responsive' ); ?>" target="_blank">
@@ -971,7 +925,7 @@ function responsive_widgets_init() {
 						  'before_widget' => '<div id="%1$s" class="%2$s">',
 						  'after_widget'  => '</div>'
 					  ) );
-					  
+
 	register_sidebar( array(
 						  'name'          => __( 'Footer Widget', 'responsive' ),
 						  'description'   => __( 'Area 12 - sidebar-footer.php - Maximum of 3 widgets per row', 'responsive' ),
@@ -991,13 +945,13 @@ function footer_widgets( $params ) {
 	global $footer_widget_num; //Our widget counter variable
 
 	//Check if we are displaying "Footer Sidebar"
-	if( $params[0]['id'] == 'footer-widget' ){
+	if ( $params[0]['id'] == 'footer-widget' ) {
 		$footer_widget_num++;
 		$divider = 3; //This is number of widgets that should fit in one row
 
 		//If it's third widget, add last class to it
-		if( $footer_widget_num % $divider == 0 ){
-			$class = 'class="fit ';
+		if ( $footer_widget_num % $divider == 0 ) {
+			$class                      = 'class="fit ';
 			$params[0]['before_widget'] = str_replace( 'class="', $class, $params[0]['before_widget'] );
 		}
 
@@ -1005,6 +959,7 @@ function footer_widgets( $params ) {
 
 	return $params;
 }
+
 add_filter( 'dynamic_sidebar_params', 'footer_widgets' );
 
 /**
@@ -1014,7 +969,7 @@ add_filter( 'dynamic_sidebar_params', 'footer_widgets' );
 function responsive_front_page_override( $new, $orig ) {
 	global $responsive_options;
 
-	if( $orig !== $new ) {
+	if ( $orig !== $new ) {
 		$responsive_options['front_page'] = 0;
 
 		update_option( 'responsive_theme_options', $responsive_options );
@@ -1032,7 +987,7 @@ function responsive_add_class( $classes ) {
 
 	// Get Responsive theme option.
 	global $responsive_options;
-	if( $responsive_options['front_page'] == 1 && is_front_page() ) {
+	if ( $responsive_options['front_page'] == 1 && is_front_page() ) {
 		$classes[] = 'front-page';
 	}
 
@@ -1098,7 +1053,7 @@ function responsive_install_plugins() {
 }
 
 // Add plugin notification only if the current user is admin.
-if( current_user_can( 'manage_options' ) ) {
+if ( current_user_can( 'manage_options' ) ) {
 	add_action( 'tgmpa_register', 'responsive_install_plugins' );
 }
 
@@ -1108,17 +1063,122 @@ if( current_user_can( 'manage_options' ) ) {
  * @since    1.9.4.0
  */
 function responsive_front_page_reading_notice() {
-	$screen = get_current_screen();
+	$screen             = get_current_screen();
 	$responsive_options = responsive_get_options();
 	if ( 'options-reading' == $screen->id ) {
 		$html = '<div class="updated">';
-			if ( 1 == $responsive_options['front_page'] ) {
-				$html .= '<p>' . sprintf( __( 'The Custom Front Page is enabled. You can disable it in the <a href="%1$s">theme settings</a>.', 'responsive' ), admin_url( 'themes.php?page=theme_options' ) ) . '</p>';
-			} else {
-				$html .= '<p>' . sprintf( __( 'The Custom Front Page is disabled. You can enable it in the <a href="%1$s">theme settings</a>.', 'responsive' ), admin_url( 'themes.php?page=theme_options' ) ) . '</p>';
-			}
+		if ( 1 == $responsive_options['front_page'] ) {
+			$html .= '<p>' . sprintf( __( 'The Custom Front Page is enabled. You can disable it in the <a href="%1$s">theme settings</a>.', 'responsive' ), admin_url( 'themes.php?page=theme_options' ) ) . '</p>';
+		} else {
+			$html .= '<p>' . sprintf( __( 'The Custom Front Page is disabled. You can enable it in the <a href="%1$s">theme settings</a>.', 'responsive' ), admin_url( 'themes.php?page=theme_options' ) ) . '</p>';
+		}
 		$html .= '</div>';
 		echo $html;
 	}
 }
+
 add_action( 'admin_notices', 'responsive_front_page_reading_notice' );
+
+/**
+ * Use shortcode_atts_gallery filter to add new defaults to the WordPress gallery shortcode.
+ * Allows user input in the post gallery shortcode.
+ *
+ */
+function responsive_gallery_atts( $out, $pairs, $atts ) {
+
+	$full_width = is_page_template( 'full-width-page.php' ) || is_page_template( 'landing-page.php' );
+
+	// Check if the size attribute has been set, if so use it and skip the responsive sizes
+	if ( array_key_exists( 'size', $atts ) ) {
+		$size = $atts['size'];
+	} else {
+
+		if ( $full_width ) {
+			switch ( $out['columns'] ) {
+				case 1:
+					$size = 'responsive-900'; //900
+					break;
+				case 2:
+					$size = 'responsive-450'; //450
+					break;
+				case 3:
+					$size = 'responsive-300'; //300
+					break;
+				case 4:
+					$size = 'responsive-200'; //225
+					break;
+				case 5:
+					$size = 'responsive-200'; //180
+					break;
+				case 6:
+					$size = 'responsive-150'; //150
+					break;
+				case 7:
+					$size = 'responsive-150'; //125
+					break;
+				case 8:
+					$size = 'responsive-150'; //112
+					break;
+				case 9:
+					$size = 'responsive-100'; //100
+					break;
+			}
+		} else {
+			switch ( $out['columns'] ) {
+				case 1:
+					$size = 'responsive-600'; //600
+					break;
+				case 2:
+					$size = 'responsive-300'; //300
+					break;
+				case 3:
+					$size = 'responsive-200'; //200
+					break;
+				case 4:
+					$size = 'responsive-150'; //150
+					break;
+				case 5:
+					$size = 'responsive-150'; //120
+					break;
+				case 6:
+					$size = 'responsive-100'; //100
+					break;
+				case 7:
+					$size = 'responsive-100'; //85
+					break;
+				case 8:
+					$size = 'responsive-100'; //75
+					break;
+				case 9:
+					$size = 'responsive-100'; //66
+					break;
+			}
+		}
+
+	}
+
+	$atts = shortcode_atts(
+		array(
+			'size' => $size,
+		),
+		$atts
+	);
+
+	$out['size'] = $atts['size'];
+
+	return $out;
+
+}
+
+add_filter( 'shortcode_atts_gallery', 'responsive_gallery_atts', 10, 3 );
+
+/*
+ * Create image sizes for the galley
+ */
+add_image_size( 'responsive-100', 100, 9999 );
+add_image_size( 'responsive-150', 150, 9999 );
+add_image_size( 'responsive-200', 200, 9999 );
+add_image_size( 'responsive-300', 300, 9999 );
+add_image_size( 'responsive-450', 450, 9999 );
+add_image_size( 'responsive-600', 600, 9999 );
+add_image_size( 'responsive-900', 900, 9999 );

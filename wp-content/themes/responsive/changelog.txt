@@ -8,6 +8,46 @@ Changelog Legend:
 [x] = Deleted
 [!] = Bugs
 
+(01/28/14) - Improvements - Version 1.9.4.7-8
+
+[*] Allow for gallery image size can be defined
+[!] Fixed disabling breadcrumbs
+
+----
+
+(01/19/14) - Improvements - Version 1.9.4.6
+
+[*] Improved Responsive Breadcrumbs
+[+] Added support for Breadcrumb NavXT, Breadcrum Trail and Yoast SEO
+breadcrumbs.
+
+----
+
+(01/12/14) - Improvements - Version 1.9.4.5
+
+[*] Made Theme Options responsive
+[*] Update coyright to 2014
+[x] Removed old code in header.php
+
+----
+
+(01/07/14) - Improvements - Version 1.9.4.4
+
+[+] Added improved support gallery images
+[x] Removed old tags
+
+----
+
+(12/22/13) - Improvements - Version 1.9.4.3
+
+[+] Allow switching minified scripts with SCRIPT_DEBUG
+[x] Removed code for Backward Compatibility of WP 3.4
+[*] Improved responsive_widget_menu_class as suggested by markoheijnen
+[*] Allow Stylesheet version update automatically.
+[!] Fix disabling breadcrumbs
+
+----
+
 (12/15/13) - Improvements - Version 1.9.4.2
 
 [+] Made search form accessible
