@@ -1,0 +1,109 @@
+/*
+Theme Name:     Evergreen Responsive
+Theme URI:      
+Description:    Responsive derivitive with planet functionality for CAS login. Should only be used on home blog for multisite install.
+Author:         Amy Greene
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       responsive
+Version:        0.1.0
+*/
+
+@import url("../responsive/style.css");
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: none repeat scroll 0 0 #F3F3F3;
+}
+.menu {
+	background-color: #585858;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#64933A), to(#64933A));
+	background-image: -webkit-linear-gradient(top, ##64933A, #64933A);
+	background-image: -moz-linear-gradient(top, #64933A, #64933A);
+	background-image: -ms-linear-gradient(top, #64933A, #64933A);
+	background-image: -o-linear-gradient(top, #64933A, #64933A);
+	background-image: linear-gradient(top, #64933A, #64933A);
+	clear: both;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#64933A, endColorstr=#64933A);
+	margin: 0 auto;
+}
+
+.menu a {
+	border-left: 1px solid #000000;
+        text-shadow: none;
+}
+
+.menu a:hover {
+	background-color: ##6D587D;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(##6D587D), to(#363636));
+	background-image: -webkit-linear-gradient(top, #6D587D, #6D587D);
+	background-image: -moz-linear-gradient(top, #6D587D, #6D587D);
+	background-image: -ms-linear-gradient(top, #6D587D, #6D587D);
+	background-image: -o-linear-gradient(top, #6D587D, #6D587D);
+	background-image: linear-gradient(top, #6D587D, #6D587D);
+	color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6D587D, endColorstr=#6D587D);
+}
+
+ul.menu > li:hover {
+	background-color: #6D587D;
+	color: #ffffff;
+}
+
+.menu .current_page_item a,
+.menu .current-menu-item a {
+	background-color: #6D587D;
+}
+
+.top-widget {
+width: 55%;
+}
+
+.evg-logo {
+	margin-top: 5px;
+	width:50%;
+	margin-left:50%;
+
+}
+#top-widget {
+	text-align:right;
+}
+
+/* network latest post plugin style */
+.nlposts-container {
+    background-color: #F9F9F9;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    margin: 0 0 20px;
+    padding: 20px;
+}
+
+/* site categories plugin styles */
+ul.site-categories {
+list-style-type: none;
+}
+ul.site-categories-children {
+list-style-type: cirlce;
+}
+li.site-categories-parent {
+margin-bottom: 10px;
+font-weight: bold;
+}
+ul.site-categories-children {
+font-weight:normal;
+margin-bottom:0;
+}
+img.site-category-icon {
+padding-right: 10px;
+}
+.site-category-count {
+padding-left: 5px;
+}
+
+
+/*Multisite global search plugin styles */
+form {
+margin: 0.6em 0;
+}
+form.ms-global-search_form {
+    padding: 0px;
+}
