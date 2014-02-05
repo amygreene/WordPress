@@ -51,7 +51,7 @@ ul.menu > li:hover {
 
 .menu .current_page_item a,
 .menu .current-menu-item a {
-	background-color: #6D587D;
+	background-color: #46502B;
 }
 
 .top-widget {
@@ -77,6 +77,16 @@ width: 55%;
     padding: 20px;
 }
 
+.nlposts-ulist-container .nlposts-ulist-wtitle {
+	text-transform:capitalize;
+}
+.pagination {
+  display:none;
+}
+h2.nlposts-ulist-wtitle {
+	font-size:1.75em;
+	margin-top:0;
+}
 /* site categories plugin styles */
 ul.site-categories {
 list-style-type: none;
