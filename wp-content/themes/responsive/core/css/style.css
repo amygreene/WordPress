@@ -84,7 +84,7 @@
 		display: none;
 	}
 
-	.js .main-nav {
+/*	.js .main-nav {
 		position: relative;
 		background-color: #585858;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#585858), to(#3d3d3d));
@@ -96,7 +96,7 @@
 		clear: both;
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#585858, endColorstr=#3d3d3d);
 		margin: 0 auto;
-	}
+	}*/
 
 	.js .main-nav .menu {
 		display: none;
