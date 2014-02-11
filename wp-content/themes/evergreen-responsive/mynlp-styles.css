@@ -1,0 +1,35 @@
+/* network latest post plugin style */
+.nlposts-container {
+    background-color: #F9F9F9;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    margin: 0 0 20px;
+    padding: 20px;
+}
+
+.pagination {
+  display:none;
+}
+
+h2.nlposts-ulist-wtitle {
+	font-size:24px;
+	text-transform:capitalize;
+	margin-top:0;
+}
+.nlposts-ulist-meta {
+	font-style:italic;
+}
+
+ul.nlposts-ulist {
+	list-style-type:none;
+}
+
+ul.nlposts-ulist-excerpt {
+	list-style-type:none;
+	margin-top: .5em;
+}
+
+#widgets ul.nlposts-ulist-excerpt {
+		padding: 0;
+	
+}
