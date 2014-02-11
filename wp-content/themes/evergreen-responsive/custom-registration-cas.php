@@ -334,9 +334,9 @@ function signup_user($user_name = '', $user_email = '', $errors = '') {
 
 	?>
 
-	<h2><strong>Welcome <?php echo $user_name?>!</strong>
-	<?php printf( __( 'New to %s? Use your Evergreen username and email to setup an account in seconds!<br />' ), $current_site->site_name ) ?></h2>
-	<p class="right"><em>Not your account? <a href="<?php echo wp_logout_url(); ?>" title="Logout">Logout</a></em></p>
+	<h2>Welcome <?php echo $user_name?>!</h2>
+	<p><?php printf( __( 'New to %s? Use your Evergreen username and email to setup an account in seconds!<br />' ), $current_site->site_name ) ?>
+	<em>Not your account? <a href="<?php echo wp_logout_url(); ?>" title="Logout">Logout</a></em></p>
 	<form id="setupform" method="post" action="wp-signup.php">
 		<input type="hidden" name="stage" value="validate-user-signup" />
 		<?php do_action( 'signup_hidden_fields' ); ?>
