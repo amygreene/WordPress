@@ -36,19 +36,19 @@ body {
 }
 
 .menu a:hover {
-	background-color: #6D587D;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#6D587D), to(#6D587D));
-	background-image: -webkit-linear-gradient(top, #6D587D, #6D587D);
-	background-image: -moz-linear-gradient(top, #6D587D, #6D587D);
-	background-image: -ms-linear-gradient(top, #6D587D, #6D587D);
-	background-image: -o-linear-gradient(top, #6D587D, #6D587D);
-	background-image: linear-gradient(top, #6D587D, #6D587D);
+	background-color: #857193;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#857193), to(#857193));
+	background-image: -webkit-linear-gradient(top, #857193, #857193);
+	background-image: -moz-linear-gradient(top, #857193, #857193);
+	background-image: -ms-linear-gradient(top, #857193, #857193);
+	background-image: -o-linear-gradient(top, #857193, #857193);
+	background-image: linear-gradient(top, #857193, #857193);
 	color: #ffffff;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6D587D, endColorstr=#6D587D);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#857193, endColorstr=#857193);
 }
 
 ul.menu > li:hover {
-	background-color: #6D587D;
+	background-color: #857193;
 	color: #ffffff;
 }
 
