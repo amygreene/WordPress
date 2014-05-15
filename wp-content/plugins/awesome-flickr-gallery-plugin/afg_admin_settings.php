@@ -271,8 +271,11 @@ if ($_POST)
                                </tr>
                                 <tr>
                                   <td>Flickr API Key</td>
-                                  <td><input class='afg-input' type='text' name='afg_api_key' value="<?php echo get_option('afg_api_key'); ?>" ><b>*</b></input> </td>
-                                  <td> <div class='afg-help'>Don't have a Flickr API Key?  Get it from <a href="http://www.flickr.com/services/api/keys/" target='blank'>here.</a> Go through the <a href='http://www.flickr.com/services/api/tos/'>Flickr API Terms of Service.</a></div></td>
+                                  <td><input class='afg-input' type='text' name='afg_api_key' value="1d48e56b6a5a832dbf10180e1fb3f214" ?><b>*</b></input> </td>
+                                  <td> <div class='afg-help'>The API Key is prepopulated using Evergreen's API key. If you want to use your own API key, get it from 
+								<a href="http://www.flickr.com/services/api/keys/" target='blank'>here.</a> 
+								Go through the <a href='http://www.flickr.com/services/api/tos/'>
+								Flickr API Terms of Service.</a></div></td>
                                    </tr>
                                     <tr>
                                         <td>Flickr API Secret</td>
