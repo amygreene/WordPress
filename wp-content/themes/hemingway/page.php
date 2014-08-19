@@ -1,39 +1,81 @@
 <?php get_header(); ?>
 
-	<div id="primary">
-	<div class="inside">
+<div class="wrapper section-inner">						
 
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<h1><?php the_title(); ?></h1>
-		<?php the_content(__('<p class="serif">Read the rest of this page &raquo;</p>',TEMPLATE_DOMAIN)); ?>
+	<div class="content left">
 	
-		<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
-		<br class="clear" />
-		<?php edit_post_link(__('Edit this entry.',TEMPLATE_DOMAIN), '<p>', '</p>'); ?>
-
-	<?php endwhile; endif; ?>
-	</div>
-	</div>
-
-	<hr class="hide" />
-	<div id="secondary">
-		<div class="inside">
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			
-			<?php if ('open' == $post-> comment_status) {
-				// Comments are open ?>
-				<div class="comment-head">
-					<h2><?php comments_number(__('0 Comments',TEMPLATE_DOMAIN), __('One Comment',TEMPLATE_DOMAIN), __('% Comments',TEMPLATE_DOMAIN)); ?></h2>
-					<span class="details"><a href="#comment-form"><?php _e("Jump to comment form",TEMPLATE_DOMAIN); ?></a> | <?php comments_rss_link('comments rss'); ?> <a href="#what-is-comment-rss" class="help">[?]</a> <?php if ('open' == $post->ping_status): ?>| <a href="<?php trackback_url(true); ?>"><?php _e("trackback uri",TEMPLATE_DOMAIN); ?></a> <a href="#what-is-trackback" class="help">[?]</a><?php endif; ?></span>
-				</div>
-
-                <?php comments_template('',true); ?>
-
-			<?php } elseif ('open' != $post-> comment_status) { ?>
-			<?php } ?>
+		<div class="posts">
+	
+			<div class="post">
 			
+				<?php if ( has_post_thumbnail() ) : ?>
+					
+					<div class="featured-media">
+					
+						<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>">
+						
+							<?php the_post_thumbnail('post-image'); ?>
+							
+							<?php if ( !empty(get_post(get_post_thumbnail_id())->post_excerpt) ) : ?>
+											
+								<div class="media-caption-container">
+								
+									<p class="media-caption"><?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?></p>
+									
+								</div>
+								
+							<?php endif; ?>
+							
+						</a>
+								
+					</div> <!-- /featured-media -->
+						
+				<?php endif; ?>
+														
+				<div class="post-header">
+											
+				    <h2 class="post-title"><?php the_title(); ?></h2>
+				    				    
+			    </div> <!-- /post-header -->
+			   				        			        		                
+				<div class="post-content">
+							                                        
+					<?php the_content(); ?>
+					
+					<?php if ( current_user_can( 'manage_options' ) ) : ?>
+																	
+						<p><?php edit_post_link( __('Edit', 'hemingway') ); ?></p>
+					
+					<?php endif; ?>
+														            			                        
+				</div> <!-- /post-content -->
+								
+			</div> <!-- /post -->
+			
+			<?php if ( comments_open() ) : ?>
+			
+				<?php comments_template( '', true ); ?>
+			
+			<?php endif; ?>
+		
+		</div> <!-- /posts -->
+		
+		<?php endwhile; else: ?>
+		
+			<p><?php _e("We couldn't find any posts that matched your query. Please try again.", "hemingway"); ?></p>
+	
+		<?php endif; ?>
+	
+		<div class="clear"></div>
+		
+	</div> <!-- /content left -->
+	
+	<?php get_sidebar(); ?>
+	
+	<div class="clear"></div>
 
-	</div>
-	</div>
-<?php get_sidebar(); ?>
-
+</div> <!-- /wrapper -->
+								
 <?php get_footer(); ?>

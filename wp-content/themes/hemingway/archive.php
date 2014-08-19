@@ -1,101 +1,91 @@
 <?php get_header(); ?>
-<?php is_tag(); ?>
 
-	<div id="primary" class="single-post">
-	<div class="inside">
-		<div class="primary">
-
-			<?php if (have_posts()) : ?>
-
-            <?php $post = $posts[0]; // Thanks Kubrick for this code ?>
-
-		<?php if (is_category()) { ?>
-		<h1><?php _e('Archive for', TEMPLATE_DOMAIN); ?> <?php single_cat_title(); ?></h1>
-
- 	  	<?php } elseif (is_tag()) { ?>
-		<h1><?php _e('Posts tagged with', TEMPLATE_DOMAIN); ?> <?php single_tag_title(); ?></h1>
-
- 	  	<?php } elseif (is_day()) { ?>
-		<h1><?php _e('Archive for', TEMPLATE_DOMAIN); ?> <?php the_time('F j, Y'); ?></h1>
-
-	 	<?php } elseif (is_month()) { ?>
-		<h1><?php _e('Archive for', TEMPLATE_DOMAIN); ?> <?php the_time('F, Y'); ?></h1>
-
-		<?php } elseif (is_year()) { ?>
-		<h1><?php _e('Archive for', TEMPLATE_DOMAIN); ?> <?php the_time('Y'); ?></h1>
-
-		<?php } elseif (is_author()) { ?>
-		<h1><?php _e('Author Archive', TEMPLATE_DOMAIN); ?></h1>
-
-
-       <?php if (is_author()) { ?>
-       <?php if(isset($_GET['author_name'])) : $curauth = get_userdatabylogin($author_name); else : $curauth = get_userdata(intval($author)); endif; ?>
-        <div id="author-block">
-
-        <div class="alignleft"><?php echo get_avatar($curauth->user_email, '128', $avatar); ?></div>
-
-
-        <div class="info">
-        <h1><?php echo $curauth->display_name; ?></h1>
-        <p>
-        <?php if($curauth->user_description<>''): echo $curauth->user_description; else: _e("This user hasn't shared any biographical information",TEMPLATE_DOMAIN);
-         endif; ?>
-        </p>
-         <?php
-          if(($curauth->user_url<>'http://') && ($curauth->user_url<>'')) echo '<p class="im">'.__('Homepage:',TEMPLATE_DOMAIN).' <a href="'.$curauth->user_url.'">'.$curauth->user_url.'</a></p>';
-          if($curauth->yim<>'') echo '<p class="im">'.__('Yahoo Messenger:',TEMPLATE_DOMAIN).' <a class="im_yahoo" href="ymsgr:sendIM?'.$curauth->yim.'">'.$curauth->yim.'</a></p>';
-          if($curauth->jabber<>'') echo '<p class="im">'.__('Jabber/GTalk:',TEMPLATE_DOMAIN).' <a class="im_jabber" href="gtalk:chat?jid='.$curauth->jabber.'">'.$curauth->jabber.'</a></p>';
-          if($curauth->aim<>'') echo '<p class="im">'.__('AIM:',TEMPLATE_DOMAIN).' <a class="im_aim" href="aim:goIM?screenname='.$curauth->aim.'">'.$curauth->aim.'</a></p>';
-         ?>
-         </div>
-         </div>
-           <?php } ?>
-
-		<?php } elseif (is_search()) { ?>
-		<h1><?php _e('Search Results', TEMPLATE_DOMAIN); ?></h1>
-
-		<?php } ?>
-
-
-
-		 <ul class="dates">
-		 	<?php while (have_posts()) : the_post(); ?>
-			<li>
-				<span class="date"><?php the_time('m.j.y') ?></span>
-				<a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
-				 <?php _e("posted in",TEMPLATE_DOMAIN); ?>
-				<?php the_category(', ') ?>
-				<?php if (is_callable('the_tags')) the_tags(__('tagged ',TEMPLATE_DOMAIN), ', '); ?>
-			</li>
-
-			<?php endwhile; ?>
-		</ul>
-		
-		<div class="navigation">
-			<div class="left"><?php next_posts_link(__('&laquo; Previous Entries',TEMPLATE_DOMAIN)) ?></div>
-			<div class="right"><?php previous_posts_link(__('Next Entries &raquo;',TEMPLATE_DOMAIN)) ?></div>
-		</div>
-
+<div class="wrapper section-inner">
 	
-	<?php else : ?>
-
-		<h1><?php _e("Not Found",TEMPLATE_DOMAIN); ?></h1>
-
-	<?php endif; ?>
-		
-	</div>
-
-	<div class="secondary">
-		<h2><?php _e("About the archives",TEMPLATE_DOMAIN); ?></h2>
-		<div class="featured">
-			<p><?php _e("Welcome to the archives here at <?php bloginfo('name'); ?>. Have a look around.",TEMPLATE_DOMAIN); ?></p>
+		<div class="content left">
+				
+			<div class="posts">
 			
-		</div>
-	</div>
+				<div class="page-title">
+		
+					<h4><?php if ( is_day() ) : ?>
+						<?php printf( __( 'Date: %s', 'hemingway' ), '' . get_the_date() . '' ); ?>
+					<?php elseif ( is_month() ) : ?>
+						<?php printf( __( 'Month: %s', 'hemingway' ), '' . get_the_date( _x( 'F Y', 'F = Month, Y = Year', 'hemingway' ) ) ); ?>
+					<?php elseif ( is_year() ) : ?>
+						<?php printf( __( 'Year: %s', 'hemingway' ), '' . get_the_date( _x( 'Y', 'Y = Year', 'hemingway' ) ) ); ?>
+					<?php elseif ( is_category() ) : ?>
+						<?php printf( __( 'Category: %s', 'hemingway' ), '' . single_cat_title( '', false ) . '' ); ?>
+					<?php elseif ( is_tag() ) : ?>
+						<?php printf( __( 'Tag: %s', 'hemingway' ), '' . single_tag_title( '', false ) . '' ); ?>
+					<?php elseif ( is_author() ) : ?>
+						<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
+						<?php printf( __( 'Author: %s', 'hemingway' ), $curauth->display_name ); ?>
+					<?php else : ?>
+						<?php _e( 'Archive', 'hemingway' ); ?>
+					<?php endif; ?>
+					
+					<?php
+					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+					
+					if ( "1" < $wp_query->max_num_pages ) : ?>
+					
+						<span><?php printf( __('(page %s of %s)', 'hemingway'), $paged, $wp_query->max_num_pages ); ?></span>
+					
+					<?php endif; ?></h4>
+					
+					<?php
+						$tag_description = tag_description();
+						if ( ! empty( $tag_description ) )
+							echo apply_filters( 'tag_archive_meta', '<div class="tag-archive-meta">' . $tag_description . '</div>' );
+					?>
+					
+				</div> <!-- /page-title -->
+				
+				<div class="clear"></div>
+		
+				<?php if ( have_posts() ) : ?>
+			
+					<?php rewind_posts(); ?>
+				
+					<?php while ( have_posts() ) : the_post(); ?>
+					
+						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				
+							<?php get_template_part( 'content', get_post_format() ); ?>
+							
+							<div class="clear"></div>
+							
+						</div> <!-- /post -->
+						
+					<?php endwhile; ?>
+								
+			</div> <!-- /posts -->
+						
+			<?php if ( $wp_query->max_num_pages > 1 ) : ?>
+			
+				<div class="post-nav archive-nav">
+				
+					<?php echo get_next_posts_link( __('Older<span> posts</span>', 'hemingway')); ?>
+								
+					<?php echo get_previous_posts_link( __('Newer<span> posts</span>', 'hemingway')); ?>
+					
+					<div class="clear"></div>
+					
+				</div> <!-- /post-nav archive-nav -->
+				
+				<div class="clear"></div>
+				
+			<?php endif; ?>
+					
+		<?php endif; ?>
+	
+	</div> <!-- /content -->
+	
+	<?php get_sidebar(); ?>
+	
 	<div class="clear"></div>
-	</div>
-	</div>
 
-<?php get_sidebar(); ?>
+</div> <!-- /wrapper -->
 
 <?php get_footer(); ?>

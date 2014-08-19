@@ -1,48 +1,65 @@
 <?php get_header(); ?>
 
+<div class="wrapper section-inner">
 
-	<div id="primary" class="twocol-stories">
-		<div class="inside">
-			<?php
-				// Here is the call to only make two posts show up on the homepage REGARDLESS of your options in the control panel
-				query_posts('showposts=2');
-			?>
-			<?php if (have_posts()) : ?>
-				<?php $first = true; ?>
-				<?php while (have_posts()) : the_post(); ?>
-					<?php if($count < 2) { ?>
-					<?php $count++; ?>
-<div class="story<?php if($first == true) echo " first" ?>">
-<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e("Permanent Link to",TEMPLATE_DOMAIN); ?> <?php the_title(); ?>"><?php the_title(); ?></a></h3>
-
-<?php if(function_exists('the_post_thumbnail')) { ?><?php if(get_the_post_thumbnail() != "") { ?><div class="alignleft">
-<?php the_post_thumbnail(); ?></div><?php } } ?>
-<?php the_excerpt() ?>
-
-						<div class="details">
-							<?php _e("Posted by",TEMPLATE_DOMAIN); ?> <?php the_author_posts_link(); ?> <?php _e("at",TEMPLATE_DOMAIN); ?> <?php the_time('ga \o\n n/j/y') ?> | <?php comments_popup_link(__('no comments;',TEMPLATE_DOMAIN), __('1 comment',TEMPLATE_DOMAIN), __('% comments',TEMPLATE_DOMAIN)); ?> | <?php _e("Filed Under:",TEMPLATE_DOMAIN); ?> <?php the_category(', ') ?> | <?php if (is_callable('the_tags')) the_tags(__('Tagged: ',TEMPLATE_DOMAIN), ', ', ' | '); ?> <span class="read-on"><a href="<?php the_permalink() ?>"><?php _e("read on",TEMPLATE_DOMAIN); ?></a><br /><?php edit_post_link(__('edit',TEMPLATE_DOMAIN)); ?></span>
-						</div>
-					</div>
-					<?php $first = false; ?>
-					<?php } ?>
-				<?php endwhile; ?>
-		</div>
-
-			<?php else : ?>
+	<div class="content left">
+																		                    
+		<?php if (have_posts()) : ?>
 		
-				<h2 class="center"><?php _e("Not Found",TEMPLATE_DOMAIN); ?></h2>
-				<p class="center"><?php _e("Sorry, but you are looking for something that isn't here.",TEMPLATE_DOMAIN); ?></p>
-				<?php include (TEMPLATEPATH . "/searchform.php"); ?>
+			<div class="posts">
 		
-			<?php endif; ?>
+				<?php
+				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+				$total_post_count = wp_count_posts();
+				$published_post_count = $total_post_count->publish;
+				$total_pages = ceil( $published_post_count / $posts_per_page );
 				
-			<div class="clear"></div>
-		</div>
-	</div>
-	<!-- [END] #primary -->
+				if ( "1" < $paged ) : ?>
+				
+					<div class="page-title">
+					
+						<h4><?php printf( __('Page %s of %s', 'hemingway'), $paged, $wp_query->max_num_pages ); ?></h4>
+						
+					</div>
+					
+					<div class="clear"></div>
+				
+				<?php endif; ?>
+					
+		    	<?php while (have_posts()) : the_post(); ?>
+		    	
+					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		    	
+			    		<?php get_template_part( 'content', get_post_format() ); ?>
+			    				    		
+		    		</div> <!-- /post -->
+		    			        		            
+		        <?php endwhile; ?>
+	        	                    
+			<?php endif; ?>
+			
+		</div> <!-- /posts -->
+		
+		<?php if ( $wp_query->max_num_pages > 1 ) : ?>
+		
+			<div class="post-nav archive-nav">
+						
+				<?php echo get_next_posts_link( __('&laquo; Older<span> posts</span>', 'hemingway')); ?>
+							
+				<?php echo get_previous_posts_link( __('Newer<span> posts</span> &raquo;', 'hemingway')); ?>
+				
+				<div class="clear"></div>
+				
+			</div> <!-- /post-nav archive-nav -->
+		
+		<?php endif; ?>
+			
+	</div> <!-- /content.left -->
+		
+	<?php get_sidebar(); ?>
+	
+	<div class="clear"></div>
 
-
-
-<?php get_sidebar(); ?>
-
+</div> <!-- /wrapper -->
+	              	        
 <?php get_footer(); ?>

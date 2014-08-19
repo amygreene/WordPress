@@ -1,109 +1,93 @@
-<?php // Do not delete these lines
-	if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
-		die ('Please do not load this page directly. Thanks!');
-
-        if (!empty($post->post_password)) { // if there's a password
-            if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
-				?>
-				
-				<p class="nocomments">This post is password protected. Enter the password to view comments.<p>
-				
-				<?php
-				return;
-            }
-        }
-
-		/* This variable is for alternating comment background */
-		$oddcomment = 'alt';
+<?php if ( post_password_required() )
+	return;
 ?>
 
-<!-- You can start editing here. -->
-<?php if ( have_comments() ) : ?>
-
-
-<?php if ( ! empty($comments_by_type['comment']) ) : ?>
-
-<div id="post-navigator-single">
-<div class="alignright"><?php if(function_exists('paginate_comments_links')) {  paginate_comments_links(); } ?></div>
-</div>
-
-<ol id="comments" class="commentlist">
-<?php wp_list_comments('type=comment&callback=list_comments'); ?>
-</ol>
-
-
-<div id="post-navigator-single">
-<div class="alignright"><?php if(function_exists('paginate_comments_links')) {  paginate_comments_links(); } ?></div>
-</div>
-
-<?php endif; ?>
-
-
- <?php if ( $post->ping_status == "open" ) : ?>
- <?php if ( ! empty($comments_by_type['pings']) ) : ?>
- <div class="entry">
-	<h3><?php _e('Trackbacks/Pingbacks',TEMPLATE_DOMAIN); ?></h3>
-
-    <ol class="pinglist">
-    <?php wp_list_comments('type=pings&callback=list_pings'); ?>
-	</ol>
-    </div>
-	<?php endif; ?>
-    <?php endif; ?>
-
-
- <?php else : // this is displayed if there are no comments so far ?>
-
-  <?php if ('open' == $post->comment_status) : ?> 
-		<!-- If comments are open, but there are no comments. -->
+	<?php if ( have_comments() ) : ?>
+	
+		<div class="comments">
 		
-	 <?php elseif (!is_page()) : // comments are closed ?>
-		<!-- If comments are closed. -->
-		<p class="nocomments"><?php _e("Comments are closed.",TEMPLATE_DOMAIN); ?></p>
-		
-	<?php endif; ?>
-<?php endif; ?>
-
-
-<?php if ('open' == $post->comment_status) : ?>
-                  <div id="respond">
-		<div id="comment-form">
-				<h3 class="formhead"><?php _e("Have your say",TEMPLATE_DOMAIN); ?></h3>
-				<p><small><strong>XHTML:</strong> <?php _e("You can use these tags:",TEMPLATE_DOMAIN); ?> <?php echo allowed_tags(); ?></small></p>
-				<?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-				<p><?php _e("You must be",TEMPLATE_DOMAIN); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>"><?php _e("logged in",TEMPLATE_DOMAIN); ?></a> <?php _e("to post a comment.",TEMPLATE_DOMAIN); ?></p>
-				<?php else : ?>
-				<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
-
-<div class="cancel-comment-reply">
-<?php cancel_comment_reply_link(); ?>
-</div>
-
-				<?php if ( $user_ID ) : ?>
-				<p><?php _e("Logged in as",TEMPLATE_DOMAIN); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="<?php _e("Log out of this account",TEMPLATE_DOMAIN); ?>"><?php _e("Logout &raquo;",TEMPLATE_DOMAIN); ?></a></p>
-				<?php else : ?>
+			<a name="comments"></a>
 				
-				<input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" class="textfield" tabindex="1" /><label class="text"><?php _e("Name",TEMPLATE_DOMAIN); ?><?php if ($req) echo " (required)"; ?></label><br />
-				<input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" class="textfield" tabindex="2" /><label class="text"><?php _e("Email",TEMPLATE_DOMAIN); ?><?php if ($req) echo " (required)"; ?></label><br />
-				<input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" class="textfield" tabindex="3" /><label class="text"><?php _e("Website",TEMPLATE_DOMAIN); ?></label><br />
+			<h2 class="comments-title">
+			
+				<?php echo count($wp_query->comments_by_type['comment']) . ' ';
+				echo _n( 'Comment' , 'Comments' , count($wp_query->comments_by_type['comment']), 'hemingway' ); ?>
 				
-				<?php endif; ?>
+			</h2>
+	
+			<ol class="commentlist">
+			    <?php wp_list_comments( array( 'type' => 'comment', 'callback' => 'hemingway_comment' ) ); ?>
+			</ol>
+			
+			<?php if (!empty($comments_by_type['pings'])) : ?>
+			
+				<div class="pingbacks">
 				
-				<textarea name="comment" id="comment" class="commentbox" tabindex="4"></textarea>
-				<div class="formactions">
-					<span style="visibility:hidden"><?php _e("Safari hates me",TEMPLATE_DOMAIN); ?></span>
-					<input style="margin-top: 10px;" type="submit" name="submit" tabindex="5" class="submit" value="<?php _e("Add your comment",TEMPLATE_DOMAIN); ?>" />
+					<div class="pingbacks-inner">
+				
+						<h3 class="pingbacks-title">
+						
+							<?php echo count($wp_query->comments_by_type['pings']) . ' ';
+							echo _n( 'Pingback', 'Pingbacks', count($wp_query->comments_by_type['pings']), 'hemingway' ); ?>
+						
+						</h3>
+					
+						<ol class="pingbacklist">
+						    <?php wp_list_comments( array( 'type' => 'pings', 'callback' => 'hemingway_comment' ) ); ?>
+						</ol>
+						
+					</div>
+					
 				</div>
-				<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
-
-<?php if(function_exists("comment_id_fields")) { ?>
-<?php comment_id_fields(); ?>
-<?php } ?>
-<?php do_action('comment_form', $post->ID); ?>
-
-				</form>
-			</div>
-           </div>
-<?php endif; // If registration required and not logged in ?>
-
-<?php endif; // if you delete this the sky will fall on your head ?>
+			
+			<?php endif; ?>
+				
+			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+			
+				<div class="comment-nav-below" role="navigation">
+									
+					<div class="post-nav-older"><?php previous_comments_link( __( '&laquo; Older<span> Comments</span>', 'hemingway' ) ); ?></div>
+					
+					<div class="post-nav-newer"><?php next_comments_link( __( 'Newer<span> Comments</span> &raquo;', 'hemingway' ) ); ?></div>
+					
+					<div class="clear"></div>
+					
+				</div> <!-- /comment-nav-below -->
+				
+			<?php endif; ?>
+			
+		</div><!-- /comments -->
+		
+	<?php endif; ?>
+	
+	<?php if ( ! comments_open() && !is_page() ) : ?>
+	
+		<p class="nocomments"><?php _e( 'Comments are closed.', 'hemingway' ); ?></p>
+		
+	<?php endif; ?>
+	
+	<?php $comments_args = array(
+	
+		'comment_notes_before' => 
+			'<p class="comment-notes">' . __( 'Your email address will not be published.', 'hemingway' ) . '</p>',
+	
+		'comment_field' => 
+			'<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="6" required>' . '</textarea></p>',
+		
+		'fields' => apply_filters( 'comment_form_default_fields', array(
+		
+			'author' =>
+				'<p class="comment-form-author">' .
+				'<input id="author" name="author" type="text" placeholder="' . __('Name','hemingway') . '" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />' . '<label for="author">Author</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '</p>',
+			
+			'email' =>
+				'<p class="comment-form-email">' . '<input id="email" name="email" type="text" placeholder="' . __('Email','hemingway') . '" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" /><label for="email">Email</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '</p>',
+			
+			'url' =>
+			'<p class="comment-form-url">' . '<input id="url" name="url" type="text" placeholder="' . __('Website','hemingway') . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /><label for="url">Website</label></p>')
+		),
+	);
+	
+	comment_form($comments_args);
+	
+	?>

@@ -1,23 +1,80 @@
+	<div class="footer section large-padding bg-dark">
+		
+		<div class="footer-inner section-inner">
+		
+			<?php if ( is_active_sidebar( 'footer-a' ) ) : ?>
+			
+				<div class="column column-1 left">
+				
+					<div class="widgets">
+			
+						<?php dynamic_sidebar( 'footer-a' ); ?>
+											
+					</div>
+					
+				</div>
+				
+			<?php endif; ?> <!-- /footer-a -->
+				
+			<?php if ( is_active_sidebar( 'footer-b' ) ) : ?>
+			
+				<div class="column column-2 left">
+				
+					<div class="widgets">
+			
+						<?php dynamic_sidebar( 'footer-b' ); ?>
+											
+					</div> <!-- /widgets -->
+					
+				</div>
+				
+			<?php endif; ?> <!-- /footer-b -->
+								
+			<?php if ( is_active_sidebar( 'footer-c' ) ) : ?>
+			
+				<div class="column column-3 left">
+			
+					<div class="widgets">
+			
+						<?php dynamic_sidebar( 'footer-c' ); ?>
+											
+					</div> <!-- /widgets -->
+					
+				</div>
+				
+			<?php endif; ?> <!-- /footer-c -->
+			
+			<div class="clear"></div>
+		
+		</div> <!-- /footer-inner -->
+	
+	</div> <!-- /footer -->
+	
+	<div class="credits section bg-dark no-padding">
+	
+		<div class="credits-inner section-inner">
+	
+			<p class="credits-left">
+			
+				&copy; <?php echo date("Y") ?> <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a>
+			
+			</p>
+			
+			<p class="credits-right">
+				
+				<span><?php printf( __( 'Theme by <a href="%s">Anders Noren</a>', 'hemingway'), 'http://www.andersnoren.se' ); ?></span> &mdash; <a title="<?php _e('To the top', 'hemingway'); ?>" class="tothetop"><?php _e('Up', 'hemingway' ); ?> &uarr;</a>
+				
+			</p>
+			
+			<div class="clear"></div>
+		
+		</div> <!-- /credits-inner -->
+		
+	</div> <!-- /credits -->
 
-<hr class="hide" />
-	<div id="footer">
-		<div class="inside">
-			<?php
-				// You are not required to keep this link back to Warpspire, but if you wouldn't mind, leaving it in would make my day.
-			?>
-			<p class="copyright">&copy; <?php echo gmdate(__('Y')); ?>  <?php bloginfo('name'); ?>&nbsp;&nbsp;&nbsp;
-  <?php _e("Using",TEMPLATE_DOMAIN); ?> <a href="http://warpspire.com/hemingway" rel="designer">Hemingway</a>&nbsp;&nbsp;&nbsp;<?php _e("Powered by",TEMPLATE_DOMAIN); ?> <a href="http://wordpressmu.org">Wordpress MU</a>.<?php if(function_exists('get_current_site')) { $current_site = get_current_site(); ?>
-&nbsp;&nbsp;&nbsp;<?php _e('Hosted by',TEMPLATE_DOMAIN); ?> <a target="_blank" href="http://<?php echo $current_site->domain . $current_site->path ?>"><?php echo $current_site->site_name ?></a>
-<?php } ?>
+</div> <!-- /big-wrapper -->
 
-            <br />
-           	<?php wp_footer(); ?>
-            </p>
-			<p class="attributes"><a href="<?php bloginfo('rss2_url'); ?>">Entries RSS</a> <a href="<?php bloginfo('comments_rss2_url'); ?>">Comments RSS</a></p>
-		</div>
-	</div>
-	<!-- [END] #footer -->	
-
+<?php wp_footer(); ?>
 
 </body>
 </html>

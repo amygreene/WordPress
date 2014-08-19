@@ -1,643 +1,538 @@
 <?php
 
-if(function_exists('automatic_feed_links')) {
-automatic_feed_links();
-}
+// Theme setup
+add_action( 'after_setup_theme', 'hemingway_setup' );
 
-if ( function_exists('register_sidebar') ) {
-
-register_sidebar(array(
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li></ul></div>',
-		'before_title' => '<h2>',
-		'after_title' => '</h2><ul class="counts"><li>',
-));
-
-register_sidebar(array(
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li></ul></div>',
-		'before_title' => '<h2>',
-		'after_title' => '</h2><ul class="counts"><li>',
-));
-
-
-register_sidebar(array(
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li></ul></div>',
-		'before_title' => '<h2>',
-		'after_title' => '</h2><ul class="counts"><li>',
-));
-
-}
-
-
-
-
-
-
-
-$themecolors = array(
-	'bg' => '000000',
-	'text' => 'bfbfbf',
-	'link' => 'ffffff',
-	'border' => '000000'
-	);
-
-
-
-define('TEMPLATE_DOMAIN','hemingway');
-////////////////////////////////////////////////////////////////////////////////
-// load text domain
-////////////////////////////////////////////////////////////////////////////////
-function init_localization( $locale ) {
-return "en_EN";
-}
-// Uncomment add_filter below to test your localization, make sure to enter the right language code.
-// add_filter('locale','init_localization');
-
-load_theme_textdomain( TEMPLATE_DOMAIN, TEMPLATEPATH . '/languages/' );
-
-////////////////////////////////////////////////////////////////////////////////
-// new thumbnail code for wp 2.9+
-////////////////////////////////////////////////////////////////////////////////
-if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
+function hemingway_setup() {
+	
+	// Automatic feed
+	add_theme_support( 'automatic-feed-links' );
+	
+	// Custom background
+	add_theme_support( 'custom-background' );
+		
+	// Post thumbnails
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 120, 120, true ); // Normal post thumbnails
-	add_image_size( 'single-post-thumbnail', 400, 9999 ); // Permalink thumbnail size
-}
+	add_image_size( 'post-image', 676, 9999 );
+	
+	// Post formats
+	add_theme_support( 'post-formats', array( 'video', 'aside', 'quote' ) );
 
-
-
-////////////////////////////////////////////////////////////////////////////////
-// wp 2.7 wp_list_comment
-////////////////////////////////////////////////////////////////////////////////
-
-function list_comments($comment, $args, $depth) {
-$GLOBALS['comment'] = $comment; ?>
-
-<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-			<cite>
-<span class="avatarspan">
-<?php if (function_exists('avatar_display_comments')) { ?>
-<?php avatar_display_comments(get_comment_author_email(),'32',''); ?>
-<?php } else { ?>
-<?php if (function_exists('get_avatar')) { echo get_avatar( get_comment_author_email() , 32 ); } ?>
-<?php } ?>
-</span>
-<span class="author"><?php comment_author_link() ?></span>
-<span class="date"><?php comment_date('n.j.y') ?> / <?php comment_date('ga') ?> / <?php edit_comment_link('edit',' / ',''); ?>&nbsp;&nbsp;&nbsp;<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?></span>
-			</cite>
-			<div class="content">
-				<?php if ($comment->comment_approved == '0') : ?>
-				<em><?php _e("Your comment is awaiting moderation.",TEMPLATE_DOMAIN); ?></em>
-				<?php endif; ?>
-				<?php comment_text() ?>
-			</div>
-			<div class="clear"></div>
-
-<?php
-
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// wp 2.7 wp_list_ping
-////////////////////////////////////////////////////////////////////////////////
-
-function list_pings($comment, $args, $depth) {
-$GLOBALS['comment'] = $comment; ?>
-<li id="comment-<?php comment_ID(); ?>"><?php comment_author_link(); ?>
-<?php }
-
-add_filter('get_comments_number', 'comment_count', 0);
-
-function comment_count( $count ) {
-global $id;
-$comments_by_split = get_comments('post_id=' . $id);
-$comments_by_type = &separate_comments($comments_by_split);
-return count($comments_by_type['comment']);
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// CUSTOM IMAGE HEADER
-////////////////////////////////////////////////////////////////////////////////
-
-define('HEADER_TEXTCOLOR', '');
-define('HEADER_IMAGE', ''); // %s is theme dir uri
-define('HEADER_IMAGE_WIDTH', 960); //width is fixed
-define('HEADER_IMAGE_HEIGHT', 150);
-define('NO_HEADER_TEXT', true );
-
-function hem_admin_header_style() { ?>
-<style type="text/css">
-#headimg { background: url(<?php header_image() ?>) no-repeat; }
-#headimg { height: <?php echo HEADER_IMAGE_HEIGHT; ?>px; width: <?php echo HEADER_IMAGE_WIDTH; ?>px; }
-#headimg h1, #headimg #desc { display: none; }
-</style>
-<?php }
-
-add_custom_image_header('', 'hem_admin_header_style');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// this varies but the single page content width seems to be 607px max
-$content_width = 600;
-
-class Hemingway
-	{
+	// Custom header
+	$args = array(
+		'width'         => 1280,
+		'height'        => 416,
+		'default-image' => get_template_directory_uri() . '/images/header.jpg',
+		'uploads'       => true,
+		'header-text'  	=> false
 		
-		var $raw_blocks;
-		var $available_blocks;
-		var $style;
-		var $version;
+	);
+	add_theme_support( 'custom-header', $args );
+
+	// Add nav menu
+	register_nav_menu( 'primary', 'Primary Menu' );
+	
+	// Make the theme translation ready
+	load_theme_textdomain('hemingway', get_template_directory() . '/languages');
+	
+	$locale = get_locale();
+	$locale_file = get_template_directory() . "/languages/$locale.php";
+	if ( is_readable($locale_file) )
+	  require_once($locale_file);
+	
+}
+
+// Enqueue Javascript files
+function hemingway_load_javascript_files() {
+
+	if ( !is_admin() )
+		wp_register_script( 'hemingway_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );
 		
-		function add_available_block($block_name, $block_ref)
-			{
+		wp_enqueue_script( 'hemingway_global' );
+}
 
-				$blocks = $this->available_blocks;
-				
-				if (!$blocks[$block_ref]){
-					$blocks[$block_ref] = $block_name;
-					update_option('hem_available_blocks', $blocks);
-					wp_cache_flush();
-				}
-				
-			}
+add_action( 'wp_enqueue_scripts', 'hemingway_load_javascript_files' );
+
+
+// Enqueue styles
+function hemingway_load_style() {
+	if ( !is_admin() )
+	    wp_register_style('hemingway_googleFonts',  '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Raleway:700,400' );
+		wp_register_style('hemingway_style', get_stylesheet_uri() );
 		
-		function get_available_blocks()
-			// This function returns an array of available blocks
-			// in the format of $arr[block_ref] = block_name
-			{				
-				$this->available_blocks = get_option('hem_available_blocks');
-				return $this->available_blocks;
-			}
-		
-		function get_block_contents($block_place)
-			// Returns an array of block_refs in specififed block
-			{
-				if (!$this->raw_blocks){
-					$this->raw_blocks = get_option('hem_blocks');
-				}
-				return $this->raw_blocks[$block_place];
-			}
-		
-		function add_block_to_place($block_place, $block_ref)
-			{
-				$block_contents = $this->get_block_contents($block_place);
-				if (in_array($block_ref, $block_contents))
-					return true;
-				
-				$block_contents[] = $block_ref;	
-				$this->raw_blocks[$block_place] = $block_contents;
-				update_option('hem_blocks', $this->raw_blocks);
-				wp_cache_flush(); // I was having caching issues
-				return true;
-			}
-			
-		function remove_block_in_place($block_place, $block_ref)
-			{
-				$block_contents = $this->get_block_contents($block_place);
-				if (!in_array($block_ref, $block_contents))
-					return true;
-				$key = array_search($block_ref, $block_contents);
-				unset($block_contents[$key]);
-				$this->raw_blocks[$block_place] = $block_contents;
-				update_option('hem_blocks', $this->raw_blocks);
-				wp_cache_flush(); // I was having caching issues
-				return true;
-			}
-			
-			// Templating functions
-			
-			function get_block_output($block_place)
-				{
-					$blocks = $this->get_block_contents($block_place);
-					foreach($blocks as $key => $block ){
-						include (TEMPLATEPATH . '/blocks/' . $block . '.php');
-					}
-				}
-				
-			function get_style(){
-				$this->style = get_option('hem_style');
-			}
-	}
-	
-$hemingway = new Hemingway();
-$hemingway->get_available_blocks();
-$hemingway->get_style();
-
-$hemingway->version = "0.13";
-// Options
-
-$default_blocks = Array(
-	'recent_entries' => 'Recent Entries',
-	'about_page' => 'About Page',
-	'category_listing' => 'Category Listing',
-	'blogroll' => 'Blogroll',
-	'pages' => 'Pages',
-	'monthly_archives' => 'Monthly Archives'
-);
-
-$default_block_locations = Array(
-	'block_1' => Array('about_page'),
-	'block_2' => Array('recent_entries'),
-	'block_3' => Array('category_listing'),
-	'block_4' => Array(),
-	'block_5' => Array(),
-	'block_6' => Array()
-);
-
-if (!get_option('hem_version') || get_option('hem_version') < $hemingway->version){
-	// Hemingway isn't installed, so we'll need to add options
-	if (!get_option('hem_version') )
-		add_option('hem_version', $hemingway->version, 'Hemingway Version installed');
-	else
-		update_option('hem_version', $hemingway->version);
-
-	if (!get_option('hem_available_blocks') ) 
-		add_option('hem_available_blocks', $default_blocks, 'A list of available blocks for Hemingway');
-	
-	if (!get_option('hem_blocks') ) 
-		add_option('hem_blocks', $default_block_locations, 'An array of blocks and their contents');
-	
-	if (!get_option('hem_style') )
-		add_option('hem_style', '', 'Location of custom style sheet');
-}
-// Ajax Stuff
-
-if ($_GET['hem_action'] == 'add_block'){
-
-	$block_ref = $_GET['block_ref'];
-	$block_place = $_GET['block_place'];
-	
-	$block_name = $hemingway->available_blocks[$block_ref];
-	
-	$hemingway->add_block_to_place($block_place, $block_ref);
-
-	ob_end_clean(); // Kill preceding output
-	$output = '<ul>';
-	foreach($hemingway->get_block_contents($block_place) as $key => $block_ref){
-			$block_name = $hemingway->available_blocks[$block_ref];
-			$output .= '<li>' . $block_name . ' (<a href="#" onclick="remove_block(\'' . $block_place . '\', \'' . $block_ref . '\');">remove</a>)</li>';
-	}
-	$output .= '</ul>';
-	echo $output;
-	exit(); // Kill any more output
+	    wp_enqueue_style( 'hemingway_googleFonts' );
+	    wp_enqueue_style( 'hemingway_style' );
 }
 
-if ($_GET['hem_action'] == 'remove_block'){
+add_action('wp_print_styles', 'hemingway_load_style');
+
+
+// Add editor styles
+function hemingway_add_editor_styles() {
+    add_editor_style( 'hemingway-editor-style.css' );
+    $font_url = '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Raleway:700,400';
+    add_editor_style( str_replace( ',', '%2C', $font_url ) );
+}
+add_action( 'init', 'hemingway_add_editor_styles' );
+
+
+// Add footer widget areas
+add_action( 'widgets_init', 'hemingway_sidebar_reg' ); 
+
+function hemingway_sidebar_reg() {
+	register_sidebar(array(
+	  'name' => __( 'Footer A', 'hemingway' ),
+	  'id' => 'footer-a',
+	  'description' => __( 'Widgets in this area will be shown in the left column in the footer.', 'hemingway' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));	
+	register_sidebar(array(
+	  'name' => __( 'Footer B', 'hemingway' ),
+	  'id' => 'footer-b',
+	  'description' => __( 'Widgets in this area will be shown in the middle column in the footer.', 'hemingway' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));
+	register_sidebar(array(
+	  'name' => __( 'Footer C', 'hemingway' ),
+	  'id' => 'footer-c',
+	  'description' => __( 'Widgets in this area will be shown in the right column in the footer.', 'hemingway' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));
+	register_sidebar(array(
+	  'name' => __( 'Sidebar', 'hemingway' ),
+	  'id' => 'sidebar',
+	  'description' => __( 'Widgets in this area will be shown in the sidebar.', 'hemingway' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));
+}
 	
-	$block_ref = $_GET['block_ref'];
-	$block_place = $_GET['block_place'];
-	
-	$hemingway->remove_block_in_place($block_place, $block_ref);
+// Add theme widgets
+require_once (get_template_directory() . "/widgets/dribbble-widget.php");  
+require_once (get_template_directory() . "/widgets/flickr-widget.php");  
+require_once (get_template_directory() . "/widgets/video-widget.php");
 
-	ob_end_clean(); // Kill preceding output
-	$output = '<ul>';
-	foreach($hemingway->get_block_contents($block_place) as $key => $block_ref){
-			$block_name = $hemingway->available_blocks[$block_ref];
-			$output .= '<li>' . $block_name . ' (<a href="#" onclick="remove_block(\'' . $block_place . '\', \'' . $block_ref . '\');">remove</a>)</li>';
-	}
-	$output .= '</ul>';
-	echo $output;
-	exit(); // Kill any more output
+
+// Set content-width
+if ( ! isset( $content_width ) ) $content_width = 676;
+
+
+// Custom title function
+function hemingway_wp_title( $title, $sep ) {
+	global $paged, $page;
+
+	if ( is_feed() )
+		return $title;
+
+	// Add the site name.
+	$title .= get_bloginfo( 'name' );
+
+	// Add the site description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		$title = "$title $sep $site_description";
+
+	// Add a page number if necessary.
+	if ( $paged >= 2 || $page >= 2 )
+		$title = "$title $sep " . sprintf( __( 'Page %s', 'hemingway' ), max( $paged, $page ) );
+
+	return $title;
+}
+add_filter( 'wp_title', 'hemingway_wp_title', 10, 2 );
+
+
+// Add classes to next_posts_link and previous_posts_link
+add_filter('next_posts_link_attributes', 'hemingway_posts_link_attributes_1');
+add_filter('previous_posts_link_attributes', 'hemingway_posts_link_attributes_2');
+
+function hemingway_posts_link_attributes_1() {
+    return 'class="post-nav-older"';
+}
+function hemingway_posts_link_attributes_2() {
+    return 'class="post-nav-newer"';
 }
 
-if ($_POST['custom_styles']){
-	update_option('hem_style', $_POST['custom_styles']);
-	wp_cache_flush();
-	$message  = 'Styles updated!';
+
+// Menu walker adding "has-children" class to menu li's with children menu items
+class hemingway_nav_walker extends Walker_Nav_Menu {
+    function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+        $id_field = $this->db_fields['id'];
+        if ( !empty( $children_elements[ $element->$id_field ] ) ) {
+            $element->classes[] = 'has-children';
+        }
+        Walker_Nav_Menu::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+    }
 }
 
-if ($_POST['block_ref']){
-	$hemingway->add_available_block($_POST['display_name'], $_POST['block_ref']);
-	$hemingway->get_available_blocks();
-	$message = 'Block added!';
+
+// Add class to body if the post/page has a featured image
+add_action('body_class', 'hemingway_if_featured_image_class' );
+
+function hemingway_if_featured_image_class($classes) {
+     global $post;
+     if ( isset( $post ) && has_post_thumbnail() ) {
+             $classes[] = 'has-featured-image';
+     }
+     return $classes;
 }
 
-// Stuff
 
-// add_action ('admin_menu', 'hemingway_menu');
+// Custom more-link text
+add_filter( 'the_content_more_link', 'hemingway_custom_more_link', 10, 2 );
 
-$hem_loc = '../themes/' . basename(dirname($file)); 
-
-function hemingway_scripts() {
-	$dir = get_bloginfo('template_directory');
-	wp_enqueue_script('prototype');
-	wp_enqueue_script('dragdrop', $dir . '/admin/js/dragdrop.js', false, 1);
-	wp_enqueue_script('effects', $dir . '/admin/js/effects.js', false, 1);
+function hemingway_custom_more_link( $more_link, $more_link_text ) {
+	return str_replace( $more_link_text, __('Continue reading', 'hemingway'), $more_link );
 }
 
-function hemingway_menu() {
-	$page = add_submenu_page('themes.php', 'Hemingway Options', 'Hemingway Options', 5, $hem_loc . 'functions.php', 'menu');
-	add_action('load-' . $page, 'hemingway_scripts');
-}
 
-function menu() {
-global $hem_loc, $hemingway, $message;
-?>
-<!--
-Okay, so I don't honestly know how legit this is, but I want a more intuitive interface
-so I'm going to import scriptaculous. There's a good chance this is going to mess stuff up
-for some people :)
--->
-<script type="text/javascript">
-	function remove_block(block_place, block_ref){
-		url = 'themes.php?page=functions.php&hem_action=remove_block&block_place=' + block_place + '&block_ref=' + block_ref;
-		new Ajax.Updater(block_place, url,
-				{
-					evalScripts:true, asynchronous:true
-				}
-		)
-	}
-</script>
-<style>
-	.block{
-		width:200px;
-		height:200px;
-		border:1px solid #CCC;
-		float:left;
-		margin:20px 1em 20px 0;
-		padding:10px;
-		display:inline;
-	}
-	.block ul{
-		padding:0;
-		margin:0;
-	}
-	.block ul li{
-		margin:0 0 5px 0;
-		list-style-type:none;
-	}
-	.block-active{
-		border:1px solid #333;
-		background:#F2F8FF;
-	}
-	
-	#addables li{
-		list-style-type:none;
-		margin:1em 1em 1em 0;
-		background:#EAEAEA;
-		border:1px solid #DDD;
-		padding:3px;
-		width:215px;
-		float:left;
-		cursor:move;
-	}
-	ul#addables{
-		margin:0;
-		padding:0;
-		width:720px;
-		position:relative;
-	}
-</style>
+// Remove inline styling of attachment
+add_shortcode('wp_caption', 'hemingway_fixed_img_caption_shortcode');
+add_shortcode('caption', 'hemingway_fixed_img_caption_shortcode');
 
-
-
-
-<?php if($message) : ?>
-<div id="message" class="updated fade"><p><?php echo $message?></p></div>
-<?php endif; ?>
-
-<div class="wrap" style="position:relative;">
-<h2><?php _e('Hemingway Options'); ?></h2>
-
-<h3>Color Options</h3>
-<p>Choose a primary color for your site:</p>
-<form name="dofollow" action="" method="post">
-  <input type="hidden" name="page_options" value="'dofollow_timeout'" />
-
-  <p><label><input name="custom_styles" type="radio" value="none" <?php if ($hemingway->style == 'none') echo 'checked="checked"'; ?> /> 
-  Black</label></p>
-  <p><label><input name="custom_styles" type="radio" value="white.css" <?php if ($hemingway->style == 'white.css') echo 'checked="checked"'; ?> /> White</label></p>
-
-	<input type="submit" value="Update Color &raquo;" />
-</form>
-
-<h3>Hemingway's Bottombar&trade;</h3>
-<p>Drag and drop the different blocks into their place below. After you drag the block to the area, it will update with the new contents automatically.</p>
-
-<ul id="addables">
-	<?php foreach($hemingway->available_blocks as $ref => $name) : ?>
-	<li id="<?php echo  $ref ?>" class="blocks"><?php echo  $name ?></li>
-	<script type="text/javascript">new Draggable('<?php echo  $ref ?>', {revert:true})</script>
-	<?php endforeach; ?>
-</ul>
-
-<div class="clear"></div>
-
-<div class="block" id="block_1">
-	<ul>
-		<?php 
-		foreach($hemingway->get_block_contents('block_1') as $key => $block_ref) :
-			$block_name = $hemingway->available_blocks[$block_ref];
-		?>
-			<li><?php echo  $block_name ?> (<a href="#" onclick="remove_block('block_1', '<?php echo $block_ref?>');">remove</a>)</li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<script type="text/javascript">
-Droppables.add(
-	'block_1', {
-		accept:'blocks', 
-		onDrop:function(element){
-			new Ajax.Updater('block_1', 'themes.php?page=functions.php&hem_action=add_block&block_place=block_1&block_ref=' + element.id, 
-				{
-					evalScripts:true, asynchronous:true
-				}
-			)
-		}, 
-		hoverclass:'block-active'
-	}
-)
-</script>
-
-<div class="block" id="block_2">
-	<ul>
-		<?php 
-		foreach($hemingway->get_block_contents('block_2') as $key => $block_ref) :
-			$block_name = $hemingway->available_blocks[$block_ref];
-		?>
-			<li><?php echo  $block_name ?> (<a href="#" onclick="remove_block('block_2', '<?php echo $block_ref?>');">remove</a>)</li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<script type="text/javascript">
-Droppables.add(
-	'block_2', {
-		accept:'blocks', 
-		onDrop:function(element){
-			new Ajax.Updater('block_2', 'themes.php?page=functions.php&hem_action=add_block&block_place=block_2&block_ref=' + element.id, 
-				{
-					evalScripts:true, asynchronous:true
-				}
-			)
-		}, 
-		hoverclass:'block-active'
-	}
-)
-</script>
-
-<div class="block" id="block_3">
-	<ul>
-		<?php 
-		foreach($hemingway->get_block_contents('block_3') as $key => $block_ref) :
-			$block_name = $hemingway->available_blocks[$block_ref];
-		?>
-			<li><?php echo  $block_name ?> (<a href="#" onclick="remove_block('block_3', '<?php echo $block_ref?>');">remove</a>)</li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<script type="text/javascript">
-Droppables.add(
-	'block_3', {
-		accept:'blocks', 
-		onDrop:function(element){
-			new Ajax.Updater('block_3', 'themes.php?page=functions.php&hem_action=add_block&block_place=block_3&block_ref=' + element.id, 
-				{
-					evalScripts:true, asynchronous:true
-				}
-			)
-		}, 
-		hoverclass:'block-active'
-	}
-)
-</script>
-
-<!-- Maybe later -->
-
-
-<div class="clear"></div>
-
-<div class="block" id="block_4">
-	Block 4
-	<ul>
-		<?php
-		foreach($hemingway->get_block_contents('block_4') as $key => $block_ref) :
-			$block_name = $hemingway->available_blocks[$block_ref];
-		?>
-			<li><?php echo  $block_name ?> (<a href="#" onclick="remove_block('block_4', '<?php echo $block_ref?>');">remove</a>)</li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<script type="text/javascript">
-Droppables.add(
-	'block_4', {
-		accept:'blocks', 
-		onDrop:function(element){
-			new Ajax.Updater('block_4', 'themes.php?page=functions.php&hem_action=add_block&block_place=block_4&block_ref=' + element.id, 
-				{
-					evalScripts:true, asynchronous:true
-				}
-			)
-		}, 
-		hoverclass:'block-active'
-	}
-)
-</script>
-
-<div class="block" id="block_5">
-	Block 5
-	<ul>
-		<?php
-		foreach($hemingway->get_block_contents('block_5') as $key => $block_ref) :
-			$block_name = $hemingway->available_blocks[$block_ref];
-		?>
-			<li><?php echo  $block_name ?> (<a href="#" onclick="remove_block('block_5', '<?php echo $block_ref?>');">remove</a>)</li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<script type="text/javascript">
-Droppables.add(
-	'block_5', {
-		accept:'blocks', 
-		onDrop:function(element){
-			new Ajax.Updater('block_5', 'themes.php?page=functions.php&hem_action=add_block&block_place=block_5&block_ref=' + element.id,
-				{
-					evalScripts:true, asynchronous:true
-				}
-			)
-		},
-		hoverclass:'block-active'
-	}
-)
-</script>
-
-<div class="block" id="block_6">
-	Block 6
-	<ul>
-		<?php 
-		foreach($hemingway->get_block_contents('block_6') as $key => $block_ref) :
-			$block_name = $hemingway->available_blocks[$block_ref];
-		?>
-			<li><?php echo  $block_name ?> (<a href="#" onclick="remove_block('block_6', '<?php echo $block_ref?>');">remove</a>)</li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<script type="text/javascript">
-Droppables.add(
-	'block_6', {
-		accept:'blocks', 
-		onDrop:function(element){
-			new Ajax.Updater('block_6', 'themes.php?page=functions.php&hem_action=add_block&block_place=block_6&block_ref=' + element.id, 
-				{
-					evalScripts:true, asynchronous:true
-				}
-			)
-		}, 
-		hoverclass:'block-active'
-	}
-)
-</script>
-
-<div class="clear"></div>
-
-	<?php
-		$blocks_dir = @ dir(ABSPATH . '/wp-content/themes/' . get_template() . '/blocks');
-	
-		if ($blocks_dir) {
-			while(($file = $blocks_dir->read()) !== false) {
-					if (!preg_match('|^\.+$|', $file) && preg_match('|\.php$|', $file)) 
-					$blocks_files[] = $file;
-				}
-			}
-			if ($blocks_dir || $blocks_files) {
-				foreach($blocks_files as $blocks_file) {
-				$block_ref = preg_replace('/\.php/', '', $blocks_file);
-				if (!array_key_exists($block_ref, $hemingway->available_blocks)){
-				?>
-				<h3>You have uninstalled blocks!</h3>
-				<p>Give the block <strong><?php echo $block_ref ?></strong> a display name (such as "About Page")</p>
-				<form action="" name="dofollow" method="post">
-					<input type="hidden" name="block_ref" value="<?php echo $block_ref?>" />
-					<?php echo $block_ref ?> : <input type="text" name="display_name" />
-					<input type="submit" value="Save" />
-				</form>
-				<?php
-				}
-			}
+function hemingway_fixed_img_caption_shortcode($attr, $content = null) {
+	if ( ! isset( $attr['caption'] ) ) {
+		if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
+			$content = $matches[1];
+			$attr['caption'] = trim( $matches[2] );
 		}
-		?>
-
-
-
-
-</div>
-
-<?php
+	}
+	
+	$output = apply_filters('img_caption_shortcode', '', $attr, $content);
+	
+	if ( $output != '' ) return $output;
+	extract(shortcode_atts(array(
+		'id' => '',
+		'align' => 'alignnone',
+		'width' => '',
+		'caption' => ''
+	), $attr));
+	
+	if ( 1 > (int) $width || empty($caption) )
+	return $content;
+	if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
+	return '<div ' . $id . 'class="wp-caption ' . esc_attr($align) . '" >' 
+	. do_shortcode( $content ) . '<p class="wp-caption-text">' . $caption . '</p></div>';
 }
+
+// Style the admin area
+function hemingway_custom_colors() {
+   echo '<style type="text/css">
+   
+#postimagediv #set-post-thumbnail img {
+	max-width: 100%;
+	height: auto;
+}
+
+         </style>';
+}
+
+add_action('admin_head', 'hemingway_custom_colors');
+
+
+// hemingway comment function
+if ( ! function_exists( 'hemingway_comment' ) ) :
+function hemingway_comment( $comment, $args, $depth ) {
+	$GLOBALS['comment'] = $comment;
+	switch ( $comment->comment_type ) :
+		case 'pingback' :
+		case 'trackback' :
+	?>
+	
+	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+	
+		<?php __( 'Pingback:', 'hemingway' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'hemingway' ), '<span class="edit-link">', '</span>' ); ?>
+		
+	</li>
+	<?php
+			break;
+		default :
+		global $post;
+	?>
+	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+	
+		<div id="comment-<?php comment_ID(); ?>" class="comment">
+		
+			<div class="comment-meta comment-author vcard">
+							
+				<?php echo get_avatar( $comment, 120 ); ?>
+
+				<div class="comment-meta-content">
+											
+					<?php printf( '<cite class="fn">%1$s %2$s</cite>',
+						get_comment_author_link(),
+						( $comment->user_id === $post->post_author ) ? '<span class="post-author"> ' . __( '(Post author)', 'hemingway' ) . '</span>' : ''
+					); ?>
+					
+					<p><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><?php echo get_comment_date() . ' at ' . get_comment_time() ?></a></p>
+					
+				</div> <!-- /comment-meta-content -->
+				
+			</div> <!-- /comment-meta -->
+
+			<div class="comment-content post-content">
+			
+				<?php if ( '0' == $comment->comment_approved ) : ?>
+				
+					<p class="comment-awaiting-moderation"><?php _e( 'Awaiting moderation', 'hemingway' ); ?></p>
+					
+				<?php endif; ?>
+			
+				<?php comment_text(); ?>
+				
+				<div class="comment-actions">
+				
+					<?php edit_comment_link( __( 'Edit', 'hemingway' ), '', '' ); ?>
+					
+					<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'hemingway' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					
+					<div class="clear"></div>
+				
+				</div> <!-- /comment-actions -->
+				
+			</div><!-- /comment-content -->
+
+		</div><!-- /comment-## -->
+	<?php
+		break;
+	endswitch;
+}
+endif;
+
+// Add and save meta boxes for post links
+add_action( 'add_meta_boxes', 'cd_meta_box_add' );
+function cd_meta_box_add() {
+	add_meta_box( 'postvideo-box', __('Video URL (video post format)', 'hemingway'), 'cd_meta_box_cc', 'post', 'side', 'high' );
+}
+
+function cd_meta_box_cc( $post ) {
+	$values = get_post_custom( $post->ID );
+	$text_videourl = isset( $values['videourl'] ) ? esc_attr( $values['videourl'][0] ) : '';
+	wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
+	?>
+		<p>
+			<input type="text" name="videourl" id="videourl" value="<?php echo $text_videourl; ?>" />
+		</p>
+	<?php		
+}
+
+add_action( 'save_post', 'cd_meta_box_save' );
+function cd_meta_box_save( $post_id ) {
+	// Bail if we're doing an auto save
+	if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	
+	// if our nonce isn't there, or we can't verify it, bail
+	if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
+	
+	// if our current user can't edit this post, bail
+	if( !current_user_can( 'edit_post' ) ) return;
+	
+	// now we can actually save the data
+	$allowed = array( 
+		'a' => array( // on allow a tags
+			'href' => array() // and those anchords can only have href attribute
+		)
+	);
+	
+	// Probably a good idea to make sure the data is set		
+	if( isset( $_POST['videourl'] ) )
+		update_post_meta( $post_id, 'videourl', wp_kses( $_POST['videourl'], $allowed ) );		
+
+}
+
+
+// Hemingway theme options
+
+class Hemingway_Customize {
+
+   public static function register ( $wp_customize ) {
+   
+      //1. Define a new section (if desired) to the Theme Customizer
+      $wp_customize->add_section( 'hemingway_options', 
+         array(
+            'title' => __( 'Hemingway Options', 'hemingway' ), //Visible title of section
+            'priority' => 35, //Determines what order this appears in
+            'capability' => 'edit_theme_options', //Capability needed to tweak
+            'description' => __('Allows you to customize some settings for Hemingway.', 'hemingway'), //Descriptive tooltip
+         ) 
+      );
+      
+      $wp_customize->add_section( 'hemingway_logo_section' , array(
+		    'title'       => __( 'Logo', 'hemingway' ),
+		    'priority'    => 40,
+		    'description' => __('Upload a logo to replace the default site name and description in the header','hemingway'),
+		) );
+      
+      //2. Register new settings to the WP database...
+      $wp_customize->add_setting( 'accent_color', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+         array(
+            'default' => '#1abc9c', //Default setting/value to save
+            'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+            'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+            'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+         ) 
+      );
+      
+      $wp_customize->add_setting( 'hemingway_logo' );
+                  
+      //3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+      $wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+         $wp_customize, //Pass the $wp_customize object (required)
+         'hemingway_accent_color', //Set a unique ID for the control
+         array(
+            'label' => __( 'Accent Color', 'hemingway' ), //Admin-visible name of the control
+            'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+            'settings' => 'accent_color', //Which setting to load and manipulate (serialized is okay)
+            'priority' => 10, //Determines the order this control appears in for the specified section
+         ) 
+      ) );
+      
+      $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hemingway_logo', array(
+		    'label'    => __( 'Logo', 'hemingway' ),
+		    'section'  => 'hemingway_logo_section',
+		    'settings' => 'hemingway_logo',
+		) ) );
+      
+      //4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
+      $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+      $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+   }
+
+   public static function header_output() {
+      ?>
+      
+	      <!--Customizer CSS--> 
+	      
+	      <style type="text/css">
+	           <?php self::generate_css('body::selection', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('body a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('body a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-title a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-menu a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-search #searchsubmit', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-search #searchsubmit', 'border-color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-search #searchsubmit:hover', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-search #searchsubmit:hover', 'border-color', 'accent_color'); ?>
+	           <?php self::generate_css('.featured-media .sticky-post', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-title a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-meta a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog .format-quote blockquote cite a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content a.more-link:hover', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content input[type="submit"]:hover', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content input[type="reset"]:hover', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content input[type="button"]:hover', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content fieldset legend', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content .searchform #searchsubmit', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content .searchform #searchsubmit', 'border-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content .searchform #searchsubmit:hover', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.post-content .searchform #searchsubmit:hover', 'border-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-categories a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-categories a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-tags a:hover', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.post-tags a:hover:after', 'border-right-color', 'accent_color'); ?>
+	           <?php self::generate_css('.post-nav a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.archive-nav a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.logged-in-as a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.logged-in-as a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.content #respond input[type="submit"]:hover', 'background-color', 'accent_color'); ?>
+	           <?php self::generate_css('.comment-meta-content cite a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.comment-meta-content p a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.comment-actions a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('#cancel-comment-reply-link', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('#cancel-comment-reply-link:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.comment-nav-below a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget-title a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget-title a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_text a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_text a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_rss a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_rss a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_archive a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_archive a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_meta a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_meta a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_recent_comments a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_recent_comments a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_pages a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_pages a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_links a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_links a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_recent_entries a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_recent_entries a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_categories a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_categories a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_search #searchsubmit', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_search #searchsubmit', 'border-color', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_search #searchsubmit:hover', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.widget_search #searchsubmit:hover', 'border-color', 'accent_color'); ?>
+	           <?php self::generate_css('#wp-calendar a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('#wp-calendar a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('#wp-calendar tfoot a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.dribbble-shot:hover', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.widgetmore a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.widgetmore a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.flickr_badge_image a:hover img', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.footer .flickr_badge_image a:hover img', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.footer .dribbble-shot:hover img', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.sidebar .tagcloud a:hover', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.footer .tagcloud a:hover', 'background', 'accent_color'); ?>
+	           <?php self::generate_css('.credits a:hover', 'color', 'accent_color'); ?>
+	           
+	           <?php self::generate_css('body#tinymce.wp-editor a', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('body#tinymce.wp-editor a:hover', 'color', 'accent_color'); ?>
+	      </style> 
+	      
+	      <!--/Customizer CSS-->
+	      
+      <?php
+   }
+   
+   public static function live_preview() {
+      wp_enqueue_script( 
+           'hemingway-themecustomizer', // Give the script a unique ID
+           get_template_directory_uri() . '/js/theme-customizer.js', // Define the path to the JS file
+           array(  'jquery', 'customize-preview' ), // Define dependencies
+           '', // Define a version (optional) 
+           true // Specify whether to put in footer (leave this true)
+      );
+   }
+
+   public static function generate_css( $selector, $style, $mod_name, $prefix='', $postfix='', $echo=true ) {
+      $return = '';
+      $mod = get_theme_mod($mod_name);
+      if ( ! empty( $mod ) ) {
+         $return = sprintf('%s { %s:%s; }',
+            $selector,
+            $style,
+            $prefix.$mod.$postfix
+         );
+         if ( $echo ) {
+            echo $return;
+         }
+      }
+      return $return;
+    }
+}
+
+// Setup the Theme Customizer settings and controls...
+add_action( 'customize_register' , array( 'Hemingway_Customize' , 'register' ) );
+
+// Output custom CSS to live site
+add_action( 'wp_head' , array( 'Hemingway_Customize' , 'header_output' ) );
+
+// Enqueue live preview javascript in Theme Customizer admin screen
+add_action( 'customize_preview_init' , array( 'Hemingway_Customize' , 'live_preview' ) );
+
 ?>

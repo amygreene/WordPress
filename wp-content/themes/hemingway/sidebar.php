@@ -1,7 +1,9 @@
-<?php 
-include (TEMPLATEPATH . '/dynamic_sidebar.php'); 
+<?php if ( is_active_sidebar( 'sidebar' ) ) : ?>
 
-// If you want to ignore the Theme Options handling of the sidebar and just do it yourself
-// Use this one instead of the above
-// include (TEMPLATEPATH . '/static_sidebar.php'); 
-?>
+	<div class="sidebar right" role="complementary">
+	
+		<?php dynamic_sidebar( 'sidebar' ); ?>
+		
+	</div><!-- /sidebar -->
+
+<?php endif; ?>

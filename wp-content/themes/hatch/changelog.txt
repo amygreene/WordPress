@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.3.0 =
+* Updated the screenshot to 880x660.
+* Updated Hybrid Core to 1.6.2.
+
 = 0.2.9 =
 * Updated Hybrid Core to 1.6.
 * Various CSS and PHP improvements to reflect changes in the framework.

@@ -2,7 +2,7 @@
 /**
  * @package Hatch
  * @subpackage Functions
- * @version 0.2.9
+ * @version 0.3.0
  * @author AlienWP
  * @link http://alienwp.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html

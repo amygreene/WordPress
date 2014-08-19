@@ -1,58 +1,148 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+<!DOCTYPE html>
 
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<html <?php language_attributes(); ?>>
 
-
-<title>
-<?php
-if (is_home()) { echo bloginfo('name'); echo (' - '); bloginfo('description');}
-elseif (is_404()) { bloginfo('name'); echo ' - Oops, this is a 404 page'; }
-else if ( is_search() ) { bloginfo('name'); echo (' - Search Results');}
-else { bloginfo('name'); echo (' - '); wp_title(''); }
-?>
-</title>
-
-<meta name="generator" content="WordPress.com" /> <!-- leave this for stats -->
-
-<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
-
-<?php
-	global $hemingway;
-	if ($hemingway->style and $hemingway->style != 'none') :
-?>
-<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/styles/<?= $hemingway->style ?>" type="text/css" media="screen" />
-
-<?php endif; ?>
-
-<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
-<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-
-<?php remove_action( 'wp_head', 'wp_generator' ); ?>
-<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
-<?php wp_head(); ?>
-
-</head>
-<body>
-	<div id="header">
-		<div class="inside">
-			<div id="search">
-				<form method="get" id="sform" action="<?php bloginfo('home'); ?>/">
- 					<div class="searchimg"></div>
-					<input type="text" id="q" value="<?php echo wp_specialchars($s, 1); ?>" name="s" size="15" />
-				</form>
-			</div>
+	<head>
+		
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+																		
+		<title><?php wp_title('|', true, 'right'); ?></title>
+				
+		<?php if ( is_singular() ) wp_enqueue_script( "comment-reply" ); ?>
+		 
+		<?php wp_head(); ?>
+	
+	</head>
+	
+	<body <?php body_class(); ?>>
+	
+		<div class="big-wrapper">
+	
+			<div class="header-cover section bg-dark-light no-padding">
+		
+				<div class="header section" style="background-image: url(<?php if (get_header_image() != '') : ?><?php header_image(); ?><?php else : ?><?php echo get_template_directory_uri() . '/images/header.jpg'; ?><?php endif; ?>);">
+							
+					<div class="header-inner section-inner">
+					
+						<?php if ( get_theme_mod( 'hemingway_logo' ) ) : ?>
+						
+							<div class='blog-logo'>
+							
+						        <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>' rel='home'>
+						        	<img src='<?php echo esc_url( get_theme_mod( 'hemingway_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>'>
+						        </a>
+						        
+						    </div> <!-- /blog-logo -->
+					
+						<?php elseif ( get_bloginfo( 'description' ) || get_bloginfo( 'title' ) ) : ?>
+					
+							<div class="blog-info">
+							
+								<h1 class="blog-title">
+									<a href="<?php echo esc_url( home_url() ); ?>" title="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>" rel="home"><?php echo esc_attr( get_bloginfo( 'title' ) ); ?></a>
+								</h1>
+								
+								<?php if ( get_bloginfo( 'description' ) ) { ?>
+								
+									<h3 class="blog-description"><?php echo esc_attr( get_bloginfo( 'description' ) ); ?></h3>
+									
+								<?php } ?>
+							
+							</div> <!-- /blog-info -->
+							
+						<?php endif; ?>
+									
+					</div> <!-- /header-inner -->
+								
+				</div> <!-- /header -->
 			
-			<h2><a href="<?php echo get_settings('home'); ?>/"><?php bloginfo('name'); ?></a></h2>
-			<p class="description"><?php bloginfo('description'); ?></p>
-		</div>
-
-<?php if('' != get_header_image() ) { ?>
-<div id="custom-img-header"><a href="<?php bloginfo('url'); ?>"><img src="<?php header_image(); ?>" alt="<?php bloginfo('name'); ?>" /></a></div>
-<?php } ?>
-
-
-
-	</div>
-	<!-- [END] #header -->
+			</div> <!-- /bg-dark -->
+			
+			<div class="navigation section no-padding bg-dark">
+			
+				<div class="navigation-inner section-inner">
+				
+					<div class="toggle-container hidden">
+			
+						<div class="nav-toggle toggle">
+								
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+							
+							<div class="clear"></div>
+						
+						</div>
+						
+						<div class="search-toggle toggle">
+								
+							<div class="metal"></div>
+							<div class="glass"></div>
+							<div class="handle"></div>
+						
+						</div>
+						
+						<div class="clear"></div>
+					
+					</div> <!-- /toggle-container -->
+					
+					<div class="blog-search hidden">
+					
+						<?php get_search_form(); ?>
+					
+					</div>
+				
+					<ul class="blog-menu">
+					
+						<?php if ( has_nav_menu( 'primary' ) ) {
+																			
+							wp_nav_menu( array( 
+							
+								'container' => '', 
+								'items_wrap' => '%3$s',
+								'theme_location' => 'primary', 
+								'walker' => new hemingway_nav_walker
+															
+							) ); } else {
+						
+							wp_list_pages( array(
+							
+								'container' => '',
+								'title_li' => ''
+							
+							));
+							
+						} ?>
+						
+						<div class="clear"></div>
+												
+					 </ul>
+					 
+					 <ul class="mobile-menu">
+					
+						<?php if ( has_nav_menu( 'primary' ) ) {
+																			
+							wp_nav_menu( array( 
+							
+								'container' => '', 
+								'items_wrap' => '%3$s',
+								'theme_location' => 'primary', 
+								'walker' => new hemingway_nav_walker
+															
+							) ); } else {
+						
+							wp_list_pages( array(
+							
+								'container' => '',
+								'title_li' => ''
+							
+							));
+							
+						} ?>
+						
+					 </ul>
+				 
+				</div> <!-- /navigation-inner -->
+				
+			</div> <!-- /navigation -->
