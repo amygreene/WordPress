@@ -4,7 +4,7 @@
  * @author    Devin Price <devin@wptheming.com>
  * @license   GPL-2.0+
  * @link      http://wptheming.com
- * @copyright 2013 WP Theming
+ * @copyright 2010-2014 WP Theming
  */
 
 class Options_Framework_Interface {
@@ -382,7 +382,7 @@ class Options_Framework_Interface {
 				if ( isset($value['name']) ) {
 					$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 				}
-				if ( $value['desc'] ) {
+				if ( isset( $value['desc'] ) ) {
 					$output .= apply_filters('of_sanitize_info', $value['desc'] ) . "\n";
 				}
 				$output .= '</div>' . "\n";

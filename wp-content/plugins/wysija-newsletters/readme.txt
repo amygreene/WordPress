@@ -1,9 +1,9 @@
-=== MailPoet Newsletters (formerly Wysija) ===
-Contributors: wysija, kgjerstad, benheu, jon1op, badshark, tung-wysija, mamaduka, webord
-Tags: newsletter, newsletters, wysija, newsletter signup, newsletter widget, subscribers, post notification, email subscription, email alerts, automatic newsletter, auto newsletter, autoresponder, follow up, email, marketing, emailing, subscription
+=== MailPoet Newsletters ===
+Contributors: wysija, kgjerstad, benheu, JoN1oP, badshark, tung-wysija, bordoni
+Tags: newsletter, newsletters, wysija, newsletter signup, newsletter widget, subscribers, post notification, email subscription, email alerts, automatic newsletter, auto newsletter, autoresponder, follow up, email, marketing, emailing, subscription, mail poet, mailpoet
 Requires at least: 3.3
-Tested up to: 3.8
-Stable tag: 2.5.9.4
+Tested up to: 3.9
+Stable tag: 2.6.11
 Send newsletters, post notifications or autoresponders from WordPress easily, and beautifully.
 
 == Description ==
@@ -22,20 +22,18 @@ http://vimeo.com/46247528
 
 = Features =
 
-* Drag & drop visual editor, an HTML-free experience
-* Post notifications, like Feedburner, Subscribe2 or MailChimp's RSS-to-Email
+* Drag & drop newsletter editor
+* Send your latest posts automatically
 * Autoresponders, i.e. "Send email 3 days after someone subscribes"
 * [Selection of over 30 themes](http://www.mailpoet.com/newsletter-templates-wordpress/). Photoshop files included
-* Get stats for each newsletter: opens, clicks, unreads, unsubscribes
-* Add a subscription form in your sidebar or pages
+* Get stats for your newsletter: opens, clicks, unsubscribes
+* Drag and drop subscription form designer
 * Your newsletters look the same in Gmail, iPhone, Android, Outlook, Yahoo, Hotmail, etc.
-* Your WordPress users have their own list
-* Import subscribers from MailChimp, Aweber, etc.
-* One click import from Tribulant, Satollo, Subscribe2, etc.
+* Send emails to your WordPress users
+* Import subscribers in 2 steps
 * Single or double opt-in, your choice
-* Send with your web host, Gmail or SMTP
+* Send with your web host, Gmail, any SMTP, like Amazon SES or Mandrill
 * Segment your lists based on opened, clicked & bounced
-* Unlimited number of lists
 * Sending in free version is limited to 2000 subscribers
 
 = Premium version =
@@ -43,49 +41,44 @@ http://vimeo.com/46247528
 [MailPoet Premium](http://www.mailpoet.com/wordpress-newsletter-plugin-premium/) offers these nifty extra features:
 
 * Send to more than 2000 subscribers
-* Stats for individual subscribers (opened, clicked)
-* Total clicks for each link in your newsletter
-* Access to Premium themes
-* Automated bounce handling. Keeps your list clean, avoid being labeled a spammer
-* Unlimited spam score tests with mail-tester.com
+* A beautiful statistics dashboard to compare your newsletters, and subscribers
+* Detailed stats for each subscriber and newsletter
+* Automated bounce handling
+* Test your spam score before you send
 * Improve deliverability with DKIM signature
-* We trigger your email queue, like a real cron job
 * Don't reinstall. Simply install an additional plugin
-* Priority support
+* Priority support: let us optimize your settings!
 
 [Visit our Premium page](http://www.mailpoet.com/wordpress-newsletter-plugin-premium/).
 
-= Future releases =
-
-* Subscriber profiles, ie. gender, city, or whatever you want
-* Display a list of past newsletters sent in a page of your site (shortcode)
-* Smart segmentation of subscribers
-
 = Support =
 
-We got a dedicated website just to help you out. And we're quite quick to reply.
+Find over 80 articles in our documentation:
 
 [support.mailpoet.com](http://support.mailpoet.com/)
 
 = Translations in your language =
 
-[Get a Premium license in exchange for your translation](http://support.mailpoet.com/knowledgebase/translations-in-your-language/)
+[Get a Premium license in exchange for your help  in translation](http://support.mailpoet.com/knowledgebase/translations-in-your-language/)
 
 * Arabic
+* Basque
 * Catalan
 * Chinese
 * Croatian
 * Czech
 * Danish
 * Dutch
-* French
+* French (but of course!)
 * German
 * Greek
+* Hebrew
 * Hungarian
 * Indonesian
 * Italian
 * Japanese
 * Norwegian
+* Persian
 * Polish
 * Portuguese PT
 * Portuguese BR
@@ -93,6 +86,7 @@ We got a dedicated website just to help you out. And we're quite quick to reply.
 * Russian
 * Serbian
 * Slovak
+* Slovenian
 * Spanish
 * Swedish
 * Turkish
@@ -138,6 +132,157 @@ Our [support site](http://support.mailpoet.com/) has plenty of articles and a ti
 7. Importing subscribers with a CSV.
 
 == Changelog ==
+
+= 2.6.11 - 2014-08-14 =
+* Improved protection against CSRF attacks thanks to Yoshinori Matsumoto.
+* Fixed bug on scheduled newsletters edited back and forth and becoming uneditable.
+* Fixed when duplicating an email through the stats page of a newsletter, then deleting the duplicate would also delete the original.
+* Old code Spring cleaning part 2, getting rid of the junk.
+
+= 2.6.10 - 2014-08-04 =
+* Improved protection of themes upload, unsubscribe links, file access and statistics.
+* Improved the "Send a test email" function.
+* Fixed never ending process while sending previews on certain servers.
+* Fixed a few regular expressions for a better rendering in Outlook.
+* Fixed memory issue when dropping the "WordPress Post" widget on sites with thousands of taxonomies.
+* Fixed wrong subscribers count in the subscribers' listing.
+* Old code Spring cleaning, removed unused rusty pieces.
+
+= 2.6.9 - 2014-07-14 =
+* Fixed email display issues caused by responsive CSS. We're truly sorry for this.
+* New columns on Subscribers page: "Never opened or clicked"
+* Removed "Unconfirmed" filter on Subscribers page when signup confirmation is off
+* Fixed a few minor bugs on the Statistics page for Premium users. Thanks for your feedbacks!
+* Fixed our hair with spray to look like cool kids in the eighties
+
+= 2.6.8 - 2014-07-04 =
+* Fixed security issue reported by our dear Dominic. Thank you sir!
+
+= 2.6.7 - 2014-07-01 =
+* Added 1 more add-on to our plugin's listing
+* Implemented a new Email Rendering Engine, with a lot of bugs fixed for Outlook users and Mobile Users
+* Fixed broken "Automatic Latest Content" settings on sites with lots of tags
+* Fixed fatal error when sending to more than 1 million total subscribers
+* Fixed subscribers page being inaccessible on some Multisites (very rare bug)
+* Fixed Outlook 2013 paragraph spacing issue on previous beta
+* Fixed security issue reported by [Sucuri](http://sucuri.net/)
+* Fixed the HTML button on TinyMCE which was hidden in editor
+* Fixed the links popup on TinyMCE for IE11 in editor
+* Fixed "automated latest content" (ALC) bugs with multiple Custom Post Types
+* Fixed the upload image functionality in our plugin
+* Fixed default item selected on filter lists at the Subscribers page for Firefox and Opera users
+* Fixed warning message appearing on the subscription form for Admin Users
+* Fixed a few typos in the plugin
+* Improved the CSV export to expand its compatibility with Excel on Windows
+* Improved the performance of the plugin when loading admin assets
+
+= 2.6.6 - 2014-04-30 =
+* Fixed the Upload Image functionality in our plugin
+* Fixed default item selected on filter lists at the Users Page for Firefox and Opera users
+* Fixed warning message appearing on the Subscription form for Admin Users
+* Fixed some typos in the plugin
+* Improved the performance of the plugin when Loading admin assets
+
+= 2.6.5 - 2014-04-18 =
+* Fixed TinyMCE issue with WordPress 3.9, our editor in Step 2 is working again
+* Fixed conflicting shortcode between MailPoet's custom fields and Ultimate TinyMCE shortcode
+
+= 2.6.4 - 2014-04-17 =
+* Fixed compatibility issue with WordPress 3.9: the TinyMCE editor in WordPress Posts edition page was broken
+* Fixed regular expression on Google analytics tracking code (Premium only)
+* Fixed the importing method, compatible to more CSV formats
+* Hey, we still have an issue with WordPress 3.9, our tinyMCE editor in Step 2 of the newsletter edition is not working properly (buttons are not usable)
+* No need to report us that issue, we're already working hard to fix it. Thanks for your patience! :)
+
+= 2.6.3 - 2014-04-16 =
+* Fixed filters on Automated Latest Content for Taxonomies and Post Types
+* Fixed White Screen on What's New page after updating
+* Fixed display bug, image sitting on top of the text editor in the Step2 of newsletter edition
+* Added support for `mysqli` of WordPress 3.9
+* Replaced The tooltip script "qTip2" in favor of "Bootstrap's Tooltip" (JavaScript Library)
+
+= 2.6.2 - 2014-04-01 =
+* Fixed Javascript conflict breaking some of WordPress post editor function (add media upload, etc ...)
+* Fixed bugs when using bulk actions within WordPress plugins listing
+* Fixed a rendering issue on the welcome page
+* Fixed ability to make firstname and last name field required fields on the subscription forms
+* Fixed rare issue of WordPress media uploader sending HTTP 500 error when uploading an image
+* Improved the performance of the plugin with a better version handling
+* Improved the Import/Export tools
+* Improved "admin_body_class" to be more consistent
+* Improved consistency for settings defaults
+* Improved the inner tabs JavaScript on the settings page in premium version
+* Improved the JavaScript on the "WordPress post" widget
+* Remove badly named functions creating conflicts on step 3 of the newsletter creation process
+
+= 2.6.1 - 2014-03-25 =
+* Fixed a conflict with the "Ultimate Shortcode" plugin breaking our subscription forms
+* Fixed automatically inserted text in confirmation/subscription pages
+* Improved CSV special characters handling in the Subscribers import functionality
+* Improved some of our warnings in the backend to make the messages clearer
+* Improved MailPoet Statistics Page with styling compatible to WordPress v3.8
+* Improved handling Big Databases on daily post notifications
+* Added extra information in the Newsletters' statistics page for an efficient summary
+* Added German Disclaimer to a new Docs Folder for legal purpose
+* Minor changes improving the User Experience in some of our Forms in the backend
+* Replaced The autoselection script "Choosen" in favor of "Select2" (JavaScript Library)
+
+= 2.6 - 2014-03-18 =
+* This is the juiciest of all releases. Ready?
+* a new statistics dashboard in Premium. The beauty of the big picture
+* add more fields in your subscription forms, like phone number, address, or whatever you like
+* display an archive of your past newsletters in a page with a shortcode. Find it in the settings
+* display your posts' author names and categories in the newsletter editor
+* insert several posts at once in the editor, instead of one at a time. Time saver
+* a dozen new display options when you drop your posts in the newsletter, for the control freaks
+* find a list of add-ons in the settings. Plug your MailPoet with your other favorite plugins, like Gravity Forms
+* select your own WordPress pages for your confirmation and unsubscribe pages
+* use your MailPoet shortcodes in your confirmation emails, like [user:firstname | default:reader]
+* MailPoet now abides to German privacy laws. Guten tag Alex!
+* the browser version of your newsletter now include the Google Analytics tracking code (Premium)
+* right to left language improvements
+* our user interface is now styled for 3.8
+* needless to say, hundreds of mini improvements
+* we hand over to you 6 months of hard work. Enjoy!
+
+= 2.6.beta - 2013-12-19 to 2014-03-18 =
+* The latest Beta for v2.6
+* Fixed stable update URL to the Core Repository
+* Google Analytics URLs now working as expected
+* Update warning fixed
+* fixed links url not being properly saved in some case when using the google campaign code
+* fixed queue processing fatal error, halting the sending process (only in rare case scenarios)
+* Automatic latest content widget improved
+* added minor visual improvements to fit better WP 3.8 style
+* Mail-tester now works also on ssl sites
+* Theme installation now works with https protected sites too
+* Adapted buttons to the WordPress 3.8 style
+* Changed some image icons to use `dashicons`
+* Removed notices regarding an unused file
+* Removed a bug on FROM email input tooltip
+* Removed MySQL bugs on Stats dashboard filters
+* Enhanced the Widget AJAX URL method
+* Fixed some CSS positioning issue around buttons
+* Adapted the notices/warnings style to WordPress 3.8
+* Improvements on Bulk actions for Subscribers and Newsletters
+* Fixed domain column missing
+* Fixed problems with problem author name for automatic newsletters
+* Removed notices on preview on Browser
+* improved the update plugin process
+* better CSS for the add-ons bage
+* fixed bug on bulk actions for subscribers and newsletters
+* removing some PHP Notices/Warnings
+* improved installing premium plugin process
+* added newsletter bulk delete option
+* fixed a bug throwing an error trying to update "Warning: fopen(..."
+* improved RTL on form editor
+* added smoother auto update process free and premium plugin happening together
+* small corrections on statistics dashboard form editor and newsletter editor
+* added better support for Retina displays
+* added custom fields functionality in the form editor section
+* improved stats dashboard for premium users
+* added archive page shortcode
+* added select your own confirmation page
 
 = 2.5.9.4 - 2013-12-26 =
 * fixed rare bug emails being re-enqueued when a partially sent newsletter was paused and edited from step3
@@ -214,12 +359,14 @@ Our [support site](http://support.mailpoet.com/) has plenty of articles and a ti
 * fixed WordPress user auto import as MailPoet subscribers on multisite
 * fixed rendering issue 2.5.2
 
+
 = 2.5.2 - 2013-06-26 =
 * fixed confusing text alignment not applied in the visual editor's tiny MCE
 * fixed autosave on step 2, the newsletter editor
 * fixed dragged images in IE10 in the newsletters' visual editor
 * fixed subscribers count not being refreshed after a bulk delete
 * fixed bulk confirm option which was missing a subscribed date to be completely working
+
 
 = 2.5.1 - 2013-06-17 =
 * added protection to avoid switching to the beta without wanting
@@ -684,12 +831,12 @@ Our [support site](http://support.mailpoet.com/) has plenty of articles and a ti
 
 * fixed small IE8 and IE9 compatibility issues
 * fixed fatal error for new installation
-* fixed MailPoet admin white screen on wordpres due to get_current_screen function
+* fixed MailPoet admin white screen on wordpress due to get_current_screen function
 * fixed unsubscribe link disappearing because of qtranslate fix
 * fixed old separators just blocked the email wizard
 * fixed unsubscribe link disappearing because of default color
 * fixed settings panel redirection
-* fixed update error message corrected :"An error occured during the update" sounding like update failed even though it succeeded
+* fixed update error message corrected :"An error occurred during the update" sounding like update failed even though it succeeded
 * fixed rendering of aligned text
 * fixed daily report email information
 * fixed export: first line with comma, the rest with semi colon now is all semi colon
@@ -697,7 +844,7 @@ Our [support site](http://support.mailpoet.com/) has plenty of articles and a ti
 * fixed get_avatar during install completely irrelevant
 * fixed wordpress post in editor when an article had an image with height 0px
 * fixed when domain does not exist, trying to send email, we need to flag it as undelivered after 3 tries and remove it from the queue
-* fixed user tags [user:firstname | defaul:subscriber] left over when sent through queue and on some users
+* fixed user tags [user:firstname | default:subscriber] left over when sent through queue and on some users
 * fixed get_version when wp-admin folder doesn't exist...
 * fixed Bulk Unsubscribe from all list "why can't I add him"
 
@@ -762,7 +909,7 @@ Our [support site](http://support.mailpoet.com/) has plenty of articles and a ti
 * fixed daily cron scandir empty dir
 * fixed subscribe from frontend without javascript error
 * fixed subscribe IP server validation when trying in local
-* fixed CSS issues with Wordpress 3.3
+* fixed CSS issues with WordPress 3.3
 * improving interface of email sending in the newsletter's listing
 * added delete newsletter option
 * added language pot file
@@ -776,9 +923,9 @@ Our [support site](http://support.mailpoet.com/) has plenty of articles and a ti
 
 = 0.9.1 - 2011/12/7 =
 * fixed major issue with browser check preventing Safari users from using the plugin
-* fixed issue with wp_attachment function affecting Wordpress post insertion
+* fixed issue with wp_attachment function affecting WordPress post insertion
 * fixed issue when importing subscribers (copy/paste from Gmail)
-* fixed issue related to Wordpress MU
+* fixed issue related to WordPress MU
 * minor bugfixes
 
 = 0.9 - 2011/12/3 =

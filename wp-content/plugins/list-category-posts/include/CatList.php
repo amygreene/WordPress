@@ -4,11 +4,9 @@
    * Each time you use the shortcode, you get an instance of this class.
    * @author fernando@picandocodigo.net
    */
-
 class CatList{
   private $params = array();
   private $lcp_category_id = 0;
-  private $category_param;
   private $exclude;
   private $page = 1;
   private $posts_count = 0;
@@ -19,6 +17,11 @@ class CatList{
    * @param array $atts
    */
   public function __construct($atts) {
+      load_plugin_textdomain(
+          'list-category-posts',
+          false,
+          dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+      );
     $this->params = $atts;
 
     if ($this->lcp_not_empty('instance')){
@@ -33,12 +36,7 @@ class CatList{
    * Order the parameters and query the DB for posts
    */
   private function set_lcp_parameters(){
-    if (is_array($this->lcp_category_id)):
-      $args = array('category__and' => $this->lcp_category_id);
-    else:
-      $args = array('cat'=> $this->lcp_category_id);
-    endif;
-
+    $args = $this->lcp_categories();
     $args = array_merge($args, array(
       'numberposts' => $this->params['numberposts'],
       'orderby' => $this->params['orderby'],
@@ -46,34 +44,11 @@ class CatList{
       'offset' => $this->params['offset']
     ));
 
-    //Exclude
-    if( $this->lcp_not_empty('excludeposts') ):
-      $exclude = array(
-                       'post__not_in' => explode(",", $this->params['excludeposts'])
-                       );
-      if (strpos($args['exclude'], 'this') !== FALSE) :
-        $exclude = array_merge(
-                               $exclude,
-                               array('post__not_in' => $this->lcp_get_current_post_id())
-                               );
-      endif;
-      $args = array_merge($args, $exclude);
-    endif;
+    // Check posts to exclude
+    $args = $this->lcp_check_excludes($args);
 
-    // Post type, status, parent params:
-    if($this->lcp_not_empty('post_type')):
-      $args['post_type'] = $this->params['post_type'];
-    endif;
-
-    if($this->lcp_not_empty('post_status')):
-      $args['post_status'] = array(
-                                   $this->params['post_status']
-                                   );
-    endif;
-
-    if($this->lcp_not_empty('post_parent')):
-      $args['post_parent'] = $this->params['post_parent'];
-    endif;
+    // Check type, status, parent params
+    $args = $this->lcp_types_and_statuses($args);
 
     if($this->lcp_not_empty('year')):
       $args['year'] = $this->params['year'];
@@ -87,6 +62,9 @@ class CatList{
       $args['s'] = $this->params['search'];
     endif;
 
+    if($this->lcp_not_empty('author_posts')):
+      $args['author_name'] = $this->params['author_posts'];
+    endif;
 
     /*
      * Custom fields 'customfield_name' & 'customfield_value'
@@ -113,6 +91,14 @@ class CatList{
         $tag_ids[] = get_term_by('slug', $excluded, 'post_tag')->term_id;
       endforeach;
       $args['tag__not_in'] = $tag_ids;
+    endif;
+
+    // Current tags
+    if ( $this->lcp_not_empty('currenttags') && $this->params['currenttags'] == "yes" ):
+      $tags = $this->lcp_get_current_tags();
+      if ( !empty($tags) ):
+        $args['tag__in'] = $tags;
+      endif;
     endif;
 
     // Added custom taxonomy support
@@ -144,6 +130,11 @@ class CatList{
       endif;
     endif;
 
+    // Posts that start with a given letter:
+    if ( $this->lcp_not_empty('starting_with') ){
+        add_filter('posts_where' , array( $this, 'starting_with') );
+    }
+
     // for WP_Query compatibility
     // http://core.trac.wordpress.org/browser/tags/3.7.1/src/wp-includes/post.php#L1686
     $args['posts_per_page'] = $args['numberposts'];
@@ -151,25 +142,89 @@ class CatList{
     $query = new WP_Query;
     $this->lcp_categories_posts = $query->query($args);
     $this->posts_count = $query->found_posts;
+    remove_all_filters('posts_orderby');
+    remove_all_filters('posts_where');
   }
 
-  private function lcp_not_empty($param){
-    if ( ( isset($this->params[$param]) ) &&
-         ( !empty($this->params[$param]) ) &&
-         ( $this->params[$param] != '0' ) &&
-         ( $this->params[$param] != '') ) :
-      return true;
+  public function starting_with($where){
+      $letter = $this->params['starting_with'];
+      $where .= ' AND wp_posts.post_title ' .
+        'COLLATE UTF8_GENERAL_CI LIKE \'' . $letter . "%'";
+      return $where;
+  }
+
+  /* Should I return posts or show that the tag/category or whatever
+    posts combination that I called has no posts? By default I've
+    always returned the latest posts because that's what the query
+    does when the params are "wrong". But could make for a better user
+    experience if I returned an empty list in certain cases.
+    private function lcp_should_return_posts() */
+
+  /** HELPER FUNCTIONS **/
+
+  /**
+   * Check if there's one or more categories.
+   * Used in the beginning when setting up the parameters.
+   */
+  private function lcp_categories(){
+    if (is_array($this->lcp_category_id)):
+      return array('category__and' => $this->lcp_category_id);
     else:
-      return false;
+      return array('cat'=> $this->lcp_category_id);
     endif;
   }
 
+  // Check posts to exclude
+  private function lcp_check_excludes($args){
+    if( $this->lcp_not_empty('excludeposts') ){
+      $exclude = array(
+        'post__not_in' => explode(",", $this->params['excludeposts'])
+      );
+      if (strpos($this->params['excludeposts'], 'this') > -1){
+        $exclude = array_merge(
+          $exclude,
+          array('post__not_in' => array($this->lcp_get_current_post_id() ) )
+        );
+      }
+      $args = array_merge($args, $exclude);
+    }
+    return $args;
+  }
+
+  private function lcp_types_and_statuses($args){
+    // Post type, status, parent params:
+    if($this->lcp_not_empty('post_type')):
+      $args['post_type'] = $this->params['post_type'];
+    endif;
+
+    if($this->lcp_not_empty('post_status')):
+      $args['post_status'] = array(
+        $this->params['post_status']
+      );
+    endif;
+
+    if($this->lcp_not_empty('post_parent')):
+      $args['post_parent'] = $this->params['post_parent'];
+    endif;
+    return $args;
+  }
+
+  /**
+   * Check for empty parameters (being empty strings or zero).
+   */
+  private function lcp_not_empty($param){
+      return (
+          isset($this->params[$param]) &&
+          !empty($this->params[$param]) &&
+          $this->params[$param] !== '0' &&
+          $this->params[$param] !== ''
+      );
+  }
 
   private function lcp_get_current_post_id(){
     global $post;
     return $post->ID;
   }
-
 
   private function get_lcp_category(){
     if ( $this->lcp_not_empty('categorypage') &&
@@ -216,12 +271,23 @@ class CatList{
 
   public function lcp_get_current_category(){
     $category = get_category( get_query_var( 'category' ) );
-    if(isset($category->errors) && $category->errors["invalid_term"][0] == "Empty Term"):
+    if(isset($category->errors) && $category->errors["invalid_term"][0] == __("Empty Term") ):
       global $post;
       $categories = get_the_category($post->ID);
       return $categories[0]->cat_ID;
     endif;
     return $category->cat_ID;
+  }
+
+  public function lcp_get_current_tags(){
+    $tags = get_the_tags();
+    $tag_ids = array();
+    if( !empty($tags) ){
+      foreach ($tags as $tag_id => $tag) {
+        array_push($tag_ids, $tag_id);
+      }
+    }
+    return $tag_ids;
   }
 
   /**
@@ -251,20 +317,40 @@ class CatList{
    * Load category name and link to the category:
    */
   public function get_category_link(){
-    if($this->params['catlink'] == 'yes' && $this->lcp_category_id != 0):
-      $ids = is_array($this->lcp_category_id) ?
-        $this->lcp_category_id :
-        explode(",", $this->lcp_category_id);
+    if(($this->lcp_not_empty('catlink') &&
+      $this->params['catlink'] == 'yes' ||
+      $this->lcp_not_empty('catname') &&
+      $this->params['catname'] == 'yes') &&
+      $this->lcp_category_id != 0):
+      // Check for one id or several:
+      $ids = null;
+      if (is_array($this->lcp_category_id)){
+        $ids = $this->lcp_category_id;
+      } else{
+        $ids = explode(",", $this->lcp_category_id);
+      }
 
       $link = array();
+      // Loop on several categories:
       foreach($ids as $lcp_id){
         $cat_link = get_category_link($lcp_id);
         $cat_title = get_cat_name($lcp_id);
-        array_push($link, '<a href="' . $cat_link . '" title="' . $cat_title . '">' .
-                   ($this->lcp_not_empty('catlink_string') ? $this->params['catlink_string'] : $cat_title) .
-                   $this->get_category_count($lcp_id) .  '</a>');
-      }
 
+        // Use the category title or 'catlink_string' set by user:
+        if ($this->lcp_not_empty('catlink_string')){
+          $cat_string = $this->params['catlink_string'];
+        } else {
+          $cat_string = $cat_title;
+        }
+
+        // Do we want the link or just the title?
+        if ($this->params['catlink'] == 'yes'){
+          $cat_string = '<a href="' . $cat_link . '" title="' . $cat_title . '">' .
+            $cat_string .
+            $this->get_category_count($lcp_id) .  '</a>';
+        }
+        array_push($link, $cat_string);
+      }
       return implode(", ", $link);
     else:
       return null;
@@ -299,7 +385,8 @@ class CatList{
    * @param int $post_id
    */
   public function get_custom_fields($custom_key, $post_id){
-    if($this->params['customfield_display'] != ''):
+    if( $this->lcp_not_empty('customfield_display') &&
+      ( $this->params['customfield_display'] != '') ):
       $lcp_customs = '';
 
       //Doesn't work for many custom fields when having spaces:
@@ -312,22 +399,18 @@ class CatList{
       $custom_fields = get_post_custom($post_id);
 
       //Loop on custom fields and if there's a value, add it:
-      foreach ($custom_array as $something) :
-        $my_custom_field = $custom_fields[$something];
+      foreach ($custom_array as $user_customfield) :
+        if(isset($custom_fields[$user_customfield])):
+          $my_custom_field = $custom_fields[$user_customfield];
 
-        if (sizeof($my_custom_field) > 0 ):
-
-          foreach ( $my_custom_field as $key => $value ) :
-            $lcp_customs .= "<div class=\"lcp-customfield\">";
-
-            if ($this->params['customfield_display_name'] != "no")
-              $lcp_customs .= $something . " : ";
-
-            $lcp_customs .= $value . "</div>";
-          endforeach;
-
+          if (sizeof($my_custom_field) > 0 ):
+            foreach ( $my_custom_field as $key => $value ) :
+              if ($this->params['customfield_display_name'] != "no")
+                $lcp_customs .= $user_customfield . " : ";
+              $lcp_customs .= $value;
+            endforeach;
+          endif;
         endif;
-
       endforeach;
 
       return $lcp_customs;
@@ -346,9 +429,17 @@ class CatList{
   }
 
   public function get_author_to_show($single){
-    if ($this->params['author']=='yes'):
+    if ($this->params['author'] == 'yes'):
       $lcp_userdata = get_userdata($single->post_author);
-      return $lcp_userdata->display_name;
+      $author_name =  $lcp_userdata->display_name;
+      if($this->lcp_not_empty('author_posts_link') &&
+        $this->params['author_posts_link'] == 'yes'){
+        $link = get_author_posts_url($lcp_userdata->ID);
+        return "<a href=" . $link . " title='" . $author_name .
+          "'>" . $author_name . "</a>";
+      } else {
+        return $author_name;
+      }
     else:
       return null;
     endif;
@@ -373,9 +464,17 @@ class CatList{
   }
 
   public function get_date_to_show($single){
-    if ($this->params['date']=='yes'):
+    if ($this->params['date'] == 'yes'):
       //by Verex, great idea!
       return get_the_time($this->params['dateformat'], $single);
+    else:
+      return null;
+    endif;
+  }
+
+  public function get_modified_date_to_show($single){
+    if ($this->params['date_modified'] == 'yes'):
+      return get_the_modified_time($this->params['dateformat'], $single);
     else:
       return null;
     endif;
@@ -409,25 +508,34 @@ class CatList{
   }
 
   public function get_excerpt($single){
-    if ($this->params['excerpt']=='yes' &&
-        !($this->params['content']=='yes' &&
-        $single->post_content) ):
+    if ( !empty($this->params['excerpt']) && $this->params['excerpt']=='yes'){
 
-      if($single->post_excerpt && $this->params['excerpt_overwrite'] != 'yes'):
-        return $lcp_excerpt = $this->lcp_trim_excerpt($single->post_excerpt);
-      endif;
+      if($single->post_excerpt == ("")){
+        //No excerpt, generate one:
+        $lcp_excerpt = $this->lcp_trim_excerpt($single->post_content);
+      }else{
+        if(!empty($this->params['excerpt_overwrite']) &&
+           $this->params['excerpt_overwrite'] == 'yes'){
+          // Excerpt but we want to overwrite it:";
+          $lcp_excerpt = $this->lcp_trim_excerpt($single->post_content);
+        } else {
+          // Bring post excerpt;
+          $lcp_excerpt = $this->lcp_trim_excerpt($single->post_excerpt);
+        }
+      }
 
-      return $lcp_excerpt = $this->lcp_trim_excerpt($single->post_content);
-    else:
-      return null;
-    endif;
+      if( strlen($lcp_excerpt) < 1 ){
+        $lcp_excerpt = $single->post_title;
+      }
+      return $lcp_excerpt;
+    }
   }
 
   private function lcp_trim_excerpt($text = ''){
     $excerpt_length = intval($this->params['excerpt_size']);
 
     $text = strip_shortcodes($text);
-    $text = apply_filters('the_content', $text);
+    $text = apply_filters('the_excerpt', $text);
     $text = str_replace(']]>',']]&gt;', $text);
 
     if( $this->lcp_not_empty('excerpt_strip') &&
@@ -475,7 +583,8 @@ class CatList{
           $lcp_thumb_size = 'thumbnail';
         endif;
 
-        $lcp_thumbnail = '<a href="' . get_permalink($single->ID).'">';
+        $lcp_thumbnail = '<a href="' . esc_url(get_permalink($single->ID)) .
+          '" title="' . esc_attr($single->post_title) . '">';
 
         $lcp_thumbnail .= get_the_post_thumbnail(
           $single->ID,

@@ -1206,7 +1206,7 @@ function bbp_reply_author_link( $args = '' ) {
 			$anonymous  = bbp_is_reply_anonymous( $reply_id );
 
 			// Tweak link title if empty
-			if ( empty( $$r['link_title'] ) ) {
+			if ( empty( $r['link_title'] ) ) {
 				$link_title = sprintf( empty( $anonymous ) ? __( 'View %s\'s profile', 'bbpress' ) : __( 'Visit %s\'s website', 'bbpress' ), bbp_get_reply_author_display_name( $reply_id ) );
 
 			// Use what was passed if not
@@ -1576,10 +1576,12 @@ function bbp_reply_to( $reply_id = 0 ) {
 		$reply_to = 0;
 
 		// Check that reply_id is valid
-		if ( $reply_id = bbp_get_reply_id( $reply_id ) )
+		$reply_id = bbp_get_reply_id( $reply_id );
 
-			// Get reply_to value
+		// Get reply_to value
+		if ( !empty( $reply_id ) ) {
 			$reply_to = (int) get_post_meta( $reply_id, '_bbp_reply_to', true );
+		}
 
 		return (int) apply_filters( 'bbp_get_reply_to', $reply_to, $reply_id );
 	}
@@ -2463,16 +2465,13 @@ function bbp_form_reply_to() {
 
 		// Get $_REQUEST data
 		if ( isset( $_REQUEST['bbp_reply_to'] ) ) {
-			$reply_to = (int) $_REQUEST['bbp_reply_to'];
+			$reply_to = bbp_validate_reply_to( $_REQUEST['bbp_reply_to'] );
 		}
 
 		// If empty, get from meta
 		if ( empty( $reply_to ) ) {
 			$reply_to = bbp_get_reply_to();
 		}
-
-		// Validate
-		$reply_to = bbp_get_reply_id( $reply_to );
 
 		return (int) apply_filters( 'bbp_get_form_reply_to', $reply_to );
 	}

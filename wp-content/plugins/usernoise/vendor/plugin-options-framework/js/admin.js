@@ -3,7 +3,7 @@ jQuery(function($){
 	$('#pof-tabs-nav a').click(function(){
 		if (!$(this).attr('href').match(/#nav\-tab\-\d+/))
 			return true;
-		$('#pof-tabs .tab').addClass('tab-hidden');
+		$('#pof-tabs .pof-tab').addClass('tab-hidden');
 		$('#pof-tabs-nav a').removeClass('nav-tab-active');
 		$(this).addClass('nav-tab-active');
 		$('#pof-tabs ' + $(this).attr('href')).removeClass('tab-hidden');
@@ -20,7 +20,7 @@ jQuery(function($){
 		else
 			$('*[data-show_if=' + $(this).attr('id') + "]").fadeOut('fast');
 	});
-	
+
 	$.fn.pof_color_picker = function(){
 		$(this).each(function(index, picker){
 			picker.pickColor = function(a) {

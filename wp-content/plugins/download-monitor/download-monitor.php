@@ -3,23 +3,21 @@
 Plugin Name: Download Monitor
 Plugin URI: http://mikejolley.com/projects/download-monitor/
 Description: A full solution for managing downloadable files, monitoring downloads and outputting download links and file information on your WordPress powered site.
-Version: 1.3.2
+Version: 1.5.1
 Author: Mike Jolley
 Author URI: http://mikejolley.com
-Requires at least: 3.5
-Tested up to: 3.6
+Requires at least: 3.8
+Tested up to: 3.9
 
-	Copyright: © 2013 Mike Jolley.
+	Copyright: Â© 2014 Mike Jolley.
 	License: GNU General Public License v3.0
 	License URI: http://www.gnu.org/licenses/gpl-3.0.html
-
-	Filetype icons from the Fugue Icon Pack by Yusuke Kamiyamane.
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * WP_Download_Monitor class.
+ * WP_DLM class.
  *
  * Main Class which inits the CPT and plugin
  */
@@ -39,20 +37,23 @@ class WP_DLM {
 		global $wpdb;
 
 		// Define constants
-		define( 'DLM_VERSION', '1.3.2' );
+		define( 'DLM_VERSION', '1.5.0' );
 
 		// Table for logs
 		$wpdb->download_log = $wpdb->prefix . 'download_log';
 
 		// Include required files
-		if ( is_admin() )
+		if ( is_admin() ) {
 			include_once( 'includes/admin/class-dlm-admin.php' );
+		}
 
-		if ( defined('DOING_AJAX') )
+		if ( defined('DOING_AJAX') ) {
 			include_once( 'includes/class-dlm-ajax-handler.php' );
+		}
 
-		if ( get_option( 'dlm_enable_logging' ) == 1 )
+		if ( get_option( 'dlm_enable_logging' ) == 1 ) {
 			include_once( 'includes/class-dlm-logging.php' );
+		}
 
 		include_once( 'includes/download-functions.php' );
 		include_once( 'includes/class-dlm-download.php' );
@@ -61,12 +62,12 @@ class WP_DLM {
 		include_once( 'includes/class-dlm-shortcodes.php' );
 
 		// Activation
-		register_activation_hook( __FILE__, array( $this, 'init_user_roles' ), 10 );
-		register_activation_hook( __FILE__, array( $this, 'init_taxonomy' ), 10 );
-		register_activation_hook( __FILE__, array( $this, 'install_tables' ), 10 );
-		register_activation_hook( __FILE__, array( $this, 'directory_protection' ), 10 );
-		register_activation_hook( __FILE__, array( $GLOBALS['DLM_Download_Handler'], 'add_endpoint' ), 10 );
-		register_activation_hook( __FILE__, 'flush_rewrite_rules', 11 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'init_user_roles' ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'init_taxonomy' ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'install_tables' ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'directory_protection' ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $GLOBALS['DLM_Download_Handler'], 'add_endpoint' ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), 'flush_rewrite_rules', 11 );
 
 		// Actions
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_links' ) );
@@ -88,9 +89,9 @@ class WP_DLM {
 	 */
 	public function plugin_links( $links ) {
 		$plugin_links = array(
-			'<a href="' . admin_url( 'edit.php?post_type=dlm_download&page=download-monitor-settings' ) . '">' . __( 'Settings', 'download_monitor' ) . '</a>',
-			'<a href="http://mikejolley.com/projects/download-monitor/add-ons/">' . __( 'Add-ons', 'download_monitor' ) . '</a>',
-			'<a href="https://github.com/mikejolley/download-monitor/wiki">' . __( 'Docs', 'download_monitor' ) . '</a>',
+			'<a href="' . admin_url( 'edit.php?post_type=dlm_download&page=download-monitor-settings' ) . '">' . __( 'Settings', 'download-monitor' ) . '</a>',
+			'<a href="http://mikejolley.com/projects/download-monitor/add-ons/">' . __( 'Add-ons', 'download-monitor' ) . '</a>',
+			'<a href="https://github.com/mikejolley/download-monitor/wiki">' . __( 'Docs', 'download-monitor' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -112,8 +113,8 @@ class WP_DLM {
 	 * @return void
 	 */
 	public function load_plugin_textdomain() {
-		load_textdomain( 'download_monitor', WP_LANG_DIR . '/download-monitor/download_monitor-' . get_locale() . '.mo' );
-		load_plugin_textdomain( 'download_monitor', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_textdomain( 'download-monitor', WP_LANG_DIR . '/download-monitor/download_monitor-' . get_locale() . '.mo' );
+		load_plugin_textdomain( 'download-monitor', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
@@ -234,21 +235,21 @@ class WP_DLM {
 		 */
 		register_taxonomy( 'dlm_download_category',
 	        array( 'dlm_download' ),
-	        array(
+	        apply_filters( 'dlm_download_category_args', array(
 	            'hierarchical' 			=> true,
 	            'update_count_callback' => '_update_post_term_count',
-	            'label' 				=> __( 'Categories', 'download_monitor'),
+	            'label' 				=> __( 'Categories', 'download-monitor'),
 	            'labels' => array(
-	                    'name' 				=> __( 'Categories', 'download_monitor'),
-	                    'singular_name' 	=> __( 'Download Category', 'download_monitor'),
-	                    'search_items' 		=> __( 'Search Download Categories', 'download_monitor'),
-	                    'all_items' 		=> __( 'All Download Categories', 'download_monitor'),
-	                    'parent_item' 		=> __( 'Parent Download Category', 'download_monitor'),
-	                    'parent_item_colon' => __( 'Parent Download Category:', 'download_monitor'),
-	                    'edit_item' 		=> __( 'Edit Download Category', 'download_monitor'),
-	                    'update_item' 		=> __( 'Update Download Category', 'download_monitor'),
-	                    'add_new_item' 		=> __( 'Add New Download Category', 'download_monitor'),
-	                    'new_item_name' 	=> __( 'New Download Category Name', 'download_monitor')
+	                    'name' 				=> __( 'Categories', 'download-monitor'),
+	                    'singular_name' 	=> __( 'Download Category', 'download-monitor'),
+	                    'search_items' 		=> __( 'Search Download Categories', 'download-monitor'),
+	                    'all_items' 		=> __( 'All Download Categories', 'download-monitor'),
+	                    'parent_item' 		=> __( 'Parent Download Category', 'download-monitor'),
+	                    'parent_item_colon' => __( 'Parent Download Category:', 'download-monitor'),
+	                    'edit_item' 		=> __( 'Edit Download Category', 'download-monitor'),
+	                    'update_item' 		=> __( 'Update Download Category', 'download-monitor'),
+	                    'add_new_item' 		=> __( 'Add New Download Category', 'download-monitor'),
+	                    'new_item_name' 	=> __( 'New Download Category Name', 'download-monitor')
 	            	),
 	            'show_ui' 				=> true,
 	            'query_var' 			=> true,
@@ -260,25 +261,25 @@ class WP_DLM {
 	            ),
 	            'rewrite' 				=> false,
 	            'show_in_nav_menus'     => false
-	        )
+	        ) )
 	    );
 
 		register_taxonomy( 'dlm_download_tag',
 	        array( 'dlm_download' ),
-	        array(
+	        apply_filters( 'dlm_download_tag_args', array(
 	            'hierarchical' 			=> false,
-	            'label' 				=> __( 'Tags', 'download_monitor'),
+	            'label' 				=> __( 'Tags', 'download-monitor'),
 	            'labels' => array(
-	                    'name' 				=> __( 'Tags', 'download_monitor'),
-	                    'singular_name' 	=> __( 'Download Tag', 'download_monitor'),
-	                    'search_items' 		=> __( 'Search Download Tags', 'download_monitor'),
-	                    'all_items' 		=> __( 'All Download Tags', 'download_monitor'),
-	                    'parent_item' 		=> __( 'Parent Download Tag', 'download_monitor'),
-	                    'parent_item_colon' => __( 'Parent Download Tag:', 'download_monitor'),
-	                    'edit_item' 		=> __( 'Edit Download Tag', 'download_monitor'),
-	                    'update_item' 		=> __( 'Update Download Tag', 'download_monitor'),
-	                    'add_new_item' 		=> __( 'Add New Download Tag', 'download_monitor'),
-	                    'new_item_name' 	=> __( 'New Download Tag Name', 'download_monitor')
+	                    'name' 				=> __( 'Tags', 'download-monitor'),
+	                    'singular_name' 	=> __( 'Download Tag', 'download-monitor'),
+	                    'search_items' 		=> __( 'Search Download Tags', 'download-monitor'),
+	                    'all_items' 		=> __( 'All Download Tags', 'download-monitor'),
+	                    'parent_item' 		=> __( 'Parent Download Tag', 'download-monitor'),
+	                    'parent_item_colon' => __( 'Parent Download Tag:', 'download-monitor'),
+	                    'edit_item' 		=> __( 'Edit Download Tag', 'download-monitor'),
+	                    'update_item' 		=> __( 'Update Download Tag', 'download-monitor'),
+	                    'add_new_item' 		=> __( 'Add New Download Tag', 'download-monitor'),
+	                    'new_item_name' 	=> __( 'New Download Tag Name', 'download-monitor')
 	            	),
 	            'show_ui' 				=> true,
 	            'query_var' 			=> true,
@@ -290,7 +291,7 @@ class WP_DLM {
 	            ),
 	            'rewrite' 				=> false,
 	            'show_in_nav_menus'     => false
-	        )
+	        ) )
 	    );
 
 	    /**
@@ -299,22 +300,22 @@ class WP_DLM {
 		register_post_type( "dlm_download",
 			apply_filters( 'dlm_cpt_dlm_download_args', array(
 				'labels' => array(
-						'all_items'          => __( 'All Downloads', 'download_monitor' ),
-						'name'               => __( 'Downloads', 'download_monitor' ),
-						'singular_name'      => __( 'Download', 'download_monitor' ),
-						'add_new'            => __( 'Add New', 'download_monitor' ),
-						'add_new_item'       => __( 'Add Download', 'download_monitor' ),
-						'edit'               => __( 'Edit', 'download_monitor' ),
-						'edit_item'          => __( 'Edit Download', 'download_monitor' ),
-						'new_item'           => __( 'New Download', 'download_monitor' ),
-						'view'               => __( 'View Download', 'download_monitor' ),
-						'view_item'          => __( 'View Download', 'download_monitor' ),
-						'search_items'       => __( 'Search Downloads', 'download_monitor' ),
-						'not_found'          => __( 'No Downloads found', 'download_monitor' ),
-						'not_found_in_trash' => __( 'No Downloads found in trash', 'download_monitor' ),
-						'parent'             => __( 'Parent Download', 'download_monitor' )
+						'all_items'          => __( 'All Downloads', 'download-monitor' ),
+						'name'               => __( 'Downloads', 'download-monitor' ),
+						'singular_name'      => __( 'Download', 'download-monitor' ),
+						'add_new'            => __( 'Add New', 'download-monitor' ),
+						'add_new_item'       => __( 'Add Download', 'download-monitor' ),
+						'edit'               => __( 'Edit', 'download-monitor' ),
+						'edit_item'          => __( 'Edit Download', 'download-monitor' ),
+						'new_item'           => __( 'New Download', 'download-monitor' ),
+						'view'               => __( 'View Download', 'download-monitor' ),
+						'view_item'          => __( 'View Download', 'download-monitor' ),
+						'search_items'       => __( 'Search Downloads', 'download-monitor' ),
+						'not_found'          => __( 'No Downloads found', 'download-monitor' ),
+						'not_found_in_trash' => __( 'No Downloads found in trash', 'download-monitor' ),
+						'parent'             => __( 'Parent Download', 'download-monitor' )
 					),
-				'description' => __( 'This is where you can create and manage downloads for your site.', 'download_monitor' ),
+				'description' => __( 'This is where you can create and manage downloads for your site.', 'download-monitor' ),
 				'public' 				=> false,
 				'show_ui' 				=> true,
 				'capability_type' 		=> 'post',
@@ -532,6 +533,61 @@ class WP_DLM {
 	}
 
 	/**
+	 * Parse a file path and return the new path and whether or not it's remote
+	 * @param  string $file_path
+	 * @return array
+	 */
+	public function parse_file_path( $file_path ) {
+		$remote_file      = true;
+		$parsed_file_path = parse_url( $file_path );
+		
+		$wp_uploads = wp_upload_dir();
+		$wp_uploads_dir = $wp_uploads['basedir'];
+		$wp_uploads_url = $wp_uploads['baseurl'];
+
+		if ( ( ! isset( $parsed_file_path['scheme'] ) || ! in_array( $parsed_file_path['scheme'], array( 'http', 'https', 'ftp' ) ) ) && isset( $parsed_file_path['path'] ) && file_exists( $parsed_file_path['path'] ) ) {
+
+			/** This is an absolute path */
+			$remote_file  = false;
+
+		} elseif( strpos( $file_path, $wp_uploads_url ) !== false ) {
+
+			/** This is a local file given by URL so we need to figure out the path */
+			$remote_file  = false;
+			$file_path    = str_replace( $wp_uploads_url, $wp_uploads_dir, $file_path );
+			$file_path    = realpath( $file_path );
+
+		} elseif( is_multisite() && ( strpos( $file_path, network_site_url( '/', 'http' ) ) !== false || strpos( $file_path, network_site_url( '/', 'https' ) ) !== false ) ) {
+
+			/** This is a local file outside of wp-content so figure out the path */
+			$remote_file = false;
+			// Try to replace network url
+            $file_path   = str_replace( network_site_url( '/', 'https' ), ABSPATH, $file_path );
+            $file_path   = str_replace( network_site_url( '/', 'http' ), ABSPATH, $file_path );
+            // Try to replace upload URL
+            $file_path   = str_replace( $wp_uploads_url, $wp_uploads_dir, $file_path );
+            $file_path   = realpath( $file_path );
+
+		} elseif( strpos( $file_path, site_url( '/', 'http' ) ) !== false || strpos( $file_path, site_url( '/', 'https' ) ) !== false ) {
+
+			/** This is a local file outside of wp-content so figure out the path */
+			$remote_file = false;
+			$file_path   = str_replace( site_url( '/', 'https' ), ABSPATH, $file_path );
+			$file_path   = str_replace( site_url( '/', 'http' ), ABSPATH, $file_path );
+			$file_path   = realpath( $file_path );
+
+		} elseif ( file_exists( ABSPATH . $file_path ) ) {
+			
+			/** Path needs an abspath to work */
+			$remote_file = false;
+			$file_path   = ABSPATH . $file_path;
+			$file_path   = realpath( $file_path );
+		}
+
+		return array( $file_path, $remote_file );
+	}
+
+	/**
 	 * Gets the filesize of a path or URL.
 	 *
 	 * @access public
@@ -539,50 +595,87 @@ class WP_DLM {
 	 */
 	public function get_filesize( $file_path ) {
 		if ( $file_path ) {
-			if ( ! is_multisite() ) {
+			list( $file_path, $remote_file ) = $this->parse_file_path( $file_path );
 
-				$file_path   = str_replace( site_url( '/', 'https' ), ABSPATH, $file_path );
-				$file_path   = str_replace( site_url( '/', 'http' ), ABSPATH, $file_path );
+			if ( ! empty( $file_path ) ) {
+				if ( $remote_file ) {
+					$file = wp_remote_head( $file_path );
 
-			} else {
-
-				// Try to replace network url
-				$file_path   = str_replace( network_admin_url( '/', 'https' ), ABSPATH, $file_path );
-				$file_path   = str_replace( network_admin_url( '/', 'http' ), ABSPATH, $file_path );
-
-				// Try to replace upload URL
-				$upload_dir  = wp_upload_dir();
-				$file_path   = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $file_path );
-			}
-
-			// See if its local or remote
-			if ( strstr( $file_path, 'http:' ) || strstr( $file_path, 'https:' ) || strstr( $file_path, 'ftp:' ) ) {
-				$remote_file = true;
-			} else {
-				$remote_file    = false;
-				$real_file_path = realpath( current( explode( '?', $file_path ) ) );
-
-				if ( ! empty( $real_file_path ) )
-					$file_path = $real_file_path;
-
-				// See if we need to add abspath if this is a relative URL
-				if ( ! file_exists( $file_path ) && file_exists( ABSPATH . $file_path ) )
-					$file_path = ABSPATH . $file_path;
-			}
-
-			if ( $remote_file ) {
-				$file = wp_remote_head( $file_path );
-
-				if ( ! is_wp_error( $file ) && ! empty( $file['headers']['content-length'] ) )
-					return $file['headers']['content-length'];
-			} else {
-				if ( file_exists( $file_path ) && ( $filesize = filesize( $file_path ) ) ) {
-					return $filesize;
+					if ( ! is_wp_error( $file ) && ! empty( $file['headers']['content-length'] ) ) {
+						return $file['headers']['content-length'];
+					}
+				} else {
+					if ( file_exists( $file_path ) && ( $filesize = filesize( $file_path ) ) ) {
+						return $filesize;
+					}
 				}
 			}
 		}
 
 		return -1;
+	}
+
+	/**
+	 * Gets md5, sha1 and crc32 hashes for a file and store it.
+	 *
+	 * @access public
+	 * @return array of sizes
+	 */
+	public function get_file_hashes( $file_path ) {
+		$md5   = false;
+		$sha1  = false;
+		$crc32 = false;
+
+		if ( $file_path ) {
+			list( $file_path, $remote_file ) = $this->parse_file_path( $file_path );
+
+			if ( ! empty( $file_path ) ) {
+				if ( ! $remote_file || apply_filters( 'dlm_allow_remote_hash_file', false ) ) {
+					if ( get_option( 'dlm_generate_hash_md5' ) ) {
+						$md5   = hash_file( 'md5', $file_path );
+					}
+					if ( get_option( 'dlm_generate_hash_sha1' ) ) {
+						$sha1  = hash_file( 'sha1', $file_path );
+					}
+					if ( get_option( 'dlm_generate_hash_crc32b' ) ) {
+						$crc32 = hash_file( 'crc32b', $file_path );
+					}
+				}
+			}
+		}
+
+		return array( 'md5' => $md5, 'sha1' => $sha1, 'crc32' => $crc32 );
+	}
+
+	/**
+	 * Encode files for storage
+	 * @param  array $files
+	 * @return string
+	 */
+	public function json_encode_files( $files ) {
+		if ( version_compare( phpversion(), "5.4.0", ">=" ) ) {
+			$files = json_encode( $files, JSON_UNESCAPED_UNICODE );
+		} else {
+			$files = json_encode( $files );
+			if ( function_exists( 'mb_convert_encoding' ) ) {
+				$files = preg_replace_callback( '/\\\\u([0-9a-f]{4})/i', array( $this, 'json_unscaped_unicode_fallback' ), $files );
+			}
+		}
+		return $files;
+	}
+
+	/**
+	 * Fallback for PHP < 5.4 where JSON_UNESCAPED_UNICODE does not exist.
+	 * @param  array $matches
+	 * @return string
+	 */
+	public function json_unscaped_unicode_fallback( $matches ) {
+		$sym = mb_convert_encoding(
+			pack( 'H*', $matches[1] ),
+			'UTF-8',
+			'UTF-16'
+		);
+		return $sym;
 	}
 }
 

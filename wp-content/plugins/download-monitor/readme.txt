@@ -2,9 +2,9 @@
 Contributors: mikejolley
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mike.jolley@me.com&item_name=Donation+for+Download+Monitor
 Tags: download, downloads, monitor, hits, download monitor, tracking, admin, count, counter, files, versions, download count, logging
-Requires at least: 3.5
-Tested up to: 3.7
-Stable tag: 1.3.2
+Requires at least: 3.8
+Tested up to: 3.9
+Stable tag: 1.5.1
 License: GPLv3
 
 Download Monitor is a plugin for uploading and managing downloads, tracking downloads, and displaying links.
@@ -38,7 +38,9 @@ Add-ons, such as the __legacy importer__ and __page addon__ can be [found here](
 
 = Contributing and reporting bugs =
 
-You can contribute code and localizations to this plugin via GitHub: [https://github.com/mikejolley/download-monitor](https://github.com/mikejolley/download-monitor)
+You can contribute code to this plugin via GitHub: [https://github.com/mikejolley/download-monitor](https://github.com/mikejolley/download-monitor)
+
+You can contribute localizations via Transifex [https://www.transifex.com/projects/p/download-monitor/](https://www.transifex.com/projects/p/download-monitor/)
 
 = Support =
 
@@ -107,6 +109,58 @@ Admin hits are not counted, log out and try!
 4. Display regular download links or fancy ones all using shortcodes and templates.
 
 == Changelog ==
+
+= 1.5.1 =
+* Fallback for JSON_UNESCAPED_UNICODE to fix accented characters on < PHP 5.4.
+* Changed default orderby for downloads shortcode to date, desc.
+
+= 1.5.0 =
+* JSON_UNESCAPED_UNICODE for files to fix unicode chars when json encoded. Fix needs PHP 5.4+ to work, but won't break lower versions.
+* Style filetype-docx
+* Update get_version_id to work with non-numeric versions.
+* Fix shortcode arg booleans.
+* Add transient cache for get_file_version_ids.
+* Moved all translations to Transifex - https://www.transifex.com/projects/p/download-monitor/
+* Changed text domain from download_monitor to download-monitor.
+* Added Grunt.
+* Added options to generate file hashes DISABLED BY DEFAULT as they can cause performance issues with large files.
+
+= 1.4.4 = 
+* Use home_dir instead of site_dir - fixes hot-linking protections against own site (when not in root dir)
+* Replace hardcoded WP_CONTENT_DIR and WP_CONTENT_URL with wp_upload_dir to work when UPLOADS and UPLOADS_URL constants are set.
+* Added some filters for hotlink protection customisation.
+
+= 1.4.3 =
+* Add password form to download page when required
+* Run shortcodes in excerpt/short desc
+* Various hook additions
+* pr_br and zh_cn translation
+* Sort download count by meta_value_num
+* Store URLs in JSON format to allow easier search/replace
+* Fix dashboard sorting
+* Option for basic referer checking to prevent hotlinking.
+* Only get file hashes on save as they are resource heavy.
+* Disable remote file hash generation, but can be enabled with filter dlm_allow_remote_hash_file
+* Radio buttons instead of select (with pagination) in popup to improve performance.
+
+= 1.4.2 = 
+* Fix for site_url -> abspath
+* Check if hash functions are supported before use.
+
+= 1.4.1 =
+* Fix file_exists error in download handlers
+
+= 1.4.0 =
+* MP6/3.8 admin styling. Requires 3.8.
+* Polish translation.
+* Turkish translation.
+* Change capability required to view dashboard widget.
+* Don't show "insert download" when editing a download.
+* Allow pagination for the [downloads] shortcode. Simply add paginate=true to the shortcode.
+* Reverted flush change in download handler to reduce memory usage on some hosting envrionments
+* changed download handlers and fixed corruption when resuming files
+* Calculate md5/sha1/crc32 hashes for files. Obtainable via methods or download_data, e.g. [download_data id="86" data="md5"]
+* Added file_date data
 
 = 1.3.2 =
 * Cleaned up log table queries
@@ -185,8 +239,3 @@ Admin hits are not counted, log out and try!
 
 = 1.0.0 =
 * Complete rewrite of the plugin making use of custom post types and other best practices. Fresh start version '1' to prevent auto-updates (legacy importer needs to be used to migrate from old versions).
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-To update from legacy versions use the legacy importer](http://mikejolley.com/projects/download-monitor/add-ons/legacy-importer/).

@@ -3,7 +3,7 @@ Contributors: exed internet, s_ruben
 Tags: explanatory dictionary, dictionary, vocabulary, glossary, lexicon, explain, explanation, tooltips, descriptions
 Requires at least: 3.5.0
 Tested up to: 3.8.0
-Stable tag: 4.0.1
+Stable tag: 4.0.2
 
 This plugin is used when there are words, words expressions or sentences to be explained via tooltips in the posts or pages of your wordpress blog.
 
@@ -40,6 +40,13 @@ Read the following items for more information:
 3. Explanatory Dictionary Overview on page
 
 == Changelog ==
+
+= 4.0.2 =
+* New icon so it looks cooler witht the new admin layout
+* Bugfix: Diacritics can be used again
+* Bugfix: Words were being replaced inside input tags
+* Bugfix: Padding inside the bubble works again
+* Bugfix: Bubble doesn't dissapear anymore if you try to hover over it
 
 = 4.0.1 =
 
@@ -109,6 +116,13 @@ Read the following items for more information:
 * First release.
 
 == Upgrade Notice ==
+
+= 4.0.2 =
+* New icon so it looks cooler witht the new admin layout
+* Bugfix: Diacritics can be used again
+* Bugfix: Words were being replaced inside input tags
+* Bugfix: Padding inside the bubble works again
+* Bugfix: Bubble doesn't dissapear anymore if you try to hover over it
 
 = 4.0.1 =
 Few bug fixes and a couple of improvements

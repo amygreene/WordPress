@@ -20,7 +20,7 @@ if ( !is_wp_error($tec_info) ) {
 }
 
 $news_rss = fetch_feed(TribeEvents::FEED_URL);
-if ( !is_wp_error($news_rss) ) {
+if ( ! is_wp_error($news_rss) ) {
 	$maxitems = $news_rss->get_item_quantity( apply_filters('tribe_help_tab_rss_max_items', 5) );
 	$rss_items = $news_rss->get_items(0, $maxitems);
 	$news_feed = array();
@@ -39,76 +39,49 @@ $ga_query_string = '?utm_source=helptab&utm_medium=plugin-tec&utm_campaign=in-ap
 
 $premium_add_ons = array();
 $premium_add_ons[] = array(
-        'title' => __('The Events Calendar PRO', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_ecp_tribe_url', 'http://m.tri.be/dr'),
+        'title' => __( 'The Events Calendar PRO', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_ecp_tribe_url', 'http://m.tri.be/dr' ),
     );
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: Eventbrite Tickets', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_eventbrite_tribe_url', 'http://m.tri.be/ds'),
+        'title' => __( 'The Events Calendar: Eventbrite Tickets', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_eventbrite_tribe_url', 'http://m.tri.be/ds' ),
     );
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: Community Events', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_community_events_tribe_url', 'http://m.tri.be/dt'),
+        'title' => __( 'The Events Calendar: Community Events', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_community_events_tribe_url', 'http://m.tri.be/dt' ),
     );
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: Facebook Events', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_facebook_events_tribe_url', 'http://m.tri.be/du'),
+        'title' => __( 'The Events Calendar: Facebook Events', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_facebook_events_tribe_url', 'http://m.tri.be/du' ),
     );
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: WooCommerce Tickets', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_wootickets_tribe_url', 'http://m.tri.be/dv'),
-    );
-
-    $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: EDD Tickets', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_eddtickets_tribe_url', 'http://m.tri.be/dw'),
+        'title' => __( 'The Events Calendar: WooCommerce Tickets', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_wootickets_tribe_url', 'http://m.tri.be/dv' ),
     );
 
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: WPEC Tickets', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_wpectickets_tribe_url', 'http://m.tri.be/dx'),
+        'title' => __( 'The Events Calendar: EDD Tickets', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_eddtickets_tribe_url', 'http://m.tri.be/dw' ),
     );
 
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: Shopp Tickets', 'tribe-events-calendar'),
-        'link' => apply_filters('tribe_help_tab_shopptickets_tribe_url', 'http://m.tri.be/dy'),
+        'title' => __( 'The Events Calendar: WPEC Tickets', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_wpectickets_tribe_url', 'http://m.tri.be/dx' ),
     );
 
     $premium_add_ons[] = array(
-        'title' => __('The Events Calendar: Filter Bar (coming early 2014)', 'tribe-events-calendar'),
-		// 'link' => apply_filters('tribe_help_tab_wootickets_tribe_url', TribeEvents::$tribeUrl . 'shop/faceted-filters/' . $ga_query_string), // TODO make sure this link is correct
-);
+        'title' => __( 'The Events Calendar: Shopp Tickets', 'tribe-events-calendar' ),
+        'link' => apply_filters( 'tribe_help_tab_shopptickets_tribe_url', 'http://m.tri.be/dy' ),
+    );
+
+    $premium_add_ons[] = array(
+        'title' => __( 'The Events Calendar: Filter Bar', 'tribe-events-calendar' ),
+		'link' => apply_filters( 'tribe_help_tab_filterbar_tribe_url', 'http://m.tri.be/hu' ),
+	);
 $premium_add_ons = (array) apply_filters( 'tribe_help_tab_premium_addons', $premium_add_ons ); // TODO should we replace this with an RSS feed??
 
 
-$resources = array();
-$resources[] = array(
-	'title' => __('Documentation', 'tribe-events-calendar'),
-	'link' => apply_filters('tribe_help_tab_documentation_url', TribeEvents::$tribeUrl . 'support/documentation/' . $ga_query_string),
-);
-$resources[] = array(
-	'title' => __('FAQ', 'tribe-events-calendar'),
-	'link' => apply_filters('tribe_help_tab_faq_url', TribeEvents::$tribeUrl . 'support/faqs/' . $ga_query_string),
-);
-$resources[] = array(
-	'title' => __('Help', 'tribe-events-calendar'),
-	'link' => apply_filters('tribe_help_tab_help_video_url', TribeEvents::$tribeUrl . 'category/products/help-video/' . $ga_query_string),
-);
-$resources[] = array(
-	'title' => __('Tutorials', 'tribe-events-calendar'),
-	'link' => apply_filters('tribe_help_tab_tutorials_url', TribeEvents::$tribeUrl . 'the-events-calendar-for-wordpress-tutorials/' . $ga_query_string),
-);
-$resources[] = array(
-	'title' => __('Release Notes', 'tribe-events-calendar'),
-	'link' => apply_filters('tribe_help_tab_release_notes_url', TribeEvents::$tribeUrl . 'category/products/release-notes/' . $ga_query_string),
-);
-$resources[] = array(
-	'title' => __('Forums', 'tribe-events-calendar'),
-	'link' => apply_filters('tribe_help_tab_forums_url', 'http://wordpress.org/support/plugin/the-events-calendar/'),
-);
-$resources = (array) apply_filters( 'tribe_help_tab_resources', $resources );
-
-$getting_started_text = "If you're looking for help with The Events Calendar, you've come to the right place. We are committed to helping make your calendar kick ass...and hope the resources provided below will help get you there.";
+$getting_started_text = __( "If you're looking for help with The Events Calendar, you've come to the right place. We are committed to helping make your calendar kick ass...and hope the resources provided below will help get you there.", 'tribe-events-calendar' );
 $getting_started_text = apply_filters( 'tribe_help_tab_getting_started_text', $getting_started_text );
 
 $intro_text[] = '<p>' . __("If this is your first time using The Events Calendar, you're in for a treat and are already well on your way to creating a first event. Here are some basics we've found helpful for users jumping into it for the first time:", 'tribe-events-calendar') . '</p>';
@@ -126,7 +99,7 @@ $intro_text = implode( $intro_text );
 
 $support_text[] = '<p>' . sprintf( __("We've redone our support page from the ground up in an effort to better help our users. Head over to our %sSupport Page%s and you'll find lots of great resources, including:", "tribe-events-calendar"), '<a href="' . TribeEvents::$tribeUrl . 'support/' . $ga_query_string . '" target="blank">', '</a>' ) . '</p>';
 $support_text[] = '<ul><li>';
-$support_text[] = sprintf( __("%sTemplate tags, functions, and hooks & filters%s for The Events Calendar &amp; Events Calendar PRO", "tribe-events-calendar" ), '<a href="' . TribeEvents::$tribeUrl . 'support/documentation/' . $ga_query_string . '" target="blank">', '</a>' );
+$support_text[] = sprintf( __("%sTemplate tags, functions, and hooks & filters%s for The Events Calendar &amp; Events Calendar PRO", "tribe-events-calendar" ), '<a href="http://m.tri.be/fk" target="blank">', '</a>' );
 $support_text[] = '</li><li>';
 $support_text[] = sprintf( __("%sFrequently Asked Questions%s ranging from the most basic setup questions to advanced themer tweaks", "tribe-events-calendar"), '<a href="' . TribeEvents::$tribeUrl . 'support/faqs/' . $ga_query_string . '" target="blank">', '</a>' );
 $support_text[] = '</li><li>';
@@ -134,7 +107,7 @@ $support_text[] = sprintf( __("%sTutorials%s written by both members of our team
 $support_text[] = '</li><li>';
 $support_text[] = __("Release notes for painting an overall picture of the plugin's lifecycle and when features/bug fixes were introduced.", "tribe-events-calendar");
 $support_text[] = '</li><li>';
-$support_text[] = sprintf( __("%sAdd-on documentation%s for all of Modern Tribe's official extensions for The Events Calendar (including WooTickets, Community Events, Eventbrite Tickets, Facebook Events, etc)", "tribe-events-calendar" ), '<a href="' . TribeEvents::$tribeUrl . 'support/documentation/' . $ga_query_string . '" target="blank">', '</a>' );
+$support_text[] = sprintf( __("%sAdd-on documentation%s for all of Modern Tribe's official extensions for The Events Calendar (including WooTickets, Community Events, Eventbrite Tickets, Facebook Events, etc)", "tribe-events-calendar" ), '<a href="http://m.tri.be/fk" target="blank">', '</a>' );
 $support_text[] = '</li></ul>';
 $support_text[] = "<p>" . sprintf( __("We've also got a %sModern Tribe UserVoice%s page where we're actively watching for feature ideas from the community. If after playing with the plugin and reviewing the resources above, you're finding a feature isn't present that should be, let us know. Vote up existing feature requests or add your own, and help us shape the future of the products business in a way that best meets the community's needs.", "tribe-events-calendar"), '<a href="http://tribe.uservoice.com/" target="blank">', '</a>' ) . '</p>';
 $support_text = implode( $support_text );
@@ -200,7 +173,7 @@ $more_text = __('More...', 'tribe-events-calendar');
 			<div class="star star-rating" style="width: <?php echo( $rating ); ?>px"></div>
 		</div>
 		<?php printf( _n('Based on %d rating', 'Based on %d ratings', $num_rating, 'tribe-events-calendar' ), $num_rating ); ?>
-		<p><a href="<?php echo apply_filters('tribe_help_tab_wp_plugin_url', TribeEvents::WP_PLUGIN_URL); ?>"><?php _e('Give us 5 stars!', 'tribe-events-calendar'); ?></a></p>
+		<p><a href="<?php echo apply_filters( 'tribe_help_tab_wp_plugin_url', 'http://wordpress.org/support/view/plugin-reviews/the-events-calendar?filter=5' ); ?>"><?php _e('Give us 5 stars!', 'tribe-events-calendar'); ?></a></p>
 	<?php } ?>
 
 	<h3><?php _e('Premium Add-Ons', 'tribe-events-calendar'); ?></h3>

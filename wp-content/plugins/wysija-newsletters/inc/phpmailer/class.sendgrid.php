@@ -1,4 +1,5 @@
 <?php
+defined('WYSIJA') or die('Restricted access');
 /**
  * @copyright	Copyright (C) 2009-2011 ACYBA SARL - All rights reserved.
  * @license		http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
@@ -81,10 +82,6 @@ class acymailingSendgrid {
             // obtain response
             $result = curl_exec($session);
             curl_close($session);
-
-            // print everything out
-//            print_r($result);
-//            exit;
 
             //We take the last value of the server's response which correspond of the file's ID.
             $result=json_decode($result);

@@ -15,10 +15,10 @@ class DLM_Admin_Dashboard {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( 'manage_options' ) )
+		if ( ! current_user_can( 'manage_downloads' ) )
 			return;
 
-		wp_add_dashboard_widget( 'dlm_popular_downloads', __( 'Popular Downloads', 'download_monitor' ), array( $this, 'popular_downloads' ) );
+		wp_add_dashboard_widget( 'dlm_popular_downloads', __( 'Popular Downloads', 'download-monitor' ), array( $this, 'popular_downloads' ) );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class DLM_Admin_Dashboard {
     		'post_type'      => 'dlm_download',
     		'no_found_rows'  => 1,
     		'posts_per_page' => 10,
-    		'orderby' 		 => 'meta_value',
+    		'orderby' 		 => 'meta_value_num',
     		'order'          => 'desc',
     		'meta_query'     => array(
     			array(
@@ -50,7 +50,7 @@ class DLM_Admin_Dashboard {
     	$download_ids = get_posts( $args );
 
     	if ( empty( $download_ids ) ) {
-    		echo '<p>' . __( 'There are no stats available yet!', 'download_monitor' ) . '</p>';
+    		echo '<p>' . __( 'There are no stats available yet!', 'download-monitor' ) . '</p>';
     		return;
     	}
 

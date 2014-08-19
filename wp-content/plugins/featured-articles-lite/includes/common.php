@@ -734,7 +734,7 @@ function do_the_fa_title( $before = '', $after = '', $clickable = false ){
 	}
 	// put it all in one var
 	// run filters on title to enable plugins like qTranslate to return the correct title
-	$title_html = $link_open . apply_filters('the_title', $post->post_title) . $link_close;
+	$title_html = $link_open . apply_filters('the_title', $post->post_title, $post->ID) . $link_close;
 	return $before . $title_html . $after;
 }
 
@@ -1130,7 +1130,12 @@ function FA_get_posts($slider_id, $options = array()){
 	if( function_exists('classic_exclude_categories') ){
 		add_filter( 'pre_get_posts', 'classic_exclude_categories' );
 	}
-		
+
+	// qtranslate run filter function on posts content
+	if( function_exists('qtrans_postsFilter') ){
+		$posts = qtrans_postsFilter($posts);
+	}
+	
 	return $posts;
 }
 

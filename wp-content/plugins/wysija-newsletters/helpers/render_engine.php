@@ -73,27 +73,6 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
         $this->_inline = $bool;
     }
 
-    public function renderForJS($vars, $template) {
-        if (is_object ($vars)) {
-            $vars = get_object_vars($vars);
-        }
-        if ($string = $this->_loadTemplate ($template)) {
-            // set vars
-            $this->_vars = $vars;
-
-            // inline mode (removes any tabs, carriage return, line breaks)
-            if($this->_inline) {
-                $string = preg_replace("#(\t|\r|\n)#UiS", '', trim($string));
-                $string = preg_replace("#> +<#UiS", '><', $string);
-            }
-
-            $output = $this->_parseForJS($string);
-            return $output;
-        } else {
-            throw new Exception('wysija rendering engine needs a template');
-        }
-    }
-
     public function render($vars, $template)
     {
         if (is_object ($vars)) {
@@ -106,6 +85,7 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
             $this->_vars = $vars;
 
             if($this->_inline) {
+                // inline mode (removes any tabs, carriage return, line breaks)
                 $string = preg_replace("#(\t|\r|\n)#UiS", '', trim($string));
                 $string = preg_replace("#> +<#UiS", '><', $string);
             }
@@ -170,13 +150,13 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
 
                             # position in list
                             $i < $count-1 ? $line[self::_LAST] = false : $line[self::_LAST] = true;
-                            $i == 0 ? $line[self::_FIRST] = true : $line[self::_FIRST] = false;
+                            $i === 0 ? $line[self::_FIRST] = true : $line[self::_FIRST] = false;
 
                             # rows and columns infos
                             if ($loop_row_size) {
                                 # col position
                                 ($i+1)%$loop_row_size ? $line[self::_LAST_COL] = false : $line[self::_LAST_COL] = true;
-                                ($i+1)%$loop_row_size==1 ? $line[self::_FIRST_COL] = true : $line[self::_FIRST_COL] = false;
+                                ($i+1)%$loop_row_size === 1 ? $line[self::_FIRST_COL] = true : $line[self::_FIRST_COL] = false;
 
                                 # row position
                                 $i<$loop_row_size ? $line[self::_FIRST_ROW] = true : $line[self::_FIRST_ROW] = false;
@@ -751,6 +731,25 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
                     }
                     $value = $ratio;
                 break;
+                case 'format_line_height':
+                    // if value in px, don't modify
+                    if($value !== '0' && strpos($value, 'px') === FALSE && strpos($value, '%') === FALSE) {
+                        // if number value, convert to percent
+                        $percentage = ((float)$value * 100);
+                        $value = $percentage.'%';
+                    }
+                break;
+
+                case 'format_font_size_value':
+                    if(strpos($value, 'em') !== FALSE) {
+                        // if number value, convert to percent
+                        $percentage = ((float)$value * 100);
+                        $value = $percentage.'%';
+                    } else if(strpos($value, '%') === FALSE) {
+                        $value = $value.'px';
+                    }
+                break;
+
                 case 'inc':
                     if (!isset ($arguments[0])) {
                         $value++;
@@ -761,7 +760,7 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
 
                 case 'mult':
                     if ($arguments) {
-                        $value = $value * $arguments[0];
+                        $value = (float)$value * (float)$arguments[0];
                     }
                 break;
 
@@ -845,6 +844,10 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
                     }
                 break;
 
+                case 'includes':
+                    return (bool)(is_array($value) && in_array($arguments[0], $value));
+                break;
+
                 case 'color':
                     if($value !== 'transparent' && $value !== '') {
                         $value = '#'.$value;
@@ -867,7 +870,7 @@ class WYSIJA_help_render_engine extends WYSIJA_object {
                 break;
 
                 case 'ucfirst':
-                    $value = ucFirst ($value);
+                    $value = ucfirst ($value);
                 break;
 
                 case 'upper':

@@ -3,7 +3,7 @@ Contributors: aliciagh
 Tags: search, multisite, buddypress, widget, multilingual, global, shortcode
 Requires at least: 3.0
 Tested up to: 3.5.2
-Stable tag: 1.2.11
+Stable tag: 1.2.12
 
 Adds the ability to search through blogs into your WordPress Multisite installation.
 
@@ -13,6 +13,7 @@ Easily search through all blogs into your WordPress Multisite by post title, pos
 Multisite Global Search doesn't work with single WordPress installation and it must be activated for all sites using "network activate" in the Administration Panel.
 Currently in the following languages:
 
+* Dutch (nl_NL) by Niels Boos [Webdiensten ZZP](http://www.webdienstenzzp.nl)
 * English
 * German (de_DE) by Dennis Vorpahl
 * French (fr_FR) by Fabrice Perrinel
@@ -122,6 +123,9 @@ You have to copy the CSS code from the stylesheet in the Multisite Global Search
 3. Horizontal Global Search widget.
 
 == Changelog ==
+
+= 1.2.12 =
+* Added: Dutch language pack
 
 = 1.2.11 =
 * Added: Serbian language pack

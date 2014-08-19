@@ -34,3 +34,4 @@
 
 .hover_text_style {color:white;font-family:Arial;font-size:15px;float:right;}
 #all_sections, #categories_list {width:20%}
+#post_fld_row, #comment_authors_fld_row, #page_fld_row {display:none; }

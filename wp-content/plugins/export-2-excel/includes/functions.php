@@ -29,4 +29,14 @@
       }
     }
   }
-?>
+
+  function e2e_display_multiselect($sel_array, $id , $size = '5') {
+    if (!array($sel_array)) {
+      return false;
+    } ?>
+    <select name="<?php echo $id . '[]'; ?>" id="<?php echo $id; ?>" multiple="multiple" size="<?php echo $size; ?>"> <?php
+      foreach ($sel_array as $key => $val) {
+        echo '<option value="' . $key . '">' . $val . '</option>';
+      } ?>
+    </select><?php
+  }

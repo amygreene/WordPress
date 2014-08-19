@@ -23,6 +23,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
     }
 
     function send_test_mail(){
+        $this->requireSecurity();
         $this->_displayErrors();
         /*switch the send method*/
         $configVal=$this->_convertPostedInarray();
@@ -40,6 +41,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
     }
 
     function send_test_mail_ms(){
+        $this->requireSecurity();
         $this->_displayErrors();
         /*switch the send method*/
         $configVal=$this->_convertPostedInarray();
@@ -97,6 +99,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
      * @return type
      */
     function bounce_process(){
+        $this->requireSecurity();
         // bounce handling
         $helper_bounce = WYSIJA::get('bounce','helper');
 
@@ -112,6 +115,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
     }
 
     function linkignore(){
+        $this->requireSecurity();
         $this->_displayErrors();
 
         $modelConf=WYSIJA::get('config','model');
@@ -129,6 +133,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
 
     // Ajax called function to enable analytics sharing from welcome page.
     function share_analytics() {
+        $this->requireSecurity();
         $this->_displayErrors();
 
         $model_config = WYSIJA::get('config','model');
@@ -140,55 +145,187 @@ class WYSIJA_control_back_config extends WYSIJA_control{
     }
 
     function validate(){
-        $helpLic=WYSIJA::get('licence','helper');
-        $res=$helpLic->check();
+        $this->requireSecurity();
+        $helper_licence = WYSIJA::get('licence','helper');
+        $result = $helper_licence->check();
 
-        if(!isset($res['result']))  $res['result']=false;
-        return $res;
+        if(!isset($result['result'])){
+            $result['result']=false;
+        }
+
+        return $result;
     }
-
-    function devalidate(){
-
-        $modelCOnfig=WYSIJA::get('config','model');
-        $res=$modelCOnfig->save(array('premium_key'=>false));
-
-        if(!isset($res['result']))  $res['result']=false;
-        return $res;
-    }
-
-
 
     function _convertPostedInarray(){
         $_POST   = stripslashes_deep($_POST);
-        $dataTemp=$_POST['data'];
+        $data_temp = $_POST['data'];
         $_POST['data']=array();
-        foreach($dataTemp as $val) $_POST['data'][$val['name']]=$val['value'];
-        $dataTemp=null;
+        foreach($data_temp as $val) $_POST['data'][$val['name']]=$val['value'];
+        $data_temp = null;
         foreach($_POST['data'] as $k =>$v){
-            $newkey=str_replace(array('wysija[config][',']'),'',$k);
-            $configVal[$newkey]=$v;
+            $new_key = str_replace(array('wysija[config][',']'),'',$k);
+            $config_val[$new_key] = $v;
         }
-        return $configVal;
+        return $config_val;
     }
 
     // WYSIJA Form Editor
     function wysija_form_generate_template() {
-        $field = array();
+        $data = $this->_wysija_form_get_data();
 
+        $helper_form_engine = WYSIJA::get('form_engine', 'helper');
+        return base64_encode($helper_form_engine->render_editor_template($data));
+    }
+
+    function wysija_form_manage_field() {
+        $this->requireSecurity();
+        $response = array('result' => true, 'error' => null);
+
+        // get data
+        $data = $this->_wysija_form_get_data();
+        $form_id = (int)$_REQUEST['form_id'];
+
+        // check for required fields
+        if(!isset($data['type']) || isset($data['type']) && strlen(trim($data['type'])) === 0) {
+            $response['error'] = __('You need to select a type for this field', WYSIJA);
+            $response['result'] = false;
+        }
+        if(!isset($data['name']) || isset($data['name']) && strlen(trim($data['name'])) === 0) {
+            $response['error'] = __('You need to specify a name for this field', WYSIJA);
+            $response['result'] = false;
+        }
+
+        // only proceed if there is no error
+        if($response['error'] === null) {
+            $is_required = (isset($data['params']['required']) ? WJ_Utils::to_bool($data['params']['required']) : false);
+
+            if(isset($data['field_id']) && (int)$data['field_id'] > 0) {
+                // it's an update
+                $custom_field = WJ_Field::get($data['field_id']);
+
+                if($custom_field !== NULL) {
+                    $data['params'] = array_merge($custom_field->settings, $data['params']);
+                    // update fields
+                    $custom_field->name = $data['name'];
+                    $custom_field->type = $data['type'];
+                    $custom_field->required = $is_required;
+                    $custom_field->settings = $data['params'];
+                    $custom_field->save();
+                } else {
+                    // throw error if field does not exist
+                    $response['error'] = __('This field does not exist', WYSIJA);
+                    $response['result'] = false;
+                }
+            } else {
+                // create new custom field
+                $custom_field = new WJ_Field();
+                $custom_field->set(array(
+                    'name' => $data['name'],
+                    'type' => $data['type'],
+                    'required' => $is_required,
+                    'settings' => $data['params']
+                ));
+                $custom_field->save();
+            }
+
+            if($response['error'] === null) {
+                $helper_form_engine = WYSIJA::get('form_engine', 'helper');
+
+                // need to update each block instance of this custom field
+                $block = $helper_form_engine->refresh_custom_field($form_id, array(
+                    'name' => $data['name'],
+                    'field' => $custom_field->user_column_name(),
+                    'type' => $data['type'],
+                    'required' => $is_required,
+                    'settings' => $data['params']
+                ));
+
+                // render editor toolbar & templates
+                $response['data'] = array(
+                    'toolbar' => base64_encode($helper_form_engine->render_editor_toolbar()),
+                    'templates' => base64_encode($helper_form_engine->render_editor_templates())
+                );
+
+                if($block !== null) {
+                    // refresh block using this custom field in the current form
+                    $block_template = $helper_form_engine->render_editor_template($block);
+
+                    if($block_template !== null) {
+                        $response['data']['block'] = base64_encode($block_template);
+                    }
+                }
+            }
+        }
+
+        return $response;
+    }
+
+    // get wysija form data from post (auto decoding)
+    private function _wysija_form_get_data() {
         if(isset($_POST['wysijaData'])) {
             // decode the data string
             $decoded_data = base64_decode($_POST['wysijaData']);
 
             // avoid using stripslashes as it's not reliable depending on the magic quotes settings
             $json_data = str_replace('\"', '"', $decoded_data);
-            $field = json_decode($json_data, true);
+            return json_decode($json_data, true);
+        }
+        return array();
+    }
 
-            $helper_form_engine = WYSIJA::get('form_engine', 'helper');
-            return base64_encode($helper_form_engine->render_editor_template($field));
+    // remove a custom field
+    function form_field_delete() {
+        $this->requireSecurity();
+        $data = $this->_wysija_form_get_data();
+
+        // check for field_id parameter
+        if(isset($data['field_id']) && (int)$data['field_id'] > 0) {
+            // get custom field by id
+            $custom_field = WJ_Field::get($data['field_id']);
+
+            // if the custom field exists
+            if($custom_field !== null) {
+                // we need to remove the field in any form
+                // get all forms
+                $model_forms = WYSIJA::get('forms', 'model');
+                $forms = $model_forms->getRows();
+
+                // get custom field name
+                $field_name = $custom_field->user_column_name();
+                if(is_array($forms) && count($forms) > 0) {
+                    // loop through each form
+                    foreach ($forms as $i => $form) {
+                        $requires_update = false;
+
+                        // decode form data
+                        $data = unserialize(base64_decode($form['data']));
+
+                        // loop through each block
+                        foreach($data['body'] as $j => $block) {
+                            // in case we find a text block
+                            if($block['field'] === $field_name) {
+                                unset($data['body'][$j]);
+                                // flag form to be updated
+                                $requires_update = true;
+                            }
+                        }
+
+                        // if the form requires update, let's do it
+                        if($requires_update === true) {
+                            $model_forms->reset();
+                            $model_forms->update(array('data' => base64_encode(serialize($data))), array('form_id' => (int)$form['form_id']));
+                        }
+                    }
+                }
+
+                // delete custom field
+                $custom_field->delete();
+            }
         }
     }
 
     function form_name_save() {
+        $this->requireSecurity();
         // get name from post and stripslashes it
         $form_name = trim(stripslashes($_POST['name']));
         // get form_id from post
@@ -203,6 +340,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
     }
 
     function form_save() {
+        $this->requireSecurity();
         // get form id
         $form_id = null;
         if(isset($_POST['form_id']) && (int)$_POST['form_id'] > 0) {
@@ -297,7 +435,7 @@ class WYSIJA_control_back_config extends WYSIJA_control{
                         '<a href="'.admin_url('widgets.php').'" target="_blank">',
                         '</a>'
                     ),
-                    __('Saved! Add this form to [link_widget]a widget[/link_widget]', WYSIJA)
+                    __('Saved! Add this form to [link_widget]a widget[/link_widget].', WYSIJA)
                 );
             }
 
@@ -312,10 +450,10 @@ class WYSIJA_control_back_config extends WYSIJA_control{
             // return response depending on db save result
             if(!$result) {
                 // throw error
-                $this->error(__('Your form could not be saved', WYSIJA));
+                $this->error(__('Your form could not be saved.', WYSIJA));
             } else {
                 // save successful
-                $this->notice(__('Your form has been saved', WYSIJA));
+                $this->notice(__('Your form has been saved.', WYSIJA));
             }
         }
 

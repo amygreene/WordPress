@@ -10,7 +10,7 @@ if ( isset( $_POST['s2_admin']) ) {
 	check_admin_referer('subscribe2-options_subscribers' . $s2nonce);
 	if ( isset($_POST['reset']) ) {
 		$this->reset();
-		echo "<div id=\"message\" class=\"updated fade\"><p><strong>$this->options_reset</strong></p></div>";
+		echo "<div id=\"message\" class=\"updated fade\"><p><strong>" . __('Options reset!', 'subscribe2') . "</strong></p></div>";
 	} elseif ( isset($_POST['preview']) ) {
 		global $user_email, $post;
 		$this->preview_email = true;
@@ -85,7 +85,6 @@ if ( isset( $_POST['s2_admin']) ) {
 					if ( $interval == 0 ) {
 						// if we are on per-post emails remove last_cron entry
 						unset($this->subscribe2_options['last_s2cron']);
-						unset($this->subscribe2_options['previous_s2cron']);
 					} else {
 						// if we are using digest schedule the event and prime last_cron as now
 						$time = time() + $interval;
@@ -100,9 +99,6 @@ if ( isset( $_POST['s2_admin']) ) {
 							$timestamp += $interval;
 						}
 						wp_schedule_event($timestamp, $email_freq, 's2_digest_cron');
-						if ( !isset($this->subscribe2_options['last_s2cron']) ) {
-							$this->subscribe2_options['last_s2cron'] = current_time('mysql');
-						}
 					}
 				}
 			} else {
@@ -112,7 +108,7 @@ if ( isset( $_POST['s2_admin']) ) {
 			}
 		}
 
-		echo "<div id=\"message\" class=\"updated fade\"><p><strong>$this->options_saved</strong></p></div>";
+		echo "<div id=\"message\" class=\"updated fade\"><p><strong>" . __('Options saved!', 'subscribe2') . "</strong></p></div>";
 		update_option('subscribe2_options', $this->subscribe2_options);
 	}
 }
@@ -121,11 +117,11 @@ if ( isset( $_POST['s2_admin']) ) {
 $sql = "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status='publish' LIMIT 1";
 $id = $wpdb->get_var($sql);
 if ( empty($id) ) {
-	echo "<div id=\"page_message\" class=\"error\"><p class=\"s2_error\"><strong>$this->no_page</strong></p></div>";
+	echo "<div id=\"page_message\" class=\"error\"><p class=\"s2_error\"><strong>" . __('You must create a WordPress page for this plugin to work correctly.', 'subscribe2') . "</strong></p></div>";
 }
 
 if ( $this->subscribe2_options['email_freq'] != 'never' ) {
-	$disallowed_keywords = array('{TITLE}', '{PERMALINK}', '{DATE}', '{TIME}', '{LINK}', '{ACTION}');
+	$disallowed_keywords = array('{TITLE}', '{PERMALINK}', '{DATE}', '{TIME}', '{LINK}', '{ACTION}', '{REFERENCELINKS}');
 } else {
 	$disallowed_keywords = array('{POSTTIME}', '{TABLE}', '{TABLELINKS}', '{COUNT}', '{LINK}', '{ACTION}');
 }
@@ -136,7 +132,9 @@ foreach ( $disallowed_keywords as $disallowed_keyword ) {
 	}
 }
 if ( $disallowed !== false ) {
-	echo "<div id=\"keyword_message\" class=\"error\"><p class=\"s2_error\"><strong>$this->disallowed_keywords</strong><br>" . implode($disallowed, ', ') . "</p></div>";
+	$disallowed_keywords = __('Your chosen email type (per-post or digest) does not support the following keywords:', 'subscribe2');
+	$template_link = "<a href = \"" . admin_url('admin.php?page=s2_settings&tab=templates') . "\">" . __('Modify your template', 'subscribe2') . "</a>";
+	echo "<div id=\"keyword_message\" class=\"error\"><p class=\"s2_error\"><strong>$disallowed_keywords</strong><br />" . implode($disallowed, ', ') . "<br />" . $template_link . "</p></div>";
 }
 
 // send error message if sender email address is off-domain
@@ -147,8 +145,8 @@ if ( $this->subscribe2_options['sender'] == 'blogname' ) {
 	$sender = $userdata->user_email;
 }
 list($user, $domain) = explode('@', $sender, 2);
-if ( !strstr($_SERVER['SERVER_NAME'], $domain) && $this->subscribe2_options['sender'] != 'author' ) {
-	echo "<div id=\"sender_message\" class=\"error\"><p class=\"s2_error\"><strong>" . __('You appear to be sending notifications from an email address from a different domain name to your blog, this may result in failed emails', 'subscribe2') . "</strong></p></div>";
+if ( !stristr($_SERVER['SERVER_NAME'], $domain) && $this->subscribe2_options['sender'] != 'author' ) {
+	echo "<div id=\"sender_message\" class=\"error\"><p class=\"s2_error\"><strong>" . sprintf(__('You appear to be sending notifications from %1$s, which has a different domain name than your blog server %2$s. This may result in failed emails.', 'subscribe2'), $sender, $_SERVER['SERVER_NAME']) . "</strong></p></div>";
 }
 
 // detect or define which tab we are in
@@ -156,7 +154,9 @@ $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'email';
 
 // show our form
 echo "<div class=\"wrap\">";
-echo "<div id=\"icon-options-general\" class=\"icon32\"></div>";
+if ( version_compare($GLOBALS['wp_version'], '3.8', '<=') ) {
+	echo "<div id=\"icon-options-general\" class=\"icon32\"></div>";
+}
 $tabs = array('email' => __('Email Settings', 'subscribe2'),
 	'templates' => __('Templates', 'subscribe2'),
 	'registered' => __('Registered Users', 'subscribe2'),
@@ -261,7 +261,7 @@ switch ($current_tab) {
 		echo "<p>\r\n";
 		echo "<table style=\"width: 100%; border-collapse: separate; border-spacing: 5px; *border-collapse: expression('separate', cellSpacing = '5px');\" class=\"editform\">\r\n";
 		echo "<tr><td style=\"vertical-align: top; height: 350px; min-height: 350px;\">";
-		echo __('New Post email (must not be empty)', 'subscribe2') . ":<br />\r\n";
+		echo __('Notification email (must not be empty)', 'subscribe2') . ":<br />\r\n";
 		echo __('Subject Line', 'subscribe2') . ": ";
 		echo "<input type=\"text\" name=\"notification_subject\" value=\"" . stripslashes($this->subscribe2_options['notification_subject']) . "\" size=\"45\" />";
 		echo "<br />\r\n";
@@ -278,6 +278,7 @@ switch ($current_tab) {
 		echo "<dt><b>{POSTTIME}</b></dt><dd>" . __("the excerpt of the post and the time it was posted<br />(<i>for digest emails only</i>)", 'subscribe2') . "</dd>\r\n";
 		echo "<dt><b>{TABLE}</b></dt><dd>" . __("a list of post titles<br />(<i>for digest emails only</i>)", 'subscribe2') . "</dd>\r\n";
 		echo "<dt><b>{TABLELINKS}</b></dt><dd>" . __("a list of post titles followed by links to the articles<br />(<i>for digest emails only</i>)", 'subscribe2') . "</dd>\r\n";
+		echo "<dt><b>{REFERENCELINKS}</b></dt><dd>" . __("a reference style list of links at the end of the email with corresponding numbers in the content<br />(<i>for the full content plain text per-post email only</i>)", 'subscribe2') . "</dd>\r\n";
 		echo "<dt><b>{PERMALINK}</b></dt><dd>" . __("the post's permalink<br />(<i>for per-post emails only</i>)", 'subscribe2') . "</dd>\r\n";
 		echo "<dt><b>{TINYLINK}</b></dt><dd>" . __("the post's permalink after conversion by TinyURL", 'subscribe2') . "</dd>\r\n";
 		echo "<dt><b>{DATE}</b></dt><dd>" . __("the date the post was made<br />(<i>for per-post emails only</i>)", "subscribe2") . "</dd>\r\n";
@@ -381,18 +382,21 @@ switch ($current_tab) {
 		echo __('Yes', 'subscribe2') . "</label>&nbsp;&nbsp;";
 		echo "<label><input type=\"radio\" name=\"autosub_def\" value=\"no\"" . checked($this->subscribe2_options['autosub_def'], 'no', false) . " /> ";
 		echo __('No', 'subscribe2') . "</label><br /><br />";
-		echo __('Display checkbox to allow subscriptions from the comment form', 'subscribe2') . ": <br />\r\n";
-		echo "<label><input type=\"radio\" name=\"comment_subs\" value=\"before\"" . checked($this->subscribe2_options['comment_subs'], 'before', false) . " /> ";
-		echo __('Before the Comment Submit button', 'subscribe2') . "</label>&nbsp;&nbsp;";
-		echo "<label><input type=\"radio\" name=\"comment_subs\" value=\"after\"" . checked($this->subscribe2_options['comment_subs'], 'after', false) . " /> ";
-		echo __('After the Comment Submit button', 'subscribe2') . "</label>&nbsp;&nbsp;";
-		echo "<label><input type=\"radio\" name=\"comment_subs\" value=\"no\"" . checked($this->subscribe2_options['comment_subs'], 'no', false) . " /> ";
-		echo __('No', 'subscribe2') . "</label><br /><br />";
-		echo __('Comment form checkbox is checked by default', 'subscribe2') . ": <br />\r\n";
-		echo "<label><input type=\"radio\" name=\"comment_def\" value=\"yes\"" . checked($this->subscribe2_options['comment_def'], 'yes', false) . " /> ";
-		echo __('Yes', 'subscribe2') . "</label>&nbsp;&nbsp;";
-		echo "<label><input type=\"radio\" name=\"comment_def\" value=\"no\"" . checked($this->subscribe2_options['comment_def'], 'no', false) . " /> ";
-		echo __('No', 'subscribe2') . "</label><br /><br />\r\n";
+		// Hide these options if using Jetpack Comments
+		if ( !class_exists('Jetpack_Comments') ) {
+			echo __('Display checkbox to allow subscriptions from the comment form', 'subscribe2') . ": <br />\r\n";
+			echo "<label><input type=\"radio\" name=\"comment_subs\" value=\"before\"" . checked($this->subscribe2_options['comment_subs'], 'before', false) . " /> ";
+			echo __('Before the Comment Submit button', 'subscribe2') . "</label>&nbsp;&nbsp;";
+			echo "<label><input type=\"radio\" name=\"comment_subs\" value=\"after\"" . checked($this->subscribe2_options['comment_subs'], 'after', false) . " /> ";
+			echo __('After the Comment Submit button', 'subscribe2') . "</label>&nbsp;&nbsp;";
+			echo "<label><input type=\"radio\" name=\"comment_subs\" value=\"no\"" . checked($this->subscribe2_options['comment_subs'], 'no', false) . " /> ";
+			echo __('No', 'subscribe2') . "</label><br /><br />";
+			echo __('Comment form checkbox is checked by default', 'subscribe2') . ": <br />\r\n";
+			echo "<label><input type=\"radio\" name=\"comment_def\" value=\"yes\"" . checked($this->subscribe2_options['comment_def'], 'yes', false) . " /> ";
+			echo __('Yes', 'subscribe2') . "</label>&nbsp;&nbsp;";
+			echo "<label><input type=\"radio\" name=\"comment_def\" value=\"no\"" . checked($this->subscribe2_options['comment_def'], 'no', false) . " /> ";
+			echo __('No', 'subscribe2') . "</label><br /><br />\r\n";
+		}
 		echo __('Show one-click subscription on profile page', 'subscribe2') . ":<br />\r\n";
 		echo "<label><input type=\"radio\" name=\"one_click_profile\" value=\"yes\"" . checked($this->subscribe2_options['one_click_profile'], 'yes', false) . " /> ";
 		echo __('Yes', 'subscribe2') . "</label>&nbsp;&nbsp;";
@@ -410,6 +414,7 @@ switch ($current_tab) {
 		// WordPress page ID where subscribe2 token is used
 		echo __('Set default Subscribe2 page as', 'subscribe2') . ': ';
 		echo "<select name=\"s2page\">\r\n";
+		echo "<option value=\"0\">" . __('Select a page', 'subscribe2') . "</option>\r\n";
 		$this->pages_dropdown($this->subscribe2_options['s2page']);
 		echo "</select>\r\n";
 

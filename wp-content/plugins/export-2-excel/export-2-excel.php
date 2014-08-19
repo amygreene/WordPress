@@ -2,8 +2,8 @@
 /*
 Plugin Name: Export to Excel
 Description: A plugin which allows you to download your posts, pages, custom post types to .xls or .xlsx format.
-Author: Kapil Chugh, Sanyam Gupta
-Version: 0.2
+Author: Kapil Chugh, Triptee Gupta
+Version: 1.0
 */
 
   require_once 'includes/defines.php';
@@ -13,8 +13,8 @@ Version: 0.2
   * Includes javascript and style
   */
   function e2e_custom_scripts() { ?>
-    <link rel="stylesheet" href="<?php echo E2E_CSS_PATH; ?>e2e_style.css" type="text/css" media="screen" /> <?php
-    wp_enqueue_script( 'e2e_common', E2E_JS_PATH . 'e2e_common.js' );
+    <link rel="stylesheet" href="<?php echo E2E_CSS_PATH; ?>e2e_style.css?ver=1.0" type="text/css" media="screen" /> <?php
+    wp_enqueue_script( 'e2e_common', E2E_JS_PATH . 'e2e_common.js', array(), '1.0' );
   }
 
  /**

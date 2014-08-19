@@ -1,6 +1,9 @@
 <?php
   ini_set('memory_limit', '256M');
   ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+  $post_field_criteria = array( 'Name' => 'Name', 'Description' => 'Description', 'Url' => 'Url', 'Created on' => 'Created on', 'Author' => 'Author', 'Categories' => 'Categories', 'Tags' => 'Tags', 'Status' => 'Status', 'Custom Fields' => 'Custom Fields');
+  $page_field_criteria = array( 'Name' => 'Name', 'Description' => 'Description', 'Url' => 'Url', 'Created on' => 'Created on', 'Author' => 'Author', 'Status' => 'Status', 'Custom Fields' => 'Custom Fields');
+  $comment_field_criteria = array( 'Commenter' => 'Commenter', 'Email Address' => 'Email Address', 'Url' => 'Url', 'Created on' => 'Created on', 'Ip Address' => 'IP Address', 'Comments' => 'Comments');
   $extensions = array('xls' => '.xls', 'xlsx' => '.xlsx');
   $args = array (
       'public'   => true
@@ -16,12 +19,17 @@
       wp_die('Please select a valid extension.');
     }  elseif (!isset($_POST['e2e_post_type']) || ( !array_key_exists($_POST['e2e_post_type'], $post_types ) && $_POST['e2e_post_type'] != 'comment_authors'   && $_POST['e2e_post_type'] != 'attachment') ) {
       wp_die('Please select a post type.');
-    }  else {
+    }  elseif (!isset($_POST['post_fld']) && ($_POST['e2e_post_type'] == 'post')) { 
+      wp_die('Please select fields.');
+    } elseif ( !isset($_POST['page_fld']) && ($_POST['e2e_post_type'] == 'page')) {
+      wp_die('Please select fields.');
+    } elseif (!isset($_POST['comment_authors_fld']) && ($_POST['e2e_post_type'] == 'comment_authors')) {
+      wp_die('Please select fields.');
+    } else {
       $post_type = $_POST['e2e_post_type'];
       $ext = $_POST['ext'];
       $str = '';
       if ( is_multisite() && $network_admin ) {
-
         $blog_info = get_blog_list(0, 'all');
         foreach ($blog_info as $blog) {
           switch_to_blog($blog['blog_id']);
@@ -47,7 +55,7 @@
         <div class="popupmain" style="float:left;">
           <p class="req_head"><?php echo 'Choose your criteria';?></p>
           <div class="formfield">
-            <p class="row1">
+            <p class="row1" id="slctn_crt">
               <label><?php echo 'Selection Criteria:';?></label>
               <em>
 
@@ -82,6 +90,24 @@
                 } ?>
               </em>
             </p>
+            <p class="row1" id="post_fld_row">
+              <label><?php echo 'Select Fields: '; ?></label>
+              <em> <?php
+                e2e_display_multiselect($post_field_criteria, 'post_fld', '9'); ?>
+              </em>
+            </p>
+            <p class="row1" id="page_fld_row">
+              <label><?php echo 'Select Fields: '; ?></label>
+              <em> <?php
+                e2e_display_multiselect($page_field_criteria, 'page_fld', '7'); ?>
+              </em>
+            </p>
+            <p class="row1" id="comment_authors_fld_row">
+              <label><?php echo 'Select Fields: '; ?></label>
+              <em> <?php
+                e2e_display_multiselect($comment_field_criteria, 'comment_authors_fld', '6'); ?>
+              </em>
+            </p>
             <p class="row1">
               <label><?php echo 'Select extension:'; ?></label>
               <em> <?php
@@ -99,5 +125,5 @@
           </div>
         </div>
       </div>
-    </form> <?php
-  } ?>
+    </form><?php
+  }

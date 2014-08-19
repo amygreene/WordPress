@@ -23,7 +23,7 @@ class Explanatory_Dictionary {
 	 *
 	 * @since 4.0.0
 	 */
-	protected $version = '4.0.0';
+	protected $version = '4.0.2';
 	
 	/**
 	 * Unique identifier for your plugin.
@@ -360,7 +360,7 @@ class Explanatory_Dictionary {
 	bottom: {$tooltip_bottom};
 }
 
-#explanatory-dictionary-tooltip #explanatory-dictionary-tooltip-content {
+#explanatory-dictionary-tooltip .explanatory-dictionary-tooltip-content {
 	padding: {$settings_list['_padding']};
 }
 
@@ -369,7 +369,7 @@ class Explanatory_Dictionary {
 	bottom: -{$safe_zone_bottom};
 }
 
-#explanatory-dictionary-tooltip #explanatory-dictionary-tooltip-bottom {
+#explanatory-dictionary-tooltip .explanatory-dictionary-tooltip-bottom {
 	border-right-color: transparent;
 	border-right-width: {$border_first_width};
 	border-right-style: solid;
@@ -380,7 +380,7 @@ class Explanatory_Dictionary {
 	left: {$border_first_left};
 }
 
-#explanatory-dictionary-tooltip #explanatory-dictionary-tooltip-bottom-border {
+#explanatory-dictionary-tooltip .explanatory-dictionary-tooltip-bottom-border {
 	border-right-color: transparent;
 	border-right-width: {$border_size_border};
 	border-right-style: solid;
@@ -429,10 +429,16 @@ class Explanatory_Dictionary {
 	 * @since 4.0.0
 	 */
 	public function add_plugin_admin_menu() {
+		global $wp_version;
 		
-		$this->plugin_screen_hook_suffix = add_menu_page( 'Explanatory Dictionary', 'Explanatory Dictionary', 'manage_options',  $this->plugin_slug, array( 
-			$this->template, 'display_plugin_admin_page' 
-		), plugin_dir_url(__FILE__).'book_open.ico' );
+		$icon = 'dashicons-book';
+		
+		if( $wp_version < '3.8' ) {
+			$icon = plugin_dir_url(__FILE__) . 'book_open.ico';
+		}
+		$this->plugin_screen_hook_suffix = add_menu_page( 'Explanatory Dictionary', 'Explanatory Dictionary', 'manage_options',  $this->plugin_slug, array(
+				$this->template, 'display_plugin_admin_page'
+		), $icon );
 		
 		$this->plugin_options_screen_hook_suffix = add_submenu_page( $this->plugin_slug, __( 'Options', $this->plugin_slug ), __( 'Options', $this->plugin_slug ), 'manage_options', $this->plugin_slug . '-options', array( 
 			$this->template, 'display_plugin_admin_options_page' 
@@ -818,7 +824,7 @@ class Explanatory_Dictionary {
 			
 			$formatted = array();
 			foreach ( $result as $row ) {
-				$formatted[$row->word] = $row;
+				$formatted[] = $row;
 			}
 				
 			return $formatted;
@@ -868,7 +874,8 @@ class Explanatory_Dictionary {
 			'/<h3.*<\/h3>/i',
 			'/<h4.*<\/h4>/i',
 			'/<a.*<\/a>/i',
-			'/<img[^>]+\>/i'
+			'/<img[^>]+\>/i',
+			'/<input[^>]+\>/i',
 		);
 		$content = preg_replace_callback( $searches , array( $this, 'store_content_to_avoid' ), $content );
 		
@@ -879,11 +886,11 @@ class Explanatory_Dictionary {
 		$counter = 0;
 		
 		// Loop through the words and build search/replace arrays to use in a preg_replace, plus definitions to define at the end of the document
-		foreach( $dictionary as $key => $word ) {
+		foreach( $dictionary as $word ) {
 			if( ! in_array( $word->word, $this->excluded_words ) ) {
 				$new_word = preg_quote($word->word, '/');
-				if( preg_match( '/\b' . $new_word . '\b/i', $content ) ) {
-					$searches[$counter] = '/\b' . $new_word . '\b/i';
+				if( preg_match( '/\b' . $new_word . '\b/u', $content ) ) {					
+					$searches[$counter] = '/\b' . $new_word . '\b/u';
 					$replacements[$counter] = '<span class="explanatory-dictionary-highlight" data-definition="explanatory-dictionary-definition-' . $counter . '">$0</span>';
 					$definitions[] = array( 'id' => $counter, 'word' => $word->word, 'explanation' => $word->explanation );
 				}
@@ -896,9 +903,9 @@ class Explanatory_Dictionary {
 						foreach( $word->synonyms_and_forms as $synonym_or_form ) {
 							if( ! in_array( $synonym_or_form, $this->excluded_words ) ) {
 								$new_synonym_or_form = preg_quote($synonym_or_form, '/');
-								if( preg_match( '/\b' . $new_synonym_or_form . '\b/i', $content ) ) {
+								if( preg_match( '/\b' . $new_synonym_or_form . '\b/u', $content ) ) {
 									$thekey = $extra_key + $counter;
-									$searches[$thekey] = '/\b' . $new_synonym_or_form . '\b/i';
+									$searches[$thekey] = '/\b' . $new_synonym_or_form . '\b/u';
 									$replacements[$thekey] = '<span class="explanatory-dictionary-highlight" data-definition="explanatory-dictionary-definition-' . $thekey . '">$0</span>';	
 									$definitions[] = array( 'id' => $thekey, 'word' => $synonym_or_form, 'explanation' => $word->explanation );
 									$extra_key++;

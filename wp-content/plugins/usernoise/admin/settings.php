@@ -9,33 +9,33 @@ class UN_Settings {
 		add_action('admin_print_styles-settings_page_usernoise', array($this, '_print_styles'));
 		add_action('admin_enqueue_scripts', array($this, '_enqueue_scripts'), 9);
 		$this->h = new HTML_Helpers_0_4;
-		$this->options = new Plugin_Options_Framework_0_2_4(USERNOISE_MAIN, 
-			array(), 
+		$this->options = new Plugin_Options_Framework_0_2_6(USERNOISE_MAIN,
+			array(),
 			array('page_title' => __('Usernoise settings', 'usernoise')));
 	}
-	
+
 	public function _enqueue_scripts($type){
 		global $submenu_file;
 		if ($type == 'settings_page_usernoise'){
-			wp_enqueue_script('un-chosen', usernoise_url('/vendor/chosen/chosen.jquery.js'));
+			wp_enqueue_script('un-chosen', usernoise_url('/vendor/chosen/chosen.jquery.js'), wp_script_is('jquery-migrate', 'registered') ? array('jquery-migrate') : array());
 			wp_enqueue_script('un_settings', usernoise_url('/js/settings.js'), array('jquery'));
 		}
 	}
-	
+
 	public function _print_styles(){
 		wp_enqueue_style('un-admin', usernoise_url('/css/admin.css'));
 		wp_enqueue_style('un-chosen', usernoise_url('/vendor/chosen/chosen.css'));
 		wp_enqueue_style('un-font-awesome', usernoise_url('/vendor/font-awesome/css/font-awesome.css'));
 	}
 	public function set_options(){
-		$fonts = apply_filters('un_fonts', array('Helvetica Neue', 'Helvetica', 'Verdana', 'Tahoma', 
+		$fonts = apply_filters('un_fonts', array('Helvetica Neue', 'Helvetica', 'Verdana', 'Tahoma',
 			'Arial', 'Georgia', 'Palatino'));
 		sort($fonts);
-		$positions = array('left' => __('Left'), 'right' => __('Right'), 'top' => __('Top'), 
+		$positions = array('left' => __('Left'), 'right' => __('Right'), 'top' => __('Top'),
 			'bottom' => __('Bottom'));
 		$general_options = array(
 			array('type' => 'tab', 'title' => __('General', 'usernoise')),
-			array('type' => 'checkbox', 'name' => UN_ENABLED, 
+			array('type' => 'checkbox', 'name' => UN_ENABLED,
 				'title' => __('Enable Usernoise', 'usernoise'), 'label' => __('Enable Usernoise', 'usernoise'),
 				'default' => '0'),
 			array('type' => 'checkbox', 'name' => UN_PUBLISH_DIRECTLY, 'title' => __('Publish feedback directly without approval', 'usernoise'),
@@ -46,33 +46,33 @@ class UN_Settings {
 				'default' => '0',
 				'legend' => __('The link will only be visible at the modal window.')),
 			array('type' => 'checkbox', 'name' => UN_DISABLE_ON_MOBILES,
-				'title' => __('Disable on mobile devices', 'usernoise'), 
+				'title' => __('Disable on mobile devices', 'usernoise'),
 				'label' => __('Disable on mobile devices', 'usernoise'),
 				'default' => '1'),
-				array('type' => 'checkbox', 'title' => __('Disable icons', 'usernoise'), 'name' => UN_DISABLE_ICONS, 
+				array('type' => 'checkbox', 'title' => __('Disable icons', 'usernoise'), 'name' => UN_DISABLE_ICONS,
 				'default' => 0, 'legend' => __('Use this mode if Usernoise breaks your theme icons in Twitter Bootstrap-based themes', 'usernoise')),
 			array('type' => 'tab', 'title' => __('Button', 'usernoise')),
 			array('type' => 'select', 'name' => UN_FEEDBACK_BUTTON_POSITION,
 				'title' => __('Position', 'usernoise'), 'values' => $this->h->hash2options($positions),
 				'default' => 'left'),
-			array('type' => 'text', 'name' => UN_FEEDBACK_BUTTON_TEXT, 
+			array('type' => 'text', 'name' => UN_FEEDBACK_BUTTON_TEXT,
 				'title' => __('Text', 'usernoise'),
 				'default' => _x('Feedback', 'button', 'usernoise')),
-				array('type' => 'select', 'name' => UN_FEEDBACK_BUTTON_ICON, 'title' => __('Button Icon', 'usernoise'), 
+				array('type' => 'select', 'name' => UN_FEEDBACK_BUTTON_ICON, 'title' => __('Button Icon', 'usernoise'),
 				'values' => $this->h->collection2options(un_get_icons(), 'icon', 'label', __('No icon', 'usernoise'), array('data-icon')),
 				'legend' => __('Icon used on the button. <strong>May conflict with Twitter Bootstrap-based themes</strong>', 'usernoise'),
 				'default' => ''
 			),
-			array('type' => 'color', 'name' => UN_FEEDBACK_BUTTON_TEXT_COLOR, 
+			array('type' => 'color', 'name' => UN_FEEDBACK_BUTTON_TEXT_COLOR,
 				'title' => __('Text color', 'usernoise'),
 				'default' => '#FFFFFF'),
-			array('type' => 'color', 'name' => UN_FEEDBACK_BUTTON_COLOR, 
+			array('type' => 'color', 'name' => UN_FEEDBACK_BUTTON_COLOR,
 				'title' => __('Background color', 'usernoise'),
 				'default' => '#404040'),
 			array('type' => 'checkbox', 'name' => UN_FEEDBACK_BUTTON_SHOW_BORDER,
 				'title' => __('Show border', 'usernoise'), 'label' => __('Show border', 'usernoise'), 'default' => 0)
 			);
-			
+
 			$form_options = array(
 			array('type' => 'tab', 'title' => __('Form', 'usernoise')),
 			array('type' => 'section', 'title' => __('Form', 'usernoise')),
@@ -82,7 +82,7 @@ class UN_Settings {
 			array('type' => 'text', 'name' => UN_FEEDBACK_FORM_TITLE,
 				'title' => __('Form title', 'usernoise'), 'class' => 'wide',
 				'default' => _x('Feedback', 'form', 'usernoise')),
-			array('type' => 'textarea', 'name' => UN_FEEDBACK_FORM_TEXT,  
+			array('type' => 'textarea', 'name' => UN_FEEDBACK_FORM_TEXT,
 				'title' => __('Introductional text', 'usernoise'),
 				'default' => __('Please tell us what do you think, any kind of feedback is highly appreciated.', 'usernoise'),
 				'legend' => __('This text will be wrapped into &lt;p&gt; tag. You can still use HTML code.'),
@@ -126,10 +126,10 @@ class UN_Settings {
 				'label' => __('Enable', 'usernoise'),
 				'default' => '1',
 				'legend' =>
-					sprintf(__('Notification emails will be sent to: <a href="mailto:%s">%s</a>', 'usernoise'), 
-					apply_filters('un_admin_notification_email', get_option('admin_email')), 
+					sprintf(__('Notification emails will be sent to: <a href="mailto:%s">%s</a>', 'usernoise'),
+					apply_filters('un_admin_notification_email', get_option('admin_email')),
 					apply_filters('un_admin_notification_email', get_option('admin_email'))) . " " .
-					sprintf(__('(you can change it at <a href="%s">%s</a> page).', 'usernoise'), 
+					sprintf(__('(you can change it at <a href="%s">%s</a> page).', 'usernoise'),
 						admin_url('options-general.php'), __('General Options'))
 					)
 		);
@@ -139,23 +139,15 @@ class UN_Settings {
 				apply_filters('un_notification_options', $notification_options)));
 		$this->options->set_fields($options);
 	}
-	
-	
+
+
 	public function _all_in_one_promo($options){
-		$options []= array('type' => 'custom', 
+		$options []= array('type' => 'custom',
 			'title' => __('Notifications do not work right?', 'usernoise'),
-			'html' => __("Check out <a href='http://codecanyon.net/item/all-in-one-email-for-wordpress/1290390?ref=karevn'>All in One Email plugin</a>. It adds email options missing in WordPress natively.", 'usernoise'));
+			'html' => __("Check out <a href='http://codecanyon.net/item/all-in-one-email-for-wordpress/1290390'>All in One Email plugin</a>. It adds email options missing in WordPress natively.", 'usernoise'));
 		return $options;
 	}
-	
-	public function is_mobile(){
-		if (function_exists('bnc_wptouch_is_mobile')){
-			return bnc_wptouch_is_mobile();
-		}
-		$mobile_detector = new Mobile_Detect_2_6_2;
-		return $mobile_detector->isMobile();
-	}
-	
+
 }
 
 $un_settings = new UN_Settings;
@@ -163,7 +155,7 @@ $un_settings->set_options();
 
 function un_get_option($name, $default = null){
 	global $un_settings;
-	return trim($un_settings->options->get_option($name)) ? 
+	return trim($un_settings->options->get_option($name)) ?
 		$un_settings->options->get_option($name) : $default;
 }
 
@@ -176,10 +168,11 @@ function un_get_localization_array(){
 	global $un_settings;
 	return apply_filters('un_localization_array', array(
 		'text' => (un_get_option(UN_FEEDBACK_BUTTON_ICON) && !un_get_option(UN_DISABLE_ICONS) ? ("<i class='" . un_get_option(UN_FEEDBACK_BUTTON_ICON) . "'></i>")  : '') . un_get_option(UN_FEEDBACK_BUTTON_TEXT, __('Feedback', 'usernoise')),
-		'style' => sprintf("background-color: %s; color: %s", 
+		'style' => sprintf("background-color: %s; color: %s",
 				un_get_option(UN_FEEDBACK_BUTTON_COLOR), un_get_option(UN_FEEDBACK_BUTTON_TEXT_COLOR)),
 		'class' => implode(' ', un_button_class()),
 		'windowUrl' => un_ajax_url('load_window'),
-		'showButton' => apply_filters('un_show_button', un_get_option(UN_DISABLE_ON_MOBILES) ? !$un_settings->is_mobile() : true)
+		'showButton' => apply_filters('un_show_button', true),
+		'disableOnMobiles' => un_get_option(UN_DISABLE_ON_MOBILES)
 		));
 }

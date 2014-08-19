@@ -118,7 +118,7 @@ class DLM_Download {
 	 * @return void
 	 */
 	public function get_the_short_description() {
-		return wpautop( $this->post->post_excerpt );
+		return wpautop( do_shortcode( $this->post->post_excerpt ) );
 	}
 
 	/**
@@ -303,10 +303,22 @@ class DLM_Download {
 	}
 
 	/**
+	 * get_the_file_date function.
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function get_the_file_date() {
+		$post = get_post( $this->get_file_version()->id );
+
+		return $post->post_date;
+	}
+
+	/**
 	 * get_the_filesize function.
 	 *
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function get_the_filesize() {
 		$filesize   = $this->get_file_version()->filesize;
@@ -323,6 +335,25 @@ class DLM_Download {
 	 */
 	public function the_filesize() {
 		echo $this->get_the_filesize();
+	}
+
+	/**
+	 * Get the hash
+	 * @param  string $type md5, sha1 or crc32
+	 * @return string
+	 */
+	public function get_the_hash( $type = 'md5' ) {
+		$hash   = $this->get_file_version()->$type;
+		return $hash;
+	}
+
+	/**
+	 * Get the hash
+	 * @param  string $type md5, sha1 or crc32
+	 * @return string
+	 */
+	public function the_hash( $type = 'md5' ) {
+		echo $this->get_the_hash( $type );
 	}
 
 	/**
@@ -391,9 +422,11 @@ class DLM_Download {
     public function get_version_id( $version_string = '' ) {
 	    $versions = $this->get_file_versions();
 
-	    foreach ( $versions as $version_id => $version )
-	    	if ( version_compare( $version->version, strtolower( $version_string ), '=' ) )
+	    foreach ( $versions as $version_id => $version ) {
+	    	if ( ( is_numeric( $version->version ) && version_compare( $version->version, strtolower( $version_string ), '=' ) ) || strtolower( $version->version ) === strtolower( $version_string ) ) {
 	    		return $version_id;
+	    	}
+	    }
     }
 
 	/**
@@ -434,7 +467,13 @@ class DLM_Download {
 	 */
 	function get_file_version_ids() {
 		if ( ! is_array( $this->file_version_ids ) ) {
-			$this->file_version_ids = get_posts( 'post_parent=' . $this->id . '&post_type=dlm_download_version&orderby=menu_order&order=ASC&fields=ids&post_status=publish&numberposts=-1' );
+			$transient_name = 'dlm_file_version_ids_' . $this->id;
+
+        	if ( false === ( $this->file_version_ids = get_transient( $transient_name ) ) ) {
+				$this->file_version_ids = get_posts( 'post_parent=' . $this->id . '&post_type=dlm_download_version&orderby=menu_order&order=ASC&fields=ids&post_status=publish&numberposts=-1' );
+
+				set_transient( $transient_name, $this->file_version_ids, YEAR_IN_SECONDS );
+			}
 		}
 
 		return $this->file_version_ids;
@@ -447,14 +486,16 @@ class DLM_Download {
      * @return void
      */
     public function get_file_versions() {
-    	if ( $this->files )
+    	if ( $this->files ) {
     		return $this->files;
+    	}
 
 	    $version_ids = $this->get_file_version_ids();
 	    $this->files = array();
 
-	    foreach ( $version_ids as $version_id )
+	    foreach ( $version_ids as $version_id ) {
 		    $this->files[ $version_id ] = new DLM_Download_Version( $version_id, $this->id );
+	    }
 
 	    return $this->files;
     }

@@ -15,7 +15,7 @@
  * Plugin Name: Explanatory Dictionary
  * Plugin URI:  
  * Description: Add a dictionary to your wordpress site
- * Version:     4.0.1
+ * Version:     4.0.2
  * Author:      EXED internet (RJvD, BHdH)
  * Author URI:  http://www.exed.nl/
  * Text Domain: explanatory-dictionary-locale

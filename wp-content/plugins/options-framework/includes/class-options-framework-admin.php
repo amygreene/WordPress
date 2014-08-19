@@ -4,7 +4,7 @@
  * @author    Devin Price <devin@wptheming.com>
  * @license   GPL-2.0+
  * @link      http://wptheming.com
- * @copyright 2013 WP Theming
+ * @copyright 2010-2014 WP Theming
  */
 
 class Options_Framework_Admin {
@@ -31,7 +31,7 @@ class Options_Framework_Admin {
     	if ( $options ) {
 
 			// Add the options page and menu item.
-			add_action( 'admin_menu', array( $this, 'add_options_page' ) );
+			add_action( 'admin_menu', array( $this, 'add_custom_options_page' ) );
 
 			// Add the required scripts and styles
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
@@ -61,7 +61,7 @@ class Options_Framework_Admin {
 			$user_id = $current_user->ID;
 			if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
 				echo '<div class="updated optionsframework_setup_nag"><p>';
-				printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'optionsframework'), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
+				printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'options-framework' ), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
 				echo "</p></div>";
 			}
         }
@@ -113,10 +113,21 @@ class Options_Framework_Admin {
 	static function menu_settings() {
 
 		$menu = array(
-			'page_title' => __( 'Theme Options', 'optionsframework'),
-			'menu_title' => __('Theme Options', 'optionsframework'),
+
+			// Modes: submenu, menu
+            'mode' => 'submenu',
+
+            // Submenu default settings
+            'page_title' => __( 'Theme Options', 'options-framework'),
+			'menu_title' => __('Theme Options', 'options-framework'),
 			'capability' => 'edit_theme_options',
-			'menu_slug' => 'options-framework'
+			'menu_slug' => 'options-framework',
+            'parent_slug' => 'themes.php',
+
+            // Menu default settings
+            'icon_url' => 'dashicons-admin-generic',
+            'position' => '61'
+
 		);
 
 		return apply_filters( 'optionsframework_menu', $menu );
@@ -127,11 +138,36 @@ class Options_Framework_Admin {
      *
      * @since 1.7.0
      */
-	function add_options_page() {
+	function add_custom_options_page() {
 
 		$menu = $this->menu_settings();
-		$this->options_screen = add_theme_page( $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], array( $this, 'options_page' ) );
 
+        switch( $menu['mode'] ) {
+
+            case 'menu':
+            	// http://codex.wordpress.org/Function_Reference/add_menu_page
+                $this->options_screen = add_menu_page(
+                	$menu['page_title'],
+                	$menu['menu_title'],
+                	$menu['capability'],
+                	$menu['menu_slug'],
+                	array( $this, 'options_page' ),
+                	$menu['icon_url'],
+                	$menu['position']
+                );
+                break;
+
+            default:
+            	// http://codex.wordpress.org/Function_Reference/add_submenu_page
+                $this->options_screen = add_submenu_page(
+                	$menu['parent_slug'],
+                	$menu['page_title'],
+                	$menu['menu_title'],
+                	$menu['capability'],
+                	$menu['menu_slug'],
+                	array( $this, 'options_page' ) );
+                break;
+        }
 	}
 
 	/**
@@ -139,7 +175,11 @@ class Options_Framework_Admin {
      *
      * @since 1.7.0
      */
-	function enqueue_admin_styles() {
+	function enqueue_admin_styles( $hook ) {
+
+		if ( $this->options_screen != $hook )
+	        return;
+
 		wp_enqueue_style( 'optionsframework', plugin_dir_url( dirname(__FILE__) ) . 'css/optionsframework.css', array(),  Options_Framework::VERSION );
 		wp_enqueue_style( 'wp-color-picker' );
 	}
@@ -151,9 +191,7 @@ class Options_Framework_Admin {
      */
 	function enqueue_admin_scripts( $hook ) {
 
-		$menu = $this->menu_settings();
-
-		if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
+		if ( $this->options_screen != $hook )
 	        return;
 
 		// Enqueue custom option panel JS
@@ -199,8 +237,8 @@ class Options_Framework_Admin {
 				<?php settings_fields( 'optionsframework' ); ?>
 				<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 				<div id="optionsframework-submit">
-					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
-					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'optionsframework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'optionsframework' ) ); ?>' );" />
+					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'options-framework' ); ?>" />
+					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'options-framework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options-framework' ) ); ?>' );" />
 					<div class="clear"></div>
 				</div>
 				</form>
@@ -231,7 +269,7 @@ class Options_Framework_Admin {
 		 */
 
 		if ( isset( $_POST['reset'] ) ) {
-			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
+			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options-framework' ), 'updated fade' );
 			return $this->get_default_values();
 		}
 
@@ -285,7 +323,7 @@ class Options_Framework_Admin {
 	 */
 
 	function save_options_notice() {
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options-framework' ), 'updated fade' );
 	}
 
 	/**
@@ -328,14 +366,23 @@ class Options_Framework_Admin {
 	function optionsframework_admin_bar() {
 
 		$menu = $this->menu_settings();
+
 		global $wp_admin_bar;
 
-		$wp_admin_bar->add_menu( array(
+		if ( 'menu' == $menu['mode'] ) {
+			$href = admin_url( 'admin.php?page=' . $menu['menu_slug'] );
+		} else {
+			$href = admin_url( 'themes.php?page=' . $menu['menu_slug'] );
+		}
+
+		$args = array(
 			'parent' => 'appearance',
 			'id' => 'of_theme_options',
-			'title' => __( 'Theme Options', 'optionsframework' ),
-			'href' => admin_url( 'themes.php?page=' . $menu['menu_slug'] )
-		) );
+			'title' => $menu['menu_title'],
+			'href' => $href
+		);
+
+		$wp_admin_bar->add_menu( apply_filters( 'optionsframework_admin_bar', $args ) );
 	}
 
 }

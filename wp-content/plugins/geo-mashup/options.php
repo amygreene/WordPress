@@ -154,7 +154,8 @@ function geo_mashup_options_page() {
 	$mapApis = Array(
 		'google' => __( 'Google v2', 'GeoMashup' ),
 		'googlev3' => __( 'Google v3', 'GeoMashup' ),
-		'openlayers' => __( 'OpenLayers', 'GeoMashup' )
+		'openlayers' => __( 'OpenLayers', 'GeoMashup' ),
+		'leaflet' => __( 'Leaflet', 'GeoMashup' ),
 	);
 
 	$zoomOptions = Array( 'auto' => __( 'auto', 'GeoMashup' ) );
@@ -257,7 +258,7 @@ function geo_mashup_options_page() {
 								name="overall[google_key]" 
 								type="text" 
 								size="40" 
-								value="ABQIAAAAtB-DijYDUcew83u6XJnxFBQGd7NC1W-4QZCAYSJslWZcrtncDRSg0BwaGZ7t4Tp5QJn1hCLRLTObJQ" />
+								value="<?php echo esc_attr( $geo_mashup_options->get ( 'overall', 'google_key' ) ); ?>" />
 							<a href="http://maps.google.com/apis/maps/signup.html"><?php _e('Get yours here', 'GeoMashup'); ?></a>
 							<?php if ( empty( $google_key ) ) : ?>
 								<p class="description">
@@ -275,7 +276,7 @@ function geo_mashup_options_page() {
 								name="overall[googlev3_key]"
 								type="text"
 								size="40"
-								value="AIzaSyAgiMO_PAnyKYA-pwhGODD9Y6VKB27LK2c" />
+								value="<?php echo esc_attr( $geo_mashup_options->get ( 'overall', 'googlev3_key' ) ); ?>" />
 							<a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key"><?php _e('Get yours here', 'GeoMashup'); ?></a>
 							<p class="description">
 								<?php _e( 'Old Google v2 keys may not work with v3. A key is recommended but not required by Google.' ); ?>
@@ -288,20 +289,15 @@ function geo_mashup_options_page() {
 							<?php _e('Global Mashup Page', 'GeoMashup'); ?>
 						</th>
 						<td>
-							<select id="mashup_page" name="overall[mashup_page]"><?php 
-								$pages = get_pages(); 
-								if ( $pages ) : 
-									foreach ( $pages as $page ) : ?>
-									<option value="<?php echo esc_attr( $page->ID ); ?>"<?php
-										if ( $geo_mashup_options->get( 'overall', 'mashup_page' ) == $page->ID ) { 
-											echo ' selected="selected"';
-										}
-									?>><?php echo esc_html( $page->post_name ); ?></option>
-								<?php endforeach; ?>
-							<?php else : ?>
-								<option value=""><?php _e( 'No pages available.', 'GeoMashup' ); ?></option>
-							<?php endif; ?>
-							</select>
+							<?php
+							wp_dropdown_pages( array(
+								'name' => 'overall[mashup_page]',
+								'id' => 'mashup_page',
+								'show_option_none' => __( '&mdash; Select &mdash;' ),
+								'option_none_value' => 0,
+								'selected' => $geo_mashup_options->get( 'overall', 'mashup_page' ),
+							) );
+							?>
 							<span class="description"><?php
 								_e( 'Geo Mashup will use this page for generated location links', 'GeoMashup' );
 							?></span>
@@ -1086,7 +1082,11 @@ function geo_mashup_options_page() {
 		<p><a href="<?php echo $_SERVER['REQUEST_URI']; ?>&amp;view_activation_log=1"><?php _e('View Update Log', 'GeoMashup'); ?></a></p>
 		<?php endif; ?>
 		<p><a href="http://code.google.com/p/wordpress-geo-mashup/wiki/Documentation"><?php _e('Geo Mashup Documentation', 'GeoMashup'); ?></a></p>
-		<p><a href="http://wpquestions.com/affiliates/register/name/cyberhobo"><img src="http://wpquestions.com/images/ad-affiliate-200.png" alt="WP Questions"></a></p>
+		<p>
+			<a href="http://wpquestions.com/affiliates/register/name/cyberhobo">
+				<img src="<?php echo path_join( GEO_MASHUP_URL_PATH, 'images/wpquestions-logo.png' ); ?>" alt="WP Questions">
+			</a>
+		</p>
 		<p>Geo Mashup needs you: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=11045324">donate</a>,
 		contribute <a href="http://wiki.geo-mashup.org/guides">a guide</a>
 		or <a href="http://code.google.com/p/wordpress-geo-mashup/source/checkout">code</a>,

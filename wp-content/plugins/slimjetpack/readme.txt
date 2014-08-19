@@ -3,7 +3,7 @@ Contributors: wingerspeed
 Tags: jetpack, slim jetpack, views, tweets, twitter, widget, gravatar, hovercards, profile, equations, latex, math, maths, youtube, shortcode, archives, audio, blip, bliptv, dailymotion, digg, flickr, googlevideo, google, googlemaps, kyte, kytetv, livevideo, redlasso, rockyou, rss, scribd, slide, slideshare, soundcloud, vimeo, shortlinks, wp.me, subscriptions, notifications, notes, json, api, rest, mosaic, gallery, slideshow
 Requires at least: 3.6
 Tested up to: 3.8
-Stable tag: 2.7
+Stable tag: 2.7.0.1
 
 Slim version of Jetpack unlinked from WordPress.com :)
 Supercharge your self-hosted wp site even you're NOT WP.COM users.
@@ -21,8 +21,11 @@ All credit goes to original developers @
 
 SlimJetpack 2.1.1.x is corresponding to Jetpack 2.1.1 and the x is the bugfix mark.
 
-If you need the wordpress.com likes/stats, subscription and push notification services etc., please deactivate Slim Jetpack
-and use the original Jetpack instead.
+If you find any bug, please submit a ticket here: https://github.com/HowardMei/slimjetpack/issues  
+Or just fork the repository and send me pull requests ;)
+
+Please deactivate Slim Jetpack and use the original Jetpack instead if you need the wordpress.com likes/stats,  
+subscription and push notification services etc., 
 
 ==Modules Included==
 
@@ -93,7 +96,13 @@ It should work without problem :)
 
 http://plugins.svn.wordpress.org/slimjetpack/assets/SlimJetpack.png
 
-== Weight-loss Diary ==
+== Changelog ==
+
+= 2.7.0.1 =
+* Change custom-css editor back to ACE for better CSS Hint
+* Completely remove photon to avoid confusion
+* Remove the devicepx js calling back to s0.wp.com
+* Fix the Akismet & Omnisearch menu dependency issue
 
 = 2.7 =
 * Skip Jetpack v2.6 and v2.61
@@ -190,5 +199,3 @@ http://plugins.svn.wordpress.org/slimjetpack/assets/SlimJetpack.png
 * Bug Fix: Photon: fix errors when an image is not uploaded properly.
 * Bug Fix: Shortcodes: improvements to Archives, Google+, Presentations, Vine and Youtube.
 * Bug Fix: Tiled Galleries: improve display of panoramic images and fix errors when an image is not uploaded properly.
-
-

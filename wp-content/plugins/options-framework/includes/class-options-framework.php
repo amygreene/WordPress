@@ -4,7 +4,7 @@
  * @author    Devin Price <devin@wptheming.com>
  * @license   GPL-2.0+
  * @link      http://wptheming.com
- * @copyright 2013 WP Theming
+ * @copyright 2010-2014 WP Theming
  */
 
 class Options_Framework {
@@ -15,7 +15,7 @@ class Options_Framework {
 	 * @since 1.7.0
 	 * @type string
 	 */
-	const VERSION = '1.7.1';
+	const VERSION = '1.8.2';
 
 	/**
 	 * Initialize the plugin.
@@ -24,25 +24,9 @@ class Options_Framework {
 	 */
 	public function init() {
 
-		// Load plugin text domain
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-
 		// Needs to run every time in case theme has been changed
 		add_action( 'admin_init', array( $this, 'set_theme_option' ) );
 
-	}
-
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since 1.7.0
-	 */
-	public function load_plugin_textdomain() {
-		$domain = 'optionsframework';
-		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-
-		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 
 	/**

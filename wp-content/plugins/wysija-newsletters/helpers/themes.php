@@ -253,12 +253,13 @@ class WYSIJA_help_themes extends WYSIJA_object{
 
         if(!$dirtheme){
             $upload_dir = wp_upload_dir();
-            $this->error(sprintf(__('The folder "%1$s" is not writable, please change the access rights to this folder so that Wysija can setup itself properly.',WYSIJA),$upload_dir['basedir'])."<a target='_blank' href='http://codex.wordpress.org/Changing_File_Permissions'>".__('Read documentation',WYSIJA)."</a>");
+            $this->error(sprintf(__('The folder "%1$s" is not writable, please change the access rights to this folder so that Mailpoet can setup itself properly.',WYSIJA),$upload_dir['basedir'])."<a target='_blank' href='http://codex.wordpress.org/Changing_File_Permissions'>".__('Read documentation',WYSIJA)."</a>");
             return false;
         }
 
-        $timecreated=time();
-        $dirthemetemp=$helperF->makeDir('temp'.DS.'temp_'.$timecreated,0777);
+        //$timecreated=time();
+        $timecreated = substr( md5(rand()), 0, 20);
+        $dirthemetemp=$helperF->makeDir('temp'.DS.'temp_'.$timecreated,0755);
 
         $zipclass=WYSIJA::get('zip','helper');
         if(!$zipclass->unzip_wp($tempzipfile,$dirthemetemp)) {
@@ -276,13 +277,28 @@ class WYSIJA_help_themes extends WYSIJA_object{
                 $helperF->rrmdir($dirthemetemp);
                 return false;
             }else{
-
                 if(!in_array($filename, array('.','..','.DS_Store','Thumbs.db')))    $theme_key=$filename;
+            }
+        }
+
+        // making sure this theme only has allowed files in its folders and subfolders
+        $dir_iterator = new RecursiveDirectoryIterator($dirthemetemp);
+        $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
+
+        $allowed_extensions = array('png', 'jpg', 'jpeg', 'gif', 'css', 'txt');
+
+        foreach ($iterator as $file) {
+
+            if( !$file->isDir() && !in_array( pathinfo( $file->getBasename(), PATHINFO_EXTENSION ), $allowed_extensions)) {
+                $this->error(sprintf('Your theme is not valid. It can only contain files that have the following extensions: "%s"', join('", "', $allowed_extensions)));
+                $helperF->rrmdir($dirthemetemp);
+                return false;
             }
         }
 
          if(!$theme_key){
             $this->error('There was an error while unzipping the file :'.$tempzipfile.' to the folder: '.$dirthemetemp);
+            $helperF->rrmdir($dirthemetemp);
             return false;
         }
 
@@ -291,6 +307,7 @@ class WYSIJA_help_themes extends WYSIJA_object{
         //make sure we don't overwrite existing folder
         if($manual && !isset($_REQUEST['overwriteexistingtheme']) && file_exists($dirtheme.DS.$theme_key)){
             $this->error(sprintf(__('A theme called %1$s exists already. To overwrite it, tick the corresponding checkbox before uploading.',WYSIJA),'<strong>'.$theme_key.'</strong>'),1);
+            $helperF->rrmdir($dirthemetemp);
             return false;
         }
 

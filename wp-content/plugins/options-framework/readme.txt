@@ -1,11 +1,11 @@
 === Options Framework ===
 
-Contributors: @downstairsdev
+Contributors: downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 3.7.1
-Stable tag: 1.7.1
+Tested up to: 3.9
+Stable tag: 1.8.2
 License: GPLv2
 
 == Description ==
@@ -53,19 +53,44 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * textarea
 * checkbox
 * select
-* radio button
-* upload (image uploader)
+* radio buttons
+* upload (image/file uploader)
 * images (use images instead of radio buttons)
 * background (a set of options to define a background)
 * multicheck
-* color (a jquery color picker)
+* colorpicker
 * typography (a set of options to define typography)
+* editor
 
 == Screenshots ==
 
 1. An example of the "Advanced Options" tab in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= 1.8.2 =
+
+* Fix for translation textdomain
+
+= 1.8.1 =
+
+* Fix for colorpicker spacing
+* Better sanitization of upload option
+* Update translation .pot
+* Updated Portuguese translations by @pedro-mendonca
+* Indonesian translations props @aryaprakasa)
+* Use filtered values for optionsframework_admin_bar
+
+= 1.8.0 =
+
+* Increase default width of text inputs
+* Rename add_options_page function to resolve automatic theme check conflicts
+* Check isset for $value['desc'] in info option
+* Only load styles on options page (props @AndorChen)
+* Fix loading of translation files (props @weslly)
+* Update Portuguese (BR) translations (props @weslly)
+* Add Danish translations (props @Tosak)
+* Allow menu parent to be filtered (props @nvsnkv)
 
 = 1.7.1 =
 

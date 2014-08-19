@@ -1,9 +1,9 @@
 === Export to Excel ===
-Contributors: kapilchugh, gupta.sanyam90
+Contributors: kapilchugh, tripteegupta
 Tags: export, excel, spreadsheet, xls, xlsx, post
 Requires at least: 3.0
-Tested up to: 3.4
-Stable tag: 0.2
+Tested up to: 3.9
+Stable tag: 1.0
 License: GPLv2 or later
 
 A plugin which allows you to download your posts, pages, custom post types, comments authors to .xls or .xlsx format.
@@ -30,9 +30,15 @@ Install Export 2 Excel now and see how easy it makes everything!
 == Frequently Asked Questions ==
 
 == Screenshots ==
-1. Select post type and extension.
+1. Select post and fields to be displayed in Excel.
+2. Select page and fields to be displayed in Excel.
+3. Select comments author and fields to be displayed in Excel.
 
 == Changelog ==
+= 1.0 =
+* Added an option to export Name, Description, Url, Created on, Authors, Tags, Status and Custom Fields.
+* Made it compatible with latest WordPress version(3.9.1).
+
 = 0.2 =
 * Added post content and comments authors in Excel.
 

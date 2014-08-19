@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2013-05-18 06:32:33+0000\n"
-"Last-Translator: karevn <karev.n@gmail.com>\n"
+"Last-Translator: Cherrydev\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -401,7 +401,7 @@ msgstr ""
 
 #: admin/settings.php:140
 #@ usernoise
-msgid "Check out <a href='http://codecanyon.net/item/all-in-one-email-for-wordpress/1290390?ref=karevn'>All in One Email plugin</a>. It adds email options missing in WordPress natively."
+msgid "Check out <a href='http://codecanyon.net/item/all-in-one-email-for-wordpress/1290390'>All in One Email plugin</a>. It adds email options missing in WordPress natively."
 msgstr ""
 
 #: admin/upgrade.php:18

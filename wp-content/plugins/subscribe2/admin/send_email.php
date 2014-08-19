@@ -42,16 +42,18 @@ if ( isset($_POST['s2_admin']) && 'mail' == $_POST['s2_admin'] ) {
 	}
 
 	$uploads = array();
-	foreach ($_FILES['file']['name'] as $key => $value) {
-		if ( $_FILES['file']['error'][$key] === 0 ) {
-			$file = array(
-				'name'     => $_FILES['file']['name'][$key],
-				'type'     => $_FILES['file']['type'][$key],
-				'tmp_name' => $_FILES['file']['tmp_name'][$key],
-				'error'    => $_FILES['file']['error'][$key],
-				'size'     => $_FILES['file']['size'][$key]
-			);
-			$uploads[] = wp_handle_upload($file, array('test_form' => false));
+	if ( !empty($_FILES) ) {
+		foreach ($_FILES['file']['name'] as $key => $value) {
+			if ( $_FILES['file']['error'][$key] === 0 ) {
+				$file = array(
+					'name'     => $_FILES['file']['name'][$key],
+					'type'     => $_FILES['file']['type'][$key],
+					'tmp_name' => $_FILES['file']['tmp_name'][$key],
+					'error'    => $_FILES['file']['error'][$key],
+					'size'     => $_FILES['file']['size'][$key]
+				);
+				$uploads[] = wp_handle_upload($file, array('test_form' => false));
+			}
 		}
 	}
 	$attachments = array();
@@ -80,18 +82,20 @@ if ( isset($_POST['s2_admin']) && 'mail' == $_POST['s2_admin'] ) {
 		if ( isset($_POST['preview']) ) {
 			$message = "<p class=\"s2_message\">" . __('Preview message sent!', 'subscribe2') . "</p>";
 		} else {
-			$message = $this->mail_sent;
+			$message = "<p class=\"s2_message\">" . __('Message sent!', 'subscribe2') . "</p>";
 		}
 	} else {
 		global $phpmailer;
-		$message = $this->mail_failed . $error_message . $phpmailer->ErrorInfo;
+		$message = "<p class=\"s2_error\">" . __('Message failed!', 'subscribe2') . "</p>" . $error_message . $phpmailer->ErrorInfo;
 	}
 	echo "<div id=\"message\" class=\"updated\"><strong><p>" . $message . "</p></strong></div>\r\n";
 }
 
 // show our form
 echo "<div class=\"wrap\">";
-echo "<div id=\"icon-edit\" class=\"icon32\"></div>";
+if ( version_compare($GLOBALS['wp_version'], '3.8', '<=') ) {
+	echo "<div id=\"icon-edit\" class=\"icon32\"></div>";
+}
 echo "<h2>" . __('Send an email to subscribers', 'subscribe2') . "</h2>\r\n";
 echo "<form method=\"post\" enctype=\"multipart/form-data\">\r\n";
 if ( function_exists('wp_nonce_field') ) {

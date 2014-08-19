@@ -109,7 +109,7 @@ class GeoMashupSearch {
 		$radius_km = $this->max_km;
 
 		if ( ! empty( $radius ) )
-			$radius_km = absint( $radius ) / $this->distance_factor;
+			$radius_km = abs( $radius ) / $this->distance_factor;
 
 		$geo_query_args['radius_km'] = $radius_km;
 		$geo_query_args['near_lat'] = $this->near_location['lat'];
@@ -245,6 +245,7 @@ class GeoMashupSearch {
 		extract( $args );
 		$factor = ( 'km' == $this->units ) ? 1 : self::MILES_PER_KILOMETER;
 		$distance = round( $this->result->distance_km * $factor, $decimal_places );
+		$distance = number_format_i18n($distance, $decimal_places);
 		if ( $append_units )
 			$distance .= ' ' . $this->units;
 		if ( $echo )
@@ -561,13 +562,13 @@ class GeoMashupSearchWidget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'results_page_id' ); ?>"
 					 title="<?php _e( 'The page where search results should be displayed.', 'GeoMashup' ); ?>">
 		<?php _e( 'Results Page:', 'GeoMashup' ); ?>
-				<select id="<?php echo $this->get_field_id( 'results_page_id' ); ?>" name="<?php echo $this->get_field_name( 'results_page_id' ); ?>">
-						 <?php foreach ( $pages as $page ) : ?>
-						<option value="<?php echo $page->ID; ?>"<?php echo $page->ID == $this->get_default_value( $instance, 'results_page_id' ) ? ' selected="selected"' : ''; ?>>
-						<?php echo $page->post_name; ?>
-						</option>
-						<?php endforeach; ?>
-				</select>
+				<?php
+				wp_dropdown_pages( array(
+					'id' => $this->get_field_id( 'results_page_id' ),
+					'name' => $this->get_field_name( 'results_page_id' ),
+					'selected' => $this->get_default_value( $instance, 'results_page_id' ),
+				) );
+				?>
 			</label>
 		</p>
 		<?php
