@@ -1,0 +1,18 @@
+/*
+Theme Name:     Evergreen Hemingway
+Theme URI:      
+Description:    Hemingway derivitive with a compacted header section. Customizable header images plus new Evergreen logo.
+Author:         Academic Computing @Evergreen
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       hemingway
+Version:        0.1.0
+*/
+
+@import url("../hemingway/style.css");
+
+.blog-title a {
+    text-transform: none;
+}
+.blog-info {
+ background-color: rgba(0, 0, 0, 0.6);
+}
