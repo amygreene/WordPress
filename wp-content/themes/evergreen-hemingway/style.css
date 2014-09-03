@@ -16,3 +16,17 @@ Version:        0.1.0
 .blog-info {
  background-color: rgba(0, 0, 0, 0.6);
 }
+
+.header {
+	padding:0 0 100px 0;
+}
+#top-evergreen {
+	width:100%;
+	text-align:left;
+
+	}
+
+#top-evergreen img{
+		padding:10px 0 50px 20px;
+		width: 275px;
+	}

@@ -22,6 +22,9 @@
 			<div class="header-cover section bg-dark-light no-padding">
 		
 				<div class="header section" style="background-image: url(<?php if (get_header_image() != '') : ?><?php header_image(); ?><?php else : ?><?php echo get_template_directory_uri() . '/images/header.jpg'; ?><?php endif; ?>);">
+					<div id="top-evergreen">
+						<a href="http://www.evergreen.edu/"><img id="evglogo" src="<?php echo get_bloginfo('stylesheet_directory');?>/images/evergreen-logo.png"  srcset="<?php echo get_bloginfo('stylesheet_directory');?>/images/evergreen-long-tree-oly-white.svg 1x, <?php echo get_bloginfo('stylesheet_directory');?>/images/evergreen-long-tree-oly-white.svg 2x" alt="The Evergreen State College" /></a>
+						</div>
 							
 					<div class="header-inner section-inner">
 					
