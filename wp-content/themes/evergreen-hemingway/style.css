@@ -30,3 +30,7 @@ Version:        0.1.0
 		padding:10px 0 50px 20px;
 		width: 275px;
 	}
+	
+.credits-inner {
+	  text-transform:capitalize
+	}
