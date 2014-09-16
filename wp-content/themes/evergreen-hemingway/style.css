@@ -30,7 +30,82 @@ Version:        0.1.0
 		padding:10px 0 50px 20px;
 		width: 275px;
 	}
-	
+	body a {
+	  color:#80BC4A;
+	}
+	body a:hover {
+		color:#6fa340;
+	}	
+
+/* Footer */
 .credits-inner {
 	  text-transform:capitalize
+	}
+	
+	::selection {
+		background: #80BC4A;
+		color: #333;
+	}
+	
+	.featured-media .sticky-post { background: #80BC4A; }
+	.post-meta a:hover { color: #80BC4A; }
+	.post-content a.more-link:hover { background: #80BC4A;}
+	.post-tags a:hover { background: #80BC4A; }
+	.post-tags a:hover:after { border-right-color: #80BC4A; }
+	.post-nav a:hover { color: #80BC4A; }
+	.post-content fieldset legend {	background: #80BC4A; }
+	
+	.post-content input[type="submit"]:hover,
+	.post-content input[type="reset"]:hover,
+	.post-content input[type="button"]:hover {
+		background: #80BC4A;
+	}
+.comment-meta-content cite a:hover { color: #80BC4A; }
+.comment-meta-content p a:hover { color: #80BC4A; }
+.comment-form input[type="submit"]:hover {	background: #80BC4A; }
+.archive-nav a:hover { color: #80BC4A; }
+.post-content .searchform #searchsubmit {
+	background: #80BC4A;
+	border: 1px solid #80BC4A;
+}
+.widget_search #searchsubmit {
+	background: #80BC4A;
+	border: 1px solid #80BC4A;
+}
+#wp-calendar a { color: #80BC4A; }
+#wp-calendar tfoot a:hover { color: #80BC4A; }
+.tagcloud a:hover {	background: #80BC4A; }
+.flickr_badge_image a:hover img { background: #80BC4A; }
+.dribbble-shot:hover img { background: #80BC4A; }
+.footer .dribbble-shot:hover img { background: #80BC4A; }
+.footer .tagcloud a:hover { background-color: #80BC4A; color: #FFF; }
+.blog-search #searchsubmit {
+		background: #80BC4A;
+		border: 1px solid #80BC4A;
+	}
+
+/* darker hover color replacement */	
+	.post-content .searchform #searchsubmit:hover {
+		background-color: #6fa340;
+		border-color: #6fa340;
+	}
+	.widget_search #searchsubmit:hover {
+		background-color: #6fa340;
+		border-color: #6fa340;
+	}
+	.blog-search #searchsubmit:hover { 
+		background-color: #6fa340;
+		border-color: #6fa340;
+	}
+	.post-content .searchform #searchsubmit:hover {
+		background-color: #6fa340;
+		border-color: #6fa340;
+	}
+	.widget_search #searchsubmit:hover {
+		background-color: #6fa340;
+		border-color: #6fa340;
+	}
+	.blog-search #searchsubmit:hover { 
+		background-color: #6fa340;
+		border-color: #6fa340;
 	}
