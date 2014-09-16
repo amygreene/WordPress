@@ -2,9 +2,9 @@
 /*
 Plugin Name: User Activation Keys
 Plugin URI: http://dsader.snowotherway.org/wordpress-plugins/user-activation-keys/
-Description: WP Network Multisite user activation key removal or approval "mu-plugin". See Network-->Users->"User Activation Keys" to delete activation keys - to allow immediate (re)signup of users who otherwise get the "try again in two days" message. Also, users waiting to be activated (or can't because the email with the generated activation link is "gone") can be approved manually.
+Description: WP Network Multisite user activation key removal or approval Network Plugin. See Network-->Users->"User Activation Keys" to delete activation keys - to allow immediate (re)signup of users who otherwise get the "try again in two days" message. Also, users waiting to be activated (or can't because the email with the generated activation link is "gone") can be approved manually.
 Author: D. Sader
-Version: 3.5.1
+Version: 3.5.2
 Author URI: http://dsader.snowotherway.org
 Network: true
 
@@ -36,22 +36,23 @@ class ds_user_activation_keys {
 		if(isset($_GET['delete'])) {
 			$delete = $_GET['delete'];
 		}
-		if(isset($_GET['del_stale_active'])) {
+/*		if(isset($_GET['del_stale_active'])) {
 			$del_stale_active = $_GET['del_stale_active'];
 		}
 		if(isset($_GET['del_stale_inactive'])) {
 			$del_stale_inactive = $_GET['del_stale_inactive'];
 		}
-	
+*/	
 		$location = network_admin_url('users.php?page=act_keys');
 
 		if ( !empty($delete) ) {
 			check_admin_referer('activation_key');
-			$wpdb->query($wpdb->prepare("DELETE FROM $wpdb->signups WHERE activation_key = %d",$delete));
-           	echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';
+//			$wpdb->query($wpdb->prepare("DELETE FROM $wpdb->signups WHERE activation_key = %d",$delete));
+  			$wpdb->delete( $wpdb->signups, array( 'activation_key' => $delete ) );
+         	echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';
             exit;
 		}
-		if ( '1' == $del_stale_active ) {
+/*		if ( '1' == $del_stale_active ) {
 			check_admin_referer('activation_key');
 			$wpdb->query($wpdb->prepare("DELETE FROM $wpdb->signups WHERE active = %d AND DATE(registered) < DATE_SUB(CURDATE(), INTERVAL %s DAY)",1,30));
            	echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';
@@ -63,15 +64,17 @@ class ds_user_activation_keys {
            	echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';
             exit;
 		}
-	
+*/	
 		echo '<div class="wrap">';
 		echo "<h2>User Activation Keys</h2>";
 		if ( $results ) {
 		echo '<p>The following is a list of user activation keys from $wpdb->signups. Delete a key to allow the username to (re)signup and bypass the "couple days" it takes WP to free up its hold on a user name. You can also manually approve users that for whatever reason have not completed their activation.</p>';
-		echo '<div class="tablenav"> <span class="alignleft">';
+
+/*		echo '<div class="tablenav"> <span class="alignleft">';
 			echo '<a class="button-secondary" href="' . wp_nonce_url( $location . '&del_stale_active=1', 'activation_key' ) . '" class="delete">'.__('Delete stale active signup keys older than 30 days').'</a>';
 			echo '<a class="button-secondary" href="' . wp_nonce_url( $location . '&del_stale_inactive=1', 'activation_key' ) . '" class="delete">'.__('Delete stale inactive signup keys older than 30 days').'</a>';
 		echo '</span></div><br class="clear" />';
+*/
 		echo '<table class="widefat"><tbody>';
 		echo '<thead><th>#</th><th>Registered</th><th>User</th><th>Email</th><th>Approve</th></thead>';
 		foreach ( $results as $rows ) {
@@ -80,7 +83,7 @@ class ds_user_activation_keys {
 			if($rows['active'] != '1') {
 			echo '<td><a href="' . site_url('wp-activate.php?key='.$rows['activation_key']) . '" target="_blank">approve</a> | <a href="' . wp_nonce_url( $location . '&delete='.$rows['activation_key'], 'activation_key' ) . '">delete unused key</a></td>';
 		} else {
-		echo '<td>User Activated '.$rows['activated'].' | <a href="' .  wp_nonce_url( $location . '&delete='.$rows['activation_key'] , 'activation_key' ).'">delete uncecessary key</a></td>';
+		echo '<td>User Activated '.$rows['activated'].' | <a href="' .  wp_nonce_url( $location . '&delete='.$rows['activation_key'] , 'activation_key' ).'">delete unnecessary key</a></td>';
 		}
 		echo '</tr>';
 		}

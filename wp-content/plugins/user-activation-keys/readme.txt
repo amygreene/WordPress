@@ -3,7 +3,7 @@ Contributors: dsader
 Donate link: http://dsader.snowotherway.org
 Tags: signup, username, activation, network, network user activation, activation keys, multisite, network, users
 Requires at least: 3.5
-Tested up to: 3.5
+Tested up to: 3.9.2
 Stable tag: Trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,9 +44,9 @@ This section describes how to install the plugin and get it working.
 1. Network Admin->Users->"User Activation Keys" page
 
 == Changelog ==
-= 3.5 = 
-* Tested up to: WP 3.5
+= 3.5.2 = 
+* Tested up to: WP 3.9.2, removed batch delete, improved deleting an individual user key, typo fixes.
 
 == Upgrade Notice ==
-= 3.5 = 
-* Tested up to: WP 3.5
+= 3.5.2 = 
+* Tested up to: WP 3.9.2, removed batch delete of old keys, improved deleting an individual user key, typo fixes.
