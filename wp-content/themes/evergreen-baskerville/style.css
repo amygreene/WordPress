@@ -1,0 +1,52 @@
+/*
+Theme Name:     Evergreen Baskerville
+Theme URI:      
+Description:    Baskerville derivitive. Customizable header images plus UH logo.
+Author:         Anders Norén and Amy Greene
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       baskerville
+Version:        0.1.0
+*/
+
+@import url("../baskerville/style.css");
+
+
+.blog-title, .main-menu {
+    font-family: 'Roboto Slab',sans-serif;
+}
+
+.evergreenlogo img {
+	max-height: 50px;
+
+}
+
+.header {
+  padding:20px 0;
+}
+
+.blog-description {
+  color:#CCCCCC;
+}
+
+.main-menu > li > a {
+    font-weight: 400;
+    text-transform: capitalize;
+	padding:17px;
+}
+.search-toggle {
+  height:48px;
+  width:48px;
+}
+
+
+.credits p {
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.post-header {
+  padding:4% 5%;
+}
+.single-post .post-content {
+  padding:5%;
+}
