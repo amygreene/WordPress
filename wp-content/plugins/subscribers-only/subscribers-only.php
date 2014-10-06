@@ -5,7 +5,7 @@ Description: Gives subcribers access to private pages and adds subscriber level 
 Version: 0.1
 License: GPL
 Author: Amy Greene
-Author URI: http://blogs.evergreen.edy/amygreenel
+Author URI: http://blogs.evergreen.edy/amygreene
 */
  // Allow subscribers to see Private posts and pages  
 $subRole = get_role( 'subscriber' );  
