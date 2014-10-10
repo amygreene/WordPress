@@ -1,0 +1,21 @@
+===About===
+Evergreen Baskerville is intended as a theme for Evergreen faculty course sites. This theme was chosen based on the following features:
+
+- uses standard WordPress features without added complexity found in many “feature-rich” themes
+- customizable header image with site title + tagline overlay; alternatively supports logo image as well
+- responsive and retina ready
+- page templates for full-width, sidebar and standard width
+- support for custom menus
+- sidebar and footer widget areas
+- reputable theme developer Anders Norén 
+ 
+
+===Changelog===
+Version 0.1.0 - initial build (09-13-14)
+------------------------------------------
+Modifications to the parent theme include:
+- header.php : Evergreen logo added to header as an SVG graphic so can over-lay any header image without needing special aliasing treatment
+- functions.php, images/header.jpg : changed default header image to pull from child theme directory. 
+– style.css : modifications to typography to better fit academic context 
+- style.css : reduced padding to tighten-up layout and get core page content visible above the fold 
+– footer.php : Evergreen footer information added 
