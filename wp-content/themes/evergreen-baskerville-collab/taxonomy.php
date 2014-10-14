@@ -4,25 +4,14 @@
 
 	<div class="page-title section-inner">
 		
-		<?php if ( is_day() ) : ?>
-			<h5><?php _e( 'Date', 'baskerville' ); ?></h5> <h3><?php echo get_the_date(); ?></h3>
-		<?php elseif ( is_month() ) : ?>
-			<h5><?php _e( 'Month', 'baskerville' ); ?></h5> <h3><?php echo get_the_date('F Y'); ?></h3>
-		<?php elseif ( is_year() ) : ?>
-			<h5><?php _e( 'Year', 'baskerville' ); ?></h5> <h3><?php echo get_the_date('Y'); ?></h3>
-		<?php elseif ( is_category() ) : ?>
-			<h5><?php _e( 'Category', 'baskerville' ); ?></h5> <h3><?php echo single_cat_title( '', false ); ?></h3>
-		<?php elseif ( is_tag() ) : ?>
-			<h5><?php _e( 'Tag', 'baskerville' ); ?></h5> <h3><?php echo single_tag_title( '', false ); ?></h3>
-		<?php elseif ( is_author() ) : ?>
-			<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
-			<h5><?php _e( 'Author', 'baskerville' ); ?></h5> <h3><?php echo $curauth->display_name; ?></h3>
 		
-		<?php elseif(is_tax('morphology', $term) ) : ?>
-			<h5>Morphology</h5> <h3><?php echo $term?></h3>
-		<?php else : ?>
-			<h5><?php _e( 'Archive', 'baskerville' ); ?></h5><h3>All Fungi</h3>
-		<?php endif; ?>
+
+			<h5><?php $the_tax = get_taxonomy( get_query_var( 'taxonomy' ) );
+			echo $the_tax->labels->name; ?></h5>
+			
+			<h3><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h3>
+			
+
 		
 		<?php
 			$tag_description = tag_description();

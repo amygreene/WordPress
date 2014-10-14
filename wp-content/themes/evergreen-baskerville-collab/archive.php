@@ -17,11 +17,8 @@
 		<?php elseif ( is_author() ) : ?>
 			<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
 			<h5><?php _e( 'Author', 'baskerville' ); ?></h5> <h3><?php echo $curauth->display_name; ?></h3>
-		
-		<?php elseif(is_tax('morphology', $term) ) : ?>
-			<h5>Morphology</h5> <h3><?php echo $term?></h3>
 		<?php else : ?>
-			<h5><?php _e( 'Archive', 'baskerville' ); ?></h5><h3>All Fungi</h3>
+			<h3><?php post_type_archive_title(); ?></h3>
 		<?php endif; ?>
 		
 		<?php
@@ -43,7 +40,6 @@
 				<?php while ( have_posts() ) : the_post(); ?>
 				
 					<div class="post-container">
-						
 				
 						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				
