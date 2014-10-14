@@ -128,7 +128,7 @@
 		
 		<p class="credits-right fright">
 			
-<a class="tothetop" title="<?php _e('To the top', 'baskerville'); ?>" href="#"><?php _e('Up', 'baskerville' ); ?> &uarr;</a>
+<span><?php wp_loginout(); ?></span> &mdash; <a class="tothetop" title="<?php _e('To the top', 'baskerville'); ?>" href="#"><?php _e('Up', 'baskerville' ); ?> &uarr;</a>
 			
 		</p>
 		
