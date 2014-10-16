@@ -58,7 +58,7 @@ body.single-fungus .content.center {
 /* post header */
 .single-fungus .post-title { font-size: 2.25em; }
 
-.single-fungus .post-content { padding: 10%; }
+.single-fungus .post-content { padding: 5% 10%; }
 
 /* format audio */
 
@@ -272,3 +272,37 @@ body.single-fungus .content.center {
 .inat-user-body {vertical-align: middle;}
 .inat-widget td.inat-user-body {vertical-align: middle;}
 
+/*Collaps-O-Matic styles */
+
+.collapseomatic {
+	border: 1px solid #CCCCCC;
+	padding: 10px 0 10px 16px;
+
+}
+
+.collapseomatic_excerpt, .collapseomatic_content {
+	border: 1px solid #CCCCCC;
+	border-top: none;
+	margin-left:0;
+	padding-left:16px;
+}
+
+h3.collapseomatic{
+	margin:10px 0 0 0;
+}
+.collapseomatic {
+    background-image: url(images/expand.png) !important;
+
+}
+.colomat-close {
+    background-image: url(images/collapse.png) !important;
+}
+
+/*classification */
+table#taxo{
+	max-width:300px;
+	border: solid 1px #cccccc;
+}
+.classification {
+	float:right;
+}
