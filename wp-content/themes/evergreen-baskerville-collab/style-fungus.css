@@ -299,9 +299,10 @@ h3.collapseomatic{
 }
 
 /*classification */
-table#taxo{
+.classification table{
 	max-width:300px;
 	border: solid 1px #cccccc;
+	margin-left: 20%;
 }
 .classification {
 	float:right;
