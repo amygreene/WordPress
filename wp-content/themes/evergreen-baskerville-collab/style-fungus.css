@@ -287,7 +287,7 @@ body.single-fungus .content.center {
 	padding-left:16px;
 }
 
-h3.collapseomatic{
+h2.collapseomatic, h3.collapseomatic, h4.collapseomatic, h5.collapseomatic{
 	margin:10px 0 0 0;
 }
 .collapseomatic {
