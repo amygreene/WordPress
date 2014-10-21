@@ -11,6 +11,7 @@ Version:        0.1.0
 @import url("../baskerville/style.css");
 @import url("style-fungus.css");
 @import url("style-plant.css");
+@import url("style-animal.css");
 
 
 .blog-title, .main-menu {
