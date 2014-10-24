@@ -277,6 +277,7 @@ body.single-fungus .content.center {
 .collapseomatic {
 	border: 1px solid #CCCCCC;
 	padding: 10px 0 10px 16px;
+	overflow:hidden;
 
 }
 
@@ -302,8 +303,8 @@ h2.collapseomatic, h3.collapseomatic, h4.collapseomatic, h5.collapseomatic{
 .classification table{
 	max-width:300px;
 	border: solid 1px #cccccc;
-	margin-left: 20%;
 }
 .classification {
 	float:right;
+	margin-left: 5%;
 }
