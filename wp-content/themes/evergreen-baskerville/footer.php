@@ -122,7 +122,7 @@
 
 		<p class="credits-left fleft">
 		
-			&copy; <?php echo date("Y") ?> <a href="http://www.evergreen.edu" title="The Evergreen State College">The Evergreen State College</a>
+			&copy; <?php echo date("Y") ?> <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> | <a href="http://www.evergreen.edu" title="The Evergreen State College">The Evergreen State College</a>
 		
 		</p>
 		
