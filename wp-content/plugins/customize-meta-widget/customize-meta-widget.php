@@ -2,7 +2,7 @@
 /*
 Plugin Name: Customize Meta Widget
 Plugin URI: http://jehy.ru/wp-plugins.en.html
-Description: Add or remove links from meta widget, especially sometimes annoying link to wordpress.org.
+Description: Customized meta widget, removes links to WordPress.org
 Author: Jehy
 Version: 0.2
 Min WP Version: 2.6
