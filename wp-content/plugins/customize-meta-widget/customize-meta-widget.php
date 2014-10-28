@@ -23,7 +23,7 @@ add_action('widgets_init',replace_meta_widget);
 function wp_widget_meta_modified($args) {
 	extract($args);
 	$options = get_option('widget_meta');
-	$title = empty($options['title']) ? __('Meta') : apply_filters('widget_title', $options['title']);
+	$title = empty($options['title']) ? __('Admins') : apply_filters('widget_title', $options['title']);
 ?>
 		<?php echo $before_widget; ?>
 			<?php echo $before_title . $title . $after_title;
@@ -37,7 +37,7 @@ function wp_widget_meta_modified($args) {
 				 restore_current_blog();
 					?>
 			<li><?php wp_loginout(); ?></li>
-			<li><a href="<?php echo get_admin_url(); ?>">Admin</a></li>
+			<li><a href="<?php echo get_admin_url(); ?>">Dashboard</a></li>
 			<li><a href="<?php echo $site_url?>"><?php echo $site_title; ?></a></li> 
 		
 		
