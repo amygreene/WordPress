@@ -147,6 +147,7 @@ body.single-fungus .content.center {
 .single-fungus .post-meta a:hover { color: #13C4A5; }
 
 /* post navigation */
+
 .single-fungus a.post-edit-link { background-image: url(images/icons/1x/edit-g.png); background-position: left 5px; }
 .single-fungus a.post-edit-link:hover { background-image: url(images/icons/1x/edit-c.png); }
 
