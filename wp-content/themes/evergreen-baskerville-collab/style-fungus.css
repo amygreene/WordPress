@@ -56,7 +56,10 @@ body.single-fungus .content.center {
 	-webkit-border-radius: 6px;
 }
 /* post header */
-.single-fungus .post-title { font-size: 2.25em; }
+.single-fungus .post-title { 
+	font-size: 2.25em;
+	font-style:italic;
+	 }
 
 .single-fungus .post-content { padding: 5% 10%; }
 
