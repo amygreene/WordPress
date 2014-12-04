@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Subscribers Only
-Description: Gives subcribers access to private pages and adds subscriber level to Media Vault file protection plugin
-Version: 0.1
+Description: Gives subcribers and authors access to private pages and adds subscriber level to Media Vault file protection plugin
+Version: 0.1.1
 License: GPL
 Author: Amy Greene
 Author URI: http://blogs.evergreen.edy/amygreene
@@ -11,6 +11,11 @@ Author URI: http://blogs.evergreen.edy/amygreene
 $subRole = get_role( 'subscriber' );  
 $subRole->add_cap( 'read_private_posts' ); 
 $subRole->add_cap( 'read_private_pages' );
+
+ // Allow authors to see Private posts and pages  
+$authRole = get_role( 'author' );  
+$authRole->add_cap( 'read_private_posts' ); 
+$authRole->add_cap( 'read_private_pages' );
 
 //Media Vault - restrict access to files for subscribers only
 function wpst_mv_register_custom_permissions() {
