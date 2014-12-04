@@ -22,7 +22,16 @@
 									                                    	    
 <div class="post-excerpt">
 	    		            			            	                                                                                           
-	<?php the_meta(); ?> 
+	<?php 
+	//test if is custom taxonomy or custom post type archive to display custom fields otherwise it's a standard post archive and gets the regular excerpt
+	if  ( is_tax() || is_post_type_archive() )  {
+		 echo the_meta(); 
+		}
+	else {
+			the_excerpt('100');
+	}
+	
+	?> 
 
 </div> <!-- /post-excerpt -->
 
