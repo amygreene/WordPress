@@ -147,10 +147,13 @@
 					<?php endif; ?>
 														                                    	    
 					<div class="post-content">
+						<?php the_meta(); ?> 
 						    		            			            	                                                                                            
 						<?php the_content(); ?>
 								
 						<?php wp_link_pages(); ?>
+						
+					
 						
 						<div class="clear"></div>
 									        

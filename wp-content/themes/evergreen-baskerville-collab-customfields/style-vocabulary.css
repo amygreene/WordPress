@@ -112,7 +112,7 @@ body.single-vocabulary .content.center {
 	left: 60%;
 }
 
-.single-vocabulary .post-meta { 
+.single-vocabulary .post-meta-container .post-meta { 
 	float: right;
 	width: 40%;
 	padding: 30px;
@@ -145,6 +145,11 @@ body.single-vocabulary .content.center {
 
 .single-vocabulary .post-meta a { color: #9499A0; }
 .single-vocabulary .post-meta a:hover { color: #13C4A5; }
+
+/*post meta content when in post content */
+.post-content ul.post-meta {
+	list-style: none;
+}
 
 /* post navigation */
 .single-vocabulary a.post-edit-link { background-image: url(images/icons/1x/edit-g.png); background-position: left 5px; }
@@ -255,20 +260,5 @@ body.single-vocabulary .content.center {
 	.single-vocabulary .post-quote cite { font-size: 0.8em; }
 }
 
-/* iNaturalist Widget Styles */
 
-.inat-widget { font-family: Georgia, serif; padding: 10px; line-height: 1;}
-.inat-widget-header {margin-bottom: 10px;}
-.inat-widget td {vertical-align: top; padding-bottom: 10px;}
-.inat-label { color: #888; }
-.inat-meta { font-size: smaller; margin-top: 3px; line-height: 1.2;}
-.inat-observation-body, .inat-user-body { padding-left: 10px; }
-.inat-observation-image {text-align: center;}
-.inat-observation-image, .inat-user-image { width: 48px; display: inline-block; }
-.inat-observation-image img, .inat-user-image img { max-width: 48px; }
-.inat-observation-image img { vertical-align: middle; }
-.inat-widget-small .inat-observation-image { display:block; float: left; margin: 0 3px 3px 0; height:48px;}
-.inat-label, .inat-value, .inat-user { font-family: "Trebuchet MS", Arial, sans-serif; }
-.inat-user-body {vertical-align: middle;}
-.inat-widget td.inat-user-body {vertical-align: middle;}
 

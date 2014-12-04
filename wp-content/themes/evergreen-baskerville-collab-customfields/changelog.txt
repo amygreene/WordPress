@@ -1,0 +1,40 @@
+===About===
+Evergreen Baskerville Collab Custom Fields Mod is intended as a theme for Evergreen collaborative sites. This theme was chosen based on the following features:
+
+- uses standard WordPress features without added complexity found in many “feature-rich” themes
+- customizable header image with site title + tagline overlay; alternatively supports logo image as well
+- responsive and retina ready
+- page templates for full-width, sidebar and standard width
+- support for custom menus
+- sidebar and footer widget areas
+- reputable theme developer Anders Norén 
+ 
+
+===Changelog===
+
+Version 1.2.1 (12-02-14)
+——————————————
+- theme forked to support import using CSV import. CSV import does not support custom fields generated using WCK but does support built-in custom fields. This variant of the Evergreen Baskerville Collab is modified to display built-in custom fields. Also, fine tuned to display custom fields in archive page instead of automated excerpted content.
+- added content.php and modified to call the_meta() function which displays custom fields (archive.php calls content.php to get the post content)
+- updated archive.php to sort posts alphabetically
+
+
+
+Version 1.2.0 (10-14-14)
+——————————————————————
+- modification to enable custom post types for collab sites
+- add single-custom_posttype.php for each post type needed. Update with any custom taxonomy slug created so will display in post meta
+<?php echo get_the_term_list($post->ID,’custom_tax, ' ', ', ', '' ) ?>
+- add style-custom_posttype.css for each post type. Replace “post” through doc with custom_posttype slug
+- archive.php changed to display title on archive pages to list post type <?php post_type_archive_title(); ?>
+- taxonomy.php - added to theme so that any custom post-type with a custom taxonomy will display post type name and custom taxonomy on archive page. This is a copy of archive.php with the header modified with get_taxonomy() and get_term_by()
+
+
+Version 0.1.0 - initial build (09-13-14)
+------------------------------------------
+Modifications to the parent theme include:
+- header.php : Evergreen logo added to header as an SVG graphic so can over-lay any header image without needing special aliasing treatment
+- functions.php, images/header.jpg : changed default header image to pull from child theme directory. 
+– style.css : modifications to typography to better fit academic context 
+- style.css : reduced padding to tighten-up layout and get core page content visible above the fold 
+– footer.php : Evergreen footer information added 
