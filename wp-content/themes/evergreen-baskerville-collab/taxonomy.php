@@ -28,6 +28,8 @@
 			<div class="posts">
 			
 				<?php rewind_posts(); ?>
+				
+				<?php $posts = query_posts($query_string . '&orderby=title&order=asc'); ?>
 			
 				<?php while ( have_posts() ) : the_post(); ?>
 				
