@@ -659,39 +659,39 @@ class GeoMashupDB {
 		if ( self::installed_version() != GEO_MASHUP_DB_VERSION ) {
 			$sql = "
 				CREATE TABLE $location_table_name (
-					id MEDIUMINT( 9 ) NOT NULL AUTO_INCREMENT,
-					lat FLOAT( 11,7 ) NOT NULL,
-					lng FLOAT( 11,7 ) NOT NULL,
+					id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+					lat FLOAT(11,7) NOT NULL,
+					lng FLOAT(11,7) NOT NULL,
 					address TINYTEXT NULL,
-					saved_name VARCHAR( 100 ) NULL,
+					saved_name VARCHAR(100) NULL,
 					geoname TINYTEXT NULL, 
 					postal_code TINYTEXT NULL,
-					country_code VARCHAR( 2 ) NULL,
-					admin_code VARCHAR( 20 ) NULL,
-					sub_admin_code VARCHAR( 80 ) NULL,
+					country_code VARCHAR(2) NULL,
+					admin_code VARCHAR(20) NULL,
+					sub_admin_code VARCHAR(80) NULL,
 					locality_name TINYTEXT NULL,
-					PRIMARY KEY  ( id ),
-					UNIQUE KEY saved_name ( saved_name ),
-					UNIQUE KEY latlng ( lat, lng ),
-					KEY lat ( lat ),
-					KEY lng ( lng )
+					PRIMARY KEY  (id),
+					UNIQUE KEY saved_name (saved_name),
+					UNIQUE KEY latlng (lat,lng),
+					KEY lat (lat),
+					KEY lng (lng)
 				) $charset_collate;
 				CREATE TABLE $relationships_table_name (
-					object_name VARCHAR( 80 ) NOT NULL,
-					object_id BIGINT( 20 ) NOT NULL,
-					location_id MEDIUMINT( 9 ) NOT NULL,
+					object_name VARCHAR(80) NOT NULL,
+					object_id BIGINT(20) NOT NULL,
+					location_id MEDIUMINT(9) NOT NULL,
 					geo_date DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-					PRIMARY KEY  ( object_name, object_id, location_id ),
-					KEY object_name ( object_name, object_id ),
-					KEY object_date_key ( object_name, geo_date )
+					PRIMARY KEY  (object_name,object_id,location_id),
+					KEY object_name (object_name,object_id),
+					KEY object_date_key (object_name,geo_date)
 				) $charset_collate;
 				CREATE TABLE $administrative_names_table_name (
-					country_code VARCHAR( 2 ) NOT NULL,
-					admin_code VARCHAR( 20 ) NOT NULL,
-					isolanguage VARCHAR( 7 ) NOT NULL,
-					geoname_id MEDIUMINT( 9 ) NULL,
-					name VARCHAR( 200 ) NOT NULL,
-					PRIMARY KEY admin_id ( country_code, admin_code, isolanguage )
+					country_code VARCHAR(2) NOT NULL,
+					admin_code VARCHAR(20) NOT NULL,
+					isolanguage VARCHAR(7) NOT NULL,
+					geoname_id MEDIUMINT(9) NULL,
+					name VARCHAR(200) NOT NULL,
+					PRIMARY KEY  (country_code,admin_code,isolanguage)
 				) $charset_collate;";
 			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 			// Capture error messages - some are ok
@@ -905,7 +905,6 @@ class GeoMashupDB {
 	 * @return bool Success.
 	 */
 	private static function reverse_geocode_location( &$location, $language = '' ) {
-		global $geo_mashup_options;
 
 		// Coordinates are required
 		if ( self::are_any_location_fields_empty( $location, array( 'lat', 'lng' ) ) ) 
@@ -936,14 +935,9 @@ class GeoMashupDB {
 		}
 
 		$have_empties = self::are_any_location_fields_empty( $location, $geocodable_fields );
-		if ( $have_empties ) {
-			// Choose a geocoding service based on the default API in use
-			if ( 'google' == substr( $geo_mashup_options->get( 'overall', 'map_api' ), 0, 6 ) ) {
-				$next_geocoder = new GeoMashupGoogleGeocoder();
-			} else if ( 'openlayers' == $geo_mashup_options->get( 'overall', 'map_api' ) ) {
-				$next_geocoder = new GeoMashupNominatimGeocoder();
-			}
-			$next_results = $next_geocoder->reverse_geocode( $location['lat'], $location['lng'] );
+		$alternate_geocoder = self::make_alternate_reverse_geocoder();
+		if ( $have_empties and $alternate_geocoder ) {
+			$next_results = $alternate_geocoder->reverse_geocode( $location['lat'], $location['lng'] );
 			if ( is_wp_error( $next_results ) or empty( $next_results ) )
 				self::$geocode_error = $next_results;
 			else
@@ -951,6 +945,17 @@ class GeoMashupDB {
 			$status = true;
 		}
 		return $status;
+	}
+
+	private static function make_alternate_reverse_geocoder() {
+		global $geo_mashup_options;
+		// Choose a geocoding service based on the default API in use
+		if ( 'google' == substr( $geo_mashup_options->get( 'overall', 'map_api' ), 0, 6 ) ) {
+			return new GeoMashupGoogleGeocoder();
+		} else if ( 'openlayers' == $geo_mashup_options->get( 'overall', 'map_api' ) ) {
+			return new GeoMashupNominatimGeocoder();
+		}
+		return null;
 	}
 
 	/**

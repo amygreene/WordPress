@@ -222,7 +222,7 @@ add_action('body_class', 'baskerville_if_page_class' );
 function baskerville_if_page_class($classes) {
      global $post;
      if ( is_page() || is_404() || is_attachment() ) {
-             $classes[] = 'single-post';
+             $classes[] = 'single single-post';
      }
      return $classes;
 }

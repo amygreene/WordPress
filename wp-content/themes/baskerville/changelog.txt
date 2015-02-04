@@ -1,6 +1,20 @@
 *** Baskerville changelog ***
 
 
+Version 1.15 (2014-09-26)
+-------------------------
+- Added styling for email input fields in the post content
+- Fixed so that images smaller than the featured media area is centered
+- Fixed the display of Disqus comments
+- Fixed so that other post types (ie the Jetpack portfolio post type) is displayed correctly
+
+
+Version 1.14 (2014-08-06)
+-------------------------
+- Optimized style.css
+- Fixed so that the scaling effect on featured images works in non-webkit browsers
+
+
 Version 1.13 (2014-08-05)
 -------------------------
 - Fixed an issue which would prevent WordPress Mediaelement.js style from loading
