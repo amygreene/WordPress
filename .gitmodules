@@ -10,3 +10,6 @@
 [submodule "wp-content/themes/evergreen-twentytwelve"]
 	path = wp-content/themes/evergreen-twentytwelve
 	url = https://github.com/amygreene/wp_evergreen-twentytwelve.git
+[submodule "wp-content/themes/evergreen-twentytwelve-v2"]
+	path = wp-content/themes/evergreen-twentytwelve-v2
+	url = https://github.com/amygreene/wp_evergreen-twentytwelve-v2.git
