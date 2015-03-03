@@ -1,6 +1,3 @@
-[submodule "wp-content/themes/evergreen-twentyeleven-alphasort"]
-	path = wp-content/themes/evergreen-twentyeleven-alphasort
-	url = https://github.com/amygreene/wp_evergreen-twentyeleven-alphasort.git
 [submodule "wp-content/themes/evergreen-twentytwelve"]
 	path = wp-content/themes/evergreen-twentytwelve
 	url = https://github.com/amygreene/wp_evergreen-twentytwelve.git
