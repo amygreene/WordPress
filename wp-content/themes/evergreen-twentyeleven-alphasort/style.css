@@ -1,0 +1,78 @@
+/*
+Theme Name:     Evergreen Twenty Eleven alpha sort
+Theme URI:      
+Description:    Twenty Eleven derivitive with a compacted header section. Customizable header images plus new Evergreen logo.P osts will sort alphabetically as opposed to sorting by date posted. Category pages will also display post's featured image.
+Author:         Amy Greene
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       twentyeleven
+Version:        0.3.0
+*/
+
+@import url("../twentyeleven/style.css");
+
+body {
+    background: none repeat scroll 0 0 #E5E5E5;
+	padding: 0;
+}
+
+#top-evergreen {
+	width:100%;
+	background-color:none;
+	text-align:right;
+
+	}
+
+#top-evergreen img{
+		padding:10px 10px 0 0;
+		width: 221px;
+	}
+	
+
+#site-description {
+    margin: 0 0 0.65625em 0;
+}
+#site-title {
+  padding:0;
+}
+
+#page {
+    margin: 0.5em auto;
+    max-width: 1000px;
+}
+
+#branding {
+	border-top:none;
+	padding: 0 0 .08em 0;
+}
+
+#branding #searchform {
+display:none;
+}
+
+
+.loginout a {
+	font-weight:normal;
+}
+.singular.page .hentry {
+    padding: 0.5em 0 0;
+}
+.singular .hentry {
+    padding: 0.5em 0 0;
+}
+
+/*for mobile devices with itsy bitsy screens
+img,
+embed,
+object,
+video,
+iframe {
+    max-width: 100%;
+}
+*/
+/*style category pages*/
+.entry-summary img {
+float:left;
+border:1px solid #ccc;
+margin-right:10px;
+padding:5px;
+}
