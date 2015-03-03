@@ -1,0 +1,90 @@
+/*
+Theme Name:     Evergreen Twenty Eleven
+Theme URI:      
+Description:    Twenty Eleven derivitive with a compacted header section. Customizable header images plus new Evergreen logo.
+Author:         Amy Greene
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       twentyeleven
+Version:        0.3.0
+*/
+
+@import url("../twentyeleven/style.css");
+
+body {
+    background: none repeat scroll 0 0 #E5E5E5;
+	padding: 0;
+}
+
+#top-evergreen {
+	width:100%;
+	background-color:none;
+	text-align:right;
+
+	}
+
+#top-evergreen img{
+		padding:10px 10px 0 0;
+		width: 221px;
+	}
+	
+
+#site-description {
+    margin: 0 0 0.65625em 0;
+}
+#site-title {
+  padding:0;
+}
+
+#page {
+    margin: 0.5em auto;
+    max-width: 1000px;
+}
+
+#branding {
+	border-top:none;
+	padding: 0 0 .08em 0;
+}
+
+#branding #searchform {
+display:none;
+}
+
+
+.loginout a {
+	font-weight:normal;
+}
+.singular.page .hentry {
+    padding: 0.5em 0 0;
+}
+.singular .hentry {
+    padding: 0.5em 0 0;
+}
+
+/*styling for Full Width Template*/
+
+.fullwidth header,.fullwidth .entry-header,.fullwidth .entry-content {
+width:90%;
+margin:0 auto;
+padding:0;
+}
+
+.page-template-full-width-page-php #main #content {
+margin:0;
+}
+
+.page-template-full-width-page-php #main {
+padding:0;
+}
+
+.page-template-full-width-page-php #access {
+margin:0;
+}
+
+/*for mobile devices with itsy bitsy screens*/
+img,
+embed,
+object,
+video,
+iframe {
+    max-width: 100%;
+}

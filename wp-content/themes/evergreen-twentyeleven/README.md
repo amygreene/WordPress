@@ -1,0 +1,1 @@
+Child theme of Twenty Eleven customized for use by the Evergreen State College.

@@ -1,0 +1,6 @@
+@import url("../twentyeleven/editor-style.css");
+
+/*added for users of tinymce advanced*/
+.mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {
+    border: 1px dashed #BBBBBB;
+}
