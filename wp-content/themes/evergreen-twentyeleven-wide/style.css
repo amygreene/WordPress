@@ -1,0 +1,95 @@
+/*
+Theme Name:     Evergreen Twenty Eleven Wide
+Theme URI:      
+Description:    Twenty Eleven derivitive with a compacted header section. Customizable header images plus streamlined Evergreen banner. This "wide" variant offers more real-estate and an optional template page for embedding a full-width page.
+Author:         Amy Greene
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       twentyeleven
+Version:        0.3.0
+*/
+
+@import url("../twentyeleven/style.css");
+
+body {
+    background: none repeat scroll 0 0 #E5E5E5;
+	padding: 0;
+}
+#top-evergreen {
+	width:100%;
+	background-color:#fff;
+	text-align:right;
+	}
+	
+#top-evergreen img{
+		padding:10px 10px 0 0;
+		width: 221px;
+	}
+
+#site-description {
+    margin: 0 0 0.65625em 0;
+}
+
+#site-title {
+  padding:0;
+}
+
+#page {
+    margin: 0.5em auto;
+    max-width: 1200px;
+}
+
+#branding {
+	border-top:none;
+	padding: 0 0 .08em 0;
+}
+
+#branding #searchform {
+display:none;
+}
+
+#branding img {
+	height: 150px;
+}
+
+#site-title {
+	padding: 1em 0 0; 
+}
+
+.singular.page .hentry {
+    padding: 0 0 0 0;
+}
+.singular .hentry {
+    padding: 0 0 0 0;
+}
+
+/*styling for Full Width Template*/
+.fullwidth h1 {
+display:none;
+}
+
+.fullwidth header,.fullwidth .entry-content {
+width:100%;
+margin:.05em;
+padding:0;
+}
+
+.page-template-full-width-page-php #main #content {
+margin:0;
+}
+
+.page-template-full-width-page-php #main {
+padding:0;
+}
+
+.page-template-full-width-page-php #access {
+margin:0;
+}
+
+/*for mobile devices with itsy bitsy screens*/
+img,
+embed,
+object,
+video,
+iframe {
+    max-width: 100%;
+}
