@@ -10,7 +10,7 @@ Author URI: http://blogs.evergreen.edy/amygreene
 
 // Set the default values for fields: offering_id, offering_code, offering_title, link_id
 // field id #s are stored in arrays and corresponds to the field we want to set for the default
-
+ //faculty_name faculty_id
 //set offering_id
 add_filter('frm_get_default_value', 'set_offering_id', 10, 2);
 function set_offering_id($offering_id, $field){
@@ -59,6 +59,32 @@ function set_offering_title($offering_title, $field){
     return $offering_title;
 }
 
+//faculty_name
+add_filter('frm_get_default_value', 'set_faculty_name', 10, 2);
+function set_faculty_name($faculty_name, $field){
+    $options = get_option('acadforms');
+    $faculty_name_array = explode(",",$options['facname']); //convert options string to array
+    //set value for each faculty_name field
+    if(in_array($field->id, $faculty_name_array)){ //search the array
+        // get sanitized param value from url
+        $faculty_name = filter_input(INPUT_GET, 'faculty_name', FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+    return $faculty_name;
+}
+
+//faculty_id from presence
+add_filter('frm_get_default_value', 'set_faculty_id', 10, 2);
+function set_faculty_id($faculty_id, $field){
+    $options = get_option('acadforms');
+    $faculty_id_array = explode(",",$options['facid']); //convert options string to array
+    //set value for each faculty_id field
+    if(in_array($field->id, $faculty_id_array)){ //search the array
+        // get sanitized param value from url
+        $faculty_id = filter_input(INPUT_GET, 'faculty_id', FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+    return $faculty_id;
+}
+
 //adding new admin menu and options for plugin
 add_action( 'admin_menu', 'acad_forms_menu' );
 add_action('admin_init', 'acad_forms_options_init' );
@@ -92,6 +118,12 @@ function acad_forms_plugin_options() {
                </tr>
                <tr valign="top"><th scope="row">Offering Title</th>
                    <td><input type="text" name="acadforms[offtitle]" value="<?php echo $options['offtitle']; ?>" /></td>
+               </tr>
+               <tr valign="top"><th scope="row">Faculty Name</th>
+                   <td><input type="text" name="acadforms[facname]" value="<?php echo $options['facname']; ?>" /></td>
+               </tr>
+               <tr valign="top"><th scope="row">Faculty ID</th>
+                   <td><input type="text" name="acadforms[facid]" value="<?php echo $options['facid']; ?>" /></td>
                </tr>
            </table>
            <p class="submit">
