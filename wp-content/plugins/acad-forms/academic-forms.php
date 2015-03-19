@@ -102,7 +102,8 @@ function acad_forms_plugin_options() {
     ?>
    <div class="wrap">
    <h2>Academic Forms Options</h2>
-       <p>Add the field id#s across all forms on this site for fields that are to be set with default values from presence</p>
+       <p>Add the field id#s across all forms on this site that are to be set with the corresponding URL parameter default values from presence. Use a comma separated list.</p>
+       <p><em>Example: 45,78,101 </em></p>
        <form method="post" action="options.php">
            <?php settings_fields('acad_forms_options'); ?>
            <?php $options = get_option('acadforms'); ?>
