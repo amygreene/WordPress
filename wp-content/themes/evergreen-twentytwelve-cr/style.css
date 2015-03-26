@@ -28,7 +28,7 @@ body .site {
     background-color: #F8F8F8;
     width:100%;
 	border-bottom:1px solid #E5E5E5;
-    min-height: 80px;
+    min-height: 60px;
     margin-bottom: 20px;
     display:block;
     padding:10px;
@@ -48,6 +48,9 @@ body .site {
     padding:0;
     margin:1px 0 0 10px;
 
+}
+a.navbar-brand {
+    text-decoration: none;
 }
 .site-header h1 a, .site-header h2 a {
   color:#64933A;
