@@ -1,0 +1,88 @@
+/*
+Theme Name:     Evergreen Twenty Twelve - Curricular Resources
+Theme URI:      
+Description:    Twenty Twelve derivitive for use with the Curricular Reseource Requests sites - with customizable header images plus the new Evergreen logo.
+Author:         Amy Greene
+Author URI:     http: //blogs.evergreen.edu/amygreene
+Template:       twentytwelve
+Version:        0.1.0
+*/
+
+@import url("../twentytwelve/style.css");
+html {
+	font-size:100%;
+}
+body {
+	background-color:#ffffff;
+}	
+	body.custom-font-enabled {
+		font-family:Avenir, 'Avenir Next', 'Proxima Nova', Helvetica, Arial, sans-serif;
+}
+
+body .site {
+	box-shadow: none;
+	margin-top: 0.42857rem;
+}
+
+#top-evergreen {
+    background-color: #F8F8F8;
+    width:100%;
+	border-bottom:1px solid #E5E5E5;
+    min-height: 80px;
+    margin-bottom: 20px;
+    display:block;
+    padding:10px;
+
+}
+#top-evergreen img {
+    display:block;
+	width: 175px;
+    float:left;
+
+}
+
+.navbar-brand {
+    color:#777777;
+    height:60px;
+    font-size:18px;
+    padding:0;
+    margin:1px 0 0 10px;
+
+}
+.site-header h1 a, .site-header h2 a {
+  color:#64933A;
+}
+
+#secondary {
+	background-color:rgba(204, 230, 251, 0.552941);
+	  background-image: url(http://www.evergreen.edu/_inc/images/texture-1.png);
+	  border-radius:2px;
+	  color:#002D50;
+	  overflow:hidden;
+	  padding:1em;
+}
+
+.widget-area .widget h3 {
+	border-bottom:solid 1px #366A92;
+	color:#366A92;
+	color:#004377;
+	font-size:1em;
+}
+.main-navigation li a {
+	text-transform:capitalize;
+	color: #64933A;
+	font-size:1.3em;
+	line-height:3.0;
+}
+
+.archive-title, .page-title, .widget-title, .entry-content th, .comment-content th {
+	color:#002D50;
+	text-transform:capitalize;
+	font-size: 1.2rem;
+}
+
+@media screen and (max-width: 600px) {
+	#top-evergreen {
+		text-align:center;
+	}
+}
