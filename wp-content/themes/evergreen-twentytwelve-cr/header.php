@@ -35,7 +35,7 @@
 	<div id="top-evergreen">
         <p>
         <a href="http://www.evergreen.edu/"><img id="evglogo" src="<?php echo get_bloginfo('stylesheet_directory');?>/images/evergreen-no-city.svg" alt="The Evergreen State College" /></a>
-        <a class="navbar-brand" href="https://presence.evergreen.edu">Curricular Resources</a>
+        <a class="navbar-brand" href="https://presence.evergreen.edu">Academic Resources</a>
         </p>
     </div>
 <div id="page" class="hfeed site">

@@ -52,6 +52,9 @@ body .site {
 a.navbar-brand {
     text-decoration: none;
 }
+a:hover.navbar-brand {
+    text-decoration: underline;
+}
 .site-header h1 a, .site-header h2 a {
   color:#64933A;
 }
