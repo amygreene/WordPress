@@ -1,3 +1,11 @@
+
+== upgrade to 4.1.1==
+
+
+==upgrade to 3.9.2 ==
+* updates to Site Categories 1.0.9.1 and Multisite privacy 1.1.8.4 have fixed BBPress conflict
+* Updates to Admin Message 1.1.1.2 and Google Analytics 3.1 now show BBPress conflict - have reverted back versions 1.1.1 and 2.1 respectively
+
 == upgrade from 3.6.1 to 3.8.0 ==
 12-31-2013
 * no issues found with core upgrade
