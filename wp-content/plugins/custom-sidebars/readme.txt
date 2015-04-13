@@ -1,8 +1,8 @@
 === Plugin Name ===
-Contributors: WPMUDEV, marquex
+Contributors: WPMUDEV, marquex, WPMUDEV-Support2, WPMUDEV-Support1, WPMUDEV-Support6, WPMUDEV-Support4
 Tags: custom sidebars, widgets, sidebars, custom, sidebar, widget, personalize
 Requires at least: 3.3
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag:   trunk
 
 Create your own widgetized areas and choose on which pages they show up - "Easy to use. Even with complex themes. Made my work much easier."
@@ -118,6 +118,15 @@ If you are running a earlier version of Wordpress download Custom Sidebars 0.8.2
 4. screenshot-4.png Or finetune the sidebars by selecting them directly for a special post or page!
 
 == Changelog ==
+
+= 2.1.0.2 =
+* Close possible security hole (XSS vulnerability)
+
+= 2.1.0.1 =
+* Fix incompatibility with PopUp plugin
+
+= 2.1.0.0 =
+* Fixed: Sidebars could not be created on certain webserver setups.
 
 = 2.0.9.9 =
 * Fixed: Minified CSS files included now.
