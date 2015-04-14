@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 /*
 Plugin Name: Email Users
-Version: 4.6.10
+Version: 4.7.1
 Plugin URI: http://wordpress.org/extend/plugins/email-users/
 Description: Allows the site editors to send an e-mail to the blog users. Credits to <a href="http://www.catalinionescu.com">Catalin Ionescu</a> who gave me (Vincent Pratt) some ideas for the plugin and has made a similar plugin. Bug reports and corrections by Cyril Crua, Pokey and Mike Walsh.  Development for enhancements and bug fixes since version 4.1 primarily by <a href="http://michaelwalsh.org">Mike Walsh</a>.
 Author: Mike Walsh & MarvinLabs
@@ -27,7 +27,7 @@ Author URI: http://www.michaelwalsh.org
 */
 
 // Version of the plugin
-define( 'MAILUSERS_CURRENT_VERSION', '4.6.10');
+define( 'MAILUSERS_CURRENT_VERSION', '4.7.1');
 
 // i18n plugin domain
 define( 'MAILUSERS_I18N_DOMAIN', 'email-users' );
@@ -138,6 +138,8 @@ function mailusers_get_default_plugin_settings($option = null)
 		'mailusers_debug' => 'false',
 		// Mail User - Default setting for Base64 Encode
 		'mailusers_base64_encode' => 'false',
+		// Mail User - Override use of BCC header with TO header
+		'mailusers_dashboard_widgets' => 'true',
 	) ;
 
     if (array_key_exists($option, $default_plugin_settings))
@@ -241,14 +243,14 @@ function mailusers_add_default_capabilities() {
 	$role = get_role('contributor');
 
     if ($role !== null) {
-        error_log(sprintf("%s::%s  contributor", basename(__FILE__), __LINE__)) ;
+        //error_log(sprintf("%s::%s  contributor", basename(__FILE__), __LINE__)) ;
 	    $role->add_cap(MAILUSERS_EMAIL_SINGLE_USER_CAP);
     }
 
 	$role = get_role('author');
 
     if ($role !== null) {
-        error_log(sprintf("%s::%s  author", basename(__FILE__), __LINE__)) ;
+        //error_log(sprintf("%s::%s  author", basename(__FILE__), __LINE__)) ;
 	    $role->add_cap(MAILUSERS_EMAIL_SINGLE_USER_CAP);
 	    $role->add_cap(MAILUSERS_EMAIL_MULTIPLE_USERS_CAP);
     }
@@ -256,7 +258,7 @@ function mailusers_add_default_capabilities() {
 	$role = get_role('editor');
 
     if ($role !== null) {
-        error_log(sprintf("%s::%s  editor", basename(__FILE__), __LINE__)) ;
+        //error_log(sprintf("%s::%s  editor", basename(__FILE__), __LINE__)) ;
 	    $role->add_cap(MAILUSERS_NOTIFY_USERS_CAP);
 	    $role->add_cap(MAILUSERS_EMAIL_SINGLE_USER_CAP);
 	    $role->add_cap(MAILUSERS_EMAIL_MULTIPLE_USERS_CAP);
@@ -266,7 +268,7 @@ function mailusers_add_default_capabilities() {
 	$role = get_role('administrator');
 
     if ($role !== null) {
-        error_log(sprintf("%s::%s  admin", basename(__FILE__), __LINE__)) ;
+        //error_log(sprintf("%s::%s  admin", basename(__FILE__), __LINE__)) ;
 	    $role->add_cap(MAILUSERS_NOTIFY_USERS_CAP);
 	    $role->add_cap(MAILUSERS_EMAIL_SINGLE_USER_CAP);
 	    $role->add_cap(MAILUSERS_EMAIL_MULTIPLE_USERS_CAP);
@@ -680,6 +682,7 @@ function mailusers_admin_init() {
     register_setting('email_users', 'mailusers_debug') ;
     register_setting('email_users', 'mailusers_base64_encode') ;
     register_setting('email_users', 'mailusers_version') ;
+    register_setting('email_users', 'mailusers_dashboard_widgets') ;
 }
 
 /**
@@ -1038,6 +1041,25 @@ function mailusers_update_debug( $debug ) {
 }
 
 /**
+ * Wrapper for the Dashboard Widgets setting
+ */
+function mailusers_get_dashboard_widgets() {
+    $option = get_option( 'mailusers_dashboard_widgets' );
+
+    if ($option === false)
+        $option = mailusers_get_default_plugin_settings( 'mailusers_dashboard_widgets' );
+
+    return $option;
+}
+
+/**
+ * Wrapper for the Dashboard Widgets setting
+ */
+function mailusers_update_dashboard_widgets( $dashboard_widgets ) {
+	return update_option( 'mailusers_dashboard_widgets', $dashboard_widgets );
+}
+
+/**
  * Wrapper for the Base64 Encoding setting
  */
 function mailusers_get_base64_encode() {
@@ -1244,15 +1266,20 @@ function mailusers_sort_users_by_user_login( $a, $b )
 /**
  * Get the users based on roles
  * $meta_filter can be '', MAILUSERS_ACCEPT_NOTIFICATION_USER_META, or MAILUSERS_ACCEPT_MASS_EMAIL_USER_META
+ *
+ * Added support for editable_roles filter
+ * @see https://wordpress.org/support/topic/mailusers_get_roles-function-to-use-the-core-get_editable_roles?replies=2#post-6513328
+ *
  */
 function mailusers_get_roles( $exclude_id='', $meta_filter = '') {
 	$roles = array();
 
-	$wp_roles = new WP_Roles();
-	foreach ($wp_roles->get_names() as $key => $value) {
+	$wp_roles = get_editable_roles( );
+
+	foreach ($wp_roles as $key => $value) {
 		$users_in_role = mailusers_get_recipients_from_roles(array($key), $exclude_id, $meta_filter);
 		if (!empty($users_in_role)) {
-			$roles[$key] = $value;
+			$roles[$key] = $value['name'];
         }
 	}
 
@@ -1449,6 +1476,7 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
     $omit = (mailusers_get_omit_display_names() == 'true') ;
 
     //  Default the To: and Cc: values to the send email address
+    //  Some MTAs won't deliver email with an address in the TO header!
     $to = ($omit) ? $sender_email : sprintf('%s <%s>', $sender_name, $sender_email) ;
     $cc = sprintf('Cc: %s', $to) ;
 
@@ -1467,7 +1495,7 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
 	$headers[] = ($omit) ? sprintf('From: %s', $sender_email) : sprintf('From: "%s" <%s>', $sender_name, $sender_email);
 	$headers[] = sprintf('Return-Path: <%s>', $return_path);
 	$headers[] = ($omit) ? sprintf('Reply-To: %s', $sender_email) : sprintf('Reply-To: "%s" <%s>', $sender_name, $sender_email);
-    $headers[] = 'MIME-Version: 1.0';
+    //$headers[] = 'MIME-Version: 1.0';
 
     if (mailusers_get_add_x_mailer_header() == 'true')
 	    $headers[] = sprintf('X-Mailer: PHP %s', phpversion()) ;
@@ -1517,6 +1545,14 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
 			}
 			
             do_action('mailusers_before_wp_mail') ;
+
+            //  Filter to manipulate the headers?
+            if (has_filter('mailusers_manipulate_headers'))
+            {
+                $mh = apply_filters('mailusers_manipulate_headers', $to, $headers, $bcc) ;
+                list($to, $headers, $bcc) = $mh ;
+            }
+
             if ($base64)
 			    @wp_mail($to, sprintf("=UTF-8?B?%s?=", base64_encode($subject)), base64_encode($mailtext), $headers);
             else
@@ -1531,7 +1567,7 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
 		return $num_sent;
 	}
 
-    elseif ($bcc_limit != 0 && (count($recipients)>$bcc_limit))
+    elseif ($bcc_limit != 0 && (count($recipients) > $bcc_limit))
     {
 		$count = 0;
 		$sender_emailed = false;
@@ -1554,6 +1590,7 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
                 continue;
             }
 
+            //  When BCC limit is -1, use the TO header to send instead of BCC header
             if ($bcc_limit == -1)
                 //$to = ($omit) ? $recipient->user_email : sprintf('%s <%s>', $recipient->display_name, $recipient->user_email) ;
                 $to = $recipient ;
@@ -1563,13 +1600,21 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
 			$count++;
 
             //  Use abs() of bcc_limit to account for -1 setting
-			if ((abs($bcc_limit) == $count) || ($num_sent==count($recipients)-1)) {
+			if ((abs($bcc_limit) == $count) || ($num_sent == count($recipients) - 1)) {
 					
 				if (MAILUSERS_DEBUG) {
 		            mailusers_debug_wp_mail($to, $subject, $mailtext, array_merge($headers, $bcc)) ;
 				}
 			
                 do_action('mailusers_before_wp_mail') ;
+
+                //  Filter to manipulate the headers?
+                if (has_filter('mailusers_manipulate_headers'))
+                {
+                    $mh = apply_filters('mailusers_manipulate_headers', $to, $headers, $bcc) ;
+                    list($to, $headers, $bcc) = $mh ;
+                }
+
                 if ($base64)
                     @wp_mail($to, sprintf("=UTF-8?B?%s?=",
                         base64_encode($subject)), base64_encode($mailtext), array_merge($headers, $bcc));
@@ -1600,7 +1645,7 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
                 continue;
             }
 
-			if ( empty($recipient) || ($sender_email == $recipient) ) { continue; }
+			if (empty($recipient) || ($sender_email == $recipient)) continue;
 
     		$bcc[] = sprintf('Bcc: %s', $recipient) ;
 			$num_sent++;
@@ -1612,6 +1657,14 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
 		}
 			
         do_action('mailusers_before_wp_mail') ;
+
+        //  Filter to manipulate the headers?
+        if (has_filter('mailusers_manipulate_headers'))
+        {
+            $mh = apply_filters('mailusers_manipulate_headers', $to, $headers, $bcc) ;
+            list($to, $headers, $bcc) = $mh ;
+        }
+
         if ($base64)
             @wp_mail($to, sprintf("=UTF-8?B?%s?=",
                 base64_encode($subject)), base64_encode($mailtext), array_merge($headers, $bcc));
@@ -1630,17 +1683,21 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
  */
 function mailusers_add_dashboard_widgets() {
 
-    //  Only show widget for users who have the capability
-    if (current_user_can(MAILUSERS_EMAIL_SINGLE_USER_CAP) ||
-        current_user_can(MAILUSERS_EMAIL_MULTIPLE_USERS_CAP) ||
-        current_user_can(MAILUSERS_EMAIL_USER_GROUPS_CAP) ||
-        current_user_can(MAILUSERS_NOTIFY_USERS_CAP)) 
+    //  Only show widget when enabled
+    if (mailusers_get_dashboard_widgets() === 'true')
     {
-	    wp_add_dashboard_widget(
-            'mailusers_dashboard_widget',         // Widget slug.
-            'Email Users',                        // Title.
-            'mailusers_dashboard_widget_function' // Display function.
-        );	
+        //  Only show widget for users who have the capability
+        if (current_user_can(MAILUSERS_EMAIL_SINGLE_USER_CAP) ||
+            current_user_can(MAILUSERS_EMAIL_MULTIPLE_USERS_CAP) ||
+            current_user_can(MAILUSERS_EMAIL_USER_GROUPS_CAP) ||
+            current_user_can(MAILUSERS_NOTIFY_USERS_CAP)) 
+        {
+	        wp_add_dashboard_widget(
+                'mailusers_dashboard_widget',         // Widget slug.
+                'Email Users',                        // Title.
+                'mailusers_dashboard_widget_function' // Display function.
+            );	
+        }
     }
 }
 add_action( 'wp_dashboard_setup', 'mailusers_add_dashboard_widgets' );
@@ -1690,6 +1747,48 @@ function mailusers_dashboard_widget_function() {
     <th><?php _e('Number of Users who accept emails sent to multiple recipients:', MAILUSERS_I18N_DOMAIN); ?></th>
 	<td<?php if ( count($massemails) == 0) echo ' style="color: red;"' ; ?>><?php echo count($massemails) ; ?></td>
 	</tr>
+	</table>
+    </div>
+<?php return ; /**  The remainder of the filter information isn't finished yet.  **/ ?>
+    <div class="table table_content">
+    <p class="sub"><?php _e('Content Filters', MAILUSERS_I18N_DOMAIN); ?></p>
+    <table style="text-align: left; width: 90%;">
+<?php
+    global $wp_filter;
+    $filters = array(
+        'the_content' => 'http://codex.wordpress.org/Function_Reference/the_content',
+        'the_excerpt' => 'http://codex.wordpress.org/Function_Reference/the_excerpt',
+        'tiny_mce_before_init' => 'http://codex.wordpress.org/Plugin_API/Filter_Reference/tiny_mce_before_init'
+    ) ;
+    $hooks = array(
+        'wpautop' => 'http://codex.wordpress.org/Function_Reference/wpautop',
+        'wptexturize' => 'http://codex.wordpress.org/Function_Reference/wptexturize',
+        'shortcode_unautop' => 'https://developer.wordpress.org/reference/functions/shortcode_unautop/'
+    ) ;
+
+    //  Loop through filters and hooks checking for anything missing
+ 
+    foreach ($filters as $fkey => $fvalue)
+    {
+        if (has_filter($fkey))
+        {
+            //error_log($fkey) ;
+            //error_log(print_r($wp_filter[$fkey], true)) ;
+            $f = array() ;
+            foreach (array_keys($wp_filter[$fkey]) as $key => $value)
+                $f= array_merge($f, array_keys($wp_filter[$fkey][$value])) ;
+            foreach ($hooks as $key => $value)
+            {
+?>
+   	<tr>
+    <th><a href="<?php echo $fvalue; ?>"><?php echo $fkey; ?></a> / <a href="<?php echo $value; ?>"><?php echo $key; ?></a></th>
+	  <td<?php if (!in_array($key, $f)) echo ' style="color: red;"' ; ?>><?php echo in_array($key, $f) ? __('Present', MAILUSERS_I18N_DOMAIN) : __('Missing', MAILUSERS_I18N_DOMAIN) ; ?></td>
+	</tr>
+<?php
+            }
+        }
+    }
+?>
 	</table>
     </div>
 <?php
@@ -1887,4 +1986,27 @@ function mailusers_memory_usage($real_usage = false)
     else 
         return round($mem_usage/1048576,2)."M"; 
 }
+
+if (0):
+/**
+ * wpMandrill needs the recipients in the TO header instead
+ * of the BCC header which Email Users uses by default.  This
+ * filter will move all of the recipients from the BCC header
+ * into the TO header and clean up any formatting and then nuke
+ * the BCC header.
+ *
+ */
+function mailusers_mandrill_headers($to, $headers, $bcc)
+{
+    //  Copy the BCC headers to the TO header without the "Bcc:" prefix
+    $to = preg_replace('/^Bcc:\s+/', '', $bcc) ;
+
+    //  Empty out the BCC header
+    $bcc = array() ;
+
+    return array($to, $headers, $bcc) ;
+}
+
+add_filter('mailusers_manipulate_headers', 'mailusers_mandrill_headers', 10, 3) ;
+endif;
 ?>
