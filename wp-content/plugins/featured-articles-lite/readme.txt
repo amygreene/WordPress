@@ -1,17 +1,19 @@
-=== WordPress slider plugin - Featured Articles Lite ===
-Contributors: constantin.boiangiu
-Tags: slider, slideshow, WordPress slider, media, jQuery, themes, iPad, image, gallery, featured, articles, posts, pages, custom posts, seo, search engine optimized
-Requires at least: 3.1
-Tested up to: 3.9.1
+=== FA Lite - WP responsive slider plugin ===
+Contributors: codeflavors
+Tags:  javascript slider, wordpress slideshow, image slider, wordpress slider plugin, rotator, image rotator,customizable slider, wp slider, responsive slider, wordpress slider, best wordpress slider, slideshow plugin, wordpress picture slider, javascript rotator, responsive slideshow plugin, best slider wordpress, video slider, jquery slider, responsive slider plugin, picture slider, custom post types, responsive rotator, responsive image slider, responsive picture slider, responsive image slider plugin, best slider, responsive, featured articles slider, responsive slideshow, photo rotator, slideshow, photo slider, photo gallery, wordpress responsive slider, image gallery, wordpress video slider, wordpress picture gallery, wordpress gallery, template tag, best responsive slider, wordpress image slider, image slider plugin, wordpress photo gallery, best responsive wordpress slider plugin, slider plugin, jquery rotator, slider, featured articles, featured posts slider, shortcode
+Requires at least: 4.0
+Tested up to: 4.1.1
 Stable tag: trunk
 
-Put featured posts or pages into a fancy JavaScript slider that can be set to display on any category page, page or homepage.
+Featured Articles is a responsive WordPress slider plugin that can create sliders from any existing WordPress content (posts, custom posts, pages or gallery images).
 
 == Description ==
 
-**FeaturedArticles for WordPress** slideshow plugin allows you to create sliders in your blog pages directly from your already written content, be it posts or pages. With the ability to change any slider aspect by making use of slideshow themes that are delivered with the plugin, almost anything is possible. Also, it offers the possibility to create additional themes (with some PHP, CSS and JavaScript knowledge) that can have custom written animations by extending the base functionality of the main slider script.
+**Featured Articles for WordPress** slider plugin allows you to create sliders in your blog pages directly from your already written content, be it posts, custom posts, pages or WordPress Gallery images. With the ability to change any slider aspect by making use of slideshow themes that are delivered with the plugin, almost anything is possible. Also, it offers the possibility to create additional themes (with some PHP, CSS and JavaScript knowledge) that can have custom written animations by extending the base functionality of the main slider script.
 
-Slideshows can be placed by one of these ways (or all at the same time):
+https://vimeo.com/113921051
+
+Slideshows can be published in WordPress by any of these ways (or all at the same time):
 
 * manual placement directly into your WordPress theme template files (requires editing the template file you want to place a slideshow in and add a small piece of code);
 * shortcode placement directly into a post or page content;
@@ -20,19 +22,25 @@ Slideshows can be placed by one of these ways (or all at the same time):
 
 While Lite version of FeaturedArticles provides all the neccessary tools for creating very nice slideshows, PRO version of this same plugin comes in addition with:
 
-* 6 more themes (2 of them responsive) developed by our developers team (9 in total, 5 video enabled by default in PRO version);
-* **video enabled** custom slides for **YouTube and Vimeo** that can replace the image with a video ( [See examples here](http://www.codeflavors.com/featured-articles-pro/examples/ "FeaturedArticles PRO examples") );
-* custom written slides that can be created using the visual editor;
-* slideshows can display custom post types if your WordPress blog has them;
+* more slider themes, all video enabled and responsive;
+* **video enabled** custom slides for **YouTube and Vimeo** that can embed videos in your WordPress sliders;
+* custom slides that can be created using the visual editor;
+* sliders can be created from any post type registered on your WordPress website;
 * for posts and custom post types, selection of posts by taxonomies;
-* mixing of posts, custom posts, pages and custom slides into the same slideshow;
+* mixing of posts, custom posts, pages and custom slides into the same slider;
 * visual color scheme editor that allows you to blend-in slideshows into your overall blog design without having to write a single line of CSS;
-* priority support and debugging for 3'rd party plugins and themes conflicts.
+* priority support and debugging for 3'rd party plugins and themes conflicts;
+* cached sliders for faster page loading time;
+* possibility to attach videos to any slide (post, custom post, page or custom slide);
+* possibility to import video title, description and image as slide title, content and slide image or featured image;
+* dynamic slider areas management that allow slider publishing in your WordPress website by simple drag and drop;
+* sliders created from WordPress Gallery images;
+* and more...
 
 **Important links:**
 
-* [Documentation](http://www.codeflavors.com/documentation/ "FeaturedArticles for WordPress documentation") on plugin usage and slideshow theme structure;
-* [Forums](http://www.codeflavors.com/codeflavors-forums/ "CodeFlavors Community Forums") (while we try to keep up with the forums here, please post any requests on our forums for a faster response);
+* [Documentation](http://www.codeflavors.com/documents/featured-articles-pro-3/ "Featured Articles for WordPress documentation") on plugin usage and slideshow theme structure;
+* [Forums](http://www.codeflavors.com/codeflavors-forums/forum/featured-articles-3-0/ "CodeFlavors Community Forums") (while we try to keep up with the forums here, please post any requests on our forums for a faster response);
 * [FeaturedArticles homepage](http://www.codeflavors.com/featured-articles-pro/ "FeaturedArticles for WordPress")
 * [CodeFlavors News](http://www.codeflavors.com/news/ "CodeFlavors news on FeaturesArticles for WordPress plugin") - [CodeFlavors](http://www.codeflavors.com/ "CodeFlavors - devoted to WordPress") is our new home.
 
@@ -41,70 +49,80 @@ While Lite version of FeaturedArticles provides all the neccessary tools for cre
 * Add, remove, order any slideshow content made of pages or mixed content;
 * Animation control (based on individual themes);
 * Write custom slides by using the WordPress editor (PRO);
-* Put videos in custom slides from Vimeo or YouTube to replace the image for both thumbnails and full background image - compatible with both Flash players and HTML5 players from Vimeo and YouTube(PRO);
+* Put videos in posts, custom posts, pages and custom slides from Vimeo or YouTube and import video image, video title and description as slide image, title and description;
 * Customize posts and pages displayed into slideshows by specifying a different title, content, slide background color, image and more;
-* Change themes by choosing from up to 7 currently available themes (only 3 in Lite version);
+* Change themes by choosing from the available slider themes;
 * Change theme color palette by simply creating a new color stylesheet that can skin the theme without messing with the CSS responsible for layout;
 * Create color palette stylesheets using a visual editor(PRO);
-* Preview slideshow even before publishing it in your pages.
+* Preview slideshow directly in your website before publishing it in your pages.
 * Display slideshows by widgets, shorcodes, manual code snippet or automatic display above any page loop;
-* Create new themes that can completely change the default animations and can add new options fields custom for it in Slider editing in WordPress admin.
+* Create new themes that can completely change the default animations and can add new options fields custom for it in Slider editing in WordPress admin;
+* Cache sliders for faster page loading;
+* Allow different user groups access to plugin pages;
+* Create dynamic areas that allow you to publish sliders by simply drag and drop;
+* Select the areas where you want your sliders to be published;
+* Customize slides contents by using the available options;
+* and more...
 
 These are just a few of the things this plugin can do so just go on and try it for yourself.
 
-What can this plugin be used for? Well, you name it and we'll find a way to make it happen. Guaranteed! 
+The plugin can be used to display your fresh content on your homepage, display related posts on single post pages, put special offers into sliders to create attention and any other way you see fit. 
 
 == Installation ==
 
 **Before updating, make sure you back-up all your custom made themes.**
 
-With version 2.4, things went a little different. We tried (you judge) to make an easier, funnier and more extensible way of creating themes for FeaturedArticles slideshows. Themes prior to this version should still work.
-Also, starting with this version we moved the plugin to a different website called [CodeFlavors](http://www.codeflavors.com/ "CodeFlavors - devoted to WordPress"). This will be the home of all plugins we are going to develop for WordPress from now on.
-If you find yourself into trouble with this update, we have docs, community forums and we'll be happy to help you.
+Version 3.0 is a complete plugin rewrite. Previous slider themes won't be compatible by default with this version. You will be able to choose the previous themes but they will issue PHP errors when used.
 
-**You'll notice something missing!**. Automatic placement is no longer displayed into slideshow settings by default. To enable it, go to Settings and check the *Enable automatic slider insertion* option.
-Why we did this? Well, starting with next version (after 2.4), this automatic placement will become much, much better. We have some ideas, we just need to figure out some things first and if we would have done this with this update, it would have taken too long.
+Sliders created with Featured Articles 2.X will be converted to current version automatically when activating Featured Articles Lite 3.0.
 
 Now, here are the update instructions (automatic update will also work):
 
-If you are upgrading to the current version, make sure you backup all the files of the previous installation. After you backup, go to wp-admin and disable the plugin. With a FTP client, delete the plugin completely.
+If you are upgrading to the current version, make sure you backup all the files of the previous installation. After you backup, make sure that under plugin Setting page, the option to completely unistall the plugin (including content) is unchecked since version 3.X will automatically convert your existing sliders to current version when activating.
 
-1. Disable the previous installation of Featured Articles Lite
-2. FTP to plugins directory of your blog and delete the plugin. 
-1. Download and extract folder featured-articles-lite
-2. Upload the whole *featured-articles-lite* folder to the `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Go to WP Admin->FA Lite->Edit/Add and configure your first slider
-5. To display the slider, you can either choose sections from admin ( homepage, pages or categories ), display the newly created slider as a widget, use shortcodes in post or pages or place the following code in your template: 
+Next, either update version 3.X from WordPress admin page Plugins or by FTP. If updatng by FTP, make sure that you first remove the previous plugin version completely before uploading version 3.X.
 
-`<?php FA_display_slider(YOUR SLIDER ID HERE); ?>`
-
-For your convenience, once you save a slider, under Manual Placement you will see the code needed to be placed into your theme files to display it.
-
-For any clarifications see the [Docs](http://www.codeflavors.com/documentation/ "FeaturedArticles for WordPress documentation") or ask for help on our [Forums](http://www.codeflavors.com/codeflavors-forums/ "CodeFlavors Forums").
+For any clarifications ask for help on our [Forums] (http://www.codeflavors.com/codeflavors-forums/forum/featured-articles-3-0/ "Featured Articles 3 Forums").
 We don't actively monitor the forum here on Wordpres.org so responses to questions posted here might take a while to get answered.
 
 == Screenshots ==
 
-1. Edit slideshow WP admin page
-2. Theme Classic (screenshot is dark palette color and also has light)
-3. The Smoke
-4. Theme Title Navigation
-5. Theme Minimal (PRO)
-6. Theme Navobar (PRO)
-7. Theme Ribbons (PRO)
-8. Theme Strips (PRO)
+https://vimeo.com/113921051
 
 == Changelog ==
 
+**Please note**, if you modified or created new slider themes, you should set up a slider themes folder outside the plugin folder to avoid having your modifications overwritten.
+The process of moving the slider themes folder from within the plugin folder is described here: [How to move slider themes folder](http://www.codeflavors.com/documentation/featured-articles-pro-3/moving-slider-themes-folder/ "Move Featured Articles WP slider themes outside the plugin folder").
+
+= 3.0.3 =
+* New option under plugin Settings that allow you to display slide settings on post/page edit;
+* Solved a display bug for sliders published above the loop that wasn't displayign correctly the pages where the slider is published in sliders admin table;
+* Solved a bug in WP versions prior to 4 that was preventing the editor from working correctly.
+
+= 3.0.2 =
+* Solved a bug in slider script that was displaying only a part of the image;
+* Solved a bug in admin slide edit modal screen that wasn't removing the slide image when action was initiated;
+* Introduced a new option for theme Simple that controls if the bar timer should be displayed or not when autoslide is on.
+
+
+= 3.0.1 =
+* Added new metabox in Slider edit page that displays the PHP code that can be used to display a slider directly into WP theme files;
+* Solved a bug related to manual slider placement by using the PHP code that was generating a PHP warning.
+
+= 3.0 =
+* Complete plugin rewrite and internal functionality
+
+Before updating, please make sure sure you have a back-up. While we don't expect anything to go wrong, it's better to be safe.
+Please note, previous slider themes from version 2.5.4 are not compatible with Featured Articles 3.0.
+
 = 2.5.4 =
-* Solves compatibility with qTranslate plugin (slide text not being translated)
+* Solves compatibility with qTranslate plugin (slide text not being translated).
 
 = 2.5.3 =
-* New option to remove credits from sliders
-* Credit image is self hosted
-* HTTPS enabled
-* Solves small bugs related to display tables in administration
+* New option to remove credits from sliders;
+* Credit image is self hosted;
+* HTTPS enabled;
+* Solves small bugs related to display tables in administration.
 
 = 2.5.2 =
 * Solved issue in slideshow themes that was causing second slide to show for an instant when page was loading. Modified files: all display.php files in all slideshow themes.
@@ -246,12 +264,12 @@ Initial release for the new redesigned Wordpress Featured Articles
 
 == Troubleshooting ==
 
-Plugin is guaranteed to work on a clean Wordpress install. Since themes and other plugins don't always play nice, there are a few things you could check if slideshows won't work in your pages:
+Plugin is guaranteed to work on a clean WordPress install. Since themes and other plugins don't always play nice, there are a few things you could check if slideshows won't work in your pages:
 
 1. Check that only one jquery file is loaded. Most times, a manually loaded jQuery version in theme header or by a plugin may be the cause. Look in your page source in browser and see if that's the problem.
 2. Plugins merging JavaScript and CSS files may also cause problems. In this case, it's all about god intentions with bad results.
-3. Use the proper Wordpress version (3.1 +).
+3. Use the proper Wordpress version (4 +).
 4. See if your theme footer.php file calls wp_footer().
 
-If all options are exhausted, you can always ask for help on our forums at [CodeFlavors Featured Articles WP forum](http://www.codeflavors.com/codeflavors-forums/forum/featured-articles/ "Featured Articles for WordPress forum"). We'll answer whenever the time allows us to.
+If all options are exhausted, you can always ask for help on our forums at [CodeFlavors Featured Articles WP forum](http://www.codeflavors.com/codeflavors-forums/forum/featured-articles-3-0/ "Featured Articles 3 for WordPress forum"). We'll help you figure out things.
 
