@@ -19,6 +19,12 @@ Changes made to original PHP Calendar script by me (Ross Hanney):
 
 function gce_generate_calendar( $year, $month, $days = array(), $day_name_length = 3, $month_href = NULL, $first_day = 0, $pn = array(), $widget = false ) {
 	global $wp_locale;
+	
+	$paging = false;
+	
+	if( ! empty( $pn ) ) {
+		$paging = true;
+	}
 
 	$first_of_month = mktime( 0, 0, 0, $month, 1, $year );
 	#remember that mktime will automatically correct if invalid dates are entered
@@ -39,23 +45,33 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	list( $p, $pl ) = each( $pn );
 	list( $n, $nl ) = each( $pn ); #previous and next links, if applicable
 	
-	if ( $p ) {
-		if( $widget ) {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
-		} else {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
-		}
+	// Previous filter
+	$p = apply_filters( 'gce_prev_text', $p );
+	
+	// Next filter
+	$n = apply_filters( 'gce_next_text', $n );
+	
+	if( $widget ) {
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous month', 'gce' ) . '" name="' . esc_attr( $pl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $p . '</a>' ) : $p ) . '</div>';
+	} else {
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous month', 'gce' ) . '" name="' . esc_attr( $pl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $p . '</a>' ) : $p ) . '</div>';
 	}
 	
-	if ( $n ) {
-		if( $widget ) {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">' . $n . '</a>' ) : $n ) . '</span>';
-		} else {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
-		}
+	if( $widget ) {
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next month', 'gce' ) . '" name="' . esc_attr( $nl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $n . '</a>' ) : $n ) . '</div>';
+	} else {
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next month', 'gce' ) . '" name="' . esc_attr( $nl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $n . '</a>' ) : $n ) . '</div>';
 	}
 	
-	$calendar = '<table class="gce-calendar">' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . $title . '</a>' ) : $title ) . '</span>' . $n . "</caption>\n<tr>";
+	$calendar = '<table class="gce-calendar">' . "\n" .
+				'<caption class="gce-caption">' .
+				'<div class="gce-navbar">' .
+				$p .
+	            $n .
+	            '<div class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . esc_html( $title ) . '</a>' ) : esc_html( $title ) ) . '</div>' .
+				'</div>' .
+				'</caption>' . "\n" .
+				'<tr>' . "\n";
 
 	if ( $day_name_length ) { #if the day names should be shown ($day_name_length > 0)
 		#if day_name_length is >3, the full name of the day will be printed
@@ -69,7 +85,7 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	$time_now = current_time( 'timestamp' );
 	$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
-	if ( $weekday > 0 ) $calendar .= '<td colspan="' . $weekday . '">&nbsp;</td>'; #initial 'empty' days
+	if ( $weekday > 0 ) $calendar .= '<td colspan="' . esc_attr( $weekday ) . '">&nbsp;</td>'; #initial 'empty' days
 	for ( $day = 1, $days_in_month = date( 't', $first_of_month ); $day <= $days_in_month; $day++, $weekday++ ) {
 		if ( 7 == $weekday ) {
 			$weekday = 0; #start a new week
@@ -80,14 +96,14 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 
 		if ( isset( $days[$timestamp] ) && is_array( $days[$timestamp] ) ) {
 			list( $link, $classes, $content ) = $days[$timestamp];
-			$calendar .= '<td' . ( ( $classes ) ? ( ' class="' . $classes . '">' ) : '>' ) . ( ( $link ) ? ( '<a href="' . $link . '"><span class="gce-day-number">' . $day . '</span></a>' . $content ) : '<span class="gce-day-number">' . $day . '</span>' . $content ) . '</td>';
+			$calendar .= '<td' . ( ( $classes ) ? ( ' class="' . esc_attr( $classes ) . '">' ) : '>' ) . ( ( $link ) ? ( '<a href="' . esc_url( $link ) . '"><span class="gce-day-number">' . esc_html( $day ) . '</span></a>' . $content ) : '<span class="gce-day-number">' . esc_html( $day ) . '</span>' . $content ) . '</td>';
 		}else{
 			$css_class = ( $timestamp < $time_now ) ? 'gce-day-past' : 'gce-day-future';
-			$calendar .= '<td class="' . $css_class . '"><span class="gce-day-number">' . $day . '</span></td>';
+			$calendar .= '<td class="' . esc_attr( $css_class ) . '"><span class="gce-day-number">' . esc_html( $day ) . '</span></td>';
 		}
 	}
 
-	if ( 7 != $weekday ) $calendar .= '<td colspan="' . ( 7 - $weekday ) . '">&nbsp;</td>'; #remaining "empty" days
+	if ( 7 != $weekday ) $calendar .= '<td colspan="' . esc_attr( ( 7 - $weekday ) ) . '">&nbsp;</td>'; #remaining "empty" days
 
 	return $calendar . "</tr>\n</table>\n";
 }
