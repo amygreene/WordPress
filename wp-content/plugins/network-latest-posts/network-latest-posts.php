@@ -3,8 +3,8 @@
 Plugin Name: Network Latest Posts
 Plugin URI: http://en.8elite.com/network-latest-posts
 Description: Display the latest posts from the blogs in your network using it as a function, shortcode or widget.
-Version: 3.5.6
-Author: L'Elite
+Version: 3.6.2
+Author: Jose Luis SAYAGO
 Author URI: http://laelite.info/
  */
 /*  Copyright 2007 - 2014  L'Elite (email : opensource@laelite.info)
@@ -135,6 +135,9 @@ Author URI: http://laelite.info/
  * **** Patch to fix a missing quote from $thumbs_html
  * **** Provided two new parameters: use_pub_dates & honor_sticky
  *
+ * -- David_sa
+ * **** Provided filters for custom HTML structures
+ *
  * That's it, let the fun begin!
  *
  */
@@ -189,6 +192,9 @@ function network_latest_posts( $parameters ) {
     // Global variables
     global $wpdb;
     //global $nlp_time_frame;
+    // Variables
+    $total  = 0;
+    $ignore = '';
     // Default values
     $defaults = array(
         'title'            => NULL,          // Widget title
@@ -831,7 +837,8 @@ function network_latest_posts( $parameters ) {
                 'next_text' => __('&raquo;','trans-nlp'),
                 'total' => $total,
                 'current' => $pag,
-                'type' => 'list'
+                'type' => 'list',
+                'add_args'  => true
             ));
             // Close pagination wrapper
             echo $html_tags['pagination_c'];
@@ -844,19 +851,23 @@ function network_latest_posts( $parameters ) {
             echo '
             <script type="text/javascript" charset="utf-8">
                 //<![CDATA[
-                jQuery(document).ready(function(){
-                    jQuery(".nlp-instance-'.$instance.' .pagination a").live("click", function(e){
-                        e.preventDefault();
-                        var link = jQuery(this).attr("href");
-                        jQuery(".nlp-instance-'.$instance.' .nlposts-wrapper").html("<style type=\"text/css\">p.loading { text-align:center;margin:0 auto; padding:20px; }</style><p class=\"loading\"><img src=\"'.plugins_url('/img/loader.gif', __FILE__) .'\" /></p>");
-                        jQuery(".nlp-instance-'.$instance.' .nlposts-wrapper").fadeOut("slow",function(){
-                            jQuery(".nlp-instance-'.$instance.' .nlposts-wrapper").load(link+" .nlp-instance-'.$instance.' .nlposts-wrapper > *").fadeIn(3000);
+                    jQuery(document).ready(function(){
+                        jQuery(".nlp-instance-'.$instance.' .pagination a").live("click", function(e){
+                            e.preventDefault();
+                            var link = jQuery(this).attr("href");
+                            jQuery(".nlp-instance-'.$instance.' .nlposts-wrapper").html("<style type=\"text/css\">p.loading { text-align:center;margin:0 auto; padding:20px; }</style><p class=\"loading\"><img src=\"'.plugins_url('/img/loader.gif', __FILE__) .'\" /></p>");
+                            jQuery.ajax({
+                                url: link,
+                                dataType: "html",
+                                success: function(data){
+                                    jQuery(".nlp-instance-'.$instance.' .nlposts-wrapper").html( jQuery(data).find(".nlposts-wrapper").html() ).fadeIn(3000);
+                                }
+                            });
                         });
-
                     });
-                });
                 //]]>
-            </script>';
+            </script>
+            ';
             // Close content box
             echo $html_tags['content_c'];
         // Without pagination
@@ -1170,112 +1181,116 @@ function nlp_display_type($display_type, $instance, $wrapper_list_css, $wrapper_
     switch($display_type) {
         // Unordered list
         case "ulist":
-            $html_tags = array(
-                'wrapper_o' => "<ul class='nlposts-wrapper nlposts-ulist $wrapper_list_css'>",
-                'wrapper_c' => "</ul>",
-                'wtitle_o' => "<h2 class='nlposts-ulist-wtitle'>",
-                'wtitle_c' => "</h2>",
-                'item_o' => "<li class='nlposts-ulist-litem'>",
-                'item_c' => "</li>",
-                'content_o' => "<div class='nlposts-container nlposts-ulist-container $nlp_instance'>",
-                'content_c' => "</div>",
-                'meta_o' => "<span class='nlposts-ulist-meta'>",
-                'meta_c' => "</span>",
-                'thumbnail_o' => "<ul class='nlposts-ulist-thumbnail thumbnails'>",
-                'thumbnail_c' => "</ul>",
-                'thumbnail_io' => "<li class='nlposts-ulist-thumbnail-litem span3'><div class='thumbnail'>",
-                'thumbnail_ic' => "</div></li>",
-                'pagination_o' => "<div class='nlposts-ulist-pagination pagination'>",
-                'pagination_c' => "</div>",
-                'title_o' => "<h3 class='nlposts-ulist-title'>",
-                'title_c' => "</h3>",
-                'excerpt_o' => "<ul class='nlposts-ulist-excerpt'><li>",
-                'excerpt_c' => "</li></ul>",
-                'caption_o' => "<div class='nlposts-caption'>",
-                'caption_c' => "</div>"
-            );
-            break;
-        // Ordered list
-        case "olist":
-            $html_tags = array(
-                'wrapper_o' => "<ol class='nlposts-wrapper nlposts-olist $wrapper_list_css'>",
-                'wrapper_c' => "</ol>",
-                'wtitle_o' => "<h2 class='nlposts-olist-wtitle'>",
-                'wtitle_c' => "</h2>",
-                'item_o' => "<li class='nlposts-olist-litem'>",
-                'item_c' => "</li>",
-                'content_o' => "<div class='nlposts-container nlposts-olist-container $nlp_instance'>",
-                'content_c' => "</div>",
-                'meta_o' => "<span class='nlposts-olist-meta'>",
-                'meta_c' => "</span>",
-                'thumbnail_o' => "<ul class='nlposts-olist-thumbnail thumbnails'>",
-                'thumbnail_c' => "</ul>",
-                'thumbnail_io' => "<li class='nlposts-olist-thumbnail-litem span3'>",
-                'thumbnail_ic' => "</li>",
-                'pagination_o' => "<div class='nlposts-olist-pagination pagination'>",
-                'pagination_c' => "</div>",
-                'title_o' => "<h3 class='nlposts-olist-title'>",
-                'title_c' => "</h3>",
-                'excerpt_o' => "<ul class='nlposts-olist-excerpt'><li>",
-                'excerpt_c' => "</li></ul>",
-                'caption_o' => "<div class='nlposts-caption'>",
-                'caption_c' => "</div>"
-            );
-            break;
-        // Block
-        case "block":
-            $html_tags = array(
-                'wrapper_o' => "<div class='nlposts-wrapper nlposts-block $wrapper_block_css'>",
-                'wrapper_c' => "</div>",
-                'wtitle_o' => "<h2 class='nlposts-block-wtitle'>",
-                'wtitle_c' => "</h2>",
-                'item_o' => "<div class='nlposts-block-item'>",
-                'item_c' => "</div>",
-                'content_o' => "<div class='nlposts-container nlposts-block-container $nlp_instance'>",
-                'content_c' => "</div>",
-                'meta_o' => "<span class='nlposts-block-meta'>",
-                'meta_c' => "</span>",
-                'thumbnail_o' => "<ul class='nlposts-block-thumbnail thumbnails'>",
-                'thumbnail_c' => "</ul>",
-                'thumbnail_io' => "<li class='nlposts-block-thumbnail-litem span3'>",
-                'thumbnail_ic' => "</li>",
-                'pagination_o' => "<div class='nlposts-block-pagination pagination'>",
-                'pagination_c' => "</div>",
-                'title_o' => "<h3 class='nlposts-block-title'>",
-                'title_c' => "</h3>",
-                'excerpt_o' => "<div class='nlposts-block-excerpt'><p>",
-                'excerpt_c' => "</p></div>",
-                'caption_o' => "<div class='nlposts-caption'>",
-                'caption_c' => "</div>"
-            );
-            break;
-        default:
-            // Unordered list
-            $html_tags = array(
-                'wrapper_o' => "<ul class='nlposts-wrapper nlposts-ulist $wrapper_list_css'>",
-                'wrapper_c' => "</ul>",
-                'wtitle_o' => "<h2 class='nlposts-ulist-wtitle'>",
-                'wtitle_c' => "</h2>",
-                'item_o' => "<li class='nlposts-ulist-litem'>",
-                'item_c' => "</li>",
-                'content_o' => "<div class='nlposts-container nlposts-ulist-container $nlp_instance'>",
-                'content_c' => "</div>",
-                'meta_o' => "<span class='nlposts-ulist-meta'>",
-                'meta_c' => "</span>",
-                'thumbnail_o' => "<ul class='nlposts-ulist-thumbnail thumbnails'>",
-                'thumbnail_c' => "</ul>",
-                'thumbnail_io' => "<li class='nlposts-ulist-thumbnail-litem span3'>",
-                'thumbnail_ic' => "</li>",
-                'pagination_o' => "<div class='nlposts-ulist-pagination pagination'>",
-                'pagination_c' => "</div>",
-                'title_o' => "<h3 class='nlposts-ulist-title'>",
-                'title_c' => "</h3>",
-                'excerpt_o' => "<ul class='nlposts-ulist-excerpt'><li>",
-                'excerpt_c' => "</li></ul>",
-                'caption_o' => "<div class='nlposts-caption'>",
-                'caption_c' => "</div>"
-            );
-            break;
+                $html_tags = array(
+                    'wrapper_o' => "<ul class='nlposts-wrapper nlposts-ulist $wrapper_list_css'>",
+                    'wrapper_c' => "</ul>",
+                    'wtitle_o' => "<h2 class='nlposts-ulist-wtitle'>",
+                    'wtitle_c' => "</h2>",
+                    'item_o' => "<li class='nlposts-ulist-litem'>",
+                    'item_c' => "</li>",
+                    'content_o' => "<div class='nlposts-container nlposts-ulist-container $nlp_instance'>",
+                    'content_c' => "</div>",
+                    'meta_o' => "<span class='nlposts-ulist-meta'>",
+                    'meta_c' => "</span>",
+                    'thumbnail_o' => "<ul class='nlposts-ulist-thumbnail thumbnails'>",
+                    'thumbnail_c' => "</ul>",
+                    'thumbnail_io' => "<li class='nlposts-ulist-thumbnail-litem span3'><div class='thumbnail'>",
+                    'thumbnail_ic' => "</div></li>",
+                    'pagination_o' => "<div class='nlposts-ulist-pagination pagination'>",
+                    'pagination_c' => "</div>",
+                    'title_o' => "<h3 class='nlposts-ulist-title'>",
+                    'title_c' => "</h3>",
+                    'excerpt_o' => "<ul class='nlposts-ulist-excerpt'><li>",
+                    'excerpt_c' => "</li></ul>",
+                    'caption_o' => "<div class='nlposts-caption'>",
+                    'caption_c' => "</div>"
+                );
+                $html_tags = apply_filters( 'nlposts_ulist_output', $html_tags );
+                break;
+            // Ordered list
+            case "olist":
+                $html_tags = array(
+                    'wrapper_o' => "<ol class='nlposts-wrapper nlposts-olist $wrapper_list_css'>",
+                    'wrapper_c' => "</ol>",
+                    'wtitle_o' => "<h2 class='nlposts-olist-wtitle'>",
+                    'wtitle_c' => "</h2>",
+                    'item_o' => "<li class='nlposts-olist-litem'>",
+                    'item_c' => "</li>",
+                    'content_o' => "<div class='nlposts-container nlposts-olist-container $nlp_instance'>",
+                    'content_c' => "</div>",
+                    'meta_o' => "<span class='nlposts-olist-meta'>",
+                    'meta_c' => "</span>",
+                    'thumbnail_o' => "<ul class='nlposts-olist-thumbnail thumbnails'>",
+                    'thumbnail_c' => "</ul>",
+                    'thumbnail_io' => "<li class='nlposts-olist-thumbnail-litem span3'>",
+                    'thumbnail_ic' => "</li>",
+                    'pagination_o' => "<div class='nlposts-olist-pagination pagination'>",
+                    'pagination_c' => "</div>",
+                    'title_o' => "<h3 class='nlposts-olist-title'>",
+                    'title_c' => "</h3>",
+                    'excerpt_o' => "<ul class='nlposts-olist-excerpt'><li>",
+                    'excerpt_c' => "</li></ul>",
+                    'caption_o' => "<div class='nlposts-caption'>",
+                    'caption_c' => "</div>"
+                );
+                $html_tags = apply_filters( 'nlposts_olist_output', $html_tags );
+                break;
+            // Block
+            case "block":
+                $html_tags = array(
+                    'wrapper_o' => "<div class='nlposts-wrapper nlposts-block $wrapper_block_css'>",
+                    'wrapper_c' => "</div>",
+                    'wtitle_o' => "<h2 class='nlposts-block-wtitle'>",
+                    'wtitle_c' => "</h2>",
+                    'item_o' => "<div class='nlposts-block-item'>",
+                    'item_c' => "</div>",
+                    'content_o' => "<div class='nlposts-container nlposts-block-container $nlp_instance'>",
+                    'content_c' => "</div>",
+                    'meta_o' => "<span class='nlposts-block-meta'>",
+                    'meta_c' => "</span>",
+                    'thumbnail_o' => "<ul class='nlposts-block-thumbnail thumbnails'>",
+                    'thumbnail_c' => "</ul>",
+                    'thumbnail_io' => "<li class='nlposts-block-thumbnail-litem span3'>",
+                    'thumbnail_ic' => "</li>",
+                    'pagination_o' => "<div class='nlposts-block-pagination pagination'>",
+                    'pagination_c' => "</div>",
+                    'title_o' => "<h3 class='nlposts-block-title'>",
+                    'title_c' => "</h3>",
+                    'excerpt_o' => "<div class='nlposts-block-excerpt'><p>",
+                    'excerpt_c' => "</p></div>",
+                    'caption_o' => "<div class='nlposts-caption'>",
+                    'caption_c' => "</div>"
+                );
+                $html_tags = apply_filters( 'nlposts_block_output', $html_tags );
+                break;
+            default:
+                // Unordered list
+                $html_tags = array(
+                    'wrapper_o' => "<ul class='nlposts-wrapper nlposts-ulist $wrapper_list_css'>",
+                    'wrapper_c' => "</ul>",
+                    'wtitle_o' => "<h2 class='nlposts-ulist-wtitle'>",
+                    'wtitle_c' => "</h2>",
+                    'item_o' => "<li class='nlposts-ulist-litem'>",
+                    'item_c' => "</li>",
+                    'content_o' => "<div class='nlposts-container nlposts-ulist-container $nlp_instance'>",
+                    'content_c' => "</div>",
+                    'meta_o' => "<span class='nlposts-ulist-meta'>",
+                    'meta_c' => "</span>",
+                    'thumbnail_o' => "<ul class='nlposts-ulist-thumbnail thumbnails'>",
+                    'thumbnail_c' => "</ul>",
+                    'thumbnail_io' => "<li class='nlposts-ulist-thumbnail-litem span3'>",
+                    'thumbnail_ic' => "</li>",
+                    'pagination_o' => "<div class='nlposts-ulist-pagination pagination'>",
+                    'pagination_c' => "</div>",
+                    'title_o' => "<h3 class='nlposts-ulist-title'>",
+                    'title_c' => "</h3>",
+                    'excerpt_o' => "<ul class='nlposts-ulist-excerpt'><li>",
+                    'excerpt_c' => "</li></ul>",
+                    'caption_o' => "<div class='nlposts-caption'>",
+                    'caption_c' => "</div>"
+                );
+                $html_tags = apply_filters( 'nlposts_default_output', $html_tags );
+                break;
     }
     // Return tags
     return $html_tags;

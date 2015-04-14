@@ -1,10 +1,10 @@
 === Network Latest Posts ===
-Contributors: L'Elite
+Contributors: iluminatus
 Donate link: http://laelite.info
 Tags: recent posts, shortcode, widget, network, latest posts
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 3.5.6
+Tested up to: 4.1.1
+Stable tag: 3.6.2
 
 This plugin allows you to pull all the recent posts from the blogs in your WordPress network and display them in your main site (or internal sites)
 
@@ -13,7 +13,7 @@ This plugin allows you to pull all the recent posts from the blogs in your WordP
 This plugin pull the recent posts from all the blogs in your network and displays them in your main site (or any internal site) using shortcodes or widgets.
 For further details please visit: http://en.8elite.com/network-latest-posts [English] http://es.8elite.com/network-latest-posts [Espanol] http://fr.8elite.com/network-latest-posts [Francais].
 
-This plugin works with Wordpress 3 Network (multisites) Looking for single install versions? http://single-latest-posts.laelitenetwork.com
+This plugin works with Wordpress Network (multisites) Looking for single install versions? http://single-latest-posts.laelitenetwork.com
 
 == Installation ==
 
@@ -147,6 +147,16 @@ are passed. For more examples please visit the Network Latest Post website.
 * @honor_sticky       : Sort sticky posts to the top of the list, ordered by requested sort order
 
 == Changelog ==
+
+= 3.6.2 =
+* Pagination fixed, improved jQuery function to fix and speed up paginated results.
+
+= 3.6.1 =
+* Improved widget class security for compatibility with certain PHP configurations.
+* Tested compatibility with WordPress 4.1.1
+
+= 3.6 =
+* Added filters for custom HTML tags.
 
 = 3.5.6 =
 * Bug in translation file fixed, Greek (el) was being used as Hebrew (he_IL).
