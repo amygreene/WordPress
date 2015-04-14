@@ -2,15 +2,15 @@
 /*
   Plugin Name: List category posts
   Plugin URI: https://github.com/picandocodigo/List-Category-Posts
-  Description: List Category Posts allows you to list posts by category in a post/page using the [catlist] shortcode. This shortcode accepts a category name or id, the order in which you want the posts to display, and the number of posts to display. You can use [catlist] as many times as needed with different arguments. Usage: [catlist argument1=value1 argument2=value2].
-  Version: 0.50.3
+  Description: List Category Posts allows you to list posts by category in a post/page using the [catlist] shortcode. This shortcode accepts a category name or id, the order in which you want the posts to display, the number of posts to display and many more parameters. You can use [catlist] as many times as needed with different arguments. Usage: [catlist argument1=value1 argument2=value2].
+  Version: 0.59.1
   Author: Fernando Briano
   Author URI: http://fernandobriano.com
 
   Text Domain:   list-category-posts
   Domain Path:   /languages/
 
-  Copyright 2008-2014  Fernando Briano  (email : fernando@picandocodigo.net)
+  Copyright 2008-2015  Fernando Briano  (email : fernando@picandocodigo.net)
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -27,11 +27,10 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-load_plugin_textdomain( 'list-category-posts', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-include 'include/ListCategoryPostsWidget.php';
-include 'include/options.php';
-require_once 'include/CatListDisplayer.php';
+include 'include/lcp-widget.php';
+include 'include/lcp-options.php';
+require_once 'include/lcp-catlistdisplayer.php';
 
 class ListCategoryPosts{
   /**
@@ -119,7 +118,9 @@ class ListCategoryPosts{
                              'pagination_next' => '>>',
                              'pagination_prev' => '<<',
                              'no_posts_text' => "",
-                             'instance' => '0'
+                             'instance' => '0',
+                             'no_post_titles' => 'no',
+                             'link_titles' => true
                            ), $atts);
     if( $atts['numberposts'] == ''){
       $atts['numberposts'] = get_option('numberposts');
@@ -150,6 +151,11 @@ function lpc_meta($links, $file) {
 }
 
 add_filter( 'plugin_row_meta', 'lpc_meta', 10, 2 );
+
+function load_i18n(){
+  load_plugin_textdomain( 'list-category-posts', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'load_i18n' );
 
 function lcp_pagination_css(){
   if ( @file_exists( get_stylesheet_directory() . '/lcp_paginator.css' ) ):
