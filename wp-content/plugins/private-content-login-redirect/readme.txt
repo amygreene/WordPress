@@ -2,22 +2,11 @@
 Contributors: meabhisek  
 Tags: private content, redirection, login  
 Requires at least: 3.0 
-Tested up to: 4.0 
-Stable tag: trunk
+Tested up to: 4.1 
+Stable tag: 1.0.1
 License: GPLv2
 	
 Redirects non-logged users to login page when they follow a private post or private page link.
-
-==Mods for usage with CAS auth==
-adds an extra /sitename/sitename on redirect
-remove ["REQUEST_URI"]
-
-original:    
-$location = wp_login_url($_SERVER["REQUEST_URI"]);
-
-becomes:
-$location = wp_login_url($_SERVER);
-
 
 ==Description== 
 
@@ -27,9 +16,18 @@ WordPress by default redirects all non-logged users to a 404(content not found) 
 
 **Note**: If you post private content and want to get more subscribers to read your private content, I developed a Free plugin for that too...Check out  [Mini Membership](http://wordpress.org/plugins/mini-membership/).
 
+If you like this plugin, please consider leaving a [review](https://wordpress.org/support/view/plugin-reviews/private-content-login-redirect). Thank you!
 
 Follow the developer on [Twitter](https://twitter.com/twitabhisek)
 Visit [Developer Website](http://increasy.com)
+
+**Download My Other Plugins**
+
+[Rainbow Status](https://wordpress.org/plugins/rainbow-status/)
+[Restrict Dashboard Access](https://wordpress.org/plugins/restrict-dashboard-access/)
+[Romance Admin Color Scheme](https://wordpress.org/plugins/romance-admin-color-scheme/)
+[Frame Breaker](https://wordpress.org/plugins/frame-breaker/)
+[Inspire Dolly](https://wordpress.org/plugins/inspire-dolly/)
 
 
 
@@ -42,3 +40,10 @@ Visit [Developer Website](http://increasy.com)
 3. All set
 
 If you are new to WordPress : [Installing Plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
+
+== Changelog ==
+
+= 1.0.1 =
+
+* Solved Issue: When the plugin Fails to redirect if redirect_canonical() finds a match.(Thanks Dave James Miller for pointing this out)
+* Works with WordPress 4.1.1
