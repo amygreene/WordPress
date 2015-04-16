@@ -16,9 +16,9 @@ function wpdt_get_category_nodelist($args){
 			'id' => -$cat->cat_ID, 
 			'pid' => -$cat->category_parent,					 
 			'url' => get_category_link($cat->term_id),
-			'name' => ($showcount) ? strip_tags($cat->name ."&nbsp;({$cat->count})") : strip_tags($cat->name),
+			'name' => ($showcount) ? strip_tags($cat->name ." ({$cat->count})") : strip_tags($cat->name),
 			'title' => strip_tags($cat->description)			
-		);
+		);// <span class='dtcount'>($postcount)</span>
 		$catids[$cat->cat_ID] = array('posts_returned' => 0, 'count' => $cat->count); //save the ID, post-counter and actual post count in case we're asked to limit the tree and needs to know how much we've kept back
 		$idcount++;		
 	}	
@@ -64,6 +64,9 @@ function wpdt_get_category_nodelist($args){
 	}	
 	$postresults = (array)$wpdb->get_results($query);		
 	foreach($postresults as $postresult){
+		if(!isset($catids[$postresult->catid])){
+			continue;
+		}
 		$text = strip_tags(apply_filters('the_title', $postresult->post_title));		
 		$url = esc_url(get_permalink($postresult->ID));
 		$catids[$postresult->catid]['posts_returned'] += 1; //add 
@@ -84,15 +87,56 @@ function wpdt_get_category_nodelist($args){
 				$nodelist[$idcount++] = array(
 					'id' => "'{$idcount}'", //a string, to avoid ID-trampling.
 					'pid' => -$catid, 
-					'name' => esc_html__(str_replace('%excluded%', $excluded, $show_more), 'wpdt'), //add category count? 
+					'name' => esc_html__(str_replace('%excluded%', $excluded, $show_more), 'wpdtree'), //add category count? 
 					'url' => get_category_link($catid), 
-					'title' => esc_attr__('Browse all posts in '.get_cat_name($catid), 'wpdt')
+					'title' => esc_attr__('Browse all posts in '.get_cat_name($catid), 'wpdtree')
 				);				
 			}
 		}	
 	}	
 	unset($catids);
 	unset($postresults);
+	// Support for "Advanced Post Types Order" plugin
+	// Only when sorting posts by menu order, like in free plugin
+	// Added by sydcode (August 2013)
+	if(!defined('APTO_SLUG') || $cpsortby != 'menu_order' || APTO_SLUG != 'advanced-post-types-order') {
+		return $nodelist;
+	}
+	// Check table exists
+	$apto_table = $wpdb->prefix . 'apto';
+	$table_exists = $wpdb->get_var("SHOW TABLES LIKE '{$apto_table}'");
+	if(!$table_exists){
+		return $nodelist;
+	}
+	// Find category nodes
+	foreach($nodelist as $node) {
+		if($node['pid'] > 0){
+			continue;
+		}
+		// Get ordered posts for each category node
+		$term_id = abs($node['id']);
+		$sql = "SELECT post_id FROM {$apto_table} 
+			WHERE taxonomy = 'category' AND post_type = 'post' 
+			AND term_id = %d			
+			ORDER BY id {$cpsortorder}
+		";
+		$apto_posts = $wpdb->get_results($wpdb->prepare($sql, $term_id), ARRAY_A);
+		if(empty($apto_posts)) {
+			continue;
+		}
+		// Search for matching posts in nodelist
+		foreach ($apto_posts as $post1) {
+			foreach ($nodelist as $key1 => $node1) {
+				if ($node['id'] == $node1['pid'] && $post1['post_id'] == $node1['id']) {
+					// Move post to end of nodelist
+					$item = $nodelist[$key1];
+					unset($nodelist[$key1]);
+					array_push($nodelist, $item); 
+					break;
+				}
+			}
+		}
+	}
 	return $nodelist;
 }
 ?>

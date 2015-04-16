@@ -11,7 +11,7 @@ function wpdt_get_taxonomy_nodelist($args){
 	//	'taxonomy' => $taxonomy,
 		'hide_empty' => $hide_empty, 
 		'include_last_update_time' => $include_last_update_time, 
-		'hierarchical' => 1, 
+		'hierarchical' => 1, //is_taxonomy_hierarchical($taxonomy) 
 		'exclude' => $exclude, 
 		'include' => $include, 
 		'number' => $number, 
@@ -20,21 +20,22 @@ function wpdt_get_taxonomy_nodelist($args){
 		//'parent' => $parent
 	);				
 	$taxonomyresults = get_terms($taxonomy, $termargs);//'orderby=count&hide_empty=0' );
-	//echo "count:".count($taxonomyresults);
 	if(is_wp_error($taxonomyresults)){
 		return array();
-	}			
-	foreach ($taxonomyresults as $term){					
+	}	
+	foreach ($taxonomyresults as $term){				
+		$name = ($usedescription == true) ? strip_tags($term->description) : strip_tags($term->name);
 		$nodelist[$idcount] = array( 
 			'id' => -$term->term_id, 
 			'pid' => -$term->parent,				
 			'url' => get_term_link($term, $taxonomy),
-			'name' => ($showcount) ? strip_tags($term->name ."&nbsp;({$term->count})") : strip_tags($term->name),
-			'title' => strip_tags($term->description)				
+			'name' => ($showcount) ? $name ."&nbsp;({$term->count})" : $name,			
+			'title' => strip_tags($term->name .': '. $term->description)			
 		);		
 		$termids[$term->term_id] = array('posts_returned' => 0, 'count' => $term->count); //save the ID, post-counter and actual post count in case we're asked to limit the tree and needs to know how much we've kept back
 		$idcount++;		
 	}
+	
 	//categories can be arranged arbitrarily, and with some creative exlusion/inclusion, you'll easily create a tree without a single page connecting to root or a even parent.		
 	foreach($nodelist as $key => $node){ //thus this step to fixup any orphans.
 		if($node['pid'] == 0){continue;} //connected to root.
@@ -46,7 +47,6 @@ function wpdt_get_taxonomy_nodelist($args){
 		}
 		if(!$hasparent){$nodelist[$key]['pid'] = 0;	} //connect orphans to root.
 	}		
-	//echo "listposts:".$listposts;	
 	if(!$listposts || !count($nodelist)){ //it's either empty or we don't need to list posts. Either way - skip the rest.		
 		return $nodelist;
 	}	
@@ -61,7 +61,7 @@ function wpdt_get_taxonomy_nodelist($args){
 				 AND {$wpdb->term_taxonomy}.taxonomy = '$taxonomy'
 				 AND {$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->term_taxonomy}.term_taxonomy_id 
 				 AND {$wpdb->term_taxonomy}.term_id = {$wpdb->terms}.term_id 	 
-				 /*category-id*/
+				 /*tax-id*/
 				 AND {$wpdb->posts}.post_status = 'publish' 
 				 AND {$wpdb->posts}.post_type = 'post' 
 				{$catexclusions} 				
@@ -98,10 +98,9 @@ function wpdt_get_taxonomy_nodelist($args){
 				$nodelist[$idcount++] = array(
 					'id' => "'{$idcount}'", //a string, to avoid ID-trampling.
 					'pid' => -$termid, 
-					'name' => esc_html__(str_replace('%excluded%', $excluded, $show_more), 'wpdt'), //add category count? 
-					//E'url' => get_category_link($catid),
+					'name' => esc_html__(str_replace('%excluded%', $excluded, $show_more), 'wpdtree'), //add category count? 
 					'url' => get_term_link($termid, $taxonomy), 
-					'title' => esc_attr__('Browse all posts in '.get_cat_name($termid), 'wpdt')
+					'title' => esc_attr__('Browse all posts in '.get_cat_name($termid), 'wpdtree')
 				);				
 			}
 		}	

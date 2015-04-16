@@ -2,7 +2,7 @@
 class WPDT_Archives_Widget extends WPDT_Widget {
 		
 	function __construct() {				
-		$widget_ops = array('classname' => 'wpdt-archives', 'description' => __('Dynamic javascript archives', 'wpdtree') ); //widget settings. 
+		$widget_ops = array('classname' => 'wpdt-archives', 'description' => __('dTree navigation for your post archives.', 'wpdtree') ); //widget settings. 
 		$control_ops = array('width' => 200, 'height' => 350, 'id_base' => 'wpdt-archives-widget'); //Widget control settings.
 		parent::__construct('wpdt-archives-widget', __('WP-dTree Archives', 'wpdtree'), $widget_ops, $control_ops ); //Create the widget.       			
 	}
@@ -14,12 +14,14 @@ class WPDT_Archives_Widget extends WPDT_Widget {
 	function update($new_settings, $old_settings) {
 		$old_settings = parent::update($new_settings, $old_settings);
 		$settings = $old_settings;				
-		$settings['type'] 		= 	$new_settings['type'];		
+		$settings['type'] 		= isset($new_settings['type']) ? $new_settings['type'] : 'monthly';		
 		$settings['listposts'] 	= isset($new_settings['listposts']) ? 1 : 0;	
 		$settings['showcount'] 	= isset($new_settings['showcount']) ? 1 : 0;	
 		$settings['showrss'] 	= isset($new_settings['showrss']) ? 1 : 0;	
-		$settings['limit_posts'] = intval($new_settings['limit_posts']);
-		$settings['exclude_cats'] = wpdt_clean_exclusion_list($new_settings['exclude_cats']);
+		$settings['limit_posts'] = isset($new_settings['limit_posts']) ? intval($new_settings['limit_posts']) : 0;
+		$settings['exclude_cats'] = isset($new_settings['exclude_cats']) ? wpdt_clean_exclusion_list($new_settings['exclude_cats']) : '';
+		$settings['include_cats'] = isset($new_settings['include_cats']) ? wpdt_clean_exclusion_list($new_settings['include_cats']) : '';
+		$settings['posttype']	= isset($new_settings['posttype']) ? sanitize_title($new_settings['posttype'], 'post', 'query') : 'post';
 		$settings['include'] 	= '';		
 		$settings['treetype']	= 'arc';
 		return $settings;
@@ -31,9 +33,13 @@ class WPDT_Archives_Widget extends WPDT_Widget {
 		parent::form($settings);
 	?>
 		<p>
-			<label for="<?php echo $this->get_field_id('exclude_cats'); ?>" title="A comma-separated list of category IDs to be excluded from the tree (example: 3,7,31)."><?php _e('Exclude cats:', 'wpdtree'); ?></label>
-			<input id="<?php echo $this->get_field_id('exclude_cats'); ?>" name="<?php echo $this->get_field_name('exclude_cats'); ?>" value="<?php echo $settings['exclude_cats']; ?>"/>
+			<label for="<?php echo $this->get_field_id('include_cats'); ?>" title="Only include posts from specific categories (example: 3,7,31)."><?php _e('Include categories:', 'wpdtree'); ?></label>
+			<input id="<?php echo $this->get_field_id('include_cats'); ?>" name="<?php echo $this->get_field_name('include_cats'); ?>" value="<?php echo $settings['include_cats']; ?>"/>
 		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('exclude_cats'); ?>" title="A comma-separated list of category IDs to be excluded from the tree (example: 3,7,31)."><?php _e('Exclude categories:', 'wpdtree'); ?></label>
+			<input id="<?php echo $this->get_field_id('exclude_cats'); ?>" name="<?php echo $this->get_field_name('exclude_cats'); ?>" value="<?php echo $settings['exclude_cats']; ?>"/>
+		</p>		
 		<p>
 			<label for="<?php echo $this->get_field_id('sortby'); ?>"><?php _e('Sort by:', 'wpdtree'); ?></label> 	
 			<select id="<?php echo $this->get_field_id('sortby'); ?>" name="<?php echo $this->get_field_name('sortby'); ?>" class="widefat" style="width:100px;">	
@@ -43,7 +49,7 @@ class WPDT_Archives_Widget extends WPDT_Widget {
 				<option value="ID"<?php selected($settings['sortby'], 'ID');?>>ID</option>
 				<option value="post_modified"<?php selected($settings['sortby'], 'post_modified');?>>Modified</option>
 				<option value="post_author"<?php selected($settings['sortby'], 'post_author');?>>Author</option>
-				<option value="post_name"<?php selected($settings['sortby'], 'post_name');?>>Slug</option>					
+				<option value="post_name"<?php selected($settings['sortby'], 'post_name');?>>Slug</option>
 			</select>	
 		</p><p>
 			<label for="<?php echo $this->get_field_id('type'); ?>"><?php _e('Type:', 'wpdtree'); ?></label> 

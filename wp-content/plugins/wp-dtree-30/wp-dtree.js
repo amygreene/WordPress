@@ -308,7 +308,7 @@ wpdTree.prototype.oAll = function(status){
 };
 
 // Opens the tree to a specific node
-wpdTree.prototype.openTo = function(nId, bSelect, bFirst){
+wpdTree.prototype.openTo = function(nId, bSelect, bFirst){	
 	if(!bFirst){
 		for (var n=0; n<this.adtNodes.length; n++){
 			if(this.adtNodes[n].id == nId){
@@ -317,7 +317,8 @@ wpdTree.prototype.openTo = function(nId, bSelect, bFirst){
 			}
 		}
 	}
-	var cn=this.adtNodes[nId];
+	var cn=this.adtNodes[nId];	
+	if (cn===undefined) return;
 	if(cn.pid==this.root.id || !cn._p) return;
 	cn._io = true;
 	cn._is = bSelect;
