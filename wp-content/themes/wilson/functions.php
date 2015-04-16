@@ -400,6 +400,7 @@ class Wilson_Customize {
 	      <style type="text/css">
 	           <?php self::generate_css('.blog-title a:hover', 'color', 'accent_color'); ?>
 	           <?php self::generate_css('.blog-menu a:hover', 'color', 'accent_color'); ?>
+	           <?php self::generate_css('.blog-menu .current-menu-item > a', 'color', 'accent_color'); ?>
 	           <?php self::generate_css('.featured-media .sticky-post', 'background-color', 'accent_color'); ?>
 	           <?php self::generate_css('.post-title a:hover', 'color', 'accent_color'); ?>
 	           <?php self::generate_css('.post-meta a:hover', 'color', 'accent_color'); ?>

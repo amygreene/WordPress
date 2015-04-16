@@ -1,6 +1,12 @@
 *** Wilson changelog ***
 
 
+Version 1.21 (2014-09-02)
+-------------------------
+- Added the current menu item to the accent color function
+- Fixed incorrect display of the next page / read more links in the editor styles
+
+
 Version 1.20 (2014-08-06)
 -------------------------
 - Added licensing information for screenshot.png

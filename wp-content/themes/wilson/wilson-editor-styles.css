@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------------
 
-	Editor styles for Fukasawa
+	Editor styles for Wilson
 
 ---------------------------------------------------------------------------------*/
 
@@ -37,6 +37,11 @@ body#tinymce.wp-editor img {
 	max-width: 100%; 
 	height: auto;
 }
+
+body#tinymce.wp-editor img.mce-wp-nextpage, 
+body#tinymce.wp-editor img.mce-wp-more { 
+	height: 16px; 
+} /* fix for the next page / more image */
 
 body#tinymce.wp-editor hr {
 	width: 50%;

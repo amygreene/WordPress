@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------
 
 	Theme Name: Wilson
-	Version: 1.20
+	Version: 1.21
 	Description: Wilson is a clean, simple and responsive theme for personal sites and blogs. Features responsive design, retina-ready assets, custom accent color support, custom logo support, custom widgets (video, Flickr and Dribbble), page templates, editor styles and translation-ready code. Included translations: Swedish/svenska, German/deutsch.
 	Tags: black, dark, white, red, two-columns, fluid-layout, responsive-layout, custom-menu, custom-colors, editor-style, featured-images, flexible-header, post-formats, sticky-post, threaded-comments, translation-ready
 	Author: Anders Norén
@@ -798,7 +798,7 @@ a.more-link,
 .post-content *:last-child { margin-bottom: 0; }
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
-	margin: 50px 0 20px;
+	margin: 50px 0 25px;
 	color: #444;
 	line-height: 120%;
 }
@@ -826,7 +826,7 @@ a.more-link,
 .post-content h4+h1, .post-content h4+h2, .post-content h4+h3, .post-content h4+h4, .post-content h4+h5, .post-content h4+h6,
 .post-content h5+h1, .post-content h5+h2, .post-content h5+h3, .post-content h5+h4, .post-content h5+h5, .post-content h5+h6,
 .post-content h6+h1, .post-content h6+h2, .post-content h6+h3, .post-content h6+h4, .post-content h6+h5, .post-content h6+h6 {
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
 .post-content blockquote {
@@ -981,6 +981,9 @@ code, kbd, pre {
 /* Post media --------------------------------------- */
 
 
+.wp-caption a,
+.wp-caption img { display: block; }
+
 img.alignleft,
 .alignleft img,
 img.aligncenter,
@@ -992,10 +995,10 @@ img.alignright,
 	border: 1px solid #EEE;
 }
 
-
 .post-content .alignleft,
 .post-content .alignright {
 	margin-bottom: 1.2em;
+	max-width: 40%;
 }
 
 .post-content .wp-caption .alignleft,
@@ -1005,12 +1008,12 @@ img.alignright,
 
 .post-content .alignleft {
 	float: left;
-	margin-right: 1em;
+	margin-right: 1.2em;
 }
 
 .post-content .alignright {
 	float: right;
-	margin-left: 1em;
+	margin-left: 1.2em;
 }
 
 .post-content .aligncenter {
@@ -1024,6 +1027,7 @@ img.alignright,
 .post-content .wp-caption-text,
 .post-content .gallery-caption {
 	font-size: 0.85em;
+	font-style: italic;
 	padding-top: 0.5em;
 	color: #888;
 	text-align: center;
@@ -1934,21 +1938,6 @@ img#wpstats { display: none; }
 		border-radius: 0; 
 	}
 	
-	/* Post-content --------------------------------------- */
-	
-	.post-content .alignleft,
-	.post-content .alignright { 
-		float: none; 
-		width: auto;
-		margin: 0 auto 1.2em auto;
-	}
-	
-	.post-content .alignleft img,
-	.post-content .alignright img { 
-		display: block;
-		margin: 0 auto;
-	}
-	
 	/* Credits --------------------------------------- */
 	
 	.credits { padding: 40px 8%; }
@@ -2017,6 +2006,19 @@ img#wpstats { display: none; }
 	.post-content h3 { font-size: 1.25em; font-weight: 700; }
 	.post-content h4 { font-size: 1.1em; }
 	.post-content h5 { font-size: 1em; }
+	
+	.post-content .alignleft,
+	.post-content .alignright { 
+		float: none; 
+		max-width: 100%;
+		margin: 0 auto 1.2em auto;
+	}
+	
+	.post-content .alignleft img,
+	.post-content .alignright img { 
+		display: block;
+		margin: 0 auto;
+	}
 	
 	/* Comments --------------------------------------- */
 	
