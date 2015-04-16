@@ -1,7 +1,7 @@
 
         <div id="zp-Zotpress" class="wrap">
             
-            <?php include('admin.display.tabs.php'); ?>
+            <?php include( dirname(__FILE__) . '/admin.menu.php' ); ?>
             
             <h3>What is Zotpress?</h3>
             
@@ -39,6 +39,10 @@
                 <li>
                     <p><strong><span class="number">3</span>The Zotpress Sidebar Widget</strong></p>
                     <p class="indent">Use this widget in a sidebar to generate a bibliography. <a title="Learn more" href="#widget">Learn more &raquo;</a></p>
+                </li>
+                <li>
+                    <p><strong><span class="number">4</span>The Zotpress Library Shortcode</strong></p>
+                    <p class="indent">Use this shortcode to display your Zotero library on the front-end of your website so that visitors can browse it. <a title="Learn more" href="#lib">Learn more &raquo;</a></p>
                 </li>
             </ol>
             
@@ -172,9 +176,9 @@
                 </tr>
                 
                 <tr>
-                    <td rowspan="9" class="category last">Display</td>
+                    <td rowspan="10" class="category last">Display</td>
                     
-                    <td rowspan="9" class="type last">Settings</td>
+                    <td rowspan="10" class="type last">Settings</td>
                     
                     <td class="code">style</td>
                     <td><p>Citation style. <strong>Options: apsa, apa [default], asa, chicago-author-date, chicago-fullnote-bibliography, harvard1, modern-language-association, nlm, nature, vancouver.</strong> Note: Support for more styles is coming; see <a title="Zotero Style Repository" href="http://www.zotero.org/styles">Zotero Style Repository</a> for details.</p></td>
@@ -214,6 +218,11 @@
                     <td class="code">linkedlist</td>
                     <td><p><strong>Requires:</strong> <code>datatype="collections"</code> or <code>datatype="tags"</code> Alternative: <code>link</code> List all tags or all collections and link each to a page that displays their associated citation items. <strong>Options: yes, no [default].</strong></p></td>
                     <td class="example"><p><code>[zotpress datatype="tags" linkedlist="yes"]</code></p></td>
+                </tr>
+                <tr>
+                    <td class="code">forcenumber</td>
+                    <td><p>Numbers bibliography items, even when the citation style, e.g. APA, doesn't normally.<strong>Options: true, false [default].</strong></p></td>
+                    <td class="example"><p><code>[zotpress collection="GMGCJU34" forcenumber="true"]</code></p></td>
                 </tr>
                 <tr class="last">
                     <td class="code last">target</td>
@@ -300,19 +309,24 @@
                 </tr>
                 
                 <tr class="last">
-                    <td rowspan="4" class="category last">Display</td>
+                    <td rowspan="5" class="category last">Display</td>
                     
-                    <td rowspan="4" class="type last">Settings</td>
+                    <td rowspan="5" class="type last">Settings</td>
                     
                     <td class="code">format</td>
                     <td>
                         <p>How the in-text citation should be presented. Use these placeholders: %a% for author, %d% for date, %p% for page, %num% for list number.</p>
-                        <p class="break"><strong>Hint:</strong> In WordPress shortcodes, the bracket characters <strong>[</strong> and <strong>]</strong> are special characters. To use in-text brackets, see the example on the right.</p>
+                        <p class="break"><strong>Hint:</strong> In WordPress shortcodes, the bracket characters <strong>[</strong> and <strong>]</strong> are special characters. To use in-text brackets, see the <code>brackets</code> attribute below or the example on the right.</p>
                     </td>
                     <td class="example">
                         <p><code>[zotpressInText item="NCXAA92F" format="%a% (%d%, %p%)"]</code>, which will display as: <span style="padding-left: 0.5em; font-family: monospace;">author (date, pages)</span></p>
-                        <p class="break"><code>[zotpressInText item="NCXAA92F" format="&amp;#91;%num%&amp;#93;"]</code>, which will display as: <span style="padding-left: 0.5em; font-family: monospace;">[1]</span></p>
+                        <p class="break"><code>[zotpressInText item="{NCXAA92F,DTA2KZXU}" format="&amp;#91;%num%&amp;#93;"]</code>, which will display as: <span style="padding-left: 0.5em; font-family: monospace;">[1];[2]</span></p>
                     </td>
+                </tr>
+                <tr>
+                    <td class="code">brackets</td>
+                    <td><p>A special format option for in-text citations. <strong>Options:</strong> true, false [default]</p></td>
+                    <td class="example"><p><code>[zotpressInText item="{NCXAA92F,DTA2KZXU}" format="%num%" brackets="yes"], which will display as: <span style="padding-left: 0.5em; font-family: monospace;">[1, 2]</span></code></p></td>
                 </tr>
                 <tr>
                     <td class="code">etal</td>
@@ -333,6 +347,87 @@
             </table>
             
             <p>The <code>[zotpressInTextBib]</code> shortcode takes the same attributes as the <code>[zotpress]</code> shortcode, minus the "userid," "nickname," and "limit" attributes.</p>
+            
+            
+            
+            <hr />
+            
+            <a name="lib"></a>
+            <h3>Displaying Your Library Using the Zotpress Library Shortcode</h3>
+            
+            <p>
+                To display your library on the front-end of your website so that visitors can browse it, use this shortcode:
+            </p>
+            
+            <code>
+                [zotpressLib userid="00000"]
+            </code>
+            
+            
+            <h4 style="clear:both;">Library Shortcode Attributes</h4>
+            
+            <table class="zp-Documentation" border="0" cellpadding="0" cellspacing="0">
+                
+                <tr class="main">
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                
+                <tr>
+                    <td rowspan="6" class="category">Filtering</td>
+                    
+                    <td rowspan="2" class="type">Account</td>
+                    
+                    <td class="code">userid</td>
+                    <td><p>Display a list of citations from a particular user or group. <strong>REQUIRED if you have multiple accounts and are not using the "nickname" parameter.</strong> If neither is entered, it will default to the first user account listed.</p></td>
+                    <td class="example"><p><code>[zotpressLib userid="00000"]</code></p></td>
+                </tr>
+                <tr>
+                    <td class="code">nickname</td>
+                    <td><p>Display a list of citations by a particular Zotero account nickname. <strong>Hint:</strong> You can give your Zotero account a nickname on the <a title="Accounts" href="admin.php?page=Zotpress&amp;accounts=true">Accounts page</a>.</p></td>
+                    <td class="example"><p><code>[zotpressLib nickname="Katie"]</code></p></td>
+                </tr>
+                <tr class="zebra">
+                    <td rowspan="4" class="type">Data</td>
+                    
+                    <td class="code">searchby</td>
+                    <td><p><strong>Search bar only.</strong> Set what content types can be used in the search. <strong>Options:</strong> items [default], collections, tags</p></td>
+                    <td class="example"><p><code>[zotpressLib userid="00000" type="searchbar" searchby="tags"]</code></p><p>Or multiple:<p><code>[zotpressLib userid="00000" type="searchbar" searchby="items,tags"]</code></p></td>
+                </tr>
+                <tr class="zebra">
+                    <td class="code">minlength</td>
+                    <td><p><strong>Search bar only.</strong> Minimum length of query before autcomplete starts searching. <strong>Options:</strong> 3 [default] or any number (although 3+ is best)</p></td>
+                    <td class="example"><p><code>[zotpressLib userid="00000" type="searchbar" minlength="4"]</code></p></td>
+                </tr>
+                <tr class="zebra">
+                    <td class="code">maxresults</td>
+                    <td><p><strong>Search bar only.</strong> Maximum number of results to request from database per query. <strong>Options:</strong> 100 [default] or any number (although lower is better)</p></td>
+                    <td class="example"><p><code>[zotpressLib userid="00000" type="searchbar" maxresults="20"]</code></p></td>
+                </tr>
+                <tr class="zebra">
+                    <td class="code">maxperpage</td>
+                    <td><p><strong>Search bar only.</strong> Maximum number of result items per pagination page. <strong>Options:</strong> 10 [default] or any number (although lower is better)</p></td>
+                    <td class="example"><p><code>[zotpressLib userid="00000" type="searchbar" maxperpage="5"]</code></p></td>
+                </tr>
+                
+                <tr class="last">
+                    <td rowspan="1" class="category last">Display</td>
+                    
+                    <td rowspan="1" class="type last">Settings</td>
+                    
+                    <td class="code last">type</td>
+                    <td>
+                        <p>Type of library navigation used. <strong>Options:</strong> dropdown [default], searchbar</p>
+                    </td>
+                    <td class="example">
+                        <p><code>[zotpressLib userid="00000" type="searchbar"]</code></p>
+                    </td>
+                </tr>
+                
+            </table>
             
             
             <hr />
@@ -408,10 +503,6 @@
             <h4>How do I find an item key (citation ID)?</h4>
             
             <p>It's displayed beneath the citation on the <a title="Browse" href="admin.php?page=Zotpress">Browse</a> page. It's also listed on the dropdown associated with each item you search via the Reference widget (found on post add/edit screens).</p>
-            
-            <h4>I don't want collection names to display above my citations. How do I get rid of them?</h4>
-            
-            <p>In your stylesheet, add the following line: <code>h3.zp-Collection-Header { display: none; }</code> By the way, almost every Zotpress element has either an ID or class (or both) that can be selectively styled with CSS.</p>
             
             <h4>Zotpress won't import my library, or only imports some of my library.</h4>
             

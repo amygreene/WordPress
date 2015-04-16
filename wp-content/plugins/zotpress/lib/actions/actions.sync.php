@@ -5,14 +5,15 @@
     define('WP_USE_THEMES', false);
 
     // Prevent access to users who are not editors
-    if ( !current_user_can('edit_others_posts') && !is_admin() ) wp_die( __('Only editors can access this page through the admin panel.'), __('Zotpress: Access Denied') );
+    if ( ! current_user_can('edit_others_posts') && ! is_admin() )
+		wp_die( __('Only logged-in editors can access this page.'), __('Zotpress: 403 Access Denied'), array( 'response' => 403 ) );
     
     // Include Request Functionality
     require("../request/rss.request.php");
     
     // Include Import and Sync Functions
-    require("../admin/admin.import.functions.php");
-    require("../admin/admin.sync.functions.php");
+    require("../import/import.functions.php");
+    require("../import/sync.functions.php");
     
 
     // Set up XML document

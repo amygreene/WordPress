@@ -10,7 +10,7 @@
     
     function zp_db_prep ($input)
     {
-        $input = str_replace("%", "%%", $input);
+        $input =  str_replace("%", "%%", $input);
         return ($input);
     }
     
@@ -18,8 +18,16 @@
     
     function zp_extract_year ($date)
     {
-		preg_match_all( '/(\d{4})/', $date, $matches );
-		return $matches[0][0];
+		if ( strlen($date) > 0 ):
+			preg_match_all( '/(\d{4})/', $date, $matches );
+			if ( isset($matches[0][0]) ):
+				return $matches[0][0];
+			else:
+				return "";
+			endif;
+		else:
+			return "";
+		endif;
     }
     
     
@@ -505,7 +513,6 @@
 		if ( is_null($zp_account[0]->public_key) === false && trim($zp_account[0]->public_key) != "" )
 			$zp_import_url .= "key=".$zp_account[0]->public_key."&";
 		$zp_import_url .= "format=atom&content=json,bib&style=".$zp_default_style."&limit=50&start=".$zp_start;
-		//var_dump($zp_import_url);
         
 		
 		// Make the request
@@ -513,6 +520,16 @@
 		
         // Stop in our tracks if there's a request error
         if ($zp_import_contents->request_error) return $zp_import_contents->request_error;
+		
+		// Report any errors returned from Zotero
+		if ( trim(strtolower($zp_xml)) == "forbidden" )
+		{
+			return "Zotero is telling Zotpress that access is forbidden. Are you sure that the Zotero API key you're using for this account is correct?";
+		}
+		else if ( trim(strtolower($zp_xml)) == "invalid style" )
+		{
+			return "Zotero is telling Zotpress that the style you're using is invalid. Are you sure that the name of the default style you've selected is correct?";
+		}
         
         
         // Make it DOM-traversable 
@@ -597,15 +614,37 @@
             $numchildren = 0;
             $parent = "";
             $link_mode = "";
-            
-            if (count($json_content_decoded->creators) > 0)
-                foreach ($json_content_decoded->creators as $creator)
-                    if ($creator->creatorType == "author")
-                        $author .= $creator->lastName . ", ";
-                    else
-                        $author_other .= $creator->lastName . ", ";
-            else
-                $author .= $creator->creators["lastName"];
+			
+			
+            if ( isset($json_content_decoded->creators) )
+			{
+				if ( count($json_content_decoded->creators) > 0 )
+				{
+					foreach ($json_content_decoded->creators as $creator)
+						if ($creator->creatorType == "author")
+							if (isset($creator->name)) // One-name authors
+								$author .= $creator->name . ", ";
+							else
+								$author .= $creator->lastName . ", ";
+						else
+							if (isset($creator->name)) // One-name authors
+								$author_other .= $creator->name . ", ";
+							else
+								$author_other .= $creator->lastName . ", ";
+				}
+				else // no creator
+				{
+					$author = "";
+					//if (isset($creator->name)) // One-name authors
+					//	$author .= $creator->creators["name"];
+					//else
+					//	$author .= $creator->creators["lastName"];
+				}
+			}
+			else // no creator
+			{
+				$author = "";
+			}
             
             // Determine if we use author or other author type
             if (trim($author) == "") $author = $author_other;
@@ -613,14 +652,14 @@
             // Remove last comma
             $author = preg_replace('~(.*)' . preg_quote(', ', '~') . '~', '$1' . '', $author, 1);
             
-            $date = $json_content_decoded->date;
+            $date = ""; if ( isset($json_content_decoded->date) ) $date = $json_content_decoded->date;
             $year = zp_extract_year($date);
             
             if (trim($year) == "") $year = "0000";
             
-            $title = $json_content_decoded->title;
+            $title = ""; if ( isset($json_content_decoded->title) ) $title = $json_content_decoded->title;
             
-            $numchildren = intval($entry->getElementsByTagNameNS("http://zotero.org/ns/api", "numChildren")->item(0)->nodeValue);
+            $numchildren = 0; if ( isset($entry->getElementsByTagNameNS("http://zotero.org/ns/api", "numChildren")->item(0)->nodeValue) ) $numchildren = intval($entry->getElementsByTagNameNS("http://zotero.org/ns/api", "numChildren")->item(0)->nodeValue);
             
             // DOWNLOAD: Find URL
             // for attachments, look at zapi:subcontent zapi:type="json" - linkMode - either imported_file or linked_url
@@ -706,12 +745,12 @@
 				
 				if ( isset($i_json->collections) && count($i_json->collections) > 0 )
 					foreach ( $i_json->collections as $i_collection )
-						$zp_relItemColl .= "('" . $GLOBALS['zp_session'][$api_user_id]['items']['query_params'][$i-3] . "', '" . $i_json->itemKey . "', '" . htmlentities($i_collection) . "'), ";
+						$zp_relItemColl .= "('" . $GLOBALS['zp_session'][$api_user_id]['items']['query_params'][$i-3] . "', '" . $i_json->itemKey . "', '" . htmlentities($i_collection, ENT_QUOTES ) . "'), ";
 				
 				if ( isset($i_json->tags) && count($i_json->tags) > 0 )
 					foreach ( $i_json->tags as $i_tag )
 						if ( trim($i_tag->tag) != "" )
-							$zp_relItemTags .= "('" . $GLOBALS['zp_session'][$api_user_id]['items']['query_params'][$i-3] . "', '" . $i_json->itemKey . "', '" . htmlentities($i_tag->tag) . "'), ";
+							$zp_relItemTags .= "('" . $GLOBALS['zp_session'][$api_user_id]['items']['query_params'][$i-3] . "', '" . $i_json->itemKey . "', '" . htmlentities($i_tag->tag, ENT_QUOTES ) . "'), ";
 			}
 			
 			// Prepare string: remove extra comma and space OR set to blank if nothing to add
@@ -728,8 +767,8 @@
 			}
 			
 			// Execute queries
-			$wpdb->query( $zp_relItemColl );
-			$wpdb->query( $zp_relItemTags );
+			if ( strlen($zp_relItemColl) > 0 ) $wpdb->query( $zp_relItemColl );
+			if ( strlen($zp_relItemTags) > 0 ) $wpdb->query( $zp_relItemTags );
             $wpdb->query(
 				$wpdb->prepare( 
 					"   INSERT IGNORE INTO ".$wpdb->prefix."zotpress_zoteroItems
@@ -809,6 +848,12 @@
 		
         // Grab contents
 		$zp_xml = $zp_import_contents->get_request_contents( $zp_import_url, false );
+		
+		// Report any errors returned from Zotero
+		if ( trim(strtolower($zp_xml)) == "forbidden" )
+		{
+			return "Zotero is telling Zotpress that access is forbidden. Are you sure that the Zotero API key you're using for this account is correct?";
+		}
         
         // Make it DOM-traversable 
         $doc_citations = new DOMDocument();
@@ -915,7 +960,10 @@
         
         
         // LAST SET
-        if ($GLOBALS['zp_session'][$api_user_id]['collections']['last_set'] == $zp_start)
+        if (
+			isset($GLOBALS['zp_session'][$api_user_id]['collections']['last_set'])
+			&& $GLOBALS['zp_session'][$api_user_id]['collections']['last_set'] == $zp_start
+			)
         {
             return array( "continue" => false, "collections" => rtrim( $zp_collection_keys, "," ) );
         }
@@ -1051,6 +1099,12 @@
         
         // Import content
 		$zp_xml = $zp_import_contents->get_request_contents( $zp_import_url, false );
+		
+		// Report any errors returned from Zotero
+		if ( trim(strtolower($zp_xml)) == "forbidden" )
+		{
+			return "Zotero is telling Zotpress that access is forbidden. Are you sure that the Zotero API key you're using for this account is correct?";
+		}
         
         // Make it DOM-traversable 
         $doc_citations = new DOMDocument();
