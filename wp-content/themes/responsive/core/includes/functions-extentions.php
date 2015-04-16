@@ -1,7 +1,7 @@
 <?php
 
 // Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -26,6 +26,7 @@ function get_responsive_breadcrumb_lists() {
 	} elseif ( ! is_search() ) {
 		responsive_breadcrumb_lists();
 	}
+
 }
 
 /**
@@ -159,7 +160,7 @@ if ( !function_exists( 'responsive_breadcrumb_lists' ) ) {
 			} elseif ( is_page() && $parent_id ) {
 				$breadcrumbs = array();
 				while ( $parent_id ) {
-					$page_child    = get_page( $parent_id );
+					$page_child    = get_post( $parent_id );
 					$breadcrumbs[] = sprintf( $link, get_permalink( $page_child->ID ), get_the_title( $page_child->ID ) );
 					$parent_id     = $page_child->post_parent;
 				}
