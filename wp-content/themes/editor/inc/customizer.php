@@ -50,6 +50,16 @@ class WP_Customize_Category_Control extends WP_Customize_Control {
     }
 }
 
+
+/**
+ * Sanitize category option
+ */
+function editor_sanitize_integer( $input ) {
+    if( is_numeric( $input ) ) {
+        return intval( $input );
+    }
+}
+
 /**
  * Sanitize select option
  */
@@ -77,7 +87,9 @@ function editor_customizer_register( $wp_customize ) {
 	) );
 
 	// Logo Image Upload
-	$wp_customize->add_setting( 'editor_customizer_logo', array() );
+	$wp_customize->add_setting( 'editor_customizer_logo', array(
+        'sanitize_callback' => 'esc_url_raw'
+    ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'editor_customizer_logo', array(
 		'label'    => __( 'Logo Upload', 'editor' ),
@@ -87,7 +99,8 @@ function editor_customizer_register( $wp_customize ) {
 
     // Featured Category Dropdown
     $wp_customize->add_setting( 'editor_featured_cat', array(
-        'default' => '',
+        'default'           => '',
+        'sanitize_callback' => 'editor_sanitize_integer'
     ) );
 
     $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'editor_featured_cat', array(

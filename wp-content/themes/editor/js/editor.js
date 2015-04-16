@@ -25,4 +25,16 @@ jQuery(document).ready(function( $ ) {
 		return false;
 	} );
 
+	// Fitvid
+	function fitvids() {
+		$( "article iframe" ).not( ".fitvid iframe" ).wrap( "<div class='fitvid'/>" );
+		$( ".fitvid" ).fitVids();
+	}
+	fitvids();
+
+	// Hide the sidebar on full screen video
+	$( document ).on( "webkitfullscreenchange mozfullscreenchange fullscreenchange", function () {
+	    $( ".site-header" ).toggleClass( 'fullscreen' );
+	});
+
 });

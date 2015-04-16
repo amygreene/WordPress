@@ -4,9 +4,10 @@ Donate link: https://array.is/
 Tags: light, white, gray, two-columns, left-sidebar, responsive-layout, custom-colors, editor-style, featured-images, theme-options, threaded-comments, translation-ready, photoblogging
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.0.5
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Screenshot image license: GPLv2 or later
 
 Editor puts bold and beautiful publishing right at your fingertips with comfortable, legible typography and large featured images. Using Featured Posts, you can display your favorite articles or editorials in the sidebar for even more exposure.
 
@@ -138,6 +139,28 @@ Visit our support forum at array.is and we'll give you a hand.
 1. The theme home page filled with demo content.
 
 == Change Log ==
+= 1.1.2 - 1/23/15 =
+* Added nofollow attribute to footer credit link.
+
+= 1.1.1 - 12/16/14 =
+* Added fix for animations on Android devices.
+* Added link titles for sidebar toggle buttons.
+
+= 1.1.0 - 11/17/14 =
+* Fixed Jetpack Infinite Scroll button style.
+* Added screenshot license to readme.txt.
+
+= 1.0.8 - 9/4/14 =
+* Fixed an issue that caused radio buttons to not be shown.
+
+= 1.0.7 - 8/31/14 =
+* Added .pot language file.
+* Added Finnish language files.
+* Regenerated English language files.
+
+= 1.0.6 - 8/27/14 =
+* Fixed a bug for full screen video in Chrome.
+
 = 1.0.5 - 7/11/14 =
 * Fixed a bug in the mobile navigation menu.
 

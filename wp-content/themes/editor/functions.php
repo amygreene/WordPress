@@ -152,9 +152,9 @@ function editor_scripts() {
 	$wp_styles->add_data( 'ie7-style', 'conditional', 'IE' );
 
 	/**
-     * Fire up jQuery
-     */
-	wp_enqueue_script( 'jquery' );
+	 * Load FitVids
+	 */
+	wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), '20140820', true );
 
 	/**
      * Load Editor's javascript
