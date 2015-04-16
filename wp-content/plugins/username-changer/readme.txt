@@ -4,7 +4,7 @@ Donate link: http://pledgie.com/campaigns/17372
 Tags: user, username, display name, changer
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 2.0.2
+Stable tag: 2.0.5
 
 A simple plugin to change registered usernames.
 
@@ -27,6 +27,15 @@ None yet
 1. The main interface
 
 == Changelog ==
+
+= Version 2.0.5 =
+* Fix contributor
+
+= Version 2.0.4 =
+* Update metalinks
+
+= Version 2.0.3 =
+* Fixed user nice name
 
 = Version 2.0.2 =
 * Added multisite support
