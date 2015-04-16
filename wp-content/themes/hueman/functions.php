@@ -59,7 +59,10 @@ add_action( 'after_setup_theme', 'alx_load' );
 /* ------------------------------------ */
 if ( ! function_exists( 'alx_setup' ) ) {
 	
-	function alx_setup() {	
+	function alx_setup() {
+		// Enable title tag
+		add_theme_support( 'title-tag' );
+		
 		// Enable automatic feed links
 		add_theme_support( 'automatic-feed-links' );
 		
@@ -74,6 +77,7 @@ if ( ! function_exists( 'alx_setup' ) ) {
 		
 		// Thumbnail sizes
 		add_image_size( 'thumb-small', 160, 160, true );
+		add_image_size( 'thumb-standard', 320, 320, true );
 		add_image_size( 'thumb-medium', 520, 245, true );
 		add_image_size( 'thumb-large', 720, 340, true );
 
@@ -96,10 +100,12 @@ if ( ! function_exists( 'alx_sidebars' ) ) {
 	function alx_sidebars()	{
 		register_sidebar(array( 'name' => 'Primary','id' => 'primary','description' => "Normal full width sidebar", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>'));
 		register_sidebar(array( 'name' => 'Secondary','id' => 'secondary','description' => "Normal full width sidebar", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>'));
-		if ( ot_get_option('footer-widgets') >= '1' ) { register_sidebar(array( 'name' => 'Footer 1','id' => 'footer-1', 'description' => "Widetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
-		if ( ot_get_option('footer-widgets') >= '2' ) { register_sidebar(array( 'name' => 'Footer 2','id' => 'footer-2', 'description' => "Widetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
-		if ( ot_get_option('footer-widgets') >= '3' ) { register_sidebar(array( 'name' => 'Footer 3','id' => 'footer-3', 'description' => "Widetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
-		if ( ot_get_option('footer-widgets') >= '4' ) { register_sidebar(array( 'name' => 'Footer 4','id' => 'footer-4', 'description' => "Widetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
+		if ( ot_get_option('header-ads') == 'on' ) { register_sidebar(array( 'name' => 'Header Ads','id' => 'header-ads', 'description' => "Header ads area", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
+		if ( ot_get_option('footer-ads') == 'on' ) { register_sidebar(array( 'name' => 'Footer Ads','id' => 'footer-ads', 'description' => "Footer ads area", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
+		if ( ot_get_option('footer-widgets') >= '1' ) { register_sidebar(array( 'name' => 'Footer 1','id' => 'footer-1', 'description' => "Widgetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
+		if ( ot_get_option('footer-widgets') >= '2' ) { register_sidebar(array( 'name' => 'Footer 2','id' => 'footer-2', 'description' => "Widgetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
+		if ( ot_get_option('footer-widgets') >= '3' ) { register_sidebar(array( 'name' => 'Footer 3','id' => 'footer-3', 'description' => "Widgetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
+		if ( ot_get_option('footer-widgets') >= '4' ) { register_sidebar(array( 'name' => 'Footer 4','id' => 'footer-4', 'description' => "Widgetized footer", 'before_widget' => '<div id="%1$s" class="widget %2$s">','after_widget' => '</div>','before_title' => '<h3>','after_title' => '</h3>')); }
 	}
 	
 }
@@ -112,7 +118,6 @@ if ( ! function_exists( 'alx_scripts' ) ) {
 	
 	function alx_scripts() {
 		wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ),'', false );
-		wp_enqueue_script( 'jplayer', get_template_directory_uri() . '/js/jquery.jplayer.min.js', array( 'jquery' ),'', true );
 		wp_enqueue_script( 'scripts', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ),'', true );
 		if ( is_singular() && get_option( 'thread_comments' ) )	{ wp_enqueue_script( 'comment-reply' ); }
 	}  
@@ -514,30 +519,6 @@ if ( ! function_exists( 'alx_body_class' ) ) {
 add_filter( 'body_class', 'alx_body_class' );
 
 
-/*  Site title
-/* ------------------------------------ */
-if ( ! function_exists( 'alx_wp_title' ) ) {
-
-	function alx_wp_title( $title ) {
-		// Do not filter for RSS feed / if SEO plugin installed
-		if ( is_feed() || class_exists('All_in_One_SEO_Pack') || class_exists('HeadSpace_Plugin') || class_exists('Platinum_SEO_Pack') || class_exists('wpSEO') || defined('WPSEO_VERSION') )
-			return $title;
-		if ( is_front_page() ) { 
-			$title = get_bloginfo('name').' - '.get_bloginfo('description');
-		}
-		if ( is_front_page() && get_bloginfo('description') == '' ) { 
-			$title = get_bloginfo('name');
-		}
-		if ( !is_front_page() ) { 
-			$title .= ' - '.get_bloginfo('name');
-		}
-		return $title;
-	}
-	
-}
-add_filter( 'wp_title', 'alx_wp_title' );
-
-
 /*  Custom rss feed
 /* ------------------------------------ */
 if ( ! function_exists( 'alx_feed_link' ) ) {
@@ -613,13 +594,32 @@ add_filter( 'embed_oembed_html', 'alx_embed_wmode_transparent', 10, 3 );
 /* ------------------------------------ */	
 if ( ! function_exists( 'alx_embed_html' ) ) {
 
-	function alx_embed_html( $html ) {
+	function alx_embed_html( $html, $url ) {
+		
+		$pattern    = '/^https?:\/\/(www\.)?twitter\.com/';
+		$is_twitter = preg_match( $pattern, $url );
+		
+		if ( 1 === $is_twitter ) {
+			return $html;
+		}
+	
 		return '<div class="video-container">' . $html . '</div>';
 	}
 
 }
 add_filter( 'embed_oembed_html', 'alx_embed_html', 10, 3 );
-add_filter( 'video_embed_html', 'alx_embed_html' ); // Jetpack
+
+
+/*  Add responsive container to jetpack embeds
+/* ------------------------------------ */	
+if ( ! function_exists( 'alx_embed_html_jp' ) ) {
+
+	function alx_embed_html_jp( $html ) {
+		return '<div class="video-container">' . $html . '</div>';
+	}
+
+}
+add_filter( 'video_embed_html', 'alx_embed_html_jp' );
 
 
 /*  Upscale cropped thumbnails
@@ -767,32 +767,40 @@ add_action( 'wp_footer', 'alx_ie_js_footer', 20 );
 if ( ! function_exists( 'alx_plugins' ) ) {
 	
 	function alx_plugins() {
-		
-		// Add the following plugins
-		$plugins = array(
-			array(
-				'name' 				=> 'Regenerate Thumbnails',
-				'slug' 				=> 'regenerate-thumbnails',
-				'required'			=> false,
-				'force_activation' 	=> false,
-				'force_deactivation'=> false,
-			),
-			array(
-				'name' 				=> 'WP-PageNavi',
-				'slug' 				=> 'wp-pagenavi',
-				'required'			=> false,
-				'force_activation' 	=> false,
-				'force_deactivation'=> false,
-			),
-			array(
-				'name' 				=> 'Contact Form 7',
-				'slug' 				=> 'contact-form-7',
-				'required'			=> false,
-				'force_activation' 	=> false,
-				'force_deactivation'=> false,
-			)
-		);	
-		tgmpa( $plugins );
+		if ( ot_get_option('recommended-plugins') != 'off' ) {
+			// Add the following plugins
+			$plugins = array(
+				array(
+					'name' 				=> 'Regenerate Thumbnails',
+					'slug' 				=> 'regenerate-thumbnails',
+					'required'			=> false,
+					'force_activation' 	=> false,
+					'force_deactivation'=> false,
+				),
+				array(
+					'name' 				=> 'WP-PageNavi',
+					'slug' 				=> 'wp-pagenavi',
+					'required'			=> false,
+					'force_activation' 	=> false,
+					'force_deactivation'=> false,
+				),
+				array(
+					'name' 				=> 'Responsive Lightbox',
+					'slug' 				=> 'responsive-lightbox',
+					'required'			=> false,
+					'force_activation' 	=> false,
+					'force_deactivation'=> false,
+				),
+				array(
+					'name' 				=> 'Contact Form 7',
+					'slug' 				=> 'contact-form-7',
+					'required'			=> false,
+					'force_activation' 	=> false,
+					'force_deactivation'=> false,
+				)
+			);	
+			tgmpa( $plugins );
+		}
 	}
 	
 }

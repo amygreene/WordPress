@@ -1,9 +1,18 @@
 				</div><!--/.main-inner-->
-			</div><!--/.main-->
+			</div><!--/.main-->			
 		</div><!--/.container-inner-->
 	</div><!--/.container-->
 
-	<footer id="footer">	
+	<footer id="footer">
+		
+		<?php if ( ot_get_option('footer-ads') == 'on' ): ?>
+		<section class="container" id="footer-ads">
+			<div class="container-inner">
+				<?php dynamic_sidebar( 'footer-ads' ); ?>
+			</div><!--/.container-inner-->
+		</section><!--/.container-->
+		<?php endif; ?>
+		
 		<?php // footer widgets
 			$total = 4;
 			if ( ot_get_option( 'footer-widgets' ) != '' ) {
@@ -74,13 +83,13 @@
 						</div><!--/#credit-->
 						<?php endif; ?>
 						
-					</div><!--/.pad-->
+					</div>
 					
 					<div class="grid one-half last">	
 						<?php alx_social_links() ; ?>
 					</div>
 				
-				</div>
+				</div><!--/.pad-->
 				
 			</div><!--/.container-inner-->
 		</section><!--/.container-->

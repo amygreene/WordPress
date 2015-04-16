@@ -2,9 +2,9 @@
 Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
-Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 2.4.2
+Requires at least: 3.8
+Tested up to: 4.2-alpha
+Stable tag: 2.5.1
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -32,16 +32,23 @@ OptionTree is a project partly sponsored by <a href="http://themeforest.net/?ref
 This is a complete list of all the available option types that come shipped with OptionTree.
 
 * Background
+* Border
+* Box Shadow
 * Category Checkbox
 * Category Select
 * Checkbox
-* Color Picker
+* Colorpicker
+* Colorpicker Opacity
 * CSS
 * Custom Post Type Checkbox
 * Custom Post Type Select
 * Date Picker
 * Date Time Picker
+* Dimension
 * Gallery
+* Google Fonts
+* JavaScript
+* Link Color
 * List Item
 * Measurement
 * Numeric Slider
@@ -56,6 +63,7 @@ This is a complete list of all the available option types that come shipped with
 * Sidebar Select
 * Slider
 * Social Links
+* Spacing
 * Tab
 * Tag Checkbox
 * Tag Select
@@ -117,6 +125,72 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.5.1 =
+* Hotfix - Overhaul the Colorpicker Opacity option type so it saves rgba values, not arrays.
+* Hotfix - Added the ability to set opacity on any colorpicker with the `ot-colorpicker-opacity` class.
+* Hotfix - Don't use `esc_url_raw` to filter the Upload option type when it's saving an attachment ID. Contributors via github @RistoNiinemets.
+* Hotfix - Show an error message to user if unable to write to the `dynamic.css` file. Contributors via github @johnh10, and @valendesigns.
+* Hotfix - Force the `ot_google_fonts` array to be rebuilt when switching between themes.
+* Hotfix - Stop theme check from nagging about using `add_menu_page` in `ot-cleanup-api.php`.
+
+= 2.5.0 =
+* Added the Google Fonts option type. Contributors via github @maimairel, and @valendesigns.
+* Added the Border option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
+* Added the JavaScript option type.
+* Added the Link Color option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
+* Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.
+* Fixed the Colorpicker styles on mobile devices.
+* Show the Colorpicker setting ID inside the error message string when the value is invalid.
+* Added an 'on change' trigger to the Numeric Slider's hidden input. Contributors via github @cubell.
+* Stop Theme Check from complaining about the `register_post_type()` function being used in Theme Mode.
+* Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
+* Fixed jQuery UI style conflicts created by the WP Review plugin.
+* Changed the sanitization function from `sanitize_text_field` to `esc_url_raw` for the Upload option type.
+* Added filter `ot_dequeue_jquery_ui_css_screen_ids` to dequeue `jquery-ui-css` by screen ID.
+* Added filter `ot_on_off_switch_on_value` to filter the value of the On button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_on_label` to filter the label of the On button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_off_value` to filter the value of the Off button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_off_label` to filter the label of the Off button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_width` to filter the width of the On/Off switch.
+* Added filter `ot_type_date_picker_readonly` to filter the addition of the readonly attribute.
+* Added filter `ot_type_date_time_picker_readonly` to filter the addition of the readonly attribute.
+* Added filter `ot_admin_menu_priority` to filter the `admin_menu` action hook priority.
+* Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
+* Fixed an issue where changes to `theme-options.php` required a second page load.
+* Fixed the clean up script, it only displays when there's something to clean up. No more menu item!
+* Update demo files with the latest option types.
+* Changed where `ot_css_file_paths` is saved when `is_multisite` for better `dynamic.css` file support.
+* Changed the default `dynamic.css` file path in multisite to be `dynamic-{current-blog-id}.css`.
+
+= 2.4.6 =
+* Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.
+* Hotfix - Fixed an issue where `ot_get_media_post_ID()` was never able to set the value of the `ot_media_post_ID` option because it was already set to empty. Causing the `ot_create_media_post()` function to create multiple media posts.
+
+= 2.4.5 =
+* Hotfix - Fixed an issue where `ot_get_media_post_ID()` was setting the value of the `ot_media_post_ID` option to `null`. Causing the `ot_create_media_post()` function to create multiple media posts. A clean up script will be added to `2.5.0`.
+
+= 2.4.4 =
+* Hotfix - Fixed undefined index caused by shorthand conditional.
+* Hotfix - Fixed jQuery UI style conflicts created by the Easy Digital Downloads plugin.
+* Hotfix - Added placeholder to background-image. Contributors via github @BassemN.
+
+= 2.4.3 =
+* Hotfix - WordPress 4.0 compatible.
+* Hotfix - Fixed an issue where all media was being attached to the default OptionTree media post.
+* Hotfix - Removed the deprecated `screen_icon()` function.
+* Hotfix - Fixed the `ot_line_height_range_interval` filter being misnamed as `ot_line_height_unit_type`. Contributors via github @youri--.
+* Hotfix - Fixed a conflict with "Frontend Publishing Pro" when using the media uploader on the front-end.
+* Hotfix - Increase condition performance. Contributors via github @designst.
+* Hotfix - Add custom style classes to list-item settings. Contributors via github @designst.
+* Hotfix - Check for `post_title` instead of `post_name` in `ot_get_media_post_ID()`. Contributors via github @clifgriffin.
+* Hotfix - Store the return value of `ot_get_media_post_ID()` in the options table as `ot_media_post_ID`.
+* Hotfix - Added padding to List Items options to reflect the same UI as individual options. Contributors via github @valendesigns and @designst.
+* Hotfix - Fixed a bug that caused the Social Links option type to not properly import.
 
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.

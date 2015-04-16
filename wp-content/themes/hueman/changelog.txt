@@ -1,6 +1,73 @@
   Theme : Hueman (wordpress.org release)
-Version : 1.4.2
+Version : 1.5.4
  Author : Alexander "Alx" Agnarson - http://alxmedia.se
+
+February 26 2015 - 1.5.4
+===========================================================
+- CSS cleanup
+
+February 24 2015 - 1.5.3
+===========================================================
+- Removed post format meta boxes markup as required
+
+February 24 2015 - 1.5.2
+===========================================================
+- Removed post format meta boxes as required
+
+February 15 2015 - 1.5.1
+===========================================================
+- Updated to OptionTree 2.5.1
+- Added Responsive Lightbox as recommended plugin
+- Added missing wp_reset_postdata to recent and featured posts - @Marco Almeida
+
+February 6 2015 - 1.5.0
+===========================================================
+- Added missing wp_reset_postdata to tabs and posts widgets - @Marco Almeida
+- Optimized search results - @Marco Almeida
+- Updated language files
+
+February 6 2015 - 1.4.9
+===========================================================
+- Fixed dropdown menus for iPhone
+- Fixed toggle sidebars for iPhone and iPad
+- Fixed typos in functions.php - @jaylinski (via GitHub)
+- Updated to jPlayer 2.9.2
+
+January 29 2015 - 1.4.8
+===========================================================
+- Fixed double title tag
+
+January 22 2014 - 1.4.7
+===========================================================
+- Added text domain to stylesheet
+
+January 19 2014 - 1.4.6
+===========================================================
+- Added WP 4.1 title tag support
+- Added standard blog list option
+- Added header and footer widget ads areas
+- Moved disable sidebar top option to sidebars section
+- Updated to OptionTree 2.4.6
+
+October 10 2014 - 1.4.5
+===========================================================
+- Disabled all post formats with additional meta fields, as required
+- Updated documentation
+- Added option to turn off sidebar top boxes
+- Fixed gallery format post slider, downgraded to flexslider 2.1 instead of 2.2
+- Re-fixed responsive Jetpack embeds
+
+September 18 2014 - 1.4.4
+===========================================================
+- Added option to turn recommended plugins off
+- Fixed protocol-relative URLs for Google Fonts - @chkorn (via GitHub)
+- Fixed Twitter embeds - @ShinichiNishikawa (via GitHub)
+- Fixed capability with WP-UserAgent - @JayXon (via GitHub)
+
+September 3 2014 - 1.4.3
+===========================================================
+- Updated to Font Awesome 4.2.0
+- Minor css fixes
 
 August 20 2014 - 1.4.2
 ===========================================================
