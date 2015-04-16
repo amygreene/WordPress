@@ -88,6 +88,15 @@ background-size: 11.1%; /* This is at 6-columns -> just change this # */
   /* 21px / 16px */
   line-height: 1.143;
 }
+.full-width-images .excerpt-title a {
+  color: white;
+}
+.full-width-images .excerpt-title a:link, .full-width-images .excerpt-title a:visited {
+  color: white;
+}
+.full-width-images .excerpt-title a:hover, .full-width-images .excerpt-title a:active, .full-width-images .excerpt-title a:focus {
+  color: white;
+}
 .full-width-images .excerpt:not(.has-post-thumbnail) {
   background: #111111;
   height: 0;
@@ -114,6 +123,21 @@ background-size: 11.1%; /* This is at 6-columns -> just change this # */
 }
 .full-width-images.singular-page .entry-header {
   padding-top: 3em;
+}
+
+.full-width-images.title-below .excerpt {
+  background: none;
+}
+.full-width-images.title-below .excerpt-container {
+  position: relative;
+  opacity: 1;
+}
+.full-width-images.title-below .excerpt-header {
+  padding: 0.75em 1.5em 1.5em;
+}
+.full-width-images.title-below .excerpt-title {
+  font-size: 1em;
+  line-height: 1.5;
 }
 
 /* 800px */

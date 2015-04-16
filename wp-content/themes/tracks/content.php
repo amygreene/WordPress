@@ -3,14 +3,25 @@
 if( is_single() ) { ?>
     <div <?php post_class(); ?>>
         <?php
-        if(get_theme_mod('premium_layouts_setting') == 'full-width-images' || get_theme_mod('premium_layouts_setting') == 'two-column-images'){
-            if (has_post_thumbnail( $post->ID ) ) {
-                echo "<div class='featured-image-container'>";
-                ct_tracks_featured_image();
-                echo "</div>";
-            }
+
+        // check for Featured Video
+        $video = get_post_meta( $post->ID, 'ct_tracks_video_key', true );
+
+        // if has a video, embed it instead of featured image
+        if( $video ) {
+	        echo '<div class="featured-video">';
+	            echo wp_oembed_get( esc_url( $video ) );
+	        echo '</div>';
+        }
+        // otherwise, output the featured image
+        elseif(get_theme_mod('premium_layouts_setting') == 'full-width-images' || get_theme_mod('premium_layouts_setting') == 'two-column-images'){
+	        if (has_post_thumbnail( $post->ID ) ) {
+		        echo "<div class='featured-image-container'>";
+		            ct_tracks_featured_image();
+		        echo "</div>";
+	        }
         } else {
-            ct_tracks_featured_image();
+	        ct_tracks_featured_image();
         }
         ?>
         <div class="entry-meta">
@@ -26,9 +37,12 @@ if( is_single() ) { ?>
                     <?php wp_link_pages(array('before' => '<p class="singular-pagination">' . __('Pages:','tracks'), 'after' => '</p>', ) ); ?>
                 </article>
             </div>
-            <?php echo get_template_part('sidebar','after-post-content'); ?>
+            <?php get_template_part('sidebar','after-post-content'); ?>
             <div class='entry-meta-bottom'>
-                <?php get_template_part('content/further-reading'); ?>
+                <?php
+                if( get_theme_mod('additional_options_further_reading_settings') != 'hide' ) {
+	                get_template_part('content/further-reading');
+                } ?>
                 <div class="entry-categories">
                     <?php get_template_part('content/category-links'); ?>
                 </div>
@@ -41,7 +55,11 @@ if( is_single() ) { ?>
                 <div class="author-meta">
                     <div class="author">
                         <?php ct_tracks_profile_image_output(); ?>
-                        <span>Written by: <?php the_author_posts_link(); ?></span>
+                        <span><?php
+	                            _e( 'Written by:', 'tracks');
+	                            the_author_posts_link();
+	                          ?>
+                        </span>
                     </div>
                     <div class="bio">
                         <p><?php the_author_meta( 'description' ); ?></p>
@@ -54,15 +72,35 @@ if( is_single() ) { ?>
 <?php
 } else { ?>
     <div <?php post_class(); ?>>
-        <?php
-        // don't link the image if full-width layout
-        if(get_theme_mod('premium_layouts_setting') == 'full-width' || get_theme_mod('premium_layouts_setting') == 'full-width-images'){
-            ct_tracks_featured_image();
-        } else { ?>
-            <a class="featured-image-link" href="<?php the_permalink(); ?>">
-                <?php ct_tracks_featured_image(); ?>
-            </a>
-        <?php } ?>
+	    <?php
+
+        // check for Featured Video
+        $video = get_post_meta( $post->ID, 'ct_tracks_video_key', true );
+
+        if( $video ) {
+
+            // if post has video enabled on blog
+            if ( get_post_meta( $post->ID, 'ct_tracks_video_display_key', true ) == 'both' ) {
+                $video = esc_url($video);
+                $video = wp_oembed_get($video);
+
+                echo '<div class="featured-video">';
+                    echo $video;
+                echo '</div>';
+            }
+            else {
+                echo '<a class="featured-image-link" href="' . get_permalink() . '">';
+                    ct_tracks_featured_image();
+                echo '</a>';
+            }
+        }
+	    // otherwise output Featured Image
+	    else {
+		    echo '<a class="featured-image-link" href="' . get_permalink() . '">';
+                ct_tracks_featured_image();
+            echo '</a>';
+	    }
+	    ?>
         <div class="excerpt-container">
             <?php
             if(get_theme_mod('premium_layouts_setting') == 'full-width-images' || get_theme_mod('premium_layouts_setting') == 'two-column-images'){ ?>

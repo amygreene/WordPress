@@ -76,6 +76,20 @@
     opacity: 0.9;
     font-size: 1.313em; /* 21px / 16px */
     line-height: 1.143;
+
+    a {
+      color: white;
+
+      &:link,
+      &:visited {
+        color: white;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        color: white;
+      }
+    }
   }
   .excerpt:not(.has-post-thumbnail){
     background: $gray-very-dark;
@@ -123,10 +137,14 @@
 
     .main {
       width: 91.665%;
+      max-width: 1315px;
 
       &:after {
         @include clearfix;
       }
+    }
+    .archive-header {
+      margin-left: 1.2%;
     }
   }
   .two-column-images {

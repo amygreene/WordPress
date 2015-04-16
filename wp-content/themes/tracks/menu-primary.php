@@ -1,9 +1,11 @@
-<button id="toggle-navigation" class="toggle-navigation"><i class="fa fa-bars"></i></button>
+<button id="toggle-navigation" class="toggle-navigation">
+	<i class="fa fa-bars"></i>
+</button>
 
 <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
 <div id="menu-primary" class="menu-container menu-primary" role="navigation">
 
-    <?php if(get_bloginfo('description') && ( get_theme_mod('tagline_display_setting') == 'header-footer' ) || ( get_theme_mod('tagline_display_setting') == 'header' )){ ?>
+    <?php if(get_bloginfo('description') && ( get_theme_mod('tagline_display_setting') != 'footer' ) ){ ?>
         <p class="site-description"><?php bloginfo('description'); ?></p>
     <?php } ?>
 

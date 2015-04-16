@@ -1,42 +1,84 @@
 jQuery(function($){
 
-    $(".entry-content").fitVids();
-    $(".excerpt-content").fitVids();
+    $('.entry-content, .excerpt-content, .featured-video').fitVids();
+
+    // set variables
+    var siteHeader = $('#site-header');
+    var menuPrimary = $('#menu-primary');
+    var menuPrimaryTracks = $('#menu-primary-tracks');
+    if( $('#menu-primary-items').length){
+        var primaryMenu = $('#menu-primary-items');
+    } else {
+        var primaryMenu = $('.menu-unset');
+    }
+    var body = $('body');
+    var overflowContainer = $('#overflow-container');
 
     // bind the tap event on the menu icon
     $('#toggle-navigation').bind('click', onTap);
 
     function onTap() {
 
-        var siteHeader = $('#site-header');
-        var menuPrimary = $('#menu-primary');
+        // get height of primary menu
+        var menuHeight = primaryMenu.height();
 
+        // if menu already open
         if (siteHeader.hasClass('toggled')) {
+
+            // remove class
             siteHeader.removeClass('toggled');
+
+            // slide menu bg out of view
+            // vendor prefixes added for improved reliability
+            menuPrimary.css('-webkit-transform', 'translateX(' + 0 + 'px)');
+            menuPrimary.css('-ms-transform', 'translateX(' + 0 + 'px)');
             menuPrimary.css('transform', 'translateX(' + 0 + 'px)');
-            $('#menu-primary-tracks').css('transform', 'translateX(' + 0 + 'px)');
+
+            menuPrimaryTracks.css('-webkit-transform', 'translateX(' + 0 + 'px)');
+            menuPrimaryTracks.css('-ms-transform', 'translateX(' + 0 + 'px)');
+            menuPrimaryTracks.css('transform', 'translateX(' + 0 + 'px)');
+
+            // stop watching scroll to auto-close menu
             $(window).unbind('scroll');
+
             // delayed so it isn't seen
             setTimeout(function() {
+                // remove the remaining translateX(0px)
                 menuPrimary.removeAttr('style');
+                // remove min-height added
+                overflowContainer.removeAttr('style');
             }, 400);
-        } else {
+
+        }
+        // if menu not open already
+        else {
+
+            // get width of primary menu
             var menuWidth = menuPrimary.width();
+
+            // add class
             siteHeader.addClass('toggled');
+
+            // slide menu bg into view
+            // vendor prefixes added for improved reliability
+            menuPrimary.css('-webkit-transform', 'translateX(' + -menuWidth + 'px)');
+            menuPrimary.css('-ms-transform', 'translateX(' + -menuWidth + 'px)');
             menuPrimary.css('transform', 'translateX(' + -menuWidth + 'px)');
-            $('#menu-primary-tracks').css('transform', 'translateX(' + menuWidth + 'px)');
+
+            menuPrimaryTracks.css('-webkit-transform', 'translateX(' + menuWidth + 'px)');
+            menuPrimaryTracks.css('-ms-transform', 'translateX(' + menuWidth + 'px)');
+            menuPrimaryTracks.css('transform', 'translateX(' + menuWidth + 'px)');
+
+            // if page is shorter than menu, extend to fit menu
+            overflowContainer.css('min-height', menuHeight + 240);
+
+            // watch scroll to auto-close the menu if visitor scrolls past it
             $(window).scroll(onScroll);
         }
     }
     function onScroll() {
 
-        if($('#menu-primary-items').length){
-            var menuPrimaryItems = $('#menu-primary-items');
-        } else {
-            var menuPrimaryItems = $('.menu-unset');
-        }
-
-        var menuItemsBottom = menuPrimaryItems.offset().top + menuPrimaryItems.height();
+        var menuItemsBottom = primaryMenu.offset().top + primaryMenu.height();
 
         // keep updating var on scroll
         var topDistance = $(window).scrollTop();
@@ -91,8 +133,6 @@ jQuery(function($){
 
     function openSecondaryMenu() {
 
-        var body = $('body');
-
         if (body.hasClass('secondary-toggle')) {
             body.removeClass('secondary-toggle');
             $('#main, #title-info, #toggle-navigation').css('transform','translateY(0)');
@@ -108,8 +148,6 @@ jQuery(function($){
 
     function openSearchBar() {
 
-        var body = $('body');
-
         if (body.hasClass('search-open')) {
             body.removeClass('search-open');
             $('#search-icon').css('left', 0);
@@ -120,7 +158,7 @@ jQuery(function($){
             var sitePadding = body.width() * 0.0555;
 
             // get width of site padding-right
-            var searchFormWidth = $('#site-header').find('.search-form').width();
+            var searchFormWidth = siteHeader.find('.search-form').width();
 
             /* transform on a button makes it disappear in webkit, so using left.
             *  Move search-form width left minus site padding plus extra 7px space */
@@ -133,10 +171,14 @@ jQuery(function($){
     function displayLayoutOptions(){
 
         var imageHeightOption = $('html', window.parent.document).find('#customize-control-premium_layouts_full_width_image_height');
+        var imageHeightPostOption = $('html', window.parent.document).find('#customize-control-premium_layouts_full_width_image_height_post');
+        var imageStyleOption = $('html', window.parent.document).find('#customize-control-premium_layouts_full_width_image_style');
         var fullPostOption = $('html', window.parent.document).find('#customize-control-premium_layouts_full_width_full_post');
         var contentDisplayOption = $('html', window.parent.document).find('#customize-control-premium_layouts_two_column_images_content_display');
 
         imageHeightOption.hide();
+        imageHeightPostOption.hide();
+        imageStyleOption.hide();
         fullPostOption.hide();
         contentDisplayOption.hide();
 
@@ -144,6 +186,8 @@ jQuery(function($){
         $('html', window.parent.document).find('#customize-control-premium_layouts_setting option').each(function(){
             if($(this).attr('selected') == 'selected' && $(this).val() == 'full-width-images'){
                 imageHeightOption.show();
+                imageStyleOption.show();
+                imageHeightPostOption.show();
             }
             if($(this).attr('selected') == 'selected' && $(this).val() == 'full-width'){
                 fullPostOption.show();
@@ -175,6 +219,11 @@ jQuery(function($){
 
     $(window).on('resize', function(){
         separatePostImage();
+        videoHeightAdjust();
+
+        if( $(window).width() > 799 && $('#site-header').hasClass('toggled') ) {
+            onTap();
+        }
     });
 
     /* ===== IE9 full-width image text positioning ===== */
@@ -182,7 +231,7 @@ jQuery(function($){
     function centerContentIE(){
 
         // only if ie9 and full-width-images layout or two-column-images layout
-        if($('html').hasClass('ie9') && ($('body').hasClass('full-width-images') || $('body').hasClass('two-column-images'))){
+        if($('html').hasClass('ie9') && (body.hasClass('full-width-images') || body.hasClass('two-column-images'))){
 
             $('.excerpt-container').each(function(){
 
@@ -259,6 +308,81 @@ jQuery(function($){
     }
     $(document).on('click', reApplyClosedClass);
 
+    // reposition the description if a logo is present
+    function positionSiteDescription(){
+
+        var logo = siteHeader.find('.logo');
+
+            // if screen is 800px+ wide
+            if( $(window).width() > 799 ) {
+
+                // if there is a logo
+                if( logo.length ) {
+
+                    // get the logo height
+                    var logoHeight = logo.height();
+
+                    // if logo hasn't loaded yet, wait 1000ms
+                    if( logoHeight == 0 ) {
+                        setTimeout( function(){
+                            $(".site-description").css('top', logoHeight - 25 );
+                        }, 1000 )
+                    } else {
+                        // adjust the description placement accordingly
+                        $(".site-description").css('top', logoHeight - 25 );
+                    }
+                }
+            }
+    }
+    positionSiteDescription();
+
+
+    // get videos on the blog to better fit with the standard layout
+    function videoHeightAdjust() {
+
+        // only if side-by-side layout active
+        if( $(window).width() > 899 ) {
+
+            // only if standard layout
+            if( body.hasClass('standard') ) {
+
+                // foreach excerpt with a video
+                $('.excerpt.has-video').each( function() {
+
+                    // get the video height
+                    var videoHeight = $(this).find('.fluid-width-video-wrapper').outerHeight();
+
+                    // set excerpt min-height to the video's height
+                    $(this).css('min-height', videoHeight );
+
+                    // get current height of excerpt content
+                    var contentHeight = $(this).find('.excerpt-container').outerHeight();
+
+                    if( videoHeight > contentHeight ) {
+                        var difference = (videoHeight - contentHeight) / 2;
+                    } else {
+                        var difference = 0;
+                    }
+
+                    var padding = difference + 'px 5.55%';
+
+                    // center excerpt container
+                    $(this).find('.excerpt-container').css('padding', padding );
+                });
+            }
+        }
+    }
+    videoHeightAdjust();
+
+    // adjust height to fit footer into viewport instead of keeping it just out of view
+    function adjustSiteHeight() {
+
+        var footerHeight = $('#site-footer').outerHeight();
+
+        body.css('height', 'calc(100% - ' + footerHeight + 'px)');
+    }
+    adjustSiteHeight();
+
 });
 
 jQuery(window).load(function(){
@@ -306,17 +430,29 @@ jQuery(window).load(function(){
 
 // wait to see if a touch event is fired
 var hasTouch;
-window.addEventListener('touchstart', function setHasTouch () {
+window.addEventListener('touchstart', setHasTouch, false );
+
+// require a double-click on parent dropdown items
+function setHasTouch() {
+
     hasTouch = true;
 
     // Remove event listener once fired
     window.removeEventListener('touchstart', setHasTouch);
 
-    // since touch events are definitely being used, turn on the functionality
-    // to require a double-click on parent dropdown items
-    enableTouchDropdown();
+    // get the width of the window
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth;
 
-}, false);
+
+    // don't require double clicks for the toggle menu
+    if (x > 799) {
+        enableTouchDropdown();
+    }
+}
 
 // require a second click to visit parent navigation items
 function enableTouchDropdown(){

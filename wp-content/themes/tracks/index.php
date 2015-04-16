@@ -2,26 +2,30 @@
 
 <?php
 
+// get user's comment display setting
+$comments_display = get_theme_mod('ct_tracks_comments_setting');
+
 /* Category header */
 if(is_category()){ ?>
     <div class='archive-header'>
-    <p>Category:</p>
+    <p><?php _e('Category:', 'tracks'); ?></p>
     <h2><?php single_cat_title(); ?></h2>
     </div><?php
 }
 /* Tag header */
 elseif(is_tag()){ ?>
     <div class='archive-header'>
-    <p>Tag:</p>
+    <p><?php _e('Tag:', 'tracks'); ?></p>
     <h2><?php single_tag_title(); ?></h2>
     </div><?php
 }
 /* Author header */
 elseif(is_author()){ ?>
-    <div class='archive-header'>
-    <p>These Posts are by:</p>
-    <h2><?php echo get_the_author(); ?></h2>
-    </div><?php
+	<div class='archive-header'>
+	<p><?php _e('These Posts are by:', 'tracks'); ?></p><?php
+	$author = get_userdata(get_query_var('author')); ?>
+	<h2><?php echo $author->nickname; ?></h2>
+	</div><?php
 }
 
 // The loop
@@ -63,7 +67,19 @@ if ( have_posts() ) :
         /* Archive */
         elseif(is_archive()){
 
-            if(get_theme_mod('premium_layouts_setting') == 'two-column-images'){
+            /* check if bbPress is active */
+            if( function_exists( 'is_bbpress' ) ) {
+
+                /* if is bbPress forum list */
+                if( is_bbpress() ) {
+                    get_template_part( 'content/bbpress' );
+                }
+                /* normal archive */
+                else {
+                    get_template_part('content');
+                }
+            }
+            elseif(get_theme_mod('premium_layouts_setting') == 'two-column-images'){
                 get_template_part('licenses/content/content-two-column-images');
             }
             elseif(get_theme_mod('premium_layouts_setting') == 'full-width-images'){
@@ -73,6 +89,10 @@ if ( have_posts() ) :
                 get_template_part('content');
             }
         }
+        /* bbPress */
+        elseif( function_exists( 'is_bbpress' ) && is_bbpress() ) {
+            get_template_part( 'content/bbpress' );
+        }
         /* Custom Post Types */
         else {
             get_template_part('content');
@@ -80,6 +100,19 @@ if ( have_posts() ) :
     endwhile;
 endif; ?>
 
-<?php ct_tracks_post_navigation(); ?>
-    
+<?php
+
+// include loop pagination except for on bbPress Forum root
+if( function_exists( 'is_bbpress' ) ) {
+
+    if( ! ( is_bbpress() && is_archive() ) ) {
+        ct_tracks_post_navigation();
+    }
+
+} else {
+    ct_tracks_post_navigation();
+}
+
+?>
+
 <?php get_footer(); ?>

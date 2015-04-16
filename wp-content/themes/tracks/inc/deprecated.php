@@ -89,3 +89,71 @@ function ct_tracks_further_reading() {
     }
     echo "</nav>";
 }
+
+/*
+ * @deprecated 1.30
+ * Now template part /content/social-icons.php
+ */
+function ct_tracks_customizer_social_icons_output() {
+
+	// array of social media site names
+	$social_sites = ct_tracks_social_site_list();
+
+	// any inputs that aren't empty are stored in $active_sites array
+	foreach($social_sites as $social_site) {
+		if( strlen( get_theme_mod( $social_site ) ) > 0 ) {
+			$active_sites[] = $social_site;
+		}
+	}
+
+	// for each active social site, add it as a list item
+	if(!empty($active_sites)) {
+		echo "<ul class='social-media-icons'>";
+		foreach ($active_sites as $active_site) { ?>
+			<li>
+			<?php if( $active_site == 'email' ) : ?>
+			<a target="_blank" href="mailto:<?php echo antispambot( is_email( get_theme_mod( $active_site ) ) ); ?>">
+			<?php else : ?>
+			<a target="_blank" href="<?php echo esc_url(get_theme_mod( $active_site )); ?>">
+		<?php endif; ?>
+
+			<?php if( $active_site ==  "flickr" || $active_site ==  "dribbble" || $active_site ==  "instagram" || $active_site ==  "soundcloud" || $active_site ==  "spotify" || $active_site ==  "vine" || $active_site ==  "yahoo" || $active_site ==  "codepen" || $active_site ==  "delicious" || $active_site ==  "stumbleupon" || $active_site ==  "deviantart" || $active_site ==  "digg" || $active_site ==  "hacker-news" || $active_site == 'vk' || $active_site == 'weibo' || $active_site == 'tencent-weibo') { ?>
+				<i class="fa fa-<?php echo $active_site; ?>"></i>
+			<?php } elseif( $active_site == 'email' ) { ?>
+				<i class="fa fa-envelope"></i>
+			<?php } else { ?>
+			<i class="fa fa-<?php echo $active_site; ?>-square"></i><?php
+			} ?>
+			</a>
+			</li><?php
+		}
+		echo "</ul>";
+	}
+}
+
+/*
+ * @deprecated 1.30
+ * Now template part /content/author-social-icons.php
+ */
+function ct_tracks_author_social_icons() {
+
+	// array of social media site names
+	$social_sites = ct_tracks_social_array();
+
+	foreach ($social_sites as $key => $social_site) {
+		if(get_the_author_meta( $social_site)) {
+			if( $key ==  "flickr" || $key ==  "dribbble" || $key ==  "instagram" || $key ==  "soundcloud" || $key ==  "spotify" || $key ==  "vine" || $key ==  "yahoo" || $key ==  "codepen" || $key ==  "delicious" || $key ==  "stumbleupon" || $key ==  "deviantart" || $key ==  "digg" || $key ==  "hacker-news" || $key == 'vk' || $key == 'weibo' || $key == 'tencent-weibo') {
+				echo "<a href='".esc_url(get_the_author_meta( $social_site))."'><i class=\"fa fa-$key\"></i></a>";
+			}
+			elseif($key == 'googleplus'){
+				echo "<a href='".esc_url(get_the_author_meta( $social_site))."'><i class=\"fa fa-google-plus-square\"></i></a>";
+			}
+			elseif($key == 'email'){
+				echo "<a href='mailto:" . antispambot( is_email( get_the_author_meta( $social_site) ) ) . "'><i class=\"fa fa-envelope\"></i></a>";
+			}
+			else {
+				echo "<a href='".esc_url(get_the_author_meta( $social_site))."'><i class=\"fa fa-$key-square\"></i></a>";
+			}
+		}
+	}
+}

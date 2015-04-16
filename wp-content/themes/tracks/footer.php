@@ -1,6 +1,6 @@
 </div> <!-- .main -->
 
-<footer class="site-footer" role="contentinfo">
+<footer id="site-footer" class="site-footer" role="contentinfo">
     <h3>
         <a href="<?php echo esc_url(home_url()); ?>"><?php bloginfo('title'); ?></a>
     </h3>
@@ -17,13 +17,33 @@
             ct_tracks_customizer_social_icons_output();
         }
     ?>
+	<?php get_template_part('sidebar','footer'); ?>
     <div class="design-credit">
-        <p><a href="http://www.competethemes.com/tracks/">Tracks WordPress Theme</a> by Compete Themes</p>
+        <p>
+            <?php
+            /* Get the user's footer text input */
+            $user_footer_text = get_theme_mod('ct_tracks_footer_text_setting');
+
+            /* If it's not empty, output their text */
+            if( ! empty($user_footer_text) ) {
+                echo $user_footer_text;
+            }
+            /* Otherwise, output the default text */
+            else {
+                $site_url = 'https://www.competethemes.com/tracks/';
+                $footer_text = sprintf( __( '<a target="_blank" href="%s">Tracks WordPress Theme</a> by Compete Themes.', 'tracks' ), esc_url( $site_url ) );
+                echo $footer_text;
+            }
+            ?>
+        </p>
     </div>
 </footer>
-<button id="return-top" class="return-top">
-    <i class="fa fa-arrow-up"></i>
-</button>
+
+<?php if( get_theme_mod('additional_options_return_top_settings') != 'hide' ) { ?>
+	<button id="return-top" class="return-top">
+		<i class="fa fa-arrow-up"></i>
+	</button>
+<?php } ?>
 
 <?php
     // add the background image if being used

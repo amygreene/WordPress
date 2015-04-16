@@ -12,7 +12,7 @@
 
 /* Adds common theme items to <head>. */
 add_action( 'wp_head', 'hybrid_meta_charset',  0 );
-add_action( 'wp_head', 'hybrid_doctitle',      0 );
+//add_action( 'wp_head', 'hybrid_doctitle',      0 );
 add_action( 'wp_head', 'hybrid_meta_viewport', 1 );
 add_action( 'wp_head', 'hybrid_meta_template', 1 );
 add_action( 'wp_head', 'hybrid_link_pingback', 3 );
@@ -44,18 +44,7 @@ function hybrid_meta_template() {
  * @return void
  */
 function hybrid_meta_charset() {
-	echo '<meta charset="' . get_bloginfo( 'charset' ) . '" />' . "\n";
-}
-
-/**
- * Adds the title to the header.
- *
- * @since  2.0.0
- * @access public
- * @return void
- */
-function hybrid_doctitle() {
-	printf( "<title>%s</title>\n", wp_title( ':', false ) );
+	printf( '<meta charset="%s" />' . "\n", get_bloginfo( 'charset' ) );
 }
 
 /**
@@ -77,7 +66,7 @@ function hybrid_meta_viewport() {
  */
 function hybrid_link_pingback() {
 	if ( 'open' === get_option( 'default_ping_status' ) )
-		echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . "\n";
+		printf( '<link rel="pingback" href="%s" />' . "\n", get_bloginfo( 'pingback_url' ) );
 }
 
 /**
@@ -91,6 +80,9 @@ function hybrid_link_pingback() {
  * @return string
  */
 function hybrid_wp_title( $doctitle, $separator, $seplocation ) {
+
+	/* Custom separator for backwards compatibility. */
+	$separator = ':';
 
 	if ( is_front_page() )
 		$doctitle = get_bloginfo( 'name' ) . $separator . ' ' . get_bloginfo( 'description' );
@@ -111,7 +103,7 @@ function hybrid_wp_title( $doctitle, $separator, $seplocation ) {
 		$doctitle = post_type_archive_title( '', false );
 
 	elseif ( is_author() )
-		$doctitle = get_the_author_meta( 'display_name', get_query_var( 'author' ) );
+		$doctitle = hybrid_single_author_title( '', false );
 
 	elseif ( get_query_var( 'minute' ) && get_query_var( 'hour' ) )
 		$doctitle = hybrid_single_minute_hour_title( '', false );

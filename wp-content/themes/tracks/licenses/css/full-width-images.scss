@@ -74,6 +74,20 @@
     opacity: 0.9;
     font-size: 1.313em; /* 21px / 16px */
     line-height: 1.143;
+
+    a {
+      color: white;
+
+      &:link,
+      &:visited {
+        color: white;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        color: white;
+      }
+    }
   }
   .excerpt:not(.has-post-thumbnail){
     background: $gray-very-dark;
@@ -112,7 +126,23 @@
     }
   }
 }
+.full-width-images.title-below {
 
+  .excerpt {
+    background: none;
+  }
+  .excerpt-container {
+    position: relative;
+    opacity: 1;
+  }
+  .excerpt-header {
+    padding: $baseline-height / 2 $baseline-height $baseline-height;
+  }
+  .excerpt-title {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+}
 /* 800px */
 @media all and (min-width: 50em){
 
