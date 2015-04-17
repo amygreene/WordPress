@@ -67,7 +67,7 @@ class User_Activity {
 
 		global $wpmudev_notices;
 		$wpmudev_notices[] = array( 'id'=> 3,'name'=> 'User Activity', 'screens' => array( 'settings_page_user_activity_main-network' ) );
-		include_once( 'externals/wpmudev-dash-notification.php' );
+	//	include_once( 'externals/wpmudev-dash-notification.php' );
 
 	}
 
