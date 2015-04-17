@@ -280,5 +280,5 @@ if ( is_admin() && file_exists( '/dash-notice/wpmudev-dash-notification.php' ) )
 		'id'   => 8,
 		'name' => 'Signup TOS'
 	);
-	require_once '/dash-notice/wpmudev-dash-notification.php';
+//	require_once '/dash-notice/wpmudev-dash-notification.php';
 }
