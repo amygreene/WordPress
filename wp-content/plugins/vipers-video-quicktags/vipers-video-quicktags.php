@@ -88,7 +88,7 @@ class VipersVideoQuicktags {
 		// Create default settings array
 		$this->defaultsettings = apply_filters( 'vvq_defaultsettings', array(
 			'youtube' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 425,
 				'height'          => 344,
 				'color1'          => '#666666',
@@ -114,7 +114,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'vimeo' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 400,
 				'height'          => 300,
 				'color'           => '#00ADEF',
@@ -126,7 +126,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'dailymotion' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 480,
 				'height'          => 221,
 				'backgroundcolor' => '#DEDEDE',
@@ -139,7 +139,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'veoh' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 540,
 				'height'          => 438,
 				'aspectratio'     => 1,
@@ -154,7 +154,7 @@ class VipersVideoQuicktags {
 				'aspectratio'     => 1,
 			),
 			'bliptv' => array(
-				'button'          => 1,
+				'button'          => 0,
 				'width'           => 400,
 				'height'          => 330,
 				'aspectratio'     => 1,
