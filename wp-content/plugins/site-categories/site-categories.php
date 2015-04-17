@@ -68,7 +68,7 @@ class SiteCategories {
 		// Add support for new WPMUDEV Dashboard Notices
 		global $wpmudev_notices;
 		$wpmudev_notices[] = array( 'id'=> 679160,'name'=> 'Site Categories', 'screens' => array( 'toplevel_page_bcat_settings', 'edit-bcat'));
-		include_once( dirname(__FILE__) . '/lib/dash-notices/wpmudev-dash-notification.php' );
+		//include_once( dirname(__FILE__) . '/lib/dash-notices/wpmudev-dash-notification.php' );
 
 		$this->_settings['VERSION'] 				= '1.0.9.1';
 		$this->_settings['MENU_URL'] 				= 'options-general.php?page=site_categories';
