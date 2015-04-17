@@ -64,7 +64,7 @@ class Google_Analytics_Async {
         //Loads WPMUDEV dashboard
         global $wpmudev_notices;
         $wpmudev_notices[] = array( 'id'=> 51, 'name'=> 'Google Analytics', 'screens' => array( 'settings_page_google-analytics-network', 'settings_page_google-analytics' ) );
-        include_once(GOOLGEANALYTICS_PLUGIN_DIR.'google-analytics-async-files/externals/dash-notice/wpmudev-dash-notification.php');
+        //include_once(GOOLGEANALYTICS_PLUGIN_DIR.'google-analytics-async-files/externals/dash-notice/wpmudev-dash-notification.php');
 
         $this->init_vars();
 		$this->init();
