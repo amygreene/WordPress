@@ -87,7 +87,7 @@ class Incsub_Batch_Create {
 
 		global $wpmudev_notices;
 		$wpmudev_notices[] = array( 'id'=> 84,'name'=> 'Batch Create', 'screens' => array( 'settings_page_batch-create-menu-network' ) );
-		include_once( 'externals/wpmudev-dash-notification.php' );
+	//	include_once( 'externals/wpmudev-dash-notification.php' );
 	}
 
 	/**
