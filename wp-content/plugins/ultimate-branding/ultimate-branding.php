@@ -53,4 +53,4 @@ if (is_admin()) {
     $ubp = new UltimateBrandingPublic();
 }
 
-include_once('external/dash-notice/wpmudev-dash-notification.php');
+//include_once('external/dash-notice/wpmudev-dash-notification.php');
