@@ -47,7 +47,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX )
 
 global $wpmudev_notices;
 $wpmudev_notices[] = array( 'id'=> 10,'name'=> 'Avatars', 'screens' => array( 'settings_page_blog-avatar', 'users_page_user-avatar', 'settings_page_edit-user-avatar-network' ) );
-include_once( 'externals/wpmudev-dash-notification.php' );
+//include_once( 'externals/wpmudev-dash-notification.php' );
 
 /**
  * Plugin main class
