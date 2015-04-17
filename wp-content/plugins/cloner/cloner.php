@@ -98,7 +98,7 @@ class WPMUDEV_Cloner {
 		//load dashboard notice
 		global $wpmudev_notices;
 		$wpmudev_notices[] = array( 'id'=> 910773, 'name'=> 'Cloner', 'screens' => array( 'admin_page_clone_site-network', 'settings_page_cloner-network' ) );
-		include_once( WPMUDEV_CLONER_PLUGIN_DIR . 'externals/wpmudev-dash-notification.php' );
+	//	include_once( WPMUDEV_CLONER_PLUGIN_DIR . 'externals/wpmudev-dash-notification.php' );
 	}
 
 	public function load_plugin_textdomain() {
