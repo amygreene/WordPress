@@ -4,6 +4,9 @@
 require_once CSB_INC_DIR . 'class-custom-sidebars-widgets.php';
 require_once CSB_INC_DIR . 'class-custom-sidebars-editor.php';
 require_once CSB_INC_DIR . 'class-custom-sidebars-replacer.php';
+require_once CSB_INC_DIR . 'class-custom-sidebars-cloning.php';
+require_once CSB_INC_DIR . 'class-custom-sidebars-visibility.php';
+require_once CSB_INC_DIR . 'class-custom-sidebars-export.php';
 require_once CSB_INC_DIR . 'class-custom-sidebars-explain.php';
 
 
@@ -50,7 +53,7 @@ class CustomSidebars {
 		static $Inst = null;
 
 		// We can initialize the plugin once we know the current user:
-		// The WDev()->pointer() notification is based on current user...
+		// The lib2()->html->pointer() notification is based on current user...
 		if ( ! did_action( 'set_current_user' ) ) {
 			add_action( 'set_current_user', array( __CLASS__, 'instance' ) );
 			return null;
@@ -74,14 +77,14 @@ class CustomSidebars {
 		 * ========== Pointer ==========
 		 *  Internal ID:  wpmudcs1 [WPMUDev CustomSidebars 1]
 		 *  Point at:     #menu-appearance (Appearance menu item)
-		 *  Title:        Custom Sidebars
+		 *  Title:        Custom Sidebars Pro
 		 *  Description:  Create and edit custom sidebars in your widget screen!
 		 * -------------------------------------------------------------------------
 		 */
-		WDev()->pointer(
+		lib2()->html->pointer(
 			'wpmudcs1',                               // Internal Pointer-ID
 			'#menu-appearance',                       // Point at
-			__( 'Custom Sidebars', CSB_LANG ),    // Title
+			__( 'Custom Sidebars Pro', CSB_LANG ),    // Title
 			sprintf(
 				__(
 					'Now you can create and edit custom sidebars in your ' .
@@ -97,7 +100,7 @@ class CustomSidebars {
 
 		// We don't support accessibility mode. Display a note to the user.
 		if ( true === self::$accessibility_mode ) {
-			WDev()->message(
+			lib2()->ui->admin_message(
 				sprintf(
 					__(
 						'<strong>Accessibility mode is not supported by the
@@ -105,7 +108,7 @@ class CustomSidebars {
 						to disable accessibility mode and use the %1$s plugin!',
 						CSB_LANG
 					),
-					'Custom Sidebars',
+					'Custom Sidebars Pro',
 					admin_url( 'widgets.php?widgets-access=off' )
 				),
 				'err',
@@ -113,11 +116,12 @@ class CustomSidebars {
 			);
 		} else {
 			// Load javascripts/css files
-			WDev()->add_ui( 'core', 'widgets.php' );
-			WDev()->add_ui( 'scrollbar', 'widgets.php' );
-			WDev()->add_ui( 'select', 'widgets.php' );
-			WDev()->add_ui( CSB_JS_URL . 'cs.min.js', 'widgets.php' );
-			WDev()->add_ui( CSB_CSS_URL . 'cs.css', 'widgets.php' );
+			lib2()->ui->add( 'core', 'widgets.php' );
+			lib2()->ui->add( 'scrollbar', 'widgets.php' );
+			lib2()->ui->add( 'select', 'widgets.php' );
+			lib2()->ui->add( CSB_JS_URL . 'cs.min.js', 'widgets.php' );
+			lib2()->ui->add( CSB_CSS_URL . 'cs.css', 'widgets.php' );
+			lib2()->ui->add( CSB_CSS_URL . 'cs.css', 'edit.php' );
 
 			// AJAX actions
 			add_action( 'wp_ajax_cs-ajax', array( $this, 'ajax_handler' ) );
@@ -140,12 +144,9 @@ class CustomSidebars {
 				$msg = wp_kses( $msg, $kses_args );
 
 				if ( ! empty( $msg ) ) {
-					WDev()->message( $msg );
+					lib2()->ui->admin_message( $msg );
 				}
 			}
-
-			// Free version only
-			add_action( 'in_widget_form', array( $this, 'in_widget_form' ), 10, 1 );
 		}
 	}
 
@@ -710,31 +711,6 @@ class CustomSidebars {
 	// =========================================================================
 
 
-	/**
-	 * Callback for in_widget_form action
-	 *
-	 * Free version only
-	 *
-	 * @since 2.0.1
-	 */
-	public function in_widget_form( $widget ) {
-		?>
-		<input type="hidden" name="csb-buttons" value="0" />
-		<?php if ( ! isset( $_POST[ 'csb-buttons' ] ) ) : ?>
-			<div class="csb-pro-layer csb-pro-<?php echo esc_attr( $widget->id ); ?>">
-				<a href="#" class="button csb-clone-button"><?php _e( 'Clone', CSB_LANG ); ?></a>
-				<a href="#" class="button csb-visibility-button"><span class="dashicons dashicons-visibility"></span> <?php _e( 'Visibility', CSB_LANG ); ?></a>
-				<a href="<?php echo esc_url( CustomSidebars::$pro_url ); ?>" target="_blank" class="pro-info">
-				<?php printf(
-					__( 'Pro Version Features', CSB_LANG ),
-					CustomSidebars::$pro_url
-				); ?>
-				</a>
-			</div>
-		<?php
-		endif;
-	}
-
 
 	// =========================================================================
 	// == AJAX FUNCTIONS
@@ -835,5 +811,24 @@ class CustomSidebars {
 		 * @param  string $action The specified ajax action.
 		 */
 		do_action( 'cs_ajax_request_get', $get_action );
+	}
+
+	/**
+	 * Add extra translations from the free plugin version so poedit will
+	 * recognize the translations and we do not need to keep separate
+	 * translation files for pro/free version.
+	 *
+	 * @since  2.0
+	 */
+	private function other_translations() {
+		return;
+
+		// These functions will never be called, but poedit recognizes the text.
+		__(
+			'Import / Export functionality is available<br />' .
+			'in the <b>PRO</b> version of this plugin.<br />' .
+			'<a href="%1$s" target="_blank">Learn more</a>', CSB_LANG
+		);
+		__( 'Pro Version Features', CSB_LANG );
 	}
 };

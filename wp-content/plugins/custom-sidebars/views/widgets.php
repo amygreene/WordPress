@@ -20,7 +20,6 @@
 				<i class="dashicons dashicons-plus-alt"></i>
 				<?php _e( 'Create a new sidebar', CSB_LANG ); ?>
 			</button>
-			<a href="#" class="cs-action btn-export"><?php _e( 'Import / Export Sidebars', CSB_LANG ); ?></a>
 			<?php
 			/**
 			 * Show additional functions in the widget header.

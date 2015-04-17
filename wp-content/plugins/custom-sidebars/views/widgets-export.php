@@ -41,14 +41,4 @@
 			</button>
 		</p>
 	</form>
-	<div class="pro-layer">
-		<?php printf(
-			__(
-				'Import / Export functionality is available<br />' .
-				'in the <b>PRO</b> version of this plugin.<br />' .
-				'<a href="%1$s" target="_blank">Learn more</a>', CSB_LANG
-				),
-				CustomSidebars::$pro_url
-		); ?>
-	</div>
 </div>

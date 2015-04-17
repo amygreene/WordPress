@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Custom Sidebars
+Plugin Name: Custom Sidebars Pro
 Plugin URI:  http://premium.wpmudev.org/project/custom-sidebars/
 Description: Allows you to create widgetized areas and custom sidebars. Replace whole sidebars or single widgets for specific posts and pages.
-Version:     2.1.0.2
+Version:     2.1.0.3
 Author:      WPMU DEV
 Author URI:  http://premium.wpmudev.org/
 Textdomain:  custom-sidebars
@@ -33,46 +33,34 @@ This plugin was originally developed by Javier Marquez.
 http://arqex.com/
 */
 
-add_action(
-	'plugins_loaded',
-	'inc_sidebars_free_init'
-);
+// used for more readable i18n functions: __( 'text', CSB_LANG );
+define( 'CSB_LANG', 'custom-sidebars' );
 
-function inc_sidebars_free_init() {
-	// Check if the PRO plugin is present and activated.
-	if ( class_exists( 'CustomSidebars' ) ) {
-		return false;
-	}
+$plugin_dir = dirname( __FILE__ );
+$plugin_dir_rel = dirname( plugin_basename( __FILE__ ) );
+$plugin_url = plugin_dir_url( __FILE__ );
 
-	// used for more readable i18n functions: __( 'text', CSB_LANG );
-	define( 'CSB_LANG', 'custom-sidebars' );
+define( 'CSB_PLUGIN', __FILE__ );
+define( 'CSB_LANG_DIR', $plugin_dir_rel . '/lang/' );
+define( 'CSB_VIEWS_DIR', $plugin_dir . '/views/' );
+define( 'CSB_INC_DIR', $plugin_dir . '/inc/' );
+define( 'CSB_JS_URL', $plugin_url . 'js/' );
+define( 'CSB_CSS_URL', $plugin_url . 'css/' );
+define( 'CSB_IMG_URL', $plugin_url . 'img/' );
 
-	$plugin_dir = dirname( __FILE__ );
-	$plugin_dir_rel = dirname( plugin_basename( __FILE__ ) );
-	$plugin_url = plugin_dir_url( __FILE__ );
+// Load the actual core.
+require_once CSB_INC_DIR . 'class-custom-sidebars.php';
 
-	define( 'CSB_PLUGIN', __FILE__ );
-	define( 'CSB_LANG_DIR', $plugin_dir_rel . '/lang/' );
-	define( 'CSB_VIEWS_DIR', $plugin_dir . '/views/' );
-	define( 'CSB_INC_DIR', $plugin_dir . '/inc/' );
-	define( 'CSB_JS_URL', $plugin_url . 'js/' );
-	define( 'CSB_CSS_URL', $plugin_url . 'css/' );
-	define( 'CSB_IMG_URL', $plugin_url . 'img/' );
-
-	// Load the actual core.
-	require_once CSB_INC_DIR . 'class-custom-sidebars.php';
-
-	// Include function library
-	if ( file_exists( CSB_INC_DIR . 'external/wpmu-lib/core.php' ) ) {
-		require_once CSB_INC_DIR . 'external/wpmu-lib/core.php';
-	}
-
-	// Load the text domain for the plugin
-	WDev()->translate_plugin( CSB_LANG, CSB_LANG_DIR );
-
-	// Initialize the plugin
-	CustomSidebars::instance();
+// Include function library
+if ( file_exists( CSB_INC_DIR . 'external/wpmu-lib/core.php' ) ) {
+	require_once CSB_INC_DIR . 'external/wpmu-lib/core.php';
 }
+
+// Load the text domain for the plugin
+lib2()->translate_plugin( CSB_LANG, CSB_LANG_DIR );
+
+// Initialize the plugin
+CustomSidebars::instance();
 
 if ( ! class_exists( 'CustomSidebarsEmptyPlugin' ) ) {
 	class CustomSidebarsEmptyPlugin extends WP_Widget {
@@ -90,3 +78,19 @@ if ( ! class_exists( 'CustomSidebarsEmptyPlugin' ) ) {
 		}
 	} //end class
 } //end if class exists
+
+// Pro: Integrate WPMU Dev Dashboard
+//if ( is_admin() ) {
+//	if ( file_exists( CSB_INC_DIR . 'external/wpmudev-dashboard/wpmudev-dash-notification.php' ) ) {
+//		global $wpmudev_notices;
+//		is_array( $wpmudev_notices ) || $wpmudev_notices = array();
+//		$wpmudev_notices[] = array(
+//			'id' => 9105,
+//			'name' => 'Custom Sidebars Pro',
+//			'screens' => array(
+//				'widgets',
+//			),
+//		);
+//		require_once CSB_INC_DIR . 'external/wpmudev-dashboard/wpmudev-dash-notification.php';
+//	}
+//}

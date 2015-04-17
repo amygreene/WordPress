@@ -171,17 +171,11 @@ function _show_replaceable( $sidebar, $prefix, $cat_name, $class = '' ) {
 					/**
 					 * ========== ARCHIVE -- Author ========== *
 					 */
+					foreach ( $sidebars as $sb_id => $details ) {
+						$cat_name = __( 'Author Archives', CSB_LANG );
+						_show_replaceable( $details, 'arc-aut', $cat_name );
+					}
 					?>
-					<div class="pro-layer">
-						<?php printf(
-							__(
-								'Specific Author-Archives can be changed <br />' .
-								'in the <b>PRO</b> version of this plugin.<br />' .
-								'<a href="%1$s" target="_blank">Learn more</a>', CSB_LANG
-								),
-								CustomSidebars::$pro_url
-						); ?>
-					</div>
 				</div>
 			</div>
 		</div>

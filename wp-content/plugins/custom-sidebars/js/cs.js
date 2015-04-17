@@ -1,7 +1,8 @@
-/*! Custom Sidebars Free - v2.1.02
+/*! Custom Sidebars Pro - v2.1.03
  * http://premium.wpmudev.org/project/the-pop-over-plugin/
  * Copyright (c) 2015; * Licensed GPLv2+ */
 /*global window:false */
+/*global console:false */
 /*global document:false */
 /*global wp:false */
 /*global wpmUi:false */
@@ -9,36 +10,14 @@
 /*global csSidebarsData:false */
 
 /**
- * Javascript support for the free version of the plugin.
+ * CsSidebar class
+ *
+ * This adds new functionality to each sidebar.
+ *
+ * Note: Before the first CsSidebar object is created the class csSidebars below
+ * must be initialized!
  */
-jQuery(function init_free() {
-	var $doc = jQuery( document ),
-		$all = jQuery( '#widgets-right' );
 
-	/**
-	 * Moves the "Clone" button next to the save button.
-	 */
-	var init_widget = function init_widget( ev, el ) {
-		var $widget = jQuery( el ).closest( '.widget' ),
-			$btns = $widget.find( '.csb-pro-layer' ),
-			$target = $widget.find( '.widget-control-actions .widget-control-save' ),
-			$spinner = $widget.find( '.widget-control-actions .spinner' );
-
-		if ( $widget.data( '_csb_free' ) === true ) {
-			return;
-		}
-
-		$spinner.insertBefore( $target ).css({ 'float': 'left' });
-		$btns.insertBefore( $target );
-
-		$widget.data( '_csb_free', true );
-	};
-
-	$all.find( '.widget' ).each( init_widget );
-	$doc.on( 'widget-added', init_widget );
-});
-
-/*-----  End of free version scripts  ------*/
 
 /*
  * http://blog.stevenlevithan.com/archives/faster-trim-javascript
@@ -54,14 +33,6 @@ function trim( str ) {
 	return str;
 }
 
-/**
- * CsSidebar class
- *
- * This adds new functionality to each sidebar.
- *
- * Note: Before the first CsSidebar object is created the class csSidebars below
- * must be initialized!
- */
 function CsSidebar(id, type) {
 	var editbar;
 
@@ -311,19 +282,31 @@ window.csSidebars = null;
 				col2.appendTo( csSidebars.right );
 			}
 
+			function toggle_sort() {
+				var me = jQuery( this ),
+					col = me.closest( '.sidebars-column-1, .sidebars-column-2' ),
+					dir = col.data( 'sort-dir' );
+
+				dir = ('asc' === dir ? 'desc' : 'asc');
+				csSidebars.sort_sidebars( col, dir );
+			}
+
 			title
 				.find( 'h3' )
-				.append( '<span class="cs-title-val"></span>' );
+				.append( '<span class="cs-title-val"></span><i class="cs-icon dashicons dashicons-sort"></i>' )
+				.css({'cursor': 'pointer'});
 
 			title
 				.clone()
 				.prependTo( col1 )
+				.click( toggle_sort )
 				.find('.cs-title-val')
 				.text( csSidebarsData.custom_sidebars );
 
 			title
 				.clone()
 				.prependTo( col2 )
+				.click( toggle_sort )
 				.find( '.cs-title-val' )
 				.text( csSidebarsData.theme_sidebars );
 
@@ -389,6 +372,8 @@ window.csSidebars = null;
 		initTopTools: function() {
 			var btn_create = jQuery( '.btn-create-sidebar' ),
 				btn_export = jQuery( '.btn-export' ),
+				topbar = jQuery( '.cs-options' ),
+				txt_filter = jQuery( '<input type="search" class="cs-filter" />' ),
 				data = {};
 
 			// Button: Add new sidebar.
@@ -404,6 +389,13 @@ window.csSidebars = null;
 
 			// Button: Export sidebars.
 			btn_export.click( csSidebars.showExport );
+
+			// Add Sidebar filter.
+			txt_filter
+				.appendTo( topbar )
+				.attr( 'placeholder', csSidebarsData.filter )
+				.keyup( csSidebars.filter_sidebars )
+				.on( 'search', csSidebars.filter_sidebars );
 
 			return csSidebars;
 		},
@@ -475,6 +467,63 @@ window.csSidebars = null;
 			msg.type = 'err';
 
 			wpmUi.message( msg );
+		},
+
+		/**
+		 * Sorts the sidebars in the specified column
+		 *
+		 * @since  2.0.9.7
+		 * @param  jQuery col Sidebar container/column.
+		 * @param  string dir "asc|desc"
+		 */
+		sort_sidebars: function( col, dir ) {
+			var sidebars = col.find( '.widgets-holder-wrap' ),
+				icon = col.find( '.cs-title .cs-icon' );
+
+			sidebars.sortElements(function( a, b ) {
+				var val_a = jQuery(a).find('.sidebar-name h3').text(),
+					val_b = jQuery(b).find('.sidebar-name h3').text();
+
+				if ( dir === 'asc' ) {
+					return val_a > val_b ? 1 : -1;
+				} else {
+					return val_a < val_b ? 1 : -1;
+				}
+			});
+
+			// Change the indicator.
+			col.data( 'sort-dir', dir );
+			if ( 'asc' === dir ) {
+				icon
+					.removeClass( 'dashicons-arrow-down dashicons-sort' )
+					.addClass( 'dashicons-arrow-up' );
+			} else {
+				icon
+					.removeClass( 'dashicons-arrow-up dashicons-sort' )
+					.addClass( 'dashicons-arrow-down' );
+			}
+		},
+
+		/**
+		 * Filters the sidebars by title
+		 *
+		 * @since  2.0.9.7
+		 */
+		filter_sidebars: function( ev ) {
+			var query = jQuery( 'input.cs-filter' ).val().toLowerCase(),
+				all = csSidebars.right.find( '.widgets-holder-wrap' );
+
+			all.each(function(){
+				var sb = jQuery( this ),
+					title = sb.find( '.sidebar-name h3' ).text();
+
+				if ( title.toLowerCase().indexOf( query ) !== -1 ) {
+					sb.show();
+				} else {
+					sb.hide();
+				}
+			});
+			jQuery( window ).trigger( 'cs-resize' );
 		},
 
 
@@ -745,7 +794,89 @@ window.csSidebars = null;
 		 * @since  2.0
 		 */
 		showExport: function() {
-			var popup = null;
+			var popup = null,
+				ajax = null;
+
+			// Download export file.
+			var do_export = function do_export( ev ) {
+				var form = jQuery( this ).closest( 'form' );
+
+				ajax.reset()
+					.data( form )
+					.load_http();
+
+				popup.close();
+
+				ev.preventDefault();
+				return false;
+			};
+
+			// Ajax handler after import file was uploaded.
+			var handle_done_upload = function handle_done_upload( resp, okay, xhr ) {
+				var msg = {};
+				popup.loading( false );
+
+				if ( okay ) {
+					popup
+						.size( 900, 600 )
+						.content( resp.html );
+				} else {
+					msg.message = resp.message;
+					// msg.details = resp;
+					msg.parent = popup.$().find( '.wpmui-wnd-content' );
+					msg.insert_after = false;
+					msg.id = 'export';
+					//Change msg.class to msg['class']. Reserved words not allowed as unquoted properties in older version of javascript
+					msg['class'] = 'wpmui-wnd-err';
+					msg.type = 'err';
+					wpmUi.message( msg );
+				}
+			};
+
+			// Upload the import file.
+			var do_upload = function do_upload( ev ) {
+				var form = jQuery( this ).closest( 'form' );
+
+				popup.loading( true );
+				ajax.reset()
+					.data( form )
+					.ondone( handle_done_upload )
+					.load_json( 'cs-ajax' );
+
+				ev.preventDefault();
+				return false;
+			};
+
+			// Import preview: Toggle widgets
+			var toggle_widgets = function toggle_widgets() {
+				var me = jQuery( this ),
+					checked = me.prop( 'checked' ),
+					items = popup.$().find( '.column-widgets, .import-widgets' );
+
+				if ( checked ) {
+					items.show();
+				} else {
+					items.hide();
+				}
+			};
+
+			// Import preview: Cancel.
+			var show_overview = function show_overview() {
+				popup
+					.size( 740, 480 )
+					.content( csSidebars.export_form );
+			};
+
+			// Import preview: Import the data.
+			var do_import = function do_import() {
+				var form = popup.$().find( '.frm-import' );
+
+				popup.loading( true );
+
+				ajax.reset()
+					.data( form )
+					.load_http( '_self' );
+			};
 
 			// Show the popup.
 			popup = wpmUi.popup()
@@ -754,6 +885,17 @@ window.csSidebars = null;
 				.title( csSidebarsData.title_export )
 				.content( csSidebars.export_form )
 				.show();
+
+			ajax = wpmUi.ajax( null, 'cs-ajax' );
+
+			// Events for the Import / Export view.
+			popup.$().on( 'submit', '.frm-export', do_export );
+			popup.$().on( 'submit', '.frm-preview-import', do_upload );
+
+			// Events for the Import preview.
+			popup.$().on( 'change', '#import-widgets', toggle_widgets );
+			popup.$().on( 'click', '.btn-cancel', show_overview );
+			popup.$().on( 'click', '.btn-import', do_import );
 
 			return true;
 		},
@@ -1022,6 +1164,34 @@ window.csSidebars = null;
 								theme_sb,
 								key6,
 								lst_arc
+							);
+						}
+					}
+				}
+
+				// ----- Authors ----------------------------------------------
+				// Refresh list for authors.
+				var lst_aut = popup.$().find( '.cs-datalist.cs-arc-aut' );
+				var data_aut = resp.authors;
+				lst_aut.empty();
+				// Add the options
+				for ( var key7 in data_aut ) {
+					opt = jQuery( '<option></option>' );
+					name = data_aut[ key7 ].name;
+
+					opt.attr( 'value', key7 ).text( name );
+					lst_aut.append( opt );
+				}
+
+				// Select options
+				for ( var key8 in data_aut ) {
+					if ( data_aut[ key8 ].archive ) {
+						for ( theme_sb in data_aut[ key8 ].archive ) {
+							_select_option(
+								data_aut[ key8 ].archive[ theme_sb ],
+								theme_sb,
+								key8,
+								lst_aut
 							);
 						}
 					}

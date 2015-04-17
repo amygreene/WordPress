@@ -37,6 +37,12 @@ class CustomSidebarsReplacer extends CustomSidebars {
 			array( $this, 'register_custom_sidebars')
 		);
 
+		// PRO: Support translation via WPML plugin.
+		add_action(
+			'register_sidebar',
+			array( $this, 'translate_sidebar' )
+		);
+
 		if ( ! is_admin() ) {
 			// Frontend hooks.
 			add_action(
@@ -446,8 +452,8 @@ class CustomSidebarsReplacer extends CustomSidebars {
 							$replacements[$sb_id] = array(
 								$reps_parent[$sb_id],
 								'particular',
-						-1,
-					);
+								-1,
+							);
 							$replacements_todo -= 1;
 						}
 					}
@@ -498,18 +504,30 @@ class CustomSidebarsReplacer extends CustomSidebars {
 		if ( is_author() ) {
 			$author_object = get_queried_object();
 			$current_author = $author_object->ID;
-			$expl && do_action( 'cs_explain', 'Type 9: Author Archive' );
+			$expl && do_action( 'cs_explain', 'Type 9: Author Archive (' . $current_author . ')' );
+
+			// 9.1 First check for specific authors.
+			foreach ( $sidebars as $sb_id ) {
+				if ( ! empty( $options['author_archive'][$current_author][$sb_id] ) ) {
+					$replacements[$sb_id] = array(
+						$options['author_archive'][$current_author][$sb_id],
+						'author_archive',
+						$current_author,
+					);
+					$replacements_todo -= 1;
+				}
+			}
 
 			// 9.2 Then check if there is an "Any authors" sidebar
 			if ( $replacements_todo > 0 ) {
-			foreach ( $sidebars as $sb_id ) {
+				foreach ( $sidebars as $sb_id ) {
 					if ( $replacements[$sb_id] ) { continue; }
-				if ( ! empty( $options['authors'][$sb_id] ) ) {
-					$replacements[$sb_id] = array(
-						$options['authors'][$sb_id],
-						'authors',
-						-1,
-					);
+					if ( ! empty( $options['authors'][$sb_id] ) ) {
+						$replacements[$sb_id] = array(
+							$options['authors'][$sb_id],
+							'authors',
+							-1,
+						);
 					}
 				}
 			}
@@ -662,6 +680,25 @@ class CustomSidebarsReplacer extends CustomSidebars {
 		$sidebar['before_title'] = stripslashes( $sidebar['before_title'] );
 		$sidebar['after_title'] = stripslashes( $sidebar['after_title'] );
 		return $sidebar;
+	}
+
+	/**
+	 * Translates a sidebar using WPML right after it was registered.
+	 *
+	 * @since  2.0.9.7
+	 * @param  array $sidebar The sidebar that was registered
+	 */
+	public function translate_sidebar( $sidebar ) {
+		if ( ! function_exists( 'icl_t' ) ) { return false; }
+
+		global $wp_registered_sidebars;
+		$context = 'Sidebar';
+
+		// Translate the name and description.
+		$sidebar['name'] = icl_t( $context, $sidebar['id'] . '-name', $sidebar['name'] );
+		$sidebar['description'] = icl_t( $context, $sidebar['id'] . '-description', $sidebar['description'] );
+
+		$wp_registered_sidebars[$sidebar['id']] = $sidebar;
 	}
 
 };
