@@ -583,4 +583,4 @@ $wpmudev_notices[] = array(
 		'dashboard_page_video-tuts'
 	)
 );
-include_once( dirname( __FILE__ ) . '/includes/dash-notice/wpmudev-dash-notification.php' );
+//include_once( dirname( __FILE__ ) . '/includes/dash-notice/wpmudev-dash-notification.php' );
