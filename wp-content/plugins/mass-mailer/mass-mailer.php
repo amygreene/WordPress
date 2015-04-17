@@ -505,4 +505,4 @@ class Mass_Mailer {
 
 $mass_mailer = new Mass_Mailer();
 
-include_once('massmailerincludes/wpmudev-dash-notification.php');
+//include_once('massmailerincludes/wpmudev-dash-notification.php');
