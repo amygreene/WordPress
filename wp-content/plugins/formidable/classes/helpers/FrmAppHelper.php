@@ -4,13 +4,13 @@ if ( ! defined('ABSPATH') ) {
 }
 
 class FrmAppHelper {
-    public static $db_version = 22; //version of the database we are moving to
-    public static $pro_db_version = 27;
+	public static $db_version = 23; //version of the database we are moving to
+	public static $pro_db_version = 27;
 
-    /**
-     * @since 2.0
-     */
-    public static $plug_version = '2.0.01';
+	/**
+	 * @since 2.0
+	 */
+	public static $plug_version = '2.0.03';
 
     /**
      * @since 1.07.02
@@ -763,13 +763,17 @@ class FrmAppHelper {
     /**
      * Flatten a multi-dimensional array
      */
-    public static function array_flatten( $array ) {
+	public static function array_flatten( $array, $keys = 'keep' ) {
         $return = array();
         foreach ( $array as $key => $value ) {
             if ( is_array($value) ) {
-                $return = array_merge( $return, self::array_flatten($value) );
+				$return = array_merge( $return, self::array_flatten( $value, $keys ) );
             } else {
-                $return[ $key ] = $value;
+				if ( $keys == 'keep' ) {
+					$return[ $key ] = $value;
+				} else {
+					$return[] = $value;
+				}
             }
         }
         return $return;
@@ -1570,7 +1574,7 @@ class FrmAppHelper {
         $post_content = json_encode( $post_content );
 
 	    // add extra slashes for \r\n since WP strips them
-	    $post_content = str_replace( array( '\\r', '\\n', '\\u'), array( '\\\\r', '\\\\n', '\\\\u'), $post_content );
+		$post_content = str_replace( array( '\\r', '\\n', '\\u', '\\t'), array( '\\\\r', '\\\\n', '\\\\u', '\\\\t'), $post_content );
 
         // allow for &quot
 	    $post_content = str_replace( '&quot;', '\\"', $post_content );

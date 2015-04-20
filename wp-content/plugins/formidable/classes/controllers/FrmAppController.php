@@ -57,45 +57,13 @@ class FrmAppController {
         return $links;
     }
 
-    public static function update_action_links( $actions, $plugin ) {
-        $frm_plugin = FrmAppHelper::plugin_folder() .'/formidable.php';
-    	if ( $frm_plugin != $plugin ) {
-    		return $actions;
-        }
-
-        $db_version = get_option( 'frm_db_version' );
-        $pro_db_version = FrmAppHelper::pro_is_installed() ? get_option( 'frmpro_db_version' ) : false;
-
-        if ( ( (int) $db_version < (int) FrmAppHelper::$db_version ) ||
-            ( FrmAppHelper::pro_is_installed() && (int) $pro_db_version < (int) FrmAppHelper::$pro_db_version ) ) {
-
-            return '<a href="'. add_query_arg( array( 'upgraded' => 'true' ), menu_page_url( 'formidable', 0 ) ) .'">'. __( 'Click here to complete the upgrade', 'formidable' ) .'</a>';
-
-    	}
-
-    	return $actions;
-    }
-
     public static function pro_get_started_headline() {
-		if ( FrmAppHelper::is_admin_page( 'formidable' ) && isset( $_REQUEST['upgraded'] ) && 'true' == sanitize_title( $_REQUEST['upgraded'] ) ) {
-            self::install();
-            ?>
-<div id="message" class="frm_message updated"><?php _e( 'Congratulations! Formidable is ready to roll.', 'formidable' ) ?></div>
-<?php
+        // Don't display this error as we're upgrading the thing, or if the user shouldn't see the message
+        if ( 'upgrade-plugin' == FrmAppHelper::simple_get( 'action', 'sanitize_title' ) || ! current_user_can( 'update_plugins' ) ) {
             return;
         }
 
-        // Don't display this error as we're upgrading the thing... cmon
-        if ( 'upgrade-plugin' == FrmAppHelper::simple_get( 'action', 'sanitize_title' ) ) {
-            return;
-        }
-
-        if ( is_multisite() && ! current_user_can( 'administrator' ) ) {
-            return;
-        }
-
-        global $frm_vars;
-        if ( $frm_vars['pro_is_authorized'] && ! file_exists( FrmAppHelper::plugin_path() . '/pro/formidable-pro.php' ) ) {
+		if ( get_site_option( 'frmpro-authorized' ) && ! file_exists( FrmAppHelper::plugin_path() . '/pro/formidable-pro.php' ) ) {
             FrmAppHelper::load_admin_wide_js();
 
             // user is authorized, but running free version
@@ -114,6 +82,17 @@ class FrmAppController {
 <?php
         }
     }
+
+	/**
+	 * If there are CURL problems on this server, wp_remote_post won't work for installing
+	 * Use a javascript fallback instead.
+	 *
+	 * @since 2.0.3
+	 */
+	public static function install_js_fallback() {
+		FrmAppHelper::load_admin_wide_js();
+		echo '<div id="hidden frm_install_message"></div><script type="text/javascript">jQuery(document).ready(function(){frm_install_now();});</script>';
+	}
 
 	/**
 	 * Check if the database is outdated
@@ -398,7 +377,11 @@ class FrmAppController {
 		}
 
 		$upgrade_url = add_query_arg( array( 'action' => 'frm_silent_upgrade' ), $upgrade_url );
-		wp_remote_post( $upgrade_url );
+		$r = wp_remote_post( $upgrade_url );
+		if( is_wp_error( $r ) ) {
+			// if the remove post fails, use javascript instead
+			add_action( 'admin_notices', 'FrmAppController::install_js_fallback' );
+		}
 	}
 
 	/**

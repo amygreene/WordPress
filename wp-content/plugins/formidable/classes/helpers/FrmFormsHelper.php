@@ -233,6 +233,7 @@ $draft_link
 SUBMIT_HTML;
 		} else if ( $loc == 'before' ) {
             $default_html = <<<BEFORE_HTML
+<legend class="frm_hidden">[form_name]</legend>
 [if form_name]<h3>[form_name]</h3>[/if form_name]
 [if form_description]<div class="frm_description">[form_description]</div>[/if form_description]
 BEFORE_HTML;
@@ -244,7 +245,7 @@ BEFORE_HTML;
     }
 
     public static function get_draft_link() {
-        $link = '[if save_draft]<a href="javascript:void(0)" class="frm_save_draft" [draft_hook]>[draft_label]</a>[/if save_draft]';
+        $link = '[if save_draft]<a href="#" class="frm_save_draft" [draft_hook]>[draft_label]</a>[/if save_draft]';
         return $link;
     }
 

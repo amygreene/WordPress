@@ -458,6 +458,10 @@ table.form_results.with_frm_style tr.frm_odd,
     background-image:none;
 }
 
+ul.frm_pagination > li.active a{
+	text-decoration:none;
+}
+
 .frm_pagination_cont ul.frm_pagination > li:first-child{
     margin-left:0;
 }
@@ -577,6 +581,7 @@ table.frmcal-calendar .frmcal-today .frmcal_date{
     float:left;
     width:17px;
     height:17px;
+	font-size:16px;
     line-height:normal;
     cursor:pointer;
     display:block;
@@ -715,7 +720,7 @@ table.frmcal-calendar .frmcal-today .frmcal_date{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
-    max-width:25%;
+    max-width:33%;
     margin-right:0;
     margin-left:0;
 }
@@ -734,6 +739,30 @@ table.frmcal-calendar .frmcal-today .frmcal_date{
 .frm_form_field.frm_last_half.frm_right_container .frm_primary_label,
 .frm_form_field.frm_half.frm_right_container .frm_primary_label{
     padding-left:10px;
+}
+
+.with_frm_style .frm_form_field.frm_first_half.frm_right_container div.frm_description,
+.with_frm_style .frm_form_field.frm_first_half.frm_right_container .frm_error,
+.with_frm_style .frm_form_field.frm_first_half .frm_right_container div.frm_description,
+.with_frm_style .frm_form_field.frm_first_half .frm_right_container .frm_error,
+.with_frm_style .frm_form_field.frm_last_half.frm_right_container div.frm_description,
+.with_frm_style .frm_form_field.frm_last_half.frm_right_container .frm_error,
+.with_frm_style .frm_form_field.frm_half.frm_right_container div.frm_description,
+.with_frm_style .frm_form_field.frm_half.frm_right_container .frm_error{
+	margin-right:33%;
+	padding-right:12px;
+}
+
+.with_frm_style .frm_form_field.frm_first_half.frm_left_container div.frm_description,
+.with_frm_style .frm_form_field.frm_first_half.frm_left_container .frm_error,
+.with_frm_style .frm_form_field.frm_first_half .frm_left_container div.frm_description,
+.with_frm_style .frm_form_field.frm_first_half .frm_left_container .frm_error,
+.with_frm_style .frm_form_field.frm_last_half.frm_left_container div.frm_description,
+.with_frm_style .frm_form_field.frm_last_half.frm_left_container .frm_error,
+.with_frm_style .frm_form_field.frm_half.frm_left_container div.frm_description,
+.with_frm_style .frm_form_field.frm_half.frm_left_container .frm_error{
+	margin-left:33%;
+	padding-left:12px;
 }
 
 .frm_form_field.frm_left_third,
@@ -1724,6 +1753,22 @@ html[xmlns] .frm_clearfix{
         float: none;
         display:block;
     }
+
+	.frm_right_container p.description,
+	.frm_right_container div.description,
+	.frm_right_container div.frm_description,
+	.frm_right_container .frm_error{
+		margin-right:33% !important;
+		padding-right:12px !important;
+	}
+
+	.frm_left_container p.description,
+	.frm_left_container div.description,
+	.frm_left_container div.frm_description,
+	.frm_left_container .frm_error{
+		margin-left:33% !important;
+		padding-left:12px !important;
+	}
 }
 <?php
 echo $defaults['custom_css'];

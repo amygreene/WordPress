@@ -392,16 +392,16 @@ class FrmProFormsHelper{
         }
     }
 
-    public static function load_datepicker_js($frm_vars, array &$load_lang) {
+	public static function load_datepicker_js( $frm_vars ) {
         if ( ! isset($frm_vars['datepicker_loaded']) || empty($frm_vars['datepicker_loaded']) || ! is_array($frm_vars['datepicker_loaded']) ) {
             return;
         }
 
-        $frmpro_settings = new FrmProSettings();
+		$frmpro_settings = FrmProAppHelper::get_settings();
 
-        $load_lang = array();
         reset($frm_vars['datepicker_loaded']);
         $datepicker = key($frm_vars['datepicker_loaded']);
+		$load_lang = false;
 
         foreach ( $frm_vars['datepicker_loaded'] as $date_field_id => $options ) {
             if ( strpos($date_field_id, '^') === 0 ) {
@@ -418,9 +418,13 @@ do_action('frm_date_field_js', $date_field_id, $options);
 ?>}));
 });
 <?php
-            if ( ! empty($options['locale']) ) {
-                $load_lang[] = $options['locale'];
-            }
+			if ( ! empty( $options['locale'] ) && ! $load_lang ) {
+				$load_lang = true;
+				$base_url = FrmAppHelper::jquery_ui_base_url();
+				wp_enqueue_script( 'jquery-ui-i18n', $base_url . '/i18n/jquery-ui-i18n.min.js' );
+				// this was enqueued late, so make sure it gets printed
+				add_action( 'wp_footer', 'print_footer_scripts', 21 );
+			}
         }
 
         self::load_timepicker_js($datepicker, $frm_vars);
@@ -512,7 +516,7 @@ $(document.getElementById('<?php echo $datepicker ?>')).change(function(){frmFro
         // trigger calculations on page load
         if ( ! empty($triggers) ) {
             $triggers = array_unique($triggers);
-            ?>$('<?php echo implode("','", $triggers) ?>').trigger({type:'change',selfTriggered:true});<?php
+            ?>$('<?php echo implode(',', $triggers) ?>').trigger({type:'change',selfTriggered:true});<?php
         }
     }
 

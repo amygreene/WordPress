@@ -7,6 +7,11 @@ if ( 'end_divider' == $field['type'] ) {
         echo "</div>\n";
         $frm_vars['div'] = false;
     }
+	// close the collapsible section toggle div
+	if ( isset($frm_vars['collapse_div']) && $frm_vars['collapse_div'] ) {
+		echo "</div>\n";
+		$frm_vars['collapse_div'] = false;
+	}
     return;
 }
 

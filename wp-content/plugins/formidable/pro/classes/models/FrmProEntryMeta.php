@@ -330,7 +330,10 @@ class FrmProEntryMeta{
         } else if ( $field->type == 'divider' ) {
             global $frm_hidden_divider;
             $frm_hidden_divider = array( 'field_order' => $field->field_order, 'hidden' => $hidden);
-        }
+		} else if ( $field->type == 'end_divider' ) {
+			global $frm_hidden_divider;
+			$frm_hidden_divider = false;
+		}
 
         if ( isset($errors['field'. $field->temp_id]) ) {
             unset($errors['field'. $field->temp_id]);

@@ -27,7 +27,7 @@ class FrmProAppHelper{
      */
     public static function get_date( $format = '' ) {
         if ( empty($format) ) {
-            $frmpro_settings = new FrmProSettings();
+			$frmpro_settings = self::get_settings();
             $format = $frmpro_settings->date_format;
         }
 
@@ -105,6 +105,21 @@ class FrmProAppHelper{
         return get_the_author_meta('user_email');
     }
 
+	/**
+	 * @since 2.0.2
+	 */
+	public static function display_to_datepicker_format() {
+		$formats = array(
+			'Y/m/d' => 'yy/mm/dd',
+			'd/m/Y' => 'dd/mm/yy',
+			'd.m.Y' => 'dd.mm.yy',
+			'j/m/y' => 'd/mm/y',
+			'Y-m-d' => 'yy-mm-dd',
+			'j-m-Y' => 'd-mm-yy',
+		);
+		return $formats;
+	}
+
     public static function maybe_convert_to_db_date( $date_str, $to_format = 'Y-m-d' ) {
         $date_str = trim($date_str);
         $in_db_format = preg_match('/^\d{4}-\d{2}-\d{2}/', $date_str);
@@ -129,10 +144,10 @@ class FrmProAppHelper{
 
     public static function convert_date($date_str, $from_format, $to_format){
         if ( 'db' == $to_format ) {
-            $frmpro_settings = new FrmProSettings();
+			$frmpro_settings = self::get_settings();
             $to_format = $frmpro_settings->date_format;
         } else if ( 'db' == $from_format ) {
-            $frmpro_settings = new FrmProSettings();
+			$frmpro_settings = self::get_settings();
             $from_format = $frmpro_settings->date_format;
         }
 
@@ -372,8 +387,8 @@ class FrmProAppHelper{
 
         //Change $args['where_val'] to linked entry IDs
 		$linked_id = (array) $linked_id;
+		$args['where_val'] = $linked_id;
         if ( FrmFieldsHelper::is_field_with_multiple_values( $where_field ) ) {
-			$args['where_val'] = "'%". implode("%' OR meta_value LIKE '%", $linked_id) ."%'";
 			if ( in_array($args['where_is'], array( '!=', 'not LIKE') ) ) {
 				$args['temp_where_is'] = 'LIKE';
 			} else if ( in_array($args['where_is'], array( '=', 'LIKE') ) ) {
@@ -381,7 +396,6 @@ class FrmProAppHelper{
             }
 		}else{
             $args['where_is'] = $args['temp_where_is'] = ( strpos($args['where_is'], '!') === false && strpos($args['where_is'], 'not') === false ) ? ' in ' : ' not in ';
-            $args['where_val'] = '('. implode(',', $linked_id) .')';
         }
 		unset($args['where_val_esc']);
 
@@ -418,7 +432,7 @@ class FrmProAppHelper{
 		$new_ids = FrmEntryMeta::getEntryIds( $where_statement, '', '', true, $filter_args );
 
         if ( $args['where_is'] != $args['temp_where_is'] ) {
-            $new_ids = array_diff($entry_ids, $new_ids);
+            $new_ids = array_diff( (array) $entry_ids, $new_ids );
         }
     }
 
@@ -627,6 +641,7 @@ class FrmProAppHelper{
         add_filter('frm_next_page_label', 'FrmProAppHelper::gen_next_label');
         add_filter('frm_prev_page_class', 'FrmProAppHelper::gen_prev_class');
         add_filter('frm_next_page_class', 'FrmProAppHelper::gen_next_class');
+		add_filter( 'frm_page_dots_class', 'FrmProAppHelper::gen_dots_class', 1 );
     }
 
     public static function gen_pagination_class($class){
@@ -653,7 +668,7 @@ class FrmProAppHelper{
     }
 
     public static function gen_dots_class($class){
-        $class .= ' pagination-omission';
+        $class = 'pagination-omission';
         return $class;
     }
     /* End Genesis */

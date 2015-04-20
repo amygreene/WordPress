@@ -2,7 +2,7 @@
     <input type="text" id="<?php echo $html_id ?>" name="<?php echo $field_name ?>" value="<?php echo esc_attr($field['default_value']); ?>" <?php do_action('frm_field_input_html', $field) ?> />
 <?php }else if ($field['type'] == 'hidden'){ ?>
     <input type="text" id="<?php echo $html_id ?>" name="<?php echo $field_name ?>" value="<?php echo esc_attr($field['default_value']); ?>" class="dyn_default_value" />
-    <p class="howto clear"><?php _e( 'Note: This field will not show in the form. Enter the value to be hidden.', 'formidable' ) ?></p>
+    <p class="howto frm_clear"><?php _e( 'Note: This field will not show in the form. Enter the value to be hidden.', 'formidable' ) ?></p>
 <?php } else if ( $field['type'] == 'time' ) { ?>
 <select name="<?php echo $field_name ?>" id="<?php echo $html_id ?>" <?php do_action('frm_field_input_html', $field) ?>>
     <option value=""><?php echo $field['start_time'] ?></option>
@@ -10,7 +10,7 @@
     <option value=""><?php echo $field['end_time'] ?></option>
 </select>
 <?php }else if ($field['type'] == 'user_id'){ ?>
-    <p class="howto clear"><?php _e( 'Note: This field will not show in the form, but will link the user id to it as long as the user is logged in at the time of form submission.', 'formidable' ) ?></p>
+    <p class="howto frm_clear"><?php _e( 'Note: This field will not show in the form, but will link the user id to it as long as the user is logged in at the time of form submission.', 'formidable' ) ?></p>
 <?php }else if ($field['type'] == 'image'){ ?>
     <input type="url" id="<?php echo $html_id ?>" name="<?php echo $field_name ?>" value="<?php echo $field['default_value'] ?>" <?php do_action('frm_field_input_html', $field) ?> />
     <?php if ($field['default_value']){ ?><img src="<?php echo $field['default_value'] ?>" height="50px"><?php } ?>

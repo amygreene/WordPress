@@ -39,8 +39,7 @@ if ( ! empty( $logic_fields['check'] ) ) {
 	echo "frmFrontForm.checkDependent('" . json_encode( $logic_fields['check'] ) . "');";
 }
 
-$load_lang = array();
-FrmProFormsHelper::load_datepicker_js($frm_vars, $load_lang);
+FrmProFormsHelper::load_datepicker_js( $frm_vars );
 
 FrmProFormsHelper::load_calc_js($frm_vars);
 
@@ -48,10 +47,5 @@ FrmProFormsHelper::load_input_mask_js($frm_input_masks);
 
 ?>
 });
-<?php if ( ! empty($load_lang) ) { ?>
-<?php foreach ( $load_lang as $lang ) { ?>
-document.write(unescape("%3Cscript src='<?php echo FrmAppHelper::jquery_ui_base_url() ?>/i18n/jquery.ui.datepicker-<?php echo esc_attr( $lang ) ?>.js' type='text/javascript'%3E%3C/script%3E"));
-<?php }
-} ?>
 /*]]>*/
 </script>

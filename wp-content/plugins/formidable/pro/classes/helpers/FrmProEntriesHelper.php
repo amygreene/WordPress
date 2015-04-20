@@ -550,12 +550,12 @@ class FrmProEntriesHelper{
 		do_action( 'frm_csv_headers', array( 'form_id' => $form_id, 'fields' => $form_cols ) );
 
 		$frmpro_settings = new FrmProSettings();
-		$to_encoding = FrmAppHelper::get_post_param( 'csv_format', $frmpro_settings->csv_format, 'santize_text_field' );
+		$to_encoding = FrmAppHelper::get_post_param( 'csv_format', $frmpro_settings->csv_format, 'sanitize_text_field' );
 		unset( $frmpro_settings );
 
 		$line_break = apply_filters( 'frm_csv_line_break', 'return' );
 		$sep = apply_filters( 'frm_csv_sep', ', ' );
-		$col_sep = ( isset( $_POST['csv_col_sep'] ) && ! empty( $_POST['csv_col_sep'] ) ) ? santize_text_field( $_POST['csv_col_sep'] ) : ',';
+		$col_sep = ( isset( $_POST['csv_col_sep'] ) && ! empty( $_POST['csv_col_sep'] ) ) ? sanitize_text_field( $_POST['csv_col_sep'] ) : ',';
 		$col_sep = apply_filters( 'frm_csv_column_sep', $col_sep );
 		$wp_date_format = apply_filters( 'frm_csv_date_format', 'Y-m-d H:i:s' );
 
@@ -754,7 +754,7 @@ class FrmProEntriesHelper{
 
 			if ( is_array( $row ) ) {
 				// implode the repeated field values
-				$row = implode( $args['sep'], $row );
+				$row = implode( $args['sep'], FrmAppHelper::array_flatten( $row, 'reset' ) );
 			}
 
 			$val = self::encode_value( $row, $args['charset'], $args['to_encoding'] );

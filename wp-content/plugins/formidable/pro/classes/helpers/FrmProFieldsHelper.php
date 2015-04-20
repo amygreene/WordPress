@@ -707,6 +707,10 @@ class FrmProFieldsHelper{
                         }
                     }
 
+					if ( ! $sub_field ) {
+						continue;
+					}
+
                     $field['org_type'] = $field['type'];
                     if ( $sub_field->type == 'data' && $field['type'] == 'hidden' ) {
                         $org_field = FrmField::getOne($field['id']);
@@ -1874,7 +1878,7 @@ DEFAULT_HTML;
         }
 
         if ( ! $date_format ) {
-            $date_format = get_option('date_format');
+            $date_format = apply_filters( 'frm_date_format', get_option( 'date_format' ) );
         }
 
         if ( is_array($date) ) {
@@ -2522,7 +2526,14 @@ DEFAULT_HTML;
             return;
         }
 
-        $sep = isset($atts['sep']) ? $atts['sep'] : ', ';
+		if ( ! $foreach && ! $conditional && isset( $atts['show'] ) && ( $atts['show'] == 'field_label' || $atts['show'] == 'description' ) ) {
+			// get the field label or description and return before any other checking
+			$replace_with = ( $atts['show'] == 'field_label' ) ? $field->name : $field->description;
+			$content = str_replace($shortcodes[0][$short_key], $replace_with, $content);
+			return;
+		}
+
+		$sep = isset( $atts['sep'] ) ? $atts['sep'] : ', ';
 
         if ( $field->form_id == $entry->form_id ) {
             $replace_with = FrmProEntryMetaHelper::get_post_or_meta_value($entry, $field, $atts);
@@ -2539,7 +2550,9 @@ DEFAULT_HTML;
 
         self::get_file_from_atts($atts, $field, $replace_with);
 
-		if ( is_array( $replace_with ) && ! $foreach ) {
+		if ( isset( $atts['show'] ) && $atts['show'] == 'count' ) {
+			$replace_with = is_array( $replace_with ) ? count( $replace_with ) : ! empty( $replace_with );
+		} else if ( is_array( $replace_with ) && ! $foreach ) {
 			$replace_with = FrmAppHelper::array_flatten( $replace_with );
 			$replace_with = implode( $sep, $replace_with );
 		}
@@ -2552,11 +2565,7 @@ DEFAULT_HTML;
             $atts['short_key'] = $shortcodes[0][$short_key];
             self::check_conditional_shortcode($content, $replace_with, $atts, $tag, 'if', array( 'field' => $field ));
         } else {
-            if ( isset($atts['show']) && $atts['show'] == 'field_label' ) {
-                $replace_with = $field->name;
-            } else if ( isset($atts['show']) && $atts['show'] == 'description' ) {
-                $replace_with = $field->description;
-            } else if ( empty($replace_with) && $replace_with != '0' ) {
+			if ( empty( $replace_with ) && $replace_with != '0' ) {
                 $replace_with = '';
                 if ( $field->type == 'number' ) {
                     $replace_with = '0';
@@ -3071,6 +3080,10 @@ DEFAULT_HTML;
         $atts = wp_parse_args($atts, $defaults);
 
         if ( ! isset($atts['time_ago']) ) {
+			if ( strpos( $replace_with, ',' ) ) {
+				$replace_with = explode( ',', $replace_with );
+			}
+
             if ( is_array($replace_with) ) {
                 foreach ( $replace_with as $k => $v ) {
                     $replace_with[$k] = self::get_date($v, $atts['format']);

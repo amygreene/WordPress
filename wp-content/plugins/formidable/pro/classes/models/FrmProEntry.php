@@ -466,11 +466,7 @@ class FrmProEntry{
     }
 
     private static function populate_post_fields( $action, $entry, &$new_post ) {
-        $post_fields = array(
-            'post_content', 'post_excerpt', 'post_title',
-            'post_name', 'post_date', 'post_status',
-            'post_password',
-        );
+        $post_fields = self::get_post_fields( $new_post, 'post_fields' );
 
         foreach ( $post_fields as $setting_name ) {
             if ( ! is_numeric( $action->post_content[$setting_name] ) ) {
@@ -486,6 +482,30 @@ class FrmProEntry{
             unset($setting_name);
         }
     }
+
+	/**
+	 * Make sure all post fields get included in the new post.
+	 * Add the fields dynamically if they are included in the post.
+	 *
+	 * @since 2.0.2
+	 */
+	private static function get_post_fields( $new_post, $function ) {
+        $post_fields = array(
+            'post_content', 'post_excerpt', 'post_title',
+            'post_name', 'post_date', 'post_status',
+            'post_password',
+        );
+
+		if ( $function == 'insert_post' ) {
+        	$post_fields = array_merge( $post_fields, array( 'post_author', 'post_type', 'post_category', 'post_parent' ) );
+			$extra_fields = array_keys( $new_post );
+			$exclude_fields = array( 'post_custom', 'taxonomies', 'post_category' );
+			$extra_fields = array_diff( $extra_fields, $exclude_fields, $post_fields );
+			$post_fields = array_merge( $post_fields, $extra_fields );
+		}
+
+		return $post_fields;
+	}
 
     /**
      * Add custom fields to the post array
@@ -676,7 +696,7 @@ class FrmProEntry{
             $post['post_status'] = $action->post_content['post_status'];
         }
 
-        if ( isset($action->post_content['display_id']) ) {
+        if ( isset( $action->post_content['display_id'] ) && $action->post_content['display_id'] ) {
             $post['post_custom']['frm_display_id'] = $action->post_content['display_id'];
         } else {
             //check for auto view and set frm_display_id
@@ -699,11 +719,7 @@ class FrmProEntry{
             }
         }
 
-        $post_fields = array(
-            'post_content', 'post_excerpt', 'post_title',
-            'post_name', 'post_date', 'post_status', 'post_author',
-            'post_password', 'post_type', 'post_category', 'post_parent',
-        );
+        $post_fields = self::get_post_fields( $new_post, 'insert_post' );
 
         $editing = true;
         if ( empty($post) ) {

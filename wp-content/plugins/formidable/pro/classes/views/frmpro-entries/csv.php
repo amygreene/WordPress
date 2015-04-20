@@ -1,4 +1,19 @@
 <?php
+// add the field_id=0
+$comment_count = FrmDb::get_count( 'frm_item_metas', array( 'item_id' => $entry_ids, 'field_id' => 0), array( 'group_by' => 'item_id', 'order_by' => 'count(*) DESC', 'limit' => 1) );
+
+$form_name = sanitize_title_with_dashes($form->name);
+$filename = apply_filters('frm_csv_filename', date('ymdHis', time()) . '_' . $form_name . '_formidable_entries.csv', $form);
+$wp_date_format = apply_filters('frm_csv_date_format', 'Y-m-d H:i:s');
+$charset = get_option('blog_charset');
+
+$frmpro_settings = new FrmProSettings();
+$to_encoding = isset($_POST['csv_format']) ? $_POST['csv_format'] : $frmpro_settings->csv_format;
+$line_break = apply_filters('frm_csv_line_break', 'return');
+$sep = apply_filters('frm_csv_sep', ', ');
+$col_sep = ( isset( $_POST['csv_col_sep'] ) && ! empty( $_POST['csv_col_sep'] ) ) ? $_POST['csv_col_sep'] : ',';
+$col_sep = apply_filters('frm_csv_column_sep', $col_sep);
+
 
 header('Content-Description: File Transfer');
 header("Content-Disposition: attachment; filename=\"$filename\"");
@@ -107,7 +122,7 @@ foreach ( $entries as $entry ) {
             $checked_values = apply_filters('frm_csv_value', $checked_values, array( 'field' => $col));
 
             if (is_array($checked_values)){
-                $field_value = implode($sep, $checked_values);
+                $field_value = implode($sep, FrmAppHelper::array_flatten( $checked_values, 'reset' ) );
             }else{
                 $field_value = $checked_values;
             }
