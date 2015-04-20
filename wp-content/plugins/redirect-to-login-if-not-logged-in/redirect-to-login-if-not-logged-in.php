@@ -1,15 +1,17 @@
 <?php
 /**
  * @package Redirect to login if not logged in
- * @version 1.5
+ * @version 1.6.3
  */
 /*
-Plugin Name: Redirect to login if not logged in
-Plugin URI: http://wordpress.org/plugins/redirect-to-login-if-not-logged-in/
-Description: Redirects a user to the login page if the user is not logged in. After login the user gets redirected to the original entry page.
-Author: Daan Kortenbach
-Version: 1.5
-Author URI: http://daan.kortenba.ch/
+Plugin Name:   Redirect to login if not logged in
+Plugin URI:    http://wordpress.org/plugins/redirect-to-login-if-not-logged-in/
+Description:   Redirects a user to the login page if the user is not logged in. After login the user gets redirected to the original entry page.
+Author:        Daan Kortenbach
+Version:       1.6.3
+Author URI:    http://daan.kortenba.ch/
+License:       GPL-2.0 or later
+License URI:   http://www.gnu.org/licenses/gpl-2.0.txt
 */
 
 add_action( 'parse_request', 'dmk_redirect_to_login_if_not_logged_in', 1 );
